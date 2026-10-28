@@ -28,10 +28,9 @@ public static class CadGroupExecutor
             dims.Add(new{id=dim.GetProperty("id").GetString(),kind=dim.GetProperty("kind").GetString(),feature,valueText=row[column],visible=dim.GetProperty("visible").GetBoolean()&&!hidden});
         }
         var camera=plan.GetProperty("camera").Deserialize<ViewCamera>(new JsonSerializerOptions{PropertyNameCaseInsensitive=true})??throw new Exception("Kamera eksik.");
-        bool adjusted=camera.Direction.Length==3&&camera.Direction[2]<0;
-        if(adjusted)camera=camera with{Direction=new[]{camera.Direction[0],camera.Direction[1],-camera.Direction[2]}};
-        OcctSheetService.ValidateCamera(camera,true);string pn=plan.GetProperty("partNumberColumn").GetString()!;
-        if(string.IsNullOrWhiteSpace(row[pn]))throw new Exception("Parça numarası boş.");
-        return new{product=row[pn],outerDiameterMm=Eval("outerDiameterExpression"),depthMm=p.GetProperty("depthMm").GetDouble(),thicknessMm=p.GetProperty("thicknessMm").GetDouble(),outerRadiusMm=p.GetProperty("outerRadiusMm").GetDouble(),holes,camera=new{direction=camera.Direction,up=camera.Up,projection=camera.Projection,frontFacePolicyAdjusted=adjusted},drawing=new{source=Path.GetFullPath(image),fontPath=DrawingFonts.ArialPath(),dimensions=dims,fixedAnnotations=plan.GetProperty("fixedAnnotations").Clone(),geometricTolerances=plan.GetProperty("geometricTolerances").Clone(),section=new{mode="through-features",featureIds=targetIds},textScale=1.10}};
+        OcctSheetService.ValidateCamera(camera,true);
+        string outputId=row["jpeg file name"];
+        if(!System.Text.RegularExpressions.Regex.IsMatch(outputId,@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
+        return new{product=outputId,outerDiameterMm=Eval("outerDiameterExpression"),depthMm=p.GetProperty("depthMm").GetDouble(),thicknessMm=p.GetProperty("thicknessMm").GetDouble(),outerRadiusMm=p.GetProperty("outerRadiusMm").GetDouble(),holes,camera=new{direction=camera.Direction,up=camera.Up,projection=camera.Projection},drawing=new{source=Path.GetFullPath(image),fontPath=DrawingFonts.ArialPath(),dimensions=dims,fixedAnnotations=plan.GetProperty("fixedAnnotations").Clone(),geometricTolerances=plan.GetProperty("geometricTolerances").Clone(),section=new{mode="through-features",featureIds=targetIds},textScale=1.10}};
     }
 }

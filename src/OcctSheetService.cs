@@ -14,6 +14,6 @@ public static class OcctSheetService
         double Len(double[] x)=>Math.Sqrt(x.Sum(v=>v*v));
         double dn=Len(c.Direction),un=Len(c.Up);
         if(dn<1e-6||un<1e-6||Math.Abs(c.Direction.Zip(c.Up).Sum(v=>v.First*v.Second))/(dn*un)>.98)throw new Exception("Kamera yönü ve yukarı vektörü çakışıyor.");
-        if(c.Direction[2]<=0||c.Projection!="orthographic"||(c.Confidence is not ("high" or "medium") && !(allowApproximate && c.Confidence=="low")))throw new Exception("Kamera desteklenmiyor/belirsiz; kapalı ön yüz +Z tarafındadır.");
+        if(c.Projection!="orthographic"||(c.Confidence is not ("high" or "medium") && !(allowApproximate && c.Confidence=="low")))throw new Exception("Kamera projeksiyonu desteklenmiyor veya güven seviyesi belirsiz.");
     }
 }

@@ -60,6 +60,10 @@ public static class WorkflowReports
     {
         using var wb=new XLWorkbook(path);var ws=wb.Worksheets.First();
         var headers=ws.Row(1).CellsUsed().Select(c=>(Name:c.GetString().Trim().Trim('\'', '’','‘'),Column:c.Address.ColumnNumber)).ToList();
+        if(headers.Count==0||headers[0].Column!=1)throw new Exception("İlk sütun çıktı kimliği olmalı.");
+        var first=headers[0];
+        if(!first.Name.Equals("output jpeg name",StringComparison.OrdinalIgnoreCase)&&!first.Name.Equals("jpeg file name",StringComparison.OrdinalIgnoreCase))throw new Exception("A sütunu başlığı output jpeg name olmalı (eski jpeg file name de kabul edilir).");
+        headers[0]=("jpeg file name",1);
         if(headers.Any(h=>h.Name.Length==0)||headers.Select(h=>h.Name).Distinct(StringComparer.OrdinalIgnoreCase).Count()!=headers.Count)throw new Exception("Boş/tekrarlı başlık.");
         if(!headers.Any(h=>h.Name=="jpeg file name"))throw new Exception("jpeg file name sütunu yok.");
         var rows=ws.RowsUsed().Skip(1).Where(r=>headers.Any(h=>!r.Cell(h.Column).IsEmpty())).Select(r=>headers.ToDictionary(h=>h.Name,h=>r.Cell(h.Column).GetFormattedString().Trim())).ToList();

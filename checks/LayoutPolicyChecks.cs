@@ -108,3 +108,18 @@ using(var conditional=System.Text.Json.JsonDocument.Parse("""
     using var centered=System.Text.Json.JsonDocument.Parse(System.Text.Json.JsonSerializer.Serialize(CadGroupExecutor.Resolve(conditional.RootElement,zero,"source.jpg")));
     Check(centered.RootElement.GetProperty("holes").GetArrayLength()==3&&!centered.RootElement.GetProperty("drawing").GetProperty("dimensions")[1].GetProperty("visible").GetBoolean(),"executor keeps zero-position hole but hides zero offset annotation");
 }
+OcctSheetService.ValidateCamera(new(new double[]{1,1,-1},new double[]{0,1,0},"orthographic","medium"),true);
+Console.WriteLine("PASS model-selected rear-side camera is not reflected");
+var numericH=new Dictionary<string,string>(row);numericH["H"]="25±0,2";
+Check(ExcelModelInput.Build(new[]{numericH}).rows[0].cells["H"].nominalMm==25,"numeric H remains a measurement, not a product code");
+Check(!ExcelModelInput.Build(new[]{row}).rows[0].cells.ContainsKey("H"),"legacy repeated H product identifier is not sent as a measurement");
+using(var wb=new ClosedXML.Excel.XLWorkbook())
+{
+    string path=Path.Combine(Path.GetTempPath(),Guid.NewGuid()+".xlsx");
+    try
+    {
+        var ws=wb.AddWorksheet("input");ws.Cell(1,1).Value="output jpeg name";ws.Cell(1,2).Value="A";ws.Cell(2,1).Value="item-1";ws.Cell(2,2).Value="Ø25±1";wb.SaveAs(path);
+        var normalized=WorkflowReports.ReadRows(path);
+        Check(normalized[0]["jpeg file name"]=="item-1"&&GroupWorkflow.Value(normalized[0]["A"])==25,"physical column A is output ID while header A remains a dimension");
+    }finally{File.Delete(path);}
+}
