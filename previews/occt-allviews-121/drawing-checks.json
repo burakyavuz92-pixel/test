@@ -1,0 +1,49 @@
+{
+  "frontGeometry": "OCCT HLRBRep visible edges",
+  "sectionGeometry": "OCCT BRepAlgoAPI_Section X=0 + cut-half HLR visibility",
+  "sectionClosedLoops": 3,
+  "frontEdgeCount": 4,
+  "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+  "dimensions": [
+    {
+      "id": "d_body",
+      "modelValueMm": 286,
+      "valueText": "Ø286±1",
+      "visible": true
+    },
+    {
+      "id": "d_upper",
+      "modelValueMm": 21,
+      "valueText": "Ø21 (+0,1|-0,0)",
+      "visible": true
+    },
+    {
+      "id": "d_lower",
+      "modelValueMm": 12.6,
+      "valueText": "Ø12,6 (+0,1|-0,0)",
+      "visible": true
+    },
+    {
+      "id": "cd_holes",
+      "modelValueMm": 139.7,
+      "valueText": "139,7±0,5",
+      "visible": true
+    }
+  ],
+  "pixelSize": [
+    1754,
+    1240
+  ],
+  "dpi": 300,
+  "mainScale": 5,
+  "physicalSizeMm": [
+    148.5053333333333,
+    104.98666666666666
+  ],
+  "limits": [
+    "Profile-specific sheet layout",
+    "True planar section only, no offset section",
+    "No global dimension collision solver",
+    "Font height currently configured, not image-estimated"
+  ]
+}
