@@ -1,0 +1,34 @@
+{
+  "Status": "produced-awaiting-review",
+  "Issues": [
+    {
+      "Code": "E_POSITION_INCONSISTENT",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "E deli\u011Finin x konumu F ile verilmi\u015F, ancak F \u00F6l\u00E7\u00FCs\u00FC eksenden delik merkezine \u00E7iziliyor; G ve B ili\u015Fkisi \u00F6rneklerde farkl\u0131 (\u00F6r. G=44.45, B/2=44.45).",
+      "AffectedFields": [
+        "geometry.holes.E",
+        "geometry.holes.C"
+      ],
+      "RecommendedAction": "C deli\u011Finin y konumunu \u00E7izimle do\u011Frulay\u0131n; B/2 simetrisi sat\u0131rlara g\u00F6re de\u011Fi\u015Febilir.",
+      "Origin": "model"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 4,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.049388,
+    "ProducedImages": 4,
+    "AnalysisOnly": false,
+    "ColorPolicyVersion": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

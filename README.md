@@ -247,3 +247,7 @@ Parça özellikleri ve gövde ankrajı aynı ilişkilerle çözülür. Yerel gö
 Bu sürümde yalnızca X sağ/Y yukarı/Z izleyiciye doğru bazı desteklenir; başka baz sessizce yansıtılmaz. Diğer bazların dönüşümü yazılana kadar raporlanır. Orijin referansının genel tanımı, bütün parça türleri için geometri oluşturucu eklendiği anlamına gelmez. V3 geçmiş planlar geriye uyumlu okunur. Analiz komutu çizim üretmez; orijin sözleşmesi değişikliğini görmek için diğer API ayarları (low reasoning ve çift tam görüntü) değiştirilmedi.
 
 Şema v4'ün ilk gerçek API denemesi ve değiştirilmemiş planı: previews/group2-reference-frame/NOTLAR.md. Dört satırın geometri/ölçü bağlantıları yerel doğrulamadan geçti; çizim üretilmedi. Bu sonuç bütün parça aileleri için garanti değildir.
+
+## Ölçü yazısı çakışma kontrolü ve kısa prompt
+
+Talimatlar CadAnalysisPrompt içinde birleştirilmiştir; iki Excel veri bölümü korunmuştur. Kaynak şeması ve gerçek hata raporları korunurken normal açıklamalar kısaltılır. Yerel yazı yerleşimi gerçek Arial glyph sınırlarını, asimetrik tolerans genişliğini, dönüş açısını ve 3 birim boşluğu kullanır. Önce bütün çizgi/sabit metin engelleri kaydedilir, sonra ölçü etiketleri sonlu adaylardan seçilir; temiz aday yoksa raporla durur. Bu bir genel pafta/ lider kesişim optimizasyonu değildir. Tests: `python experiments/occt/test_label_layout.py`. Son çalışma previews/group2-compact-layout/NOTLAR.md içinde; API cache ve gerçek maliyet kullanım kayıtlarından karşılaştırılmıştır.

@@ -110,6 +110,13 @@ public static class CadPlanV3
                 string feature=dim.GetProperty("feature").GetString()!,kind=dim.GetProperty("kind").GetString()!;
                 var endpoints=new HashSet<string>{from.GetString()!,to.GetString()!};
                 var expected=kind=="centerDistance"?feature.Split(':').ToHashSet():kind=="diameter"?new HashSet<string>{feature}:new HashSet<string>{"origin",feature};
+                // body and datum origin are the same endpoint only when explicitly declared so.
+                if(kind!="diameter"&&plan.TryGetProperty("coordinateFrame",out var frame))
+                {
+                    var origin=frame.GetProperty("origin");var anchor=frame.GetProperty("bodyAnchor");
+                    if(origin.GetProperty("feature").GetString()=="body"&&origin.GetProperty("kind").GetString()=="axis-face-intersection"&&anchor.GetProperty("x").GetProperty("kind").GetString()=="origin"&&anchor.GetProperty("y").GetProperty("kind").GetString()=="origin")
+                    { if(endpoints.Remove("body"))endpoints.Add("origin");if(expected.Remove("body"))expected.Add("origin"); }
+                }
                 if(!endpoints.SetEquals(expected))Error("MEASUREMENT_ENDPOINT_CONFLICT",column+": ölçü kaynağının uçları, ölçülendirme tanımıyla uyuşmuyor.",column);
                 string? expectedAxis=kind switch{"diameter"=>"diameter","verticalOffset"=>"Y","horizontalOffset"=>"X",_=>null};
                 if(expectedAxis is not null&&axis.GetString()!=expectedAxis)Error("MEASUREMENT_AXIS_CONFLICT",column+": ölçü ekseni türle uyuşmuyor.",column);

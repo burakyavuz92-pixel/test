@@ -182,3 +182,13 @@ using(var fixture=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/f
     using var outOfView=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
     Check(CadPlanV3.Check(outOfView.RootElement,new(){row}).Any(i=>i.Code=="REFERENCE_FRAME"),"v4 rejects origin points outside the reference view");
 }
+Check(CadAnalysisPrompt.Instructions.Contains("hideIf:{kind:")&&!CadAnalysisPrompt.Instructions.Contains("hideIf:condition"),"compact prompt retains explicit visibility field names");
+using(var explicitOrigin=System.Text.Json.JsonDocument.Parse("""
+{"coordinateFrame":{"origin":{"kind":"axis-face-intersection","feature":"body"},"bodyAnchor":{"x":{"kind":"origin"},"y":{"kind":"origin"}}},"measurementSources":[{"column":"P","color":"black","axis":"X","fromFeature":"body","toFeature":"hole"}],"annotations":{"dimensions":[{"column":"P","kind":"horizontalOffset","feature":"hole","visible":true}],"fixedAnnotations":[]}}
+"""))
+{
+    Check(CadPlanV3.CheckColors(explicitOrigin.RootElement).Count==0,"explicit coincident body center and origin are equivalent measurement endpoints");
+    var node=System.Text.Json.Nodes.JsonNode.Parse(explicitOrigin.RootElement.GetRawText())!;node["coordinateFrame"]["origin"]["kind"]="datum";
+    using var datum=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.CheckColors(datum.RootElement).Any(i=>i.Code=="MEASUREMENT_ENDPOINT_CONFLICT"),"distinct datum is not silently equated with body center");
+}

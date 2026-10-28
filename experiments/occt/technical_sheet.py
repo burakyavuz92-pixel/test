@@ -3,6 +3,8 @@ import base64,io,math,re,json,html,pathlib
 from PIL import Image
 from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
+from fontTools.pens.boundsPen import BoundsPen
+from label_layout import LabelLayout,polygon
 from OCP.HLRBRep import HLRBRep_Algo,HLRBRep_HLRToShape
 from OCP.HLRAlgo import HLRAlgo_Projector
 from OCP.gp import gp_Pnt,gp_Dir,gp_Ax2,gp_Pln,gp_Trsf,gp_Vec
@@ -149,7 +151,18 @@ def write_sheet(shape,data,out):
     font=TTFont(drawing['fontPath']);family=font['name'].getDebugName(1)
     if family!='Arial':raise ValueError('Arial font required')
     glyphs=font.getGlyphSet();cmap=font.getBestCmap();units=font['head'].unitsPerEm
-    def text(value,x,y,size=13.75,angle=0,center=False):
+    layout=LabelLayout((100,55,1140,780));pending=[]
+    def text_box(value,size,center=False):
+        pos=0;boxes=[]
+        for ch in value:
+            glyph=glyphs[cmap[ord(ch)]];pen=BoundsPen(glyphs);glyph.draw(pen)
+            if pen.bounds:
+                l,b,r,t=pen.bounds;boxes.append(((pos+l)*size/units,-t*size/units,(pos+r)*size/units,-b*size/units))
+            pos+=glyph.width
+        offset=-pos*size/units/2 if center else 0
+        return (min(b[0] for b in boxes)+offset,min(b[1] for b in boxes),max(b[2] for b in boxes)+offset,max(b[3] for b in boxes)) if boxes else (0,0,0,0)
+    def text(value,x,y,size=13.75,angle=0,center=False,track=True):
+        if track:layout.labels.append(polygon(text_box(value,size,center),x,y,angle,3))
         advance=sum(glyphs[cmap[ord(c)]].width for c in value)
         offset=-advance*size/units/2 if center else 0
         svg.append(f'<g data-text="{html.escape(value,quote=True)}" transform="translate({x},{y}) rotate({angle}) translate({offset},0)"><title>{html.escape(value)}</title>')
@@ -160,21 +173,30 @@ def write_sheet(shape,data,out):
         svg.append('</g>')
     def path(pts,mapper,close=False,fill='none'):
         xy=[mapper(p) for p in pts];d='M'+' L'.join(f'{x:.4f},{y:.4f}' for x,y in xy)+(' Z' if close else '')
+        for a,b in zip(xy,xy[1:]+(xy[:1] if close else [])):layout.segment(a,b)
         svg.append(f'<path d="{d}" fill="{fill}" stroke="black" stroke-width=".8"/>')
     for pts in front:path(pts,lambda p:(cx+p.X()*s,cy-p.Y()*s))
     for pts in loops:path(pts,lambda p:(left-p.Z()*s,cy-p.Y()*s),True,'url(#hatch)')
     for pts in section_visible:path(pts,lambda p:(left+p.X()*s,cy-p.Y()*s))
     for pts in section:path(pts,lambda p:(left-p.Z()*s,cy-p.Y()*s))
-    def line(x,y,u,v,dash=False):svg.append(f'<path d="M{x},{y} L{u},{v}" stroke="black" stroke-width="{.5 if dash else .8}" fill="none"'+(' stroke-dasharray="16 4 3 4"' if dash else '')+'/>')
+    def line(x,y,u,v,dash=False):
+        layout.segment((x,y),(u,v))
+        svg.append(f'<path d="M{x},{y} L{u},{v}" stroke="black" stroke-width="{.5 if dash else .8}" fill="none"'+(' stroke-dasharray="16 4 3 4"' if dash else '')+'/>')
     def arrow(x,y,dx,dy):
         n=math.hypot(dx,dy);dx/=n;dy/=n
+        triangle=[(x,y),(x+dx*7-dy*2,y+dy*7+dx*2),(x+dx*7+dy*2,y+dy*7-dx*2)]
+        for a,b in zip(triangle,triangle[1:]+triangle[:1]):layout.segment(a,b)
         svg.append(f'<path d="M{x},{y} L{x+dx*7-dy*2},{y+dy*7+dx*2} L{x+dx*7+dy*2},{y+dy*7-dx*2} Z"/>')
-    def tolerance(raw,x,y,angle=0):
+    def label_parts(raw):
         m=re.fullmatch(r'(.*?)\s*\(\s*(\+[^|]+)\|\s*([^)]+)\)',raw)
         if m:
-            svg.append(f'<g transform="translate({x},{y}) rotate({angle})">');nom=m[1].strip();text(nom,0,0)
-            w=sum(glyphs[cmap[ord(c)]].width for c in nom)*13.75/units+4;text('(',w,0);text(m[2],w+5,-6,9.35);text(m[3],w+5,4,9.35);text(')',w+31,0);svg.append('</g>')
-        else:text(re.sub(r'\s*±\s*', ' (±',raw)+(')' if '±' in raw else ''),x,y,angle=angle,center=True)
+            nom=m[1].strip();advance=lambda v,size:sum(glyphs[cmap[ord(c)]].width for c in v)*size/units
+            w=advance(nom,13.75)+4;tw=max(advance(m[2],9.35),advance(m[3],9.35))
+            parts=[(nom,0,0,13.75),('(',w,0,13.75),(m[2],w+5,-6,9.35),(m[3],w+5,4,9.35),(')',w+7+tw,0,13.75)]
+        else:parts=[(re.sub(r'\s*±\s*',' (±',raw)+(')' if '±' in raw else ''),0,0,13.75)]
+        boxes=[(text_box(v,size),x,y) for v,x,y,size in parts];l=min(b[0]+x for b,x,y in boxes);r=max(b[2]+x for b,x,y in boxes);offset=-(l+r)/2
+        return [(v,x+offset,y,size) for v,x,y,size in parts],(l+offset,min(b[1]+y for b,x,y in boxes),r+offset,max(b[3]+y for b,x,y in boxes))
+    def tolerance(raw,x,y,angle=0,leader=None):pending.append((dim['id'],raw,x,y,angle,leader))
     line(cx-r-12,cy,cx+r+12,cy,True);line(cx,cy-r-30,cx,cy+r+30,True)
     holes={h['id']:h for h in data['holes']}
     for h in holes.values():
@@ -209,9 +231,8 @@ def write_sheet(shape,data,out):
             hx,hy=cx+h['xMm']*s+side*h['diameterMm']*s*.4,cy-h['yMm']*s+(-1 if upper else 1)*h['diameterMm']*s*.3
             if abs(h['yMm'])<1e-6:ex,ey=cx-r-65,cy-r*.45
             else:ex,ey=cx+side*r*.72,cy+(-1 if upper else 1)*(r+35)
-            line(hx,hy,ex,ey);arrow(hx,hy,ex-hx,ey-hy)
             angle=math.degrees(math.atan2(ey-hy,ex-hx));angle=angle-180 if angle>90 else angle+180 if angle< -90 else angle
-            tolerance(raw,ex,ey-10,angle)
+            tolerance(raw,ex,ey-10,angle,((hx,hy),(ex,ey)))
     # Fixed annotations are visibility-controlled by the model, not injected from a previous group.
     for annotation in drawing['fixedAnnotations']:
         if not annotation['visible']:continue
@@ -237,9 +258,31 @@ def write_sheet(shape,data,out):
     text(data['product'],1350,959,12.5);text(f'1:{denominator:g}',1167,820,10);text('ÖZEL' if dpi!=150 else 'A4',1415,858,9)
     text('OCCT ön görünüş ve koşullu A-A kesiti • Arial ölçüler • İzometrik ölçeksiz',390,855,9)
     text(f'{W}×{H} px • {dpi} DPI • %100 boyutta yazdırın',390,871,9)
+    # All curves, dimensions, axes and fixed text now exist as obstacles.
+    for id,raw,x,y,angle,leader in pending:
+        parts,box=label_parts(raw);candidates=[]
+        if leader:
+            (hx,hy),(ex,ey)=leader;base=math.atan2(ey-hy,ex-hx);length=math.hypot(ex-hx,ey-hy)
+            for extra in (0,25,50,80):
+                for delta in (0,-15,15,-30,30,-45,45):
+                    theta=base+math.radians(delta);ex,ey=hx+(length+extra)*math.cos(theta),hy+(length+extra)*math.sin(theta)
+                    a=math.degrees(theta);a=a-180 if a>90 else a+180 if a< -90 else a
+                    for gap in (14,22,30):
+                        aa=math.radians(a);tx,ty=ex+math.sin(aa)*gap,ey-math.cos(aa)*gap
+                        candidates.append((tx,ty,a,((hx,hy),(ex,ey))))
+        else:
+            a=math.radians(angle)
+            for gap in (0,6,-6,12,-12,20,-20,30,-30,45,-45):
+                candidates.append((x+math.sin(a)*gap,y-math.cos(a)*gap,angle,None))
+        x,y,angle,chosen=layout.choose(id,box,candidates)
+        if chosen:
+            (hx,hy),(ex,ey)=chosen;line(hx,hy,ex,ey);arrow(hx,hy,ex-hx,ey-hy)
+        svg.append(f'<g data-dimension="{html.escape(id,quote=True)}" transform="translate({x},{y}) rotate({angle})">')
+        for value,px,py,size in parts:text(value,px,py,size,track=False)
+        svg.append('</g>')
     iso=Image.open(out/'occt-preview.png');ib=io.BytesIO();iso.save(ib,format='PNG')
     svg.append(f'<image x="1170" y="65" width="268" height="305" preserveAspectRatio="xMidYMid meet" href="data:image/png;base64,{base64.b64encode(ib.getvalue()).decode()}"/>');svg.append('</svg>')
     (out/'technical-sheet.svg').write_text(''.join(svg));cairosvg.svg2png(url=str(out/'technical-sheet.svg'),write_to=str(out/'technical-sheet.png'))
     with Image.open(out/'technical-sheet.png') as im:im.convert('RGB').save(out/'technical-sheet.jpeg',quality=96,dpi=(dpi,dpi))
-    info={'frontGeometry':'OCCT HLRBRep visible edges','sectionGeometry':'OCCT parallel sections + coplanar face union' ,'sectionBands':section_bands(data),'sectionClosedLoops':len(loops),'frontEdgeCount':len(front),'annotations':'SVG paths from actual Arial glyphs, anchored to model coordinates','dimensions':measured,'pixelSize':[W,H],'dpi':dpi,'mainScale':denominator,'physicalSizeMm':[W/dpi*25.4,H/dpi*25.4],'limits':['Profile-specific sheet layout','Parallel stepped sections only; centered endpoints and separated Y bands required','No global dimension collision solver','Font height currently configured, not image-estimated']}
+    info={'frontGeometry':'OCCT HLRBRep visible edges','sectionGeometry':'OCCT parallel sections + coplanar face union' ,'sectionBands':section_bands(data),'sectionClosedLoops':len(loops),'frontEdgeCount':len(front),'annotations':'SVG paths from actual Arial glyphs, anchored to model coordinates','dimensions':measured,'labelPlacements':layout.records,'labelClearanceUnits':3,'pixelSize':[W,H],'dpi':dpi,'mainScale':denominator,'physicalSizeMm':[W/dpi*25.4,H/dpi*25.4],'limits':['Profile-specific sheet layout','Parallel stepped sections only; centered endpoints and separated Y bands required','Greedy oriented text placement; no global optimization of all leader crossings','Font height currently configured, not image-estimated']}
     (out/'drawing-checks.json').write_text(json.dumps(info,ensure_ascii=False,indent=2));return info

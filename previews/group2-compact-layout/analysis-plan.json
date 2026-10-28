@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 4,
+  "colorPolicyVersion": 1,
+  "coordinateFrame": {
+    "referenceView": {
+      "id": "front-view",
+      "bbox01": [
+        0.352,
+        0.17,
+        0.68,
+        0.64
+      ]
+    },
+    "origin": {
+      "kind": "axis-face-intersection",
+      "feature": "body",
+      "point01": [
+        0.513,
+        0.408
+      ],
+      "evidence": "D\u0131\u015F daire merkezi, dikey ve yatay eksen kesi\u015Fimi"
+    },
+    "axes": {
+      "x": "right",
+      "y": "up",
+      "z": "toward-viewer"
+    },
+    "bodyAnchor": {
+      "x": {
+        "kind": "origin"
+      },
+      "y": {
+        "kind": "origin"
+      }
+    }
+  },
+  "measurementSources": [
+    {
+      "column": "A",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "body",
+      "toFeature": "body",
+      "evidence": "Kesitte \u00F8\u0027A\u0027 d\u0131\u015F \u00E7ap \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "column": "B",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "C",
+      "toFeature": "D",
+      "evidence": "B, iki delik merkezi aras\u0131ndaki dikey mesafe"
+    },
+    {
+      "column": "C",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "C",
+      "toFeature": "C",
+      "evidence": "\u00DCst delik \u00E7ap \u00F6l\u00E7\u00FCs\u00FC \u00F8\u0027C\u0027"
+    },
+    {
+      "column": "D",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "D",
+      "toFeature": "D",
+      "evidence": "Alt delik \u00E7ap \u00F6l\u00E7\u00FCs\u00FC \u00F8\u0027D\u0027"
+    },
+    {
+      "column": "E",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "E",
+      "toFeature": "E",
+      "evidence": "Sol k\u00FC\u00E7\u00FCk delik \u00E7ap\u0131 \u00F8\u0027E\u0027"
+    },
+    {
+      "column": "F",
+      "color": "black",
+      "axis": "X",
+      "fromFeature": "E",
+      "toFeature": "body",
+      "evidence": "F, E deli\u011Finden eksene yatay mesafe"
+    },
+    {
+      "column": "G",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "body",
+      "toFeature": "D",
+      "evidence": "G, merkez ekseninden alt delik merkezine"
+    }
+  ],
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "C",
+        "diameterColumn": "C",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "D",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "D",
+        "diameterColumn": "D",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "G",
+            "sign": -1
+          }
+        }
+      },
+      {
+        "id": "E",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": -1
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "kind": "diameter",
+        "feature": "body",
+        "column": "A",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimB",
+        "kind": "centerDistance",
+        "feature": "C:D",
+        "column": "B",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimC",
+        "kind": "diameter",
+        "feature": "C",
+        "column": "C",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimD",
+        "kind": "diameter",
+        "feature": "D",
+        "column": "D",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimE",
+        "kind": "diameter",
+        "feature": "E",
+        "column": "E",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimF",
+        "kind": "horizontalOffset",
+        "feature": "E",
+        "column": "F",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "kind": "verticalOffset",
+        "feature": "D",
+        "column": "G",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [
+      {
+        "kind": "radius",
+        "visible": false,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "depth",
+        "visible": false,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "thickness",
+        "visible": false,
+        "sourceColor": "green"
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "label": "A-A",
+    "featureIds": [
+      "C",
+      "D",
+      "E"
+    ],
+    "evidence": "A-A izi basamakl\u0131, E, C ve D deliklerinden ge\u00E7er"
+  },
+  "camera": {
+    "direction": [
+      0.5,
+      0.45,
+      0.75
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "Referans izometrik g\u00F6r\u00FCn\u00FC\u015F \u00F6nden ve sa\u011F-\u00FCstten"
+  },
+  "issues": [
+    {
+      "code": "E_POSITION_INCONSISTENT",
+      "category": "input",
+      "severity": "warning",
+      "message": "E deli\u011Finin x konumu F ile verilmi\u015F, ancak F \u00F6l\u00E7\u00FCs\u00FC eksenden delik merkezine \u00E7iziliyor; G ve B ili\u015Fkisi \u00F6rneklerde farkl\u0131 (\u00F6r. G=44.45, B/2=44.45).",
+      "affectedFields": [
+        "geometry.holes.E",
+        "geometry.holes.C"
+      ],
+      "recommendedAction": "C deli\u011Finin y konumunu \u00E7izimle do\u011Frulay\u0131n; B/2 simetrisi sat\u0131rlara g\u00F6re de\u011Fi\u015Febilir."
+    }
+  ],
+  "evidence": [
+    "Kesit A-A ve plan g\u00F6r\u00FCn\u00FCmde yuvarlat\u0131lm\u0131\u015F kap bi\u00E7imi",
+    "K\u0131rm\u0131z\u0131 notlar yaln\u0131zca g\u00F6r\u00FCnt\u00FC kural\u0131d\u0131r",
+    "Derinlik 33, kal\u0131nl\u0131k 3, R8 ye\u015Fil \u00F6l\u00E7\u00FClerden"
+  ]
+}

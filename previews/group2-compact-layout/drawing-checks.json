@@ -1,0 +1,756 @@
+{
+  "11-30-381": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -136,
+        136
+      ]
+    ],
+    "sectionClosedLoops": 4,
+    "frontEdgeCount": 5,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dimA",
+        "modelValueMm": 136,
+        "valueText": "Ø136±1",
+        "visible": true
+      },
+      {
+        "id": "dimB",
+        "modelValueMm": 70.0,
+        "valueText": "70±0,5",
+        "visible": true
+      },
+      {
+        "id": "dimC",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimD",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimE",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimF",
+        "modelValueMm": 0,
+        "valueText": "0",
+        "visible": false
+      },
+      {
+        "id": "dimG",
+        "modelValueMm": 35,
+        "valueText": "35±0,5",
+        "visible": false
+      }
+    ],
+    "labelPlacements": [
+      {
+        "id": "dimA",
+        "candidate": 0,
+        "polygon": [
+          [
+            134.794921875,
+            464.37689208984375
+          ],
+          [
+            134.794921875,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            464.37689208984375
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimB",
+        "candidate": 0,
+        "polygon": [
+          [
+            440.9896240234375,
+            460.89239501953125
+          ],
+          [
+            440.9896240234375,
+            401.10760498046875
+          ],
+          [
+            459.8936767578125,
+            401.10760498046875
+          ],
+          [
+            459.8936767578125,
+            460.89239501953125
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimC",
+        "candidate": 0,
+        "polygon": [
+          [
+            930.1227816180436,
+            122.38107164012303
+          ],
+          [
+            979.2450342061856,
+            79.85590163815853
+          ],
+          [
+            994.982342112894,
+            98.03459472780361
+          ],
+          [
+            945.8600895247521,
+            140.55976472976812
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimD",
+        "candidate": 0,
+        "polygon": [
+          [
+            537.8502807209323,
+            737.2039895527777
+          ],
+          [
+            586.9725333090743,
+            694.6788195508133
+          ],
+          [
+            602.7098412157827,
+            712.8575126404583
+          ],
+          [
+            553.5875886276408,
+            755.3826826424227
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimE",
+        "candidate": 4,
+        "polygon": [
+          [
+            393.867612415218,
+            353.87576419898585
+          ],
+          [
+            458.7143968652082,
+            357.9106532341027
+          ],
+          [
+            457.22120374894075,
+            381.9085305759759
+          ],
+          [
+            392.37441929895056,
+            377.873641540859
+          ]
+        ],
+        "clearance": 3
+      }
+    ],
+    "labelClearanceUnits": 3,
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 2.5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "Greedy oriented text placement; no global optimization of all leader crossings",
+      "Font height currently configured, not image-estimated"
+    ]
+  },
+  "11-30-200": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -160,
+        160
+      ]
+    ],
+    "sectionClosedLoops": 3,
+    "frontEdgeCount": 4,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dimA",
+        "modelValueMm": 160,
+        "valueText": "Ø160±1",
+        "visible": true
+      },
+      {
+        "id": "dimB",
+        "modelValueMm": 89.0,
+        "valueText": "89±0,5",
+        "visible": true
+      },
+      {
+        "id": "dimC",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimD",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimG",
+        "modelValueMm": 44.5,
+        "valueText": "44,5±0,5",
+        "visible": false
+      }
+    ],
+    "labelPlacements": [
+      {
+        "id": "dimA",
+        "candidate": 0,
+        "polygon": [
+          [
+            134.794921875,
+            464.37689208984375
+          ],
+          [
+            134.794921875,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            464.37689208984375
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimB",
+        "candidate": 0,
+        "polygon": [
+          [
+            440.9896240234375,
+            460.93939208984375
+          ],
+          [
+            440.9896240234375,
+            401.06060791015625
+          ],
+          [
+            459.8936767578125,
+            401.06060791015625
+          ],
+          [
+            459.8936767578125,
+            460.93939208984375
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimC",
+        "candidate": 0,
+        "polygon": [
+          [
+            849.3476357624999,
+            236.30508642455507
+          ],
+          [
+            896.7365494853894,
+            191.8565022042031
+          ],
+          [
+            913.1856561170766,
+            209.39373783634997
+          ],
+          [
+            865.796742394187,
+            253.84232205670193
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimD",
+        "candidate": 0,
+        "polygon": [
+          [
+            618.5991058230226,
+            626.78915578494
+          ],
+          [
+            665.9880195459122,
+            582.3405715645881
+          ],
+          [
+            682.4371261775993,
+            599.877807196735
+          ],
+          [
+            635.0482124547098,
+            644.3263914170869
+          ]
+        ],
+        "clearance": 3
+      }
+    ],
+    "labelClearanceUnits": 3,
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "Greedy oriented text placement; no global optimization of all leader crossings",
+      "Font height currently configured, not image-estimated"
+    ]
+  },
+  "11-30-212": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -160,
+        -20.975
+      ],
+      [
+        -44.5,
+        -20.975,
+        20.975
+      ],
+      [
+        0,
+        20.975,
+        160
+      ]
+    ],
+    "sectionClosedLoops": 4,
+    "frontEdgeCount": 5,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dimA",
+        "modelValueMm": 160,
+        "valueText": "Ø160±1",
+        "visible": true
+      },
+      {
+        "id": "dimB",
+        "modelValueMm": 88.9,
+        "valueText": "88,9±0,5",
+        "visible": true
+      },
+      {
+        "id": "dimC",
+        "modelValueMm": 10,
+        "valueText": "Ø10 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimD",
+        "modelValueMm": 10,
+        "valueText": "Ø10 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimE",
+        "modelValueMm": 5,
+        "valueText": "Ø5 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimF",
+        "modelValueMm": 44.5,
+        "valueText": "44,5±0,5",
+        "visible": true
+      },
+      {
+        "id": "dimG",
+        "modelValueMm": 44.45,
+        "valueText": "44,45±0,5",
+        "visible": false
+      }
+    ],
+    "labelPlacements": [
+      {
+        "id": "dimA",
+        "candidate": 0,
+        "polygon": [
+          [
+            134.794921875,
+            464.37689208984375
+          ],
+          [
+            134.794921875,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            464.37689208984375
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimB",
+        "candidate": 0,
+        "polygon": [
+          [
+            440.9896240234375,
+            466.67303466796875
+          ],
+          [
+            440.9896240234375,
+            395.32696533203125
+          ],
+          [
+            459.8936767578125,
+            395.32696533203125
+          ],
+          [
+            459.8936767578125,
+            466.67303466796875
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimC",
+        "candidate": 0,
+        "polygon": [
+          [
+            849.3464080441449,
+            236.19527001266977
+          ],
+          [
+            896.8460415370191,
+            191.8650252460116
+          ],
+          [
+            913.251354236308,
+            209.44323499093744
+          ],
+          [
+            865.7517207434338,
+            253.7734797575956
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimD",
+        "candidate": 0,
+        "polygon": [
+          [
+            618.5978781046676,
+            626.6793393730547
+          ],
+          [
+            666.0975115975418,
+            582.3490946063966
+          ],
+          [
+            682.5028242968307,
+            599.9273043513225
+          ],
+          [
+            635.0031908039565,
+            644.2575491179806
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimE",
+        "candidate": 3,
+        "polygon": [
+          [
+            517.8938131368664,
+            360.17346207767565
+          ],
+          [
+            573.8351044288272,
+            372.69299680891
+          ],
+          [
+            568.5839439448333,
+            396.1568638424873
+          ],
+          [
+            512.6426526528725,
+            383.637329111253
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimF",
+        "candidate": 0,
+        "polygon": [
+          [
+            697.568304221759,
+            221.74758934324495
+          ],
+          [
+            769.297063987384,
+            221.74758934324495
+          ],
+          [
+            769.297063987384,
+            240.65164207761995
+          ],
+          [
+            697.568304221759,
+            240.65164207761995
+          ]
+        ],
+        "clearance": 3
+      }
+    ],
+    "labelClearanceUnits": 3,
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "Greedy oriented text placement; no global optimization of all leader crossings",
+      "Font height currently configured, not image-estimated"
+    ]
+  },
+  "11-30-92": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -286,
+        286
+      ]
+    ],
+    "sectionClosedLoops": 3,
+    "frontEdgeCount": 4,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dimA",
+        "modelValueMm": 286,
+        "valueText": "Ø286±1",
+        "visible": true
+      },
+      {
+        "id": "dimB",
+        "modelValueMm": 165.4,
+        "valueText": "165,4±0,5",
+        "visible": true
+      },
+      {
+        "id": "dimC",
+        "modelValueMm": 21,
+        "valueText": "Ø21 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimD",
+        "modelValueMm": 12.6,
+        "valueText": "Ø12,6 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dimG",
+        "modelValueMm": 78.7,
+        "valueText": "78,7±0,5",
+        "visible": true
+      }
+    ],
+    "labelPlacements": [
+      {
+        "id": "dimA",
+        "candidate": 0,
+        "polygon": [
+          [
+            134.794921875,
+            464.37689208984375
+          ],
+          [
+            134.794921875,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            397.62310791015625
+          ],
+          [
+            153.8936767578125,
+            464.37689208984375
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimB",
+        "candidate": 0,
+        "polygon": [
+          [
+            440.9896240234375,
+            462.0145095941154
+          ],
+          [
+            440.9896240234375,
+            383.9612869378654
+          ],
+          [
+            459.8936767578125,
+            383.9612869378654
+          ],
+          [
+            459.8936767578125,
+            462.0145095941154
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimC",
+        "candidate": 0,
+        "polygon": [
+          [
+            940.524472781335,
+            104.24389496461919
+          ],
+          [
+            993.4128439937689,
+            66.50524139132648
+          ],
+          [
+            1007.378803712215,
+            86.07766361599754
+          ],
+          [
+            954.4904324997811,
+            123.81631718929025
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimD",
+        "candidate": 0,
+        "polygon": [
+          [
+            523.3564509823233,
+            752.9972468560353
+          ],
+          [
+            583.1475153250461,
+            705.3734885918115
+          ],
+          [
+            598.1277239004816,
+            724.1809630005274
+          ],
+          [
+            538.3366595577587,
+            771.8047212647513
+          ]
+        ],
+        "clearance": 3
+      },
+      {
+        "id": "dimG",
+        "candidate": 0,
+        "polygon": [
+          [
+            1102.4222610142815,
+            545.445088405976
+          ],
+          [
+            1102.4222610142815,
+            474.1930132106635
+          ],
+          [
+            1121.3263137486565,
+            474.1930132106635
+          ],
+          [
+            1121.3263137486565,
+            545.445088405976
+          ]
+        ],
+        "clearance": 3
+      }
+    ],
+    "labelClearanceUnits": 3,
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "Greedy oriented text placement; no global optimization of all leader crossings",
+      "Font height currently configured, not image-estimated"
+    ]
+  }
+}
