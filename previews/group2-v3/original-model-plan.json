@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 3,
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "holeC",
+        "diameterColumn": "C",
+        "presentIfColumn": "C",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": 1
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "holeD",
+        "diameterColumn": "D",
+        "presentIfColumn": "D",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": 1
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "holeC",
+            "column": "B",
+            "sign": -1
+          }
+        }
+      },
+      {
+        "id": "holeE",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": -1
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "kind": "diameter",
+        "feature": "body",
+        "column": "A",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimB",
+        "kind": "centerDistance",
+        "feature": "holeC:holeD",
+        "column": "B",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimC",
+        "kind": "diameter",
+        "feature": "holeC",
+        "column": "C",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimD",
+        "kind": "diameter",
+        "feature": "holeD",
+        "column": "D",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimE",
+        "kind": "diameter",
+        "feature": "holeE",
+        "column": "E",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimF",
+        "kind": "horizontalOffset",
+        "feature": "holeC",
+        "column": "F",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "kind": "verticalOffset",
+        "feature": "holeD",
+        "column": "G",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [
+      {
+        "kind": "radius",
+        "visible": true
+      },
+      {
+        "kind": "depth",
+        "visible": true
+      },
+      {
+        "kind": "thickness",
+        "visible": true
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "featureIds": [
+      "holeC",
+      "holeD"
+    ],
+    "evidence": "A-A kesit izi dikey merkez d\u00FCzlemden ge\u00E7er, F ofsetine g\u00F6re ayr\u0131lan C ve D deliklerini keser; E deli\u011Fi kesilmez."
+  },
+  "camera": {
+    "direction": [
+      -0.6,
+      0.5,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "Referans izometrik g\u00F6r\u00FCn\u00FCm kapal\u0131 \u00F6n y\u00FCz\u00FC pozitif Z taraf\u0131ndan, hafif soldan ve yukar\u0131dan g\u00F6steriyor."
+  },
+  "issues": [
+    {
+      "code": "GEOMETRY_AMBIGUITY",
+      "category": "input",
+      "severity": "warning",
+      "message": "G \u00F6l\u00E7\u00FCs\u00FC i\u00E7in yatay/dikey yerle\u015Fim ve delik konumlar\u0131 \u00E7izimden \u00E7\u0131kar\u0131ld\u0131; G ve F do\u011Frudan geometri ba\u011Flay\u0131c\u0131lar\u0131nda kullan\u0131lm\u0131yor, konum B/F ili\u015Fkilerinden tan\u0131mland\u0131.",
+      "affectedFields": [
+        "geometry.holes",
+        "annotations.dimensions"
+      ],
+      "recommendedAction": "Delik konumlar\u0131n\u0131 \u00E7izimle kar\u015F\u0131la\u015Ft\u0131rarak do\u011Frulay\u0131n."
+    }
+  ],
+  "evidence": [
+    "D\u0131\u015F \u00E7ap A, delik \u00E7aplar\u0131 C, D, E; B delikler aras\u0131 mesafe; F ve G ofset \u00F6l\u00E7\u00FCleri.",
+    "R8, 33 ve 3 ye\u015Fil sabit \u00F6l\u00E7\u00FClerdir ve geometriyi tan\u0131mlar.",
+    "F=0 ise F \u00F6l\u00E7\u00FCs\u00FC gizlenir; G, B\u0027nin yar\u0131s\u0131 ise G gizlenir.",
+    "Par\u00E7a numaras\u0131 ve dosya ad\u0131 outputId de\u011Feridir."
+  ]
+}

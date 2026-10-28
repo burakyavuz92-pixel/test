@@ -1,0 +1,16 @@
+{
+  "authorizedOneOff": true,
+  "newApiCalls": 0,
+  "changes": [
+    "C deliği X=0 ve Y=D deliğinin Y koordinatı+B",
+    "D deliği X=0 ve Y=-G",
+    "F ölçüsü E deliğine bağlandı",
+    "Yeşil R8/33/3 gösterimleri gizlendi",
+    "Kesit hedeflerine E deliği eklendi"
+  ],
+  "unchanged": [
+    "Excel nominal ve toleransları",
+    "Modelin kamera yönü",
+    "Özgün API yanıtı ve özgün plan"
+  ]
+}

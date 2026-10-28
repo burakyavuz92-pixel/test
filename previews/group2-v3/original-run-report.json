@@ -1,0 +1,74 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "GEOMETRY_AMBIGUITY",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "G \u00F6l\u00E7\u00FCs\u00FC i\u00E7in yatay/dikey yerle\u015Fim ve delik konumlar\u0131 \u00E7izimden \u00E7\u0131kar\u0131ld\u0131; G ve F do\u011Frudan geometri ba\u011Flay\u0131c\u0131lar\u0131nda kullan\u0131lm\u0131yor, konum B/F ili\u015Fkilerinden tan\u0131mland\u0131.",
+      "AffectedFields": [
+        "geometry.holes",
+        "annotations.dimensions"
+      ],
+      "RecommendedAction": "Delik konumlar\u0131n\u0131 \u00E7izimle kar\u015F\u0131la\u015Ft\u0131rarak do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "MODEL_MEASUREMENT_CONFLICT",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-212: modelde G=0, Excel nominali 44.45.",
+      "AffectedFields": [
+        "11-30-212",
+        "G"
+      ],
+      "RecommendedAction": "Model geometrik ili\u015Fkisi d\u00FCzeltilmeli; ge\u00E7erli Excel de\u011Feri de\u011Fi\u015Ftirilmemeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "V3_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-200: Ge\u00E7ersiz \u00F6l\u00E7\u00FC: ",
+      "AffectedFields": [],
+      "RecommendedAction": "\u0130li\u015Fki veya destek kapsam\u0131 incelenmeli; do\u011Fru veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "V3_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-92: Ge\u00E7ersiz \u00F6l\u00E7\u00FC: ",
+      "AffectedFields": [],
+      "RecommendedAction": "\u0130li\u015Fki veya destek kapsam\u0131 incelenmeli; do\u011Fru veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "MODEL_MEASUREMENT_CONFLICT",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-381: modelde G=0, Excel nominali 35.",
+      "AffectedFields": [
+        "11-30-381",
+        "G"
+      ],
+      "RecommendedAction": "Model geometrik ili\u015Fkisi d\u00FCzeltilmeli; ge\u00E7erli Excel de\u011Feri de\u011Fi\u015Ftirilmemeli.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 4,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.032152,
+    "ProducedImages": 0,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

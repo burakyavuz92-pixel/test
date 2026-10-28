@@ -1,0 +1,11 @@
+{
+  "Status": "produced-awaiting-review",
+  "Issues": [],
+  "Run": {
+    "SourceRun": "/workspace/test/output/group2-v3-assisted-plan",
+    "NewApiCalls": 0,
+    "ProducedImages": 4,
+    "AssistantAnswersUsed": true
+  },
+  "HumanApproved": false
+}

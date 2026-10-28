@@ -51,6 +51,13 @@ class ConditionalSectionChecks(unittest.TestCase):
         self.assertEqual(len(loops),4)
         for boundary in [b[2] for b in bands[:-1]]:
             self.assertFalse(any(all(abs(p.Y()-boundary)<1e-6 for p in edge) for edge in edges))
+    def test_offset_visibility_preserves_hole_boundary_edges(self):
+        from technical_sheet import derive
+        data=self.data();shape,_=build(data);visible=derive(shape,data)[3]
+        for hole in data['holes']:
+            for y in (hole['yMm']-hole['diameterMm']/2,hole['yMm']+hole['diameterMm']/2):
+                self.assertTrue(any(all(abs(p.Y()-y)<1e-5 for p in edge) for edge in visible))
+
     def test_absent_or_centered_third_hole_is_planar(self):
         from technical_sheet import section_bands,derive
         data=self.data();data['holes'][2]['xMm']=0

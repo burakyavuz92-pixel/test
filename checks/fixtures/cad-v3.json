@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 3,
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "u",
+        "diameterColumn": "C",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "l",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "l",
+        "diameterColumn": "D",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "G",
+            "sign": -1
+          }
+        }
+      },
+      {
+        "id": "t",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": -1
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "A",
+        "column": "A",
+        "kind": "diameter",
+        "feature": "body",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "B",
+        "column": "B",
+        "kind": "centerDistance",
+        "feature": "u:l",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "C",
+        "column": "C",
+        "kind": "diameter",
+        "feature": "u",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "D",
+        "column": "D",
+        "kind": "diameter",
+        "feature": "l",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "E",
+        "column": "E",
+        "kind": "diameter",
+        "feature": "t",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "F",
+        "column": "F",
+        "kind": "horizontalOffset",
+        "feature": "t",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "G",
+        "column": "G",
+        "kind": "verticalOffset",
+        "feature": "l",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "featureIds": [
+      "u",
+      "t",
+      "l"
+    ]
+  },
+  "camera": {
+    "direction": [
+      1,
+      1,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium"
+  },
+  "issues": []
+}

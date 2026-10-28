@@ -113,8 +113,20 @@ def derive(shape,data):
     bands=section_bands(data)
     if len(bands)>1:
         section_edges,loops=offset_section(shape,data,bands)
-        # Rear flange edges are kept; front-base edges are supplied by the merged section.
-        visible=[pts for pts in visible if min(p.X() for p in pts)>data['thicknessMm']+1e-5]
+        # Compute rear visibility per band. Keep actual hole edges; remove only
+        # clipping-boundary edges created by the artificial band transitions.
+        visible=[];R=data['outerDiameterMm'];depth=data['depthMm']
+        for x,lo,hi in bands:
+            clip=BRepPrimAPI_MakeBox(gp_Pnt(-R,lo,-depth-1),2*R,hi-lo,depth+2).Shape()
+            band=BRepAlgoAPI_Common(shape,clip);band.Build()
+            half=BRepPrimAPI_MakeBox(gp_Pnt(x,lo-1,-depth-1),R-x,hi-lo+2,depth+2).Shape()
+            cut=BRepAlgoAPI_Cut(band.Shape(),half);cut.Build()
+            if not band.IsDone() or not cut.IsDone():raise RuntimeError('Band visibility cut failed')
+            projection=HLRBRep_Algo();projection.Add(cut.Shape());projection.Projector(HLRAlgo_Projector(gp_Ax2(gp_Pnt(),gp_Dir(1,0,0),gp_Dir(0,0,-1))));projection.Update();projection.Hide()
+            for pts in curves(HLRBRep_HLRToShape(projection).VCompound()):
+                if all(abs(p.Y()-lo)<1e-6 for p in pts) or all(abs(p.Y()-hi)<1e-6 for p in pts):continue
+                visible.append(pts)
+
     else:section_edges=curves(section)
     return front,section_edges,loops,visible
 
@@ -212,13 +224,15 @@ def write_sheet(shape,data,out):
         y=cy+100;svg.append(f'<rect x="182" y="{y}" width="52" height="21" fill="white" stroke="black" stroke-width=".8"/>');line(203,y,203,y+21)
         svg.append(f'<path d="M188,{y+16} L191,{y+5} L199,{y+5} L196,{y+16} Z" fill="none" stroke="black" stroke-width=".8"/>')
         text(f"{tol['valueMm']:g}".replace('.',','),206,y+15,12.5);line(234,y+10,left,y+10);arrow(left,y+10,-1,0)
+    section_spec=drawing.get('section');section_label=section_spec.get('label','A-A') if isinstance(section_spec,dict) else 'A-A'
+    mark=section_label.split('-')[0]
     bands=section_bands(data)
     for i,(x,lo,hi) in enumerate(bands):
         lo=max(lo,-data['outerDiameterMm']/2-18/s);hi=min(hi,data['outerDiameterMm']/2+18/s)
         line(cx+x*s,cy-lo*s,cx+x*s,cy-hi*s,True)
         if i<len(bands)-1:line(cx+x*s,cy-hi*s,cx+bands[i+1][0]*s,cy-hi*s,True)
-    arrow(cx,cy-r-18,1,0);arrow(cx,cy+r+18,1,0);text('A',cx+14,cy-r-22,11);text('A',cx+14,cy+r+35,11)
-    text('KESİT A-A' ,left+20,795,12.5,center=True);text('SECTION A-A',left+20,813,12.5,center=True)
+    arrow(cx,cy-r-18,1,0);arrow(cx,cy+r+18,1,0);text(mark,cx+14,cy-r-22,11);text(mark,cx+14,cy+r+35,11)
+    text('KESİT '+section_label ,left+20,795,12.5,center=True);text('SECTION '+section_label,left+20,813,12.5,center=True)
     text(data['product'],1350,959,12.5);text(f'1:{denominator:g}',1167,820,10);text('ÖZEL' if dpi!=150 else 'A4',1415,858,9)
     text('OCCT ön görünüş ve koşullu A-A kesiti • Arial ölçüler • İzometrik ölçeksiz',390,855,9)
     text(f'{W}×{H} px • {dpi} DPI • %100 boyutta yazdırın',390,871,9)

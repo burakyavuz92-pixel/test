@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 3,
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "holeC",
+        "diameterColumn": "C",
+        "presentIfColumn": "C",
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "holeD",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "holeD",
+        "diameterColumn": "D",
+        "presentIfColumn": "D",
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "G",
+            "sign": -1
+          }
+        }
+      },
+      {
+        "id": "holeE",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": -1
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "kind": "diameter",
+        "feature": "body",
+        "column": "A",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimB",
+        "kind": "centerDistance",
+        "feature": "holeC:holeD",
+        "column": "B",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimC",
+        "kind": "diameter",
+        "feature": "holeC",
+        "column": "C",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimD",
+        "kind": "diameter",
+        "feature": "holeD",
+        "column": "D",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimE",
+        "kind": "diameter",
+        "feature": "holeE",
+        "column": "E",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimF",
+        "kind": "horizontalOffset",
+        "feature": "holeE",
+        "column": "F",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "kind": "verticalOffset",
+        "feature": "holeD",
+        "column": "G",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [
+      {
+        "kind": "radius",
+        "visible": false
+      },
+      {
+        "kind": "depth",
+        "visible": false
+      },
+      {
+        "kind": "thickness",
+        "visible": false
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "featureIds": [
+      "holeC",
+      "holeE",
+      "holeD"
+    ],
+    "evidence": "Bu denemeye özel asistan düzeltmesi: taslaktaki A-A izi üç delikten geçer."
+  },
+  "camera": {
+    "direction": [
+      -0.6,
+      0.5,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "Referans izometrik görünüm kapalı ön yüzü pozitif Z tarafından, hafif soldan ve yukarıdan gösteriyor."
+  },
+  "issues": [],
+  "evidence": [
+    "Dış çap A, delik çapları C, D, E; B delikler arası mesafe; F ve G ofset ölçüleri.",
+    "R8, 33 ve 3 yeşil sabit ölçülerdir ve geometriyi tanımlar.",
+    "F=0 ise F ölçüsü gizlenir; G, B'nin yarısı ise G gizlenir.",
+    "Parça numarası ve dosya adı outputId değeridir."
+  ]
+}

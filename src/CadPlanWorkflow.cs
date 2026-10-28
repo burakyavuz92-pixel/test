@@ -69,7 +69,7 @@ public static class CadPlanWorkflow
         double cost=0;int calls=0;string state="failed";object? resolved=null;var runIssues=new List<WorkflowIssue>();
         try
         {
-            for(int attempt=1;attempt<=2;attempt++)
+            const int attempt=1;
             {
                 calls++;var body=new{model,messages,max_tokens=4000,reasoning=new{effort="low"},response_format=new{type="json_object"}};
                 using var response=await client.PostAsync("https://openrouter.ai/api/v1/chat/completions",new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json"));response.EnsureSuccessStatusCode();
@@ -83,9 +83,9 @@ public static class CadPlanWorkflow
                     _=Resolve(plan,row,product,image);
                     var request=Resolve(plan,row,product,image);
                     File.WriteAllText(Path.Combine(output,"accepted-plan.json"),JsonSerializer.Serialize(plan,Json));
-                    resolved=request;break;
+                    resolved=request;
                 }
-                catch(Exception ex)when(attempt==1){messages.Add(new{role="assistant",content});messages.Add(new{role="user",content="Validation/render error: "+ex.Message+". Review and return a corrected complete plan; do not alter Excel values. If unsupported keep it unsupported."});}
+                catch { throw; }
             }
             if(resolved is null)throw new Exception("Geçerli CAD planı üretilemedi.");
             string requestPath=Path.Combine(output,"cad-request.json");File.WriteAllText(requestPath,JsonSerializer.Serialize(resolved,Json));

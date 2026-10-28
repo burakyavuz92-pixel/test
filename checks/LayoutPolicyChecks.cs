@@ -123,3 +123,21 @@ using(var wb=new ClosedXML.Excel.XLWorkbook())
         Check(normalized[0]["jpeg file name"]=="item-1"&&GroupWorkflow.Value(normalized[0]["A"])==25,"physical column A is output ID while header A remains a dimension");
     }finally{File.Delete(path);}
 }
+using(var v3=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtures/cad-v3.json")))
+{
+    var bound=CadPlanV3.Bind(v3.RootElement,row);
+    Check(WorkflowReports.CheckMeasurements(bound.Plan,new(){bound.Row}).Count==0,"v3 nominal relationships satisfy all measurements");
+    Check(!bound.Plan.GetProperty("dimensions").EnumerateArray().Single(d=>d.GetProperty("column").GetString()=="G").GetProperty("visible").GetBoolean(),"v3 hides half-distance annotation without removing geometry");
+    var asym=new Dictionary<string,string>(blankPair);asym["B"]="165,4±0,5";asym["G"]="78,7±0,5";
+    var b=CadPlanV3.Bind(v3.RootElement,asym);var u=b.Plan.GetProperty("holes")[0];
+    Check(Math.Abs(CadPlanWorkflow.Expression(u.GetProperty("yExpression").GetString()!,b.Row)-86.7)<1e-8,"v3 solves asymmetric relative positions independently of visibility");
+    Check(b.Plan.GetProperty("dimensions").EnumerateArray().Single(d=>d.GetProperty("column").GetString()=="G").GetProperty("visible").GetBoolean(),"v3 displays non-half offset");
+    var renamed=System.Text.Json.Nodes.JsonNode.Parse(v3.RootElement.GetRawText())!;renamed["geometry"]["holes"][1]["position"]["y"]["reference"]="u";
+    using var cycle=System.Text.Json.JsonDocument.Parse(renamed.ToJsonString());
+    Check(CadPlanV3.Check(cycle.RootElement,new(){row}).Any(i=>i.Code=="V3_VALIDATION"&&i.Message.Contains("Döngüsel")),"v3 rejects cyclic relationships instead of looping");
+}
+using(var v3=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtures/cad-v3.json")))
+{
+    using var request=System.Text.Json.JsonDocument.Parse(System.Text.Json.JsonSerializer.Serialize(CadPlanV3.Resolve(v3.RootElement,blankPair,"source.jpg")));
+    Check(request.RootElement.GetProperty("drawing").GetProperty("section").GetProperty("featureIds").GetArrayLength()==2,"v3 removes absent section targets before native execution");
+}
