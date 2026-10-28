@@ -1,0 +1,162 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "OFFSET_SECTION_UNSUPPORTED",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "Section A-A has a stepped cutting trace. The current backend supports only a planar X=0 section, so this offset section cannot be generated. The section is declared as offset and has not been flattened to X=0.",
+      "AffectedFields": [
+        "section.plane"
+      ],
+      "RecommendedAction": "Keep the drawing as it is. Run the part again once the backend supports offset or stepped sections.",
+      "Origin": "model"
+    },
+    {
+      "Code": "OPTIONAL_THIRD_HOLE_RULE",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "The third hole is treated as absent only when both E and F are blank. Rows 11-30-200 and 11-30-92 have both blank, so the hole is absent. Row 11-30-381 has F=0 with E=14, so the hole is real and sits at position 0. The presentIfColumn is set to E, but the both-blank rule also depends on F.",
+      "AffectedFields": [
+        "holes[2].presentIfColumn",
+        "E",
+        "F"
+      ],
+      "RecommendedAction": "Treat the third hole as absent only when both E and F are empty. Do not treat F=0 as absent.",
+      "Origin": "model"
+    },
+    {
+      "Code": "TOLERANCE_TEXT_IN_VALUES",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Excel values contain tolerance text such as \u00D8160\u00B11, 88,9\u00B10,5 and \u00D810 (\u002B0,1|-0,0), and use decimal commas. Geometry expressions need plain numeric values.",
+      "AffectedFields": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "RecommendedAction": "Yerel ayr\u0131\u015Ft\u0131r\u0131c\u0131 bu dosyadaki nominal/tolerans bi\u00E7imlerini ba\u015Far\u0131yla okudu. Bu model \u00F6nerisi nedeniyle Excel s\u00FCtunlar\u0131n\u0131 ay\u0131rmay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "HOLE_POSITION_ASSUMPTION",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "The drawing does not state that holes h1 and h2 are symmetric about the center. The expressions B/2 and -B/2 are used because B is the center distance between them and G is the offset from the center. The third hole X position (column F) and its exact sign are read from the stepped trace and view only.",
+      "AffectedFields": [
+        "holes[0].yExpression",
+        "holes[1].yExpression",
+        "holes[2].xExpression",
+        "G"
+      ],
+      "RecommendedAction": "Add explicit position columns for the holes if they are not symmetric. Where G equals half of B, the hole lies on the center.",
+      "Origin": "model"
+    },
+    {
+      "Code": "FIXED_DIMENSIONS_FROM_DRAWING",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "The green dimensions 33.0 (depth), R8 (outer radius) and 3 (thickness) are fixed across rows. All their annotations are hidden in the output.",
+      "AffectedFields": [
+        "parameters.depthMm",
+        "parameters.outerRadiusMm",
+        "parameters.thicknessMm"
+      ],
+      "RecommendedAction": "Keep these values fixed and leave them without annotations.",
+      "Origin": "model"
+    },
+    {
+      "Code": "CAMERA_APPROXIMATE",
+      "Category": "camera",
+      "Severity": "warning",
+      "Message": "The camera direction is a visual approximation of the shaded view.",
+      "AffectedFields": [
+        "camera.direction"
+      ],
+      "RecommendedAction": "Use the approximated direction as the reference-matching view.",
+      "Origin": "model"
+    },
+    {
+      "Code": "UNSUPPORTED_SECTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "Taslak kademeli/ofset kesit gerektiriyor; yeni OCCT \u00E7izim yolu yaln\u0131zca X=0 d\u00FCzlemini destekliyor.",
+      "AffectedFields": [
+        "section"
+      ],
+      "RecommendedAction": "Yaz\u0131l\u0131ma kademeli kesit deste\u011Fi eklenmeli. Do\u011Fru girdiyi de\u011Fi\u015Ftirmek gerekli de\u011Fildir.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "PLAN_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-212: Desteklenmeyen ifade: MINUSB/2",
+      "AffectedFields": [
+        "11-30-212"
+      ],
+      "RecommendedAction": "Plan\u0131n \u00F6zellik/s\u00FCtun e\u015Fle\u015Fmeleri d\u00FCzeltilmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "PLAN_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-200: Desteklenmeyen ifade: MINUSB/2",
+      "AffectedFields": [
+        "11-30-200"
+      ],
+      "RecommendedAction": "Plan\u0131n \u00F6zellik/s\u00FCtun e\u015Fle\u015Fmeleri d\u00FCzeltilmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "PLAN_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-92: Desteklenmeyen ifade: MINUSB/2",
+      "AffectedFields": [
+        "11-30-92"
+      ],
+      "RecommendedAction": "Plan\u0131n \u00F6zellik/s\u00FCtun e\u015Fle\u015Fmeleri d\u00FCzeltilmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "PLAN_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-381: Desteklenmeyen ifade: MINUSB/2",
+      "AffectedFields": [
+        "11-30-381"
+      ],
+      "RecommendedAction": "Plan\u0131n \u00F6zellik/s\u00FCtun e\u015Fle\u015Fmeleri d\u00FCzeltilmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "OPTIONAL_FEATURE_EXECUTOR",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "\u015Eema v2 ko\u015Fullu \u00F6zellik y\u00FCr\u00FCt\u00FCc\u00FCs\u00FC tamamlanmad\u0131.",
+      "AffectedFields": [
+        "holes",
+        "dimensions"
+      ],
+      "RecommendedAction": "Yaz\u0131l\u0131m deste\u011Fi tamamlanmal\u0131; bo\u015F h\u00FCcreleri s\u0131f\u0131rla doldurmay\u0131n.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "963254CC057634E58A832D27876F9A25A07A5ACBA3BE5B5F5EE2749E1F928256",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 4,
+    "NewApiCalls": 0,
+    "ProducedImages": 0,
+    "SourceRun": "/workspace/test/output/group2-report-all-rows"
+  },
+  "HumanApproved": false
+}
