@@ -1,0 +1,88 @@
+{
+  "Status": "rendered-awaiting-human-review",
+  "Fingerprints": {
+    "Excel": "963254CC057634E58A832D27876F9A25A07A5ACBA3BE5B5F5EE2749E1F928256",
+    "Image": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838",
+    "Profile": "plate-optional-third-v1"
+  },
+  "RowCount": 4,
+  "ApiCalls": 2,
+  "ReportedCostUsd": 0.04791,
+  "HumanApproved": false,
+  "InnerRimLineRestored": true,
+  "Audit": [
+    {
+      "Product": "11-30-212",
+      "Stage": "preflight",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-200",
+      "Stage": "preflight",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-92",
+      "Stage": "preflight",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-381",
+      "Stage": "preflight",
+      "Errors": []
+    },
+    {
+      "Stage": "api-validation",
+      "Attempt": 1,
+      "Errors": [
+        "A\u00E7\u0131k sorular kald\u0131: [\n    \u0022Is the R8 bend radius the outer radius? The leader points at the outer corner, so I assumed it is.\u0022,\n    \u0022Is the 33.0 depth the total cup height including the 3 mm base? The dimension runs from the outer base face to the rim, so I assumed it is.\u0022\n  ]"
+      ]
+    },
+    {
+      "Stage": "api-validation",
+      "Attempt": 2,
+      "Errors": []
+    },
+    {
+      "Product": "11-30-212",
+      "Stage": "geometry",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-200",
+      "Stage": "geometry",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-92",
+      "Stage": "geometry",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-381",
+      "Stage": "geometry",
+      "Errors": []
+    },
+    {
+      "Product": "11-30-212",
+      "Stage": "render",
+      "Status": "produced"
+    },
+    {
+      "Product": "11-30-200",
+      "Stage": "render",
+      "Status": "produced"
+    },
+    {
+      "Product": "11-30-92",
+      "Stage": "render",
+      "Status": "produced"
+    },
+    {
+      "Product": "11-30-381",
+      "Stage": "render",
+      "Status": "produced"
+    }
+  ],
+  "Limits": "Supported group2 profile only. Manual layout, simplified isometric; no universal collision or CAD visibility guarantee."
+}
