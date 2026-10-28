@@ -251,3 +251,11 @@ Bu sürümde yalnızca X sağ/Y yukarı/Z izleyiciye doğru bazı desteklenir; b
 ## Ölçü yazısı çakışma kontrolü ve kısa prompt
 
 Talimatlar CadAnalysisPrompt içinde birleştirilmiştir; iki Excel veri bölümü korunmuştur. Kaynak şeması ve gerçek hata raporları korunurken normal açıklamalar kısaltılır. Yerel yazı yerleşimi gerçek Arial glyph sınırlarını, asimetrik tolerans genişliğini, dönüş açısını ve 3 birim boşluğu kullanır. Önce bütün çizgi/sabit metin engelleri kaydedilir, sonra ölçü etiketleri sonlu adaylardan seçilir; temiz aday yoksa raporla durur. Bu bir genel pafta/ lider kesişim optimizasyonu değildir. Tests: `python experiments/occt/test_label_layout.py`. Son çalışma previews/group2-compact-layout/NOTLAR.md içinde; API cache ve gerçek maliyet kullanım kayıtlarından karşılaştırılmıştır.
+
+## Yeşil gösterimin yerel otoritesi
+
+Yeni grup yolunda (`CadPlanV3`, v3/v4) `ColorVisibilityPolicy` modelin `measurementSources.color` ve sabit ölçülerin `sourceColor` kayıtlarını kullanır. Yeşil dimension/fixedAnnotation için etkin visible=false kodda hesaplanır; kaynak model yanıtı ve nominal geometri değişmez. Worker visible=false için yazı, ok ve uzatma çizgilerini üretmez. Modelin visible=true demesi artık GREEN_* hatasıyla üretimi durdurmaz: COLOR_VISIBILITY_APPLIED uyarısı, yerel kuralın uygulandığını kaydeder. Siyah ölçülerin kendi görünürlük/gizleme koşulları korunur. Kaynak rengi eksik/geçersiz ya da uç eşleşmesi tutarsızsa mevcut kontroller devam eder.
+
+Normal grup promptundan yeşilin gösterimini kapatma görevi çıkarıldı; model yalnızca kaynak rengini tanır ve renk dışındaki gösterim koşullarını tarif eder. Görsel renk algısını tamamen kaldırmak doğru değildir: yerel kod hangi ölçünün yeşil olduğunu bu kayıttan öğrenir. Bu işlem bağımsız renk-algılama doğrulaması değildir. Tarihsel v1 tek-ürün yolu bu yeni politikanın kapsamında değildir.
+
+Kayıtlı veri3 yanıtı yerelde review-cad-group ile yeniden değerlendirildi: 82 satırdaki ilişki kontrollerinde bloklama kalmadı. Bu doğrulama yeni API veya çizim üretmez; 82 native çizimin başarı garantisi değildir. 75 C# kontrolü geçti. Regresyonlar yeşil sabit/ölçü görünürlüğünü, ham yanıt ve geometrinin korunmasını, siyah ölçülerin etkilenmemesini kapsar.

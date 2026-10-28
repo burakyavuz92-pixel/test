@@ -158,7 +158,7 @@ using(var v3=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtur
     sources[1]["fromFeature"]="u";
     sources[0]["color"]="green";
     using var wrongColor=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
-    Check(CadPlanV3.CheckColors(wrongColor.RootElement).Any(i=>i.Code=="GREEN_ANNOTATION_VISIBLE"),"green measurement cannot be made visible");
+    Check(CadPlanV3.CheckColors(wrongColor.RootElement).Any(i=>i.Code=="COLOR_VISIBILITY_APPLIED"&&i.Severity=="warning"),"green model visibility is a local presentation warning, not a blocker");
     sources[0]["color"]="red";
     using var red=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
     Check(CadPlanV3.CheckColors(red.RootElement).Any(i=>i.Code=="COLOR_GEOMETRY_SOURCE"),"red cannot be a geometry measurement source");
@@ -191,4 +191,16 @@ using(var explicitOrigin=System.Text.Json.JsonDocument.Parse("""
     var node=System.Text.Json.Nodes.JsonNode.Parse(explicitOrigin.RootElement.GetRawText())!;node["coordinateFrame"]["origin"]["kind"]="datum";
     using var datum=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
     Check(CadPlanV3.CheckColors(datum.RootElement).Any(i=>i.Code=="MEASUREMENT_ENDPOINT_CONFLICT"),"distinct datum is not silently equated with body center");
+}
+using(var fixture=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtures/cad-v3.json")))
+{
+    var node=System.Text.Json.Nodes.JsonNode.Parse(fixture.RootElement.GetRawText())!;
+    node["measurementSources"]=System.Text.Json.Nodes.JsonNode.Parse("""[{"column":"F","color":"green"}]""");
+    node["annotations"]["fixedAnnotations"]=System.Text.Json.Nodes.JsonNode.Parse("""[{"kind":"radius","visible":true,"sourceColor":"green"},{"kind":"depth","visible":true,"sourceColor":"black"}]""");
+    using var raw=System.Text.Json.JsonDocument.Parse(node.ToJsonString());var effective=ColorVisibilityPolicy.Apply(raw.RootElement);
+    Check(raw.RootElement.GetProperty("annotations").GetProperty("fixedAnnotations")[0].GetProperty("visible").GetBoolean(),"color policy does not overwrite raw model visibility");
+    Check(!effective.GetProperty("annotations").GetProperty("fixedAnnotations")[0].GetProperty("visible").GetBoolean()&&effective.GetProperty("annotations").GetProperty("fixedAnnotations")[1].GetProperty("visible").GetBoolean(),"green fixed annotation hidden locally while black is preserved");
+    Check(effective.GetProperty("geometry").GetRawText()==raw.RootElement.GetProperty("geometry").GetRawText(),"local color visibility preserves every geometry field");
+    var bound=CadPlanV3.Bind(raw.RootElement,row);
+    Check(!bound.Plan.GetProperty("dimensions").EnumerateArray().Single(d=>d.GetProperty("column").GetString()=="F").GetProperty("visible").GetBoolean()&&bound.Plan.GetProperty("holes").GetArrayLength()==3,"green dimension hides without removing its hole");
 }

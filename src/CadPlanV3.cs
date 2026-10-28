@@ -10,6 +10,7 @@ public static class CadPlanV3
         int version=source.GetProperty("schemaVersion").GetInt32();
         if(version is not (3 or 4))throw new Exception("Şema v3/v4 gerekli.");
         if(version==4)CadReferenceFrame.Validate(source);
+        source=ColorVisibilityPolicy.Apply(source);
         var geometry=source.GetProperty("geometry");var annotation=source.GetProperty("annotations");
         var features=geometry.GetProperty("holes").EnumerateArray().ToDictionary(h=>h.GetProperty("id").GetString()!);
         if(features.Keys.Any(id=>id is "origin" or "body"))throw new Exception("Ayrılmış özellik kimliği kullanılmış.");
@@ -123,12 +124,12 @@ public static class CadPlanV3
             }
             string color=matches[0].GetProperty("color").GetString()!;
             if(color is not ("black" or "green"))Error("COLOR_GEOMETRY_SOURCE",column+": geometri kaynağı siyah/yeşil ölçü olmalı.",column);
-            if(color=="green"&&dim.GetProperty("visible").GetBoolean())Error("GREEN_ANNOTATION_VISIBLE",column+": yeşil ölçü görünür tanımlanmış.",column);
+            if(color=="green"&&dim.GetProperty("visible").GetBoolean())result.Add(new("COLOR_VISIBILITY_APPLIED","presentation","warning",column+": yeşil ölçünün gösterimi yerel kuralla kapatıldı.",[column],"Girdi değişikliği gerekmez; geometri korunur."));
         }
         foreach(var fixedDim in plan.GetProperty("annotations").GetProperty("fixedAnnotations").EnumerateArray())
         {
             if(!fixedDim.TryGetProperty("sourceColor",out var color)){Error("FIXED_COLOR_MISSING","Sabit ölçünün kaynak rengi eksik.","fixedAnnotations");continue;}
-            if(color.GetString()=="green"&&fixedDim.GetProperty("visible").GetBoolean())Error("GREEN_FIXED_VISIBLE","Yeşil sabit ölçü görünür tanımlanmış.",fixedDim.GetProperty("kind").GetString()!);
+            if(color.GetString()=="green"&&fixedDim.GetProperty("visible").GetBoolean())result.Add(new("COLOR_VISIBILITY_APPLIED","presentation","warning","Yeşil sabit ölçünün gösterimi yerel kuralla kapatıldı.",[fixedDim.GetProperty("kind").GetString()!],"Girdi değişikliği gerekmez; geometri korunur."));
             if(color.GetString() is not ("black" or "green"))Error("FIXED_COLOR_SOURCE","Sabit geometri ölçüsü siyah/yeşil kaynaklı olmalı.","fixedAnnotations");
         }
         return result;
