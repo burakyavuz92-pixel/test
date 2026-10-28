@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 4,
+  "colorPolicyVersion": 1,
+  "coordinateFrame": {
+    "referenceView": {
+      "id": "front-view",
+      "bbox01": [
+        0.35,
+        0.17,
+        0.69,
+        0.67
+      ]
+    },
+    "origin": {
+      "kind": "axis-face-intersection",
+      "feature": "body",
+      "point01": [
+        0.513,
+        0.408
+      ],
+      "evidence": "D\u0131\u015F daire merkezi, eksen \u00E7izgilerinin kesi\u015Fimi; \u00F6n y\u00FCz Z=0"
+    },
+    "axes": {
+      "x": "right",
+      "y": "up",
+      "z": "toward-viewer"
+    },
+    "bodyAnchor": {
+      "x": {
+        "kind": "origin"
+      },
+      "y": {
+        "kind": "origin"
+      }
+    }
+  },
+  "measurementSources": [
+    {
+      "column": "A",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "body",
+      "toFeature": "body",
+      "evidence": "Kesitte \u2205\u0027A\u0027 d\u0131\u015F \u00E7ap \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "column": "B",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "C",
+      "toFeature": "D",
+      "evidence": "B uzant\u0131 \u00E7izgileri \u00FCst ve alt delik merkezlerinde"
+    },
+    {
+      "column": "C",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "C",
+      "toFeature": "C",
+      "evidence": "\u2205\u0027C\u0027 \u00FCst deli\u011Fi g\u00F6steriyor"
+    },
+    {
+      "column": "D",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "D",
+      "toFeature": "D",
+      "evidence": "\u2205\u0027D\u0027 alt deli\u011Fi g\u00F6steriyor"
+    },
+    {
+      "column": "E",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "E",
+      "toFeature": "E",
+      "evidence": "\u2205\u0027E\u0027 k\u00FC\u00E7\u00FCk sol deli\u011Fi g\u00F6steriyor"
+    },
+    {
+      "column": "F",
+      "color": "black",
+      "axis": "X",
+      "fromFeature": "E",
+      "toFeature": "body",
+      "evidence": "F, E deli\u011Fi merkezinden g\u00F6vde eksenine yatay"
+    },
+    {
+      "column": "G",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "D",
+      "toFeature": "body",
+      "evidence": "G, merkez \u00E7izgisinden alt delik merkezine"
+    }
+  ],
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "C",
+        "diameterColumn": "C",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "D",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "D",
+        "diameterColumn": "D",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "G",
+            "sign": -1
+          }
+        }
+      },
+      {
+        "id": "E",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": -1
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "A",
+        "kind": "diameter",
+        "feature": "body",
+        "column": "A",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "B",
+        "kind": "centerDistance",
+        "feature": "C:D",
+        "column": "B",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "Cd",
+        "kind": "diameter",
+        "feature": "C",
+        "column": "C",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "Dd",
+        "kind": "diameter",
+        "feature": "D",
+        "column": "D",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "Ed",
+        "kind": "diameter",
+        "feature": "E",
+        "column": "E",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "F",
+        "kind": "horizontalOffset",
+        "feature": "E",
+        "column": "F",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "G",
+        "kind": "verticalOffset",
+        "feature": "D",
+        "column": "G",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [
+      {
+        "kind": "radius",
+        "visible": true,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "depth",
+        "visible": true,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "thickness",
+        "visible": true,
+        "sourceColor": "green"
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "label": "A-A",
+    "featureIds": [
+      "C",
+      "D",
+      "E"
+    ],
+    "evidence": "A-A izi basamakl\u0131: \u00FCst delik, sol k\u00FC\u00E7\u00FCk delik, alt delik"
+  },
+  "camera": {
+    "direction": [
+      0.6,
+      0.4,
+      0.7
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "\u0130zometrik g\u00F6r\u00FCn\u00FCm \u00F6n y\u00FCz\u00FC ve delikleri sa\u011F-\u00FCstten g\u00F6steriyor"
+  },
+  "issues": [
+    {
+      "code": "E_FRONT_ONLY_F_SIGN",
+      "category": "input",
+      "severity": "warning",
+      "message": "E deli\u011Fi F ile sol tarafta g\u00F6r\u00FCl\u00FCyor; E bo\u015Fsa yok say\u0131l\u0131r, F=0 durumunda delik eksen \u00FCzerindedir.",
+      "affectedFields": [
+        "geometry.holes.E",
+        "annotations.dimensions.F"
+      ],
+      "recommendedAction": "Sat\u0131r verilerinde E ve F de\u011Ferlerini \u00E7izimle do\u011Frulay\u0131n."
+    }
+  ],
+  "evidence": [
+    "Kesit: sac plaka, kal\u0131nl\u0131k 3, R8, derinlik 33",
+    "K\u0131rm\u0131z\u0131 notlar yaln\u0131zca F ve G g\u00F6r\u00FCn\u00FCrl\u00FC\u011F\u00FCn\u00FC etkiler"
+  ]
+}

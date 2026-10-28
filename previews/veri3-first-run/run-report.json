@@ -1,0 +1,67 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "E_FRONT_ONLY_F_SIGN",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "E deli\u011Fi F ile sol tarafta g\u00F6r\u00FCl\u00FCyor; E bo\u015Fsa yok say\u0131l\u0131r, F=0 durumunda delik eksen \u00FCzerindedir.",
+      "AffectedFields": [
+        "geometry.holes.E",
+        "annotations.dimensions.F"
+      ],
+      "RecommendedAction": "Sat\u0131r verilerinde E ve F de\u011Ferlerini \u00E7izimle do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "GREEN_FIXED_VISIBLE",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FC g\u00F6r\u00FCn\u00FCr tan\u0131mlanm\u0131\u015F.",
+      "AffectedFields": [
+        "radius"
+      ],
+      "RecommendedAction": "Modelin renk/\u00F6l\u00E7\u00FC e\u015Flemesi incelenmeli; kaynak veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "GREEN_FIXED_VISIBLE",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FC g\u00F6r\u00FCn\u00FCr tan\u0131mlanm\u0131\u015F.",
+      "AffectedFields": [
+        "depth"
+      ],
+      "RecommendedAction": "Modelin renk/\u00F6l\u00E7\u00FC e\u015Flemesi incelenmeli; kaynak veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "GREEN_FIXED_VISIBLE",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FC g\u00F6r\u00FCn\u00FCr tan\u0131mlanm\u0131\u015F.",
+      "AffectedFields": [
+        "thickness"
+      ],
+      "RecommendedAction": "Modelin renk/\u00F6l\u00E7\u00FC e\u015Flemesi incelenmeli; kaynak veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "CC8743E071D6E24DA097661FE72496918DC43EA80040299B9B865EFB2D898B32",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 82,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.04908,
+    "ProducedImages": 0,
+    "AnalysisOnly": false,
+    "ColorPolicyVersion": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}
