@@ -1,0 +1,58 @@
+{
+  "Status": "produced-awaiting-review",
+  "Issues": [
+    {
+      "Code": "HIDE_NOTE_F_ZERO",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "F s\u0131f\u0131r ise F \u00F6l\u00E7\u00FCs\u00FC gizlenir; bu yaln\u0131zca anotasyonu gizler, delik konumunu de\u011Fi\u015Ftirmez. 11-30-381 sat\u0131r\u0131nda E deli\u011Fi F=0 ile eksen \u00FCzerinde mevcuttur.",
+      "AffectedFields": [
+        "F",
+        "E"
+      ],
+      "RecommendedAction": "F s\u0131f\u0131r oldu\u011Funda sadece \u00F6l\u00E7\u00FCy\u00FC gizleyin.",
+      "Origin": "model"
+    },
+    {
+      "Code": "HIDE_NOTE_G_HALF_B",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "G, B\u0027nin yar\u0131s\u0131 ise G \u00F6l\u00E7\u00FCs\u00FC gizlenir; bu bir simetri k\u0131s\u0131t\u0131 de\u011Fildir. Konumlar G ve B\u0027den ba\u011F\u0131ms\u0131z \u00E7\u00F6z\u00FCl\u00FCr.",
+      "AffectedFields": [
+        "G",
+        "B"
+      ],
+      "RecommendedAction": "Yaln\u0131zca g\u00F6r\u00FCn\u00FCrl\u00FCk ko\u015Fulu olarak uygulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "E_BLANK_ABSENT",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "E ve F bo\u015F olan sat\u0131rlarda k\u00FC\u00E7\u00FCk delik yoktur ve ba\u015Fka \u00F6zelliklere referans olmaz.",
+      "AffectedFields": [
+        "E",
+        "F"
+      ],
+      "RecommendedAction": "Bo\u015F E i\u00E7in holeE\u0027yi atlay\u0131n.",
+      "Origin": "model"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 4,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.058324,
+    "ProducedImages": 4,
+    "AnalysisOnly": false,
+    "ColorPolicyVersion": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

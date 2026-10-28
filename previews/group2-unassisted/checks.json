@@ -1,0 +1,392 @@
+{
+  "11-30-381": {
+    "checks": {
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 76239.11307199555,
+      "expectedVolumeMm3": 76239.11307199563,
+      "holeCount": 3,
+      "stepRoundtrip": true
+    },
+    "drawing": {
+      "frontGeometry": "OCCT HLRBRep visible edges",
+      "sectionGeometry": "OCCT parallel sections + coplanar face union",
+      "sectionBands": [
+        [
+          0,
+          -136,
+          136
+        ]
+      ],
+      "sectionClosedLoops": 4,
+      "frontEdgeCount": 5,
+      "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+      "dimensions": [
+        {
+          "id": "dimA",
+          "modelValueMm": 136,
+          "valueText": "Ø136±1",
+          "visible": true
+        },
+        {
+          "id": "dimB",
+          "modelValueMm": 70.0,
+          "valueText": "70±0,5",
+          "visible": true
+        },
+        {
+          "id": "dimC",
+          "modelValueMm": 14,
+          "valueText": "Ø14 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimD",
+          "modelValueMm": 14,
+          "valueText": "Ø14 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimE",
+          "modelValueMm": 14,
+          "valueText": "Ø14 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimF",
+          "modelValueMm": 0,
+          "valueText": "0",
+          "visible": false
+        },
+        {
+          "id": "dimG",
+          "modelValueMm": 35,
+          "valueText": "35±0,5",
+          "visible": false
+        }
+      ],
+      "pixelSize": [
+        1754,
+        1240
+      ],
+      "dpi": 300,
+      "mainScale": 2.5,
+      "physicalSizeMm": [
+        148.5053333333333,
+        104.98666666666666
+      ],
+      "limits": [
+        "Profile-specific sheet layout",
+        "Parallel stepped sections only; centered endpoints and separated Y bands required",
+        "No global dimension collision solver",
+        "Font height currently configured, not image-estimated"
+      ]
+    },
+    "holes": [
+      {
+        "id": "holeD",
+        "diameterMm": 14,
+        "xMm": 0,
+        "yMm": -35
+      },
+      {
+        "id": "holeC",
+        "diameterMm": 14,
+        "xMm": 0,
+        "yMm": 35
+      },
+      {
+        "id": "holeE",
+        "diameterMm": 14,
+        "xMm": 0,
+        "yMm": 0
+      }
+    ]
+  },
+  "11-30-200": {
+    "checks": {
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 99594.1296882485,
+      "expectedVolumeMm3": 99594.12968824859,
+      "holeCount": 2,
+      "stepRoundtrip": true
+    },
+    "drawing": {
+      "frontGeometry": "OCCT HLRBRep visible edges",
+      "sectionGeometry": "OCCT parallel sections + coplanar face union",
+      "sectionBands": [
+        [
+          0,
+          -160,
+          160
+        ]
+      ],
+      "sectionClosedLoops": 3,
+      "frontEdgeCount": 4,
+      "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+      "dimensions": [
+        {
+          "id": "dimA",
+          "modelValueMm": 160,
+          "valueText": "Ø160±1",
+          "visible": true
+        },
+        {
+          "id": "dimB",
+          "modelValueMm": 89.0,
+          "valueText": "89±0,5",
+          "visible": true
+        },
+        {
+          "id": "dimC",
+          "modelValueMm": 14,
+          "valueText": "Ø14 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimD",
+          "modelValueMm": 14,
+          "valueText": "Ø14 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimG",
+          "modelValueMm": 44.5,
+          "valueText": "44,5±0,5",
+          "visible": false
+        }
+      ],
+      "pixelSize": [
+        1754,
+        1240
+      ],
+      "dpi": 300,
+      "mainScale": 5,
+      "physicalSizeMm": [
+        148.5053333333333,
+        104.98666666666666
+      ],
+      "limits": [
+        "Profile-specific sheet layout",
+        "Parallel stepped sections only; centered endpoints and separated Y bands required",
+        "No global dimension collision solver",
+        "Font height currently configured, not image-estimated"
+      ]
+    },
+    "holes": [
+      {
+        "id": "holeD",
+        "diameterMm": 14,
+        "xMm": 0,
+        "yMm": -44.5
+      },
+      {
+        "id": "holeC",
+        "diameterMm": 14,
+        "xMm": 0,
+        "yMm": 44.5
+      }
+    ]
+  },
+  "11-30-212": {
+    "checks": {
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 99987.61416811065,
+      "expectedVolumeMm3": 99987.61416811073,
+      "holeCount": 3,
+      "stepRoundtrip": true
+    },
+    "drawing": {
+      "frontGeometry": "OCCT HLRBRep visible edges",
+      "sectionGeometry": "OCCT parallel sections + coplanar face union",
+      "sectionBands": [
+        [
+          0,
+          -160,
+          -20.975
+        ],
+        [
+          -44.5,
+          -20.975,
+          20.975
+        ],
+        [
+          0,
+          20.975,
+          160
+        ]
+      ],
+      "sectionClosedLoops": 4,
+      "frontEdgeCount": 5,
+      "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+      "dimensions": [
+        {
+          "id": "dimA",
+          "modelValueMm": 160,
+          "valueText": "Ø160±1",
+          "visible": true
+        },
+        {
+          "id": "dimB",
+          "modelValueMm": 88.9,
+          "valueText": "88,9±0,5",
+          "visible": true
+        },
+        {
+          "id": "dimC",
+          "modelValueMm": 10,
+          "valueText": "Ø10 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimD",
+          "modelValueMm": 10,
+          "valueText": "Ø10 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimE",
+          "modelValueMm": 5,
+          "valueText": "Ø5 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimF",
+          "modelValueMm": 44.5,
+          "valueText": "44,5±0,5",
+          "visible": true
+        },
+        {
+          "id": "dimG",
+          "modelValueMm": 44.45,
+          "valueText": "44,45±0,5",
+          "visible": false
+        }
+      ],
+      "pixelSize": [
+        1754,
+        1240
+      ],
+      "dpi": 300,
+      "mainScale": 5,
+      "physicalSizeMm": [
+        148.5053333333333,
+        104.98666666666666
+      ],
+      "limits": [
+        "Profile-specific sheet layout",
+        "Parallel stepped sections only; centered endpoints and separated Y bands required",
+        "No global dimension collision solver",
+        "Font height currently configured, not image-estimated"
+      ]
+    },
+    "holes": [
+      {
+        "id": "holeD",
+        "diameterMm": 10,
+        "xMm": 0,
+        "yMm": -44.45
+      },
+      {
+        "id": "holeC",
+        "diameterMm": 10,
+        "xMm": 0,
+        "yMm": 44.45
+      },
+      {
+        "id": "holeE",
+        "diameterMm": 5,
+        "xMm": -44.5,
+        "yMm": 0
+      }
+    ]
+  },
+  "11-30-92": {
+    "checks": {
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 263825.99569052213,
+      "expectedVolumeMm3": 263825.9956905219,
+      "holeCount": 2,
+      "stepRoundtrip": true
+    },
+    "drawing": {
+      "frontGeometry": "OCCT HLRBRep visible edges",
+      "sectionGeometry": "OCCT parallel sections + coplanar face union",
+      "sectionBands": [
+        [
+          0,
+          -286,
+          286
+        ]
+      ],
+      "sectionClosedLoops": 3,
+      "frontEdgeCount": 4,
+      "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+      "dimensions": [
+        {
+          "id": "dimA",
+          "modelValueMm": 286,
+          "valueText": "Ø286±1",
+          "visible": true
+        },
+        {
+          "id": "dimB",
+          "modelValueMm": 165.4,
+          "valueText": "165,4±0,5",
+          "visible": true
+        },
+        {
+          "id": "dimC",
+          "modelValueMm": 21,
+          "valueText": "Ø21 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimD",
+          "modelValueMm": 12.6,
+          "valueText": "Ø12,6 (+0,1|-0,0)",
+          "visible": true
+        },
+        {
+          "id": "dimG",
+          "modelValueMm": 78.7,
+          "valueText": "78,7±0,5",
+          "visible": true
+        }
+      ],
+      "pixelSize": [
+        1754,
+        1240
+      ],
+      "dpi": 300,
+      "mainScale": 5,
+      "physicalSizeMm": [
+        148.5053333333333,
+        104.98666666666666
+      ],
+      "limits": [
+        "Profile-specific sheet layout",
+        "Parallel stepped sections only; centered endpoints and separated Y bands required",
+        "No global dimension collision solver",
+        "Font height currently configured, not image-estimated"
+      ]
+    },
+    "holes": [
+      {
+        "id": "holeD",
+        "diameterMm": 12.6,
+        "xMm": 0,
+        "yMm": -78.7
+      },
+      {
+        "id": "holeC",
+        "diameterMm": 21,
+        "xMm": 0,
+        "yMm": 86.7
+      }
+    ]
+  }
+}
