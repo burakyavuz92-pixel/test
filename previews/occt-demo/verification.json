@@ -1,0 +1,55 @@
+{
+  "backend": "OCCT via OCP / VTK",
+  "input": {
+    "product": "11-30-212",
+    "outerDiameterMm": 160,
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "xMm": 0,
+        "yMm": 44.45,
+        "diameterMm": 10
+      },
+      {
+        "xMm": 0,
+        "yMm": -44.45,
+        "diameterMm": 10
+      },
+      {
+        "xMm": -44.5,
+        "yMm": 0,
+        "diameterMm": 5
+      }
+    ]
+  },
+  "checks": {
+    "validBrep": true,
+    "solidCount": 1,
+    "volumeMm3": 99987.61416811065,
+    "expectedVolumeMm3": 99987.61416811073,
+    "holeCount": 3,
+    "stepRoundtrip": true
+  },
+  "rendering": {
+    "windowClass": "vtkEGLRenderWindow",
+    "triangles": 28448,
+    "meshBoundsMm": [
+      -80.0,
+      80.0,
+      -79.98419189453125,
+      79.98419189453125,
+      -33.0,
+      8.881784197001252e-16
+    ],
+    "verifiedRenderer": "Mesa llvmpipe CPU software rendering"
+  },
+  "networkCalls": 0,
+  "limits": [
+    "Experimental model, not approved drawing",
+    "Inner radius = outer radius minus thickness",
+    "Offscreen mesh rendering; 0.08 mm meshing tolerance",
+    "Windows packaging not yet tested"
+  ]
+}
