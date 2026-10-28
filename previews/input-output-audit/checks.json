@@ -1,0 +1,245 @@
+{
+  "rawResponseEqualsSavedPlan": true,
+  "sourceHashesMatch": true,
+  "excelComparisons": [
+    {
+      "product": "11-30-212",
+      "column": "A",
+      "expectedNominal": 160.0,
+      "sentNominal": 160,
+      "matches": true
+    },
+    {
+      "product": "11-30-212",
+      "column": "B",
+      "expectedNominal": 88.9,
+      "sentNominal": 88.9,
+      "matches": true
+    },
+    {
+      "product": "11-30-212",
+      "column": "C",
+      "expectedNominal": 10.0,
+      "sentNominal": 10,
+      "matches": true
+    },
+    {
+      "product": "11-30-212",
+      "column": "D",
+      "expectedNominal": 10.0,
+      "sentNominal": 10,
+      "matches": true
+    },
+    {
+      "product": "11-30-212",
+      "column": "E",
+      "expectedNominal": 5.0,
+      "sentNominal": 5,
+      "matches": true
+    },
+    {
+      "product": "11-30-212",
+      "column": "F",
+      "expectedNominal": 44.5,
+      "sentNominal": 44.5,
+      "matches": true
+    },
+    {
+      "product": "11-30-212",
+      "column": "G",
+      "expectedNominal": 44.45,
+      "sentNominal": 44.45,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "A",
+      "expectedNominal": 160.0,
+      "sentNominal": 160,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "B",
+      "expectedNominal": 89.0,
+      "sentNominal": 89,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "C",
+      "expectedNominal": 14.0,
+      "sentNominal": 14,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "D",
+      "expectedNominal": 14.0,
+      "sentNominal": 14,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "E",
+      "expectedNominal": null,
+      "sentNominal": null,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "F",
+      "expectedNominal": null,
+      "sentNominal": null,
+      "matches": true
+    },
+    {
+      "product": "11-30-200",
+      "column": "G",
+      "expectedNominal": 44.5,
+      "sentNominal": 44.5,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "A",
+      "expectedNominal": 286.0,
+      "sentNominal": 286,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "B",
+      "expectedNominal": 165.4,
+      "sentNominal": 165.4,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "C",
+      "expectedNominal": 21.0,
+      "sentNominal": 21,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "D",
+      "expectedNominal": 12.6,
+      "sentNominal": 12.6,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "E",
+      "expectedNominal": null,
+      "sentNominal": null,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "F",
+      "expectedNominal": null,
+      "sentNominal": null,
+      "matches": true
+    },
+    {
+      "product": "11-30-92",
+      "column": "G",
+      "expectedNominal": 78.7,
+      "sentNominal": 78.7,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "A",
+      "expectedNominal": 136.0,
+      "sentNominal": 136,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "B",
+      "expectedNominal": 70.0,
+      "sentNominal": 70,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "C",
+      "expectedNominal": 14.0,
+      "sentNominal": 14,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "D",
+      "expectedNominal": 14.0,
+      "sentNominal": 14,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "E",
+      "expectedNominal": 14.0,
+      "sentNominal": 14,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "F",
+      "expectedNominal": 0.0,
+      "sentNominal": 0,
+      "matches": true
+    },
+    {
+      "product": "11-30-381",
+      "column": "G",
+      "expectedNominal": 35.0,
+      "sentNominal": 35,
+      "matches": true
+    }
+  ],
+  "allNominalCellsMatch": true,
+  "modelReported": "anthropic/claude-sonnet-5.5",
+  "providerReported": "Claude Platform on AWS",
+  "usage": {
+    "prompt_tokens": 15766,
+    "completion_tokens": 1849,
+    "total_tokens": 17615,
+    "cost": 0.050022,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.050022,
+      "upstream_inference_prompt_cost": 0.031532,
+      "upstream_inference_completions_cost": 0.01849
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "requestCodeFindings": {
+    "reasoningEffort": "low",
+    "imageDetailNotExplicit": true,
+    "fullSheetImages": 2,
+    "sourceSize": [
+      7016,
+      4961
+    ],
+    "requestPromptCharacters": 14619,
+    "explicitOriginXYDefinitionMissing": true
+  },
+  "newApiCalls": 0,
+  "newDrawingRuns": 0,
+  "limits": [
+    "Historical full HTTP body was not persisted. Payload structure is reconstructed from sending code and persisted prompt/input/image files.",
+    "Provider image preprocessing and actual visual resolution are unknown."
+  ]
+}
