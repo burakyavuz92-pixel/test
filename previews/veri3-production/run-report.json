@@ -1,0 +1,79 @@
+{
+  "Status": "produced-awaiting-review",
+  "Issues": [
+    {
+      "Code": "E_PRESENCE_ROWS",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "11-30-10 sat\u0131r\u0131nda E ve F bo\u015F; E deli\u011Fi yok say\u0131l\u0131r. 11-30-260 sat\u0131r\u0131nda F=0, E deli\u011Fi dikey eksende mevcut.",
+      "AffectedFields": [
+        "E",
+        "F"
+      ],
+      "RecommendedAction": "Bo\u015F E/F de\u011Ferlerini yok say; F=0 de\u011Ferini mevcut delik olarak i\u015Fle.",
+      "Origin": "model"
+    },
+    {
+      "Code": "G_B_SIGN_ASSUMPTION",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "\u00DCst delik, alt deli\u011Fe B ile ba\u011Flan\u0131yor; alt delik G ile merkez eksenin alt\u0131nda. B\u22602G olan sat\u0131rlarda (11-30-13, 11-30-989) geometri tutars\u0131z olabilir.",
+      "AffectedFields": [
+        "B",
+        "G"
+      ],
+      "RecommendedAction": "B ve G de\u011Ferlerini kaynakta do\u011Frula; nominal de\u011Ferleri de\u011Fi\u015Ftirme.",
+      "Origin": "model"
+    },
+    {
+      "Code": "COLOR_VISIBILITY_APPLIED",
+      "Category": "presentation",
+      "Severity": "warning",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FCn\u00FCn g\u00F6sterimi yerel kuralla kapat\u0131ld\u0131.",
+      "AffectedFields": [
+        "radius"
+      ],
+      "RecommendedAction": "Girdi de\u011Fi\u015Fikli\u011Fi gerekmez; geometri korunur.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "COLOR_VISIBILITY_APPLIED",
+      "Category": "presentation",
+      "Severity": "warning",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FCn\u00FCn g\u00F6sterimi yerel kuralla kapat\u0131ld\u0131.",
+      "AffectedFields": [
+        "depth"
+      ],
+      "RecommendedAction": "Girdi de\u011Fi\u015Fikli\u011Fi gerekmez; geometri korunur.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "COLOR_VISIBILITY_APPLIED",
+      "Category": "presentation",
+      "Severity": "warning",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FCn\u00FCn g\u00F6sterimi yerel kuralla kapat\u0131ld\u0131.",
+      "AffectedFields": [
+        "thickness"
+      ],
+      "RecommendedAction": "Girdi de\u011Fi\u015Fikli\u011Fi gerekmez; geometri korunur.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "CC8743E071D6E24DA097661FE72496918DC43EA80040299B9B865EFB2D898B32",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 82,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.05088,
+    "ProducedImages": 82,
+    "AnalysisOnly": false,
+    "ColorPolicyVersion": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}
