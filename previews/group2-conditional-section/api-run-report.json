@@ -1,0 +1,29 @@
+{
+  "Status": "failed-with-report",
+  "Issues": [
+    {
+      "Code": "RUN_FAILURE",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "Kamera desteklenmiyor/belirsiz; kapal\u0131 \u00F6n y\u00FCz \u002BZ taraf\u0131ndad\u0131r.",
+      "AffectedFields": [],
+      "RecommendedAction": "Rapor ve kay\u0131tl\u0131 yan\u0131t incelenmeli; yeni veri tahmin edilmez.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "963254CC057634E58A832D27876F9A25A07A5ACBA3BE5B5F5EE2749E1F928256",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 4,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 2,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.080046,
+    "ProducedImages": 0,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

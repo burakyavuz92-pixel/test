@@ -1,0 +1,284 @@
+{
+  "11-30-381": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -136,
+        136
+      ]
+    ],
+    "sectionClosedLoops": 4,
+    "frontEdgeCount": 5,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dA",
+        "modelValueMm": 136,
+        "valueText": "Ø136±1",
+        "visible": true
+      },
+      {
+        "id": "dB",
+        "modelValueMm": 70.0,
+        "valueText": "70±0,5",
+        "visible": true
+      },
+      {
+        "id": "dC",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dD",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dE",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dF",
+        "modelValueMm": 0,
+        "valueText": "0",
+        "visible": false
+      },
+      {
+        "id": "dG",
+        "modelValueMm": 35,
+        "valueText": "35±0,5",
+        "visible": false
+      }
+    ],
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 2.5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "No global dimension collision solver",
+      "Font height currently configured, not image-estimated"
+    ]
+  },
+  "11-30-200": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -160,
+        160
+      ]
+    ],
+    "sectionClosedLoops": 3,
+    "frontEdgeCount": 4,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dA",
+        "modelValueMm": 160,
+        "valueText": "Ø160±1",
+        "visible": true
+      },
+      {
+        "id": "dB",
+        "modelValueMm": 89.0,
+        "valueText": "89±0,5",
+        "visible": true
+      },
+      {
+        "id": "dC",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dD",
+        "modelValueMm": 14,
+        "valueText": "Ø14 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dG",
+        "modelValueMm": 44.5,
+        "valueText": "44,5±0,5",
+        "visible": false
+      }
+    ],
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "No global dimension collision solver",
+      "Font height currently configured, not image-estimated"
+    ]
+  },
+  "11-30-92": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -286,
+        286
+      ]
+    ],
+    "sectionClosedLoops": 3,
+    "frontEdgeCount": 4,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dA",
+        "modelValueMm": 286,
+        "valueText": "Ø286±1",
+        "visible": true
+      },
+      {
+        "id": "dB",
+        "modelValueMm": 165.4,
+        "valueText": "165,4±0,5",
+        "visible": true
+      },
+      {
+        "id": "dC",
+        "modelValueMm": 21,
+        "valueText": "Ø21 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dD",
+        "modelValueMm": 12.6,
+        "valueText": "Ø12,6 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dG",
+        "modelValueMm": 78.7,
+        "valueText": "78,7±0,5",
+        "visible": true
+      }
+    ],
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "No global dimension collision solver",
+      "Font height currently configured, not image-estimated"
+    ]
+  },
+  "11-30-212": {
+    "frontGeometry": "OCCT HLRBRep visible edges",
+    "sectionGeometry": "OCCT parallel sections + coplanar face union",
+    "sectionBands": [
+      [
+        0,
+        -160,
+        -20.975
+      ],
+      [
+        -44.5,
+        -20.975,
+        20.975
+      ],
+      [
+        0,
+        20.975,
+        160
+      ]
+    ],
+    "sectionClosedLoops": 4,
+    "frontEdgeCount": 5,
+    "annotations": "SVG paths from actual Arial glyphs, anchored to model coordinates",
+    "dimensions": [
+      {
+        "id": "dA",
+        "modelValueMm": 160,
+        "valueText": "Ø160±1",
+        "visible": true
+      },
+      {
+        "id": "dB",
+        "modelValueMm": 88.9,
+        "valueText": "88,9±0,5",
+        "visible": true
+      },
+      {
+        "id": "dC",
+        "modelValueMm": 10,
+        "valueText": "Ø10 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dD",
+        "modelValueMm": 10,
+        "valueText": "Ø10 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dE",
+        "modelValueMm": 5,
+        "valueText": "Ø5 (+0,1|-0,0)",
+        "visible": true
+      },
+      {
+        "id": "dF",
+        "modelValueMm": 44.5,
+        "valueText": "44,5±0,5",
+        "visible": true
+      },
+      {
+        "id": "dG",
+        "modelValueMm": 44.45,
+        "valueText": "44,45±0,5",
+        "visible": false
+      }
+    ],
+    "pixelSize": [
+      1754,
+      1240
+    ],
+    "dpi": 300,
+    "mainScale": 5,
+    "physicalSizeMm": [
+      148.5053333333333,
+      104.98666666666666
+    ],
+    "limits": [
+      "Profile-specific sheet layout",
+      "Parallel stepped sections only; centered endpoints and separated Y bands required",
+      "No global dimension collision solver",
+      "Font height currently configured, not image-estimated"
+    ]
+  }
+}

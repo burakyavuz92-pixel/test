@@ -1,0 +1,23 @@
+{
+  "Status": "produced-awaiting-review",
+  "Issues": [
+    {
+      "Code": "CAMERA_FRONT_POLICY",
+      "Category": "camera",
+      "Severity": "warning",
+      "Message": "Bu ailede negatif Z kamera bile\u015Feni pozitif Z taraf\u0131na yans\u0131t\u0131l\u0131r; kat\u0131 geometri de\u011Fi\u015Ftirilmez. Kaynak model kameras\u0131 saklan\u0131r.",
+      "AffectedFields": [
+        "camera"
+      ],
+      "RecommendedAction": "\u0130zometrik a\u00E7\u0131y\u0131 g\u00F6rsel inceleyin.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "SourceRun": "/workspace/test/output/group2-conditional-auto-review",
+    "NewApiCalls": 0,
+    "ProducedImages": 4,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

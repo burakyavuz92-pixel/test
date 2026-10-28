@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 2,
+  "kind": "revolved-plate",
+  "parameters": {
+    "outerDiameterExpression": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8
+  },
+  "partNumberColumn": "H",
+  "holes": [
+    {
+      "id": "h1",
+      "diameterExpression": "C",
+      "xExpression": "0",
+      "yExpression": "B-G",
+      "presentIfColumn": null
+    },
+    {
+      "id": "h2",
+      "diameterExpression": "D",
+      "xExpression": "0",
+      "yExpression": "-G",
+      "presentIfColumn": null
+    },
+    {
+      "id": "h3",
+      "diameterExpression": "E",
+      "xExpression": "-F",
+      "yExpression": "0",
+      "presentIfColumn": "E"
+    }
+  ],
+  "camera": {
+    "direction": [
+      0.6,
+      0.5,
+      -0.62
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "\u0130zometrik g\u00F6r\u00FCn\u00FCm a\u00E7\u0131k kab\u0131n dipini ve iki b\u00FCy\u00FCk deli\u011Fi sa\u011F \u00FCstten g\u00F6sterir; y\u00F6n g\u00F6rsele yak\u0131n olacak \u015Fekilde yakla\u015F\u0131k se\u00E7ilmi\u015Ftir."
+  },
+  "section": {
+    "mode": "through-features",
+    "featureIds": [
+      "h1",
+      "h3",
+      "h2"
+    ],
+    "evidence": "A-A kesit izi \u00FCst deli\u011Fin (h1) ekseninden ge\u00E7er, F \u00F6l\u00E7\u00FCs\u00FC kadar sola basamaklanarak k\u00FC\u00E7\u00FCk \u00FC\u00E7\u00FCnc\u00FC deli\u011Fin (h3) eksenine gider, tekrar basamaklanarak alt deli\u011Fin (h2) eksenine ula\u015F\u0131r. \u00DC\u00E7 delik aktifken kesit ofsetli, h3 yoksa veya F=0 ise d\u00FCz kesit hesaplan\u0131r."
+  },
+  "dimensions": [
+    {
+      "id": "dA",
+      "kind": "diameter",
+      "feature": "body",
+      "column": "A",
+      "visible": true,
+      "hideWhen": "never"
+    },
+    {
+      "id": "dB",
+      "kind": "centerDistance",
+      "feature": "h1:h2",
+      "column": "B",
+      "visible": true,
+      "hideWhen": "never"
+    },
+    {
+      "id": "dC",
+      "kind": "diameter",
+      "feature": "h1",
+      "column": "C",
+      "visible": true,
+      "hideWhen": "never"
+    },
+    {
+      "id": "dD",
+      "kind": "diameter",
+      "feature": "h2",
+      "column": "D",
+      "visible": true,
+      "hideWhen": "never"
+    },
+    {
+      "id": "dE",
+      "kind": "diameter",
+      "feature": "h3",
+      "column": "E",
+      "visible": true,
+      "hideWhen": "never"
+    },
+    {
+      "id": "dF",
+      "kind": "horizontalOffset",
+      "feature": "h3",
+      "column": "F",
+      "visible": true,
+      "hideWhen": "zero"
+    },
+    {
+      "id": "dG",
+      "kind": "verticalOffset",
+      "feature": "h2",
+      "column": "G",
+      "visible": true,
+      "hideWhen": "half:B"
+    }
+  ],
+  "fixedAnnotations": [
+    {
+      "kind": "radius",
+      "visible": false
+    },
+    {
+      "kind": "depth",
+      "visible": false
+    },
+    {
+      "kind": "thickness",
+      "visible": false
+    }
+  ],
+  "geometricTolerances": [],
+  "issues": [],
+  "evidence": [
+    "A d\u0131\u015F \u00E7apt\u0131r; C, D ve E delik \u00E7aplar\u0131d\u0131r; H par\u00E7a numaras\u0131d\u0131r.",
+    "B iki b\u00FCy\u00FCk delik merkezi aras\u0131ndaki dikey mesafedir. G, orta yatay eksenden alt delik merkezine olan dikey mesafedir. Alt delik Y=-G, \u00FCst delik Y=B-G konumundad\u0131r; simetri varsay\u0131lmam\u0131\u015Ft\u0131r.",
+    "F, \u00FC\u00E7\u00FCnc\u00FC deli\u011Fin merkez eksenine g\u00F6re sola yatay mesafesidir, delik Y=0 \u00FCzerindedir. E ve F birlikte bo\u015Fsa delik yoktur; F=0 ve E say\u0131 ise delik ger\u00E7ektir.",
+    "\u015Eartl\u0131 g\u00F6r\u00FCn\u00FCrl\u00FCk: F=0 ise F \u00F6l\u00E7\u00FCs\u00FC gizlenir; G, B\u0027nin yar\u0131s\u0131na e\u015Fitse G \u00F6l\u00E7\u00FCs\u00FC gizlenir. Bu, geometri i\u00E7in simetri anlam\u0131na gelmez.",
+    "Ye\u015Fil \u00F6l\u00E7\u00FCler (R8, 33, 3) geometriyi belirler ve \u00E7\u0131kt\u0131da gizlenir.",
+    "Sat\u0131r 11-30-92: B=165.4 ve G=78.7 oldu\u011Fundan Y konumlar\u0131 86.7 ve -78.7 olur; G, B/2\u0027ye e\u015Fit olmad\u0131\u011F\u0131 i\u00E7in G \u00F6l\u00E7\u00FCs\u00FC g\u00F6r\u00FCn\u00FCr kal\u0131r."
+  ]
+}

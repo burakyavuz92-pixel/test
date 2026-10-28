@@ -1,0 +1,37 @@
+{
+  "product": "11-30-212",
+  "outerDiameterMm": 160,
+  "depthMm": 33,
+  "thicknessMm": 3,
+  "outerRadiusMm": 8,
+  "holes": [
+    {
+      "xMm": 0,
+      "yMm": 44.45,
+      "diameterMm": 10
+    },
+    {
+      "xMm": 0,
+      "yMm": -44.45,
+      "diameterMm": 10
+    },
+    {
+      "xMm": -44.5,
+      "yMm": 0,
+      "diameterMm": 5
+    }
+  ],
+  "camera": {
+    "direction": [
+      1,
+      -1,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic"
+  }
+}

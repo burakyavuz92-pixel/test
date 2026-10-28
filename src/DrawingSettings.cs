@@ -1,0 +1,1 @@
+public record SheetSettings(float ThicknessMm,float DepthMm,float ApproximateBendRadiusMm,float? OuterBendRadiusMm=null,ScalePolicy? ScalePolicy=null,bool Group2=false,bool HideThickness=false,bool HideDepth=false,bool HideRadius=false,float DimensionTextScale=DimensionTypography.DefaultScale);

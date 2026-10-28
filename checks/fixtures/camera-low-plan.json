@@ -1,0 +1,53 @@
+{
+  "family": "plate-optional-third",
+  "rules": {
+    "UpperX": "0",
+    "UpperY": "B-G",
+    "LowerX": "0",
+    "LowerY": "-G",
+    "ThirdX": "-F",
+    "ThirdY": "0"
+  },
+  "blankEFMeansAbsent": true,
+  "hideFWhenZero": true,
+  "hideGWhenHalfB": true,
+  "renderSettings": {
+    "ThicknessMm": 3,
+    "DepthMm": 33,
+    "OuterBendRadiusMm": 8,
+    "HideThickness": true,
+    "HideDepth": true,
+    "HideRadius": true
+  },
+  "camera": {
+    "direction": [
+      0.55,
+      0.45,
+      0.70
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "low",
+    "evidence": "The closed front face with the holes is visible, so the camera is on the \u002BZ side. The cup wall is visible to the right and slightly above the face, which means -Z projects right and up on screen. That puts the camera at \u002BX and \u002BY as well. The small third hole (X = -F) appears at the left of the face, which agrees. The face ellipse is strongly foreshortened and tilted, so this is not a standard isometric view. The components are visual estimates from the JPEG with no measurable angles, so confidence is low."
+  },
+  "questions": [
+    "Camera direction is only an estimate from the tilted JPEG silhouette (confidence low). Please provide or confirm the viewing angles if exact matching is required."
+  ],
+  "evidence": [
+    "Roles: C is the upper hole diameter, D the lower, E the optional third, A the outer diameter, H the part number.",
+    "G has arrows from the horizontal centerline to the lower hole center, so LowerY = -G.",
+    "B has arrows between the upper and lower hole centers, so UpperY = LowerY \u002B B = B - G.",
+    "The earlier B/2 rules relied on visual symmetry. Sample 11-30-92 has B=165,4 and G=78,7, so the upper hole is at 86,7 and the lower at -78,7. This is asymmetric and fits only the B-G / -G rules.",
+    "The red note on G only says the G dimension is not shown when G equals B/2. It does not force symmetry, so hideGWhenHalfB is true. In samples 11-30-212 and 11-30-381, G = B/2 and the rules give symmetric holes.",
+    "F has arrows from the vertical centerline to the third hole on the left, on the horizontal centerline. So ThirdX = -F and ThirdY = 0.",
+    "The red note on F says it is not dimensioned when F = 0, so hideFWhenZero is true.",
+    "Sample 11-30-381 has F=0 with E present, a real hole at center. Samples 11-30-200 and 11-30-92 have blank E and F, so the third hole is absent.",
+    "Green dimensions (3 thickness, 33,0 depth, R8) are fixed geometry. Only their annotations are hidden.",
+    "Both holes lie on the vertical axis, so UpperX and LowerX are 0.",
+    "Drawing notes were treated as data only."
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "kind": "revolved-plate",
+  "parameters": {
+    "outerDiameterExpression": "A",
+    "depthMm": 33.5,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8
+  },
+  "partNumberColumn": "E",
+  "holes": [
+    {
+      "id": "upperHole",
+      "diameterExpression": "C",
+      "xExpression": "0",
+      "yExpression": "B/2"
+    },
+    {
+      "id": "lowerHole",
+      "diameterExpression": "D",
+      "xExpression": "0",
+      "yExpression": "-B/2"
+    }
+  ],
+  "camera": {
+    "direction": [
+      0.6,
+      -0.25,
+      0.75
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "In the reference view the closed front face is tilted toward the viewer. The cup wall is visible on the right and slightly along the bottom, so the camera is on the \u002BX side and slightly below. The larger hole is upper and the smaller hole is lower. This is an approximate visual choice that does not change the geometry."
+  },
+  "section": {
+    "plane": "X=0"
+  },
+  "dimensions": [
+    {
+      "id": "d_body",
+      "kind": "diameter",
+      "feature": "body",
+      "column": "A",
+      "visible": true
+    },
+    {
+      "id": "d_upper",
+      "kind": "diameter",
+      "feature": "upperHole",
+      "column": "C",
+      "visible": true
+    },
+    {
+      "id": "d_lower",
+      "kind": "diameter",
+      "feature": "lowerHole",
+      "column": "D",
+      "visible": true
+    },
+    {
+      "id": "cd_holes",
+      "kind": "centerDistance",
+      "feature": "upperHole:lowerHole",
+      "column": "B",
+      "visible": true
+    }
+  ],
+  "fixedAnnotations": [
+    {
+      "kind": "radius",
+      "visible": true
+    },
+    {
+      "kind": "depth",
+      "visible": true
+    },
+    {
+      "kind": "thickness",
+      "visible": true
+    }
+  ],
+  "geometricTolerances": [
+    {
+      "kind": "flatness",
+      "valueMm": 0.5,
+      "visible": true
+    }
+  ],
+  "questions": [],
+  "evidence": [
+    "The title-block part number is \u0027E\u0027, so partNumberColumn is E.",
+    "Label mapping: \u0027A\u0027 is the body diameter, \u0027B\u0027 is the distance between the two hole centres, \u0027C\u0027 is the upper hole diameter and \u0027D\u0027 is the lower hole diameter.",
+    "The prior rule holds and the drawing does not contradict it. The front view centre is at y\u2248680 px, the upper hole is at y\u2248375 px and the lower hole is at y\u2248984 px. Each hole is therefore about 305 px from the centre, which is half of the 609 px \u0027B\u0027 span.",
+    "The red note says the hidden dimension from the centre to the lower hole is drawn as \u0027B\u0027/2 but not dimensioned. This matches the holes at \u002BB/2 and -B/2 on the vertical centreline (x=0). That hidden dimension is expressed through the hole Y expressions, not as a separate dimension entry.",
+    "The \u0027C\u0027 leader points to the larger upper hole and the \u0027D\u0027 leader points to the smaller lower hole.",
+    "Fixed dimensions read from the drawing: R8 outer bend radius, 33.5 depth and 3 thickness.",
+    "A flatness frame of 0.5 is shown on the front face in the section view.",
+    "Section A-A is cut along the vertical centreline, so the section plane is X=0."
+  ]
+}
