@@ -1,0 +1,51 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "SECTION_ASSUMPTION",
+      "Category": "software",
+      "Severity": "warning",
+      "Message": "Kesit hedefleri iz ve kesit g\u00F6r\u00FCn\u00FC\u015F\u00FCne g\u00F6re se\u00E7ildi; E bo\u015Fsa holeE yoktur.",
+      "AffectedFields": [
+        "section.featureIds"
+      ],
+      "RecommendedAction": "Yerel do\u011Frulamada hedef Y konumlar\u0131n\u0131 kontrol edin.",
+      "Origin": "model"
+    },
+    {
+      "Code": "V3_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-200: Geometri olmayan \u00F6zelli\u011Fe ba\u011Fl\u0131: holeE",
+      "AffectedFields": [],
+      "RecommendedAction": "\u0130li\u015Fki veya destek kapsam\u0131 incelenmeli; do\u011Fru veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "V3_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-92: Geometri olmayan \u00F6zelli\u011Fe ba\u011Fl\u0131: holeE",
+      "AffectedFields": [],
+      "RecommendedAction": "\u0130li\u015Fki veya destek kapsam\u0131 incelenmeli; do\u011Fru veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "D627D27FF10292B86784B616E0032EB28320EB8BCA7882B7C4FEF57D0C529838"
+    },
+    "RowCount": 4,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.050022,
+    "ProducedImages": 0,
+    "AnalysisOnly": true,
+    "ColorPolicyVersion": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

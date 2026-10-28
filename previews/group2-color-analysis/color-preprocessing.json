@@ -1,0 +1,16 @@
+{
+  "policy": "red-pixels-excluded-from-geometry",
+  "redPixelCount": 67741,
+  "inputSize": [
+    7016,
+    4961
+  ],
+  "outputSize": [
+    7016,
+    4961
+  ],
+  "limits": [
+    "Threshold-based color extraction; not independent semantic validation",
+    "Black and green pixels are retained; pale red remnants can remain"
+  ]
+}

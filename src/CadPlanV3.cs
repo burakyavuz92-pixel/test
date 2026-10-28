@@ -68,12 +68,48 @@ public static class CadPlanV3
     public static List<WorkflowIssue> Check(JsonElement plan,List<Dictionary<string,string>> rows)
     {
         var result=WorkflowReports.Inspect(plan).ToList();
+        if(plan.TryGetProperty("colorPolicyVersion",out _))result.AddRange(CheckColors(plan));
         foreach(var row in rows)try{
             var bound=Bind(plan,row);result.AddRange(WorkflowReports.CheckMeasurements(bound.Plan,new(){bound.Row}));
             var measured=plan.GetProperty("annotations").GetProperty("dimensions").EnumerateArray().Select(d=>d.GetProperty("column").GetString()).ToHashSet();
             foreach(var (col,cell) in ExcelModelInput.Build(new[]{row}).rows[0].cells)
                 if(cell.state=="number"&&!measured.Contains(col))result.Add(new("UNMAPPED_MEASUREMENT","model","error",$"{row["jpeg file name"]}: {col} ölçü eşleşmesi eksik.",[col],"Model planında ölçü bağlantısı tamamlanmalı."));
         }catch(Exception ex){result.Add(new("V3_VALIDATION","model","error",row["jpeg file name"]+": "+ex.Message,[],"İlişki veya destek kapsamı incelenmeli; doğru veri değiştirilmez."));}
+        return result;
+    }
+    public static List<WorkflowIssue> CheckColors(JsonElement plan)
+    {
+        var result=new List<WorkflowIssue>();
+        void Error(string code,string msg,string field)=>result.Add(new(code,"model","error",msg,[field],"Modelin renk/ölçü eşlemesi incelenmeli; kaynak veri değiştirilmez."));
+        if(!plan.TryGetProperty("measurementSources",out var sources)){Error("COLOR_EVIDENCE_MISSING","Ölçülerin renk/uç bağlantısı kanıtı eksik.","measurementSources");return result;}
+        var dimensions=plan.GetProperty("annotations").GetProperty("dimensions").EnumerateArray().ToArray();
+        foreach(var dim in dimensions)
+        {
+            string column=dim.GetProperty("column").GetString()!;
+            var matches=sources.EnumerateArray().Where(s=>s.GetProperty("column").GetString()==column).ToArray();
+            if(matches.Length!=1){Error("COLOR_SOURCE_MAPPING",column+": tek bir renk/uç kaydı gerekli.",column);continue;}
+            var mapping=matches[0];
+            if(!mapping.TryGetProperty("fromFeature",out var from)||!mapping.TryGetProperty("toFeature",out var to)||!mapping.TryGetProperty("axis",out var axis))
+                Error("MEASUREMENT_ENDPOINTS_MISSING",column+": ölçü uçları/ekseni eksik.",column);
+            else
+            {
+                string feature=dim.GetProperty("feature").GetString()!,kind=dim.GetProperty("kind").GetString()!;
+                var endpoints=new HashSet<string>{from.GetString()!,to.GetString()!};
+                var expected=kind=="centerDistance"?feature.Split(':').ToHashSet():kind=="diameter"?new HashSet<string>{feature}:new HashSet<string>{"origin",feature};
+                if(!endpoints.SetEquals(expected))Error("MEASUREMENT_ENDPOINT_CONFLICT",column+": ölçü kaynağının uçları, ölçülendirme tanımıyla uyuşmuyor.",column);
+                string? expectedAxis=kind switch{"diameter"=>"diameter","verticalOffset"=>"Y","horizontalOffset"=>"X",_=>null};
+                if(expectedAxis is not null&&axis.GetString()!=expectedAxis)Error("MEASUREMENT_AXIS_CONFLICT",column+": ölçü ekseni türle uyuşmuyor.",column);
+            }
+            string color=matches[0].GetProperty("color").GetString()!;
+            if(color is not ("black" or "green"))Error("COLOR_GEOMETRY_SOURCE",column+": geometri kaynağı siyah/yeşil ölçü olmalı.",column);
+            if(color=="green"&&dim.GetProperty("visible").GetBoolean())Error("GREEN_ANNOTATION_VISIBLE",column+": yeşil ölçü görünür tanımlanmış.",column);
+        }
+        foreach(var fixedDim in plan.GetProperty("annotations").GetProperty("fixedAnnotations").EnumerateArray())
+        {
+            if(!fixedDim.TryGetProperty("sourceColor",out var color)){Error("FIXED_COLOR_MISSING","Sabit ölçünün kaynak rengi eksik.","fixedAnnotations");continue;}
+            if(color.GetString()=="green"&&fixedDim.GetProperty("visible").GetBoolean())Error("GREEN_FIXED_VISIBLE","Yeşil sabit ölçü görünür tanımlanmış.",fixedDim.GetProperty("kind").GetString()!);
+            if(color.GetString() is not ("black" or "green"))Error("FIXED_COLOR_SOURCE","Sabit geometri ölçüsü siyah/yeşil kaynaklı olmalı.","fixedAnnotations");
+        }
         return result;
     }
     public static object Resolve(JsonElement plan,Dictionary<string,string> row,string image){var bound=Bind(plan,row);return CadGroupExecutor.Resolve(bound.Plan,bound.Row,image);}

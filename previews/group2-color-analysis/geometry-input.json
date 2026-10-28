@@ -1,0 +1,193 @@
+{
+  "lengthUnit": "mm",
+  "rows": [
+    {
+      "outputId": "11-30-212",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 160,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 88.9,
+          "isZero": false,
+          "diameterSymbol": false
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 10,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 10,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 5,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 44.5,
+          "isZero": false,
+          "diameterSymbol": false
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 44.45,
+          "isZero": false,
+          "diameterSymbol": false
+        }
+      }
+    },
+    {
+      "outputId": "11-30-200",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 160,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 89,
+          "isZero": false,
+          "diameterSymbol": false
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "E": {
+          "state": "blank",
+          "nominalMm": null,
+          "isZero": null,
+          "diameterSymbol": null
+        },
+        "F": {
+          "state": "blank",
+          "nominalMm": null,
+          "isZero": null,
+          "diameterSymbol": null
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 44.5,
+          "isZero": false,
+          "diameterSymbol": false
+        }
+      }
+    },
+    {
+      "outputId": "11-30-92",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 286,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 165.4,
+          "isZero": false,
+          "diameterSymbol": false
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 21,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 12.6,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "E": {
+          "state": "blank",
+          "nominalMm": null,
+          "isZero": null,
+          "diameterSymbol": null
+        },
+        "F": {
+          "state": "blank",
+          "nominalMm": null,
+          "isZero": null,
+          "diameterSymbol": null
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 78.7,
+          "isZero": false,
+          "diameterSymbol": false
+        }
+      }
+    },
+    {
+      "outputId": "11-30-381",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 136,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 70,
+          "isZero": false,
+          "diameterSymbol": false
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 0,
+          "isZero": true,
+          "diameterSymbol": false
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 35,
+          "isZero": false,
+          "diameterSymbol": false
+        }
+      }
+    }
+  ]
+}

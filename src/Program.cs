@@ -21,6 +21,11 @@ try
         if(args.Length!=5)throw new Exception("review-cad-group <xlsx> <jpeg> <saved-run> <empty-output>");
         CadGroupWorkflow.ReviewSaved(args[1],args[2],args[3],args[4]);return;
     }
+    if(args[0] == "analyze-cad-group")
+    {
+        if(args.Length!=4)throw new Exception("analyze-cad-group <xlsx> <jpeg> <empty-output>");
+        await CadGroupWorkflow.Run(args[1],args[2],args[3],analysisOnly:true);return;
+    }
     if(args[0] == "run-cad-group")
     {
         if(args.Length!=4)throw new Exception("run-cad-group <xlsx> <jpeg> <empty-output>");

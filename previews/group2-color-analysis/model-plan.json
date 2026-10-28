@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 3,
+  "colorPolicyVersion": 1,
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "holeE",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      },
+      {
+        "id": "holeC",
+        "diameterColumn": "C",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "holeE",
+            "column": "F",
+            "sign": 1
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "holeE",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "holeD",
+        "diameterColumn": "D",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "holeE",
+            "column": "F",
+            "sign": 1
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "holeC",
+            "column": "G",
+            "sign": -1
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "kind": "diameter",
+        "feature": "body",
+        "column": "A",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimB",
+        "kind": "verticalOffset",
+        "feature": "holeC",
+        "column": "B",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimC",
+        "kind": "diameter",
+        "feature": "holeC",
+        "column": "C",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimD",
+        "kind": "diameter",
+        "feature": "holeD",
+        "column": "D",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimE",
+        "kind": "diameter",
+        "feature": "holeE",
+        "column": "E",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimF",
+        "kind": "horizontalOffset",
+        "feature": "holeC",
+        "column": "F",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "kind": "verticalOffset",
+        "feature": "holeD",
+        "column": "G",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [
+      {
+        "kind": "radius",
+        "visible": false,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "depth",
+        "visible": false,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "thickness",
+        "visible": false,
+        "sourceColor": "green"
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "label": "A-A",
+    "featureIds": [
+      "holeC",
+      "holeD",
+      "holeE"
+    ],
+    "evidence": "Kesit izi A-A d\u00FC\u015Fey d\u00FCzlemde (X sabit), Y boyunca ilerler; kesit g\u00F6r\u00FCn\u00FC\u015Fte \u00FCst, alt ve orta delikler kesilmi\u015F g\u00F6r\u00FCn\u00FCyor. E yoksa holeE atlan\u0131r."
+  },
+  "camera": {
+    "direction": [
+      -0.6,
+      0.5,
+      0.8
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "\u0130zometrik g\u00F6r\u00FCn\u00FC\u015F kapal\u0131 \u00F6n y\u00FCz\u00FC pozitif Z taraf\u0131ndan, soldan ve yukar\u0131dan g\u00F6steriyor."
+  },
+  "issues": [
+    {
+      "code": "SECTION_ASSUMPTION",
+      "category": "software",
+      "severity": "warning",
+      "message": "Kesit hedefleri iz ve kesit g\u00F6r\u00FCn\u00FC\u015F\u00FCne g\u00F6re se\u00E7ildi; E bo\u015Fsa holeE yoktur.",
+      "affectedFields": [
+        "section.featureIds"
+      ],
+      "recommendedAction": "Yerel do\u011Frulamada hedef Y konumlar\u0131n\u0131 kontrol edin."
+    }
+  ],
+  "evidence": [
+    "Siyah/ye\u015Fil geometri: d\u0131\u015F \u00E7ap A, \u00E7ukur derinli\u011Fi 33, et kal\u0131nl\u0131\u011F\u0131 3, k\u00F6\u015Fe yar\u0131\u00E7ap\u0131 R8; ye\u015Fil \u00F6l\u00E7\u00FCler gizlenir.",
+    "E deli\u011Fi orijin (merkez) ve ana referanst\u0131r; C deli\u011Fi E\u0027den B kadar yukar\u0131da ve F kadar sa\u011Fdad\u0131r; D deli\u011Fi C\u0027den G kadar a\u015Fa\u011F\u0131dad\u0131r.",
+    "F=0 ise F \u00F6l\u00E7\u00FCs\u00FC gizlenir; G, B\u0027nin yar\u0131s\u0131na e\u015Fitse G gizlenir (yaln\u0131zca g\u00F6r\u00FCn\u00FCrl\u00FCk)."
+  ],
+  "measurementSources": [
+    {
+      "column": "A",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "body",
+      "toFeature": "body",
+      "evidence": "D\u0131\u015F \u00E7ap \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "column": "B",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "holeE",
+      "toFeature": "holeC",
+      "evidence": "Orta delik ile \u00FCst delik aras\u0131 dikey \u00F6l\u00E7\u00FC"
+    },
+    {
+      "column": "C",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "holeC",
+      "toFeature": "holeC",
+      "evidence": "\u00DCst delik \u00E7ap\u0131"
+    },
+    {
+      "column": "D",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "holeD",
+      "toFeature": "holeD",
+      "evidence": "Alt delik \u00E7ap\u0131"
+    },
+    {
+      "column": "E",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "holeE",
+      "toFeature": "holeE",
+      "evidence": "K\u00FC\u00E7\u00FCk orta delik \u00E7ap\u0131"
+    },
+    {
+      "column": "F",
+      "color": "black",
+      "axis": "X",
+      "fromFeature": "holeE",
+      "toFeature": "holeC",
+      "evidence": "Yatay ofset \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "column": "G",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "holeC",
+      "toFeature": "holeD",
+      "evidence": "Merkez \u00E7izgisi ile alt delik aras\u0131 \u00F6l\u00E7\u00FC"
+    }
+  ]
+}

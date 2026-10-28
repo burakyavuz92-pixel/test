@@ -141,3 +141,25 @@ using(var v3=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtur
     using var request=System.Text.Json.JsonDocument.Parse(System.Text.Json.JsonSerializer.Serialize(CadPlanV3.Resolve(v3.RootElement,blankPair,"source.jpg")));
     Check(request.RootElement.GetProperty("drawing").GetProperty("section").GetProperty("featureIds").GetArrayLength()==2,"v3 removes absent section targets before native execution");
 }
+using(var v3=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtures/cad-v3.json")))
+{
+    var node=System.Text.Json.Nodes.JsonNode.Parse(v3.RootElement.GetRawText())!;node["colorPolicyVersion"]=1;
+    var sources=new System.Text.Json.Nodes.JsonArray();
+    foreach(var dim in v3.RootElement.GetProperty("annotations").GetProperty("dimensions").EnumerateArray())
+    {
+        string kind=dim.GetProperty("kind").GetString()!,feature=dim.GetProperty("feature").GetString()!;var ids=feature.Split(':');
+        sources.Add(new System.Text.Json.Nodes.JsonObject{["column"]=dim.GetProperty("column").GetString(),["color"]="black",["fromFeature"]=kind=="diameter"?feature:kind=="centerDistance"?ids[0]:"origin",["toFeature"]=kind=="centerDistance"?ids[1]:feature,["axis"]=kind=="diameter"?"diameter":kind=="horizontalOffset"?"X":"Y"});
+    }
+    node["measurementSources"]=sources;
+    using var correct=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.CheckColors(correct.RootElement).Count==0,"black annotation mappings satisfy color contract");
+    sources[1]["fromFeature"]="origin";
+    using(var mismatch=System.Text.Json.JsonDocument.Parse(node.ToJsonString()))Check(CadPlanV3.CheckColors(mismatch.RootElement).Any(i=>i.Code=="MEASUREMENT_ENDPOINT_CONFLICT"),"dimension endpoints are checked independently of numeric coincidence");
+    sources[1]["fromFeature"]="u";
+    sources[0]["color"]="green";
+    using var wrongColor=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.CheckColors(wrongColor.RootElement).Any(i=>i.Code=="GREEN_ANNOTATION_VISIBLE"),"green measurement cannot be made visible");
+    sources[0]["color"]="red";
+    using var red=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.CheckColors(red.RootElement).Any(i=>i.Code=="COLOR_GEOMETRY_SOURCE"),"red cannot be a geometry measurement source");
+}
