@@ -7,17 +7,23 @@ public static class CadPlanV3
 {
     public static (JsonElement Plan,Dictionary<string,string> Row) Bind(JsonElement source,Dictionary<string,string> row)
     {
-        if(source.GetProperty("schemaVersion").GetInt32()!=3)throw new Exception("Şema v3 gerekli.");
+        int version=source.GetProperty("schemaVersion").GetInt32();
+        if(version is not (3 or 4))throw new Exception("Şema v3/v4 gerekli.");
+        if(version==4)CadReferenceFrame.Validate(source);
         var geometry=source.GetProperty("geometry");var annotation=source.GetProperty("annotations");
         var features=geometry.GetProperty("holes").EnumerateArray().ToDictionary(h=>h.GetProperty("id").GetString()!);
+        if(features.Keys.Any(id=>id is "origin" or "body"))throw new Exception("Ayrılmış özellik kimliği kullanılmış.");
         var values=new Dictionary<string,string>(row,StringComparer.OrdinalIgnoreCase);var solved=new Dictionary<string,double>();var visiting=new HashSet<string>();
         double Solve(string id,string axis)
         {
             if(id=="origin")return 0;
             string key=id+":"+axis;if(solved.TryGetValue(key,out var result))return result;
             if(!visiting.Add(key))throw new Exception("Döngüsel geometri ilişkisi: "+key);
-            if(!features.TryGetValue(id,out var hole))throw new Exception("Bilinmeyen özellik: "+id);
-            var binding=hole.GetProperty("position").GetProperty(axis);string kind=binding.GetProperty("kind").GetString()!;
+            JsonElement binding;
+            if(id=="body"&&version==4)binding=source.GetProperty("coordinateFrame").GetProperty("bodyAnchor").GetProperty(axis);
+            else if(features.TryGetValue(id,out var hole))binding=hole.GetProperty("position").GetProperty(axis);
+            else throw new Exception("Bilinmeyen özellik: "+id);
+            string kind=binding.GetProperty("kind").GetString()!;
             result=kind switch {
                 "origin"=>0,
                 "offset"=>Offset(binding,axis),
@@ -33,12 +39,18 @@ public static class CadPlanV3
             return Solve(reference,axis)+sign*GroupWorkflow.Value(row[column]);
         }
         bool Absent(JsonElement h)=>h.GetProperty("presentIfColumn").ValueKind==JsonValueKind.String&&row[h.GetProperty("presentIfColumn").GetString()!].Length==0;
+        if(version==4)
+        {
+            string owner=source.GetProperty("coordinateFrame").GetProperty("origin").GetProperty("feature").GetString()!;
+            if(owner!="body"&&(!features.TryGetValue(owner,out var originFeature)||Absent(originFeature)))throw new Exception("Orijin mevcut olmayan özelliğe bağlanmış: "+owner);
+        }
+        double bodyX=version==4?Solve("body","x"):0,bodyY=version==4?Solve("body","y"):0;
         var holes=new List<object>();var active=new HashSet<string>();int n=0;
         foreach(var (id,hole) in features)
         {
             if(Absent(hole))continue;active.Add(id);
             string x="__x"+n,y="__y"+n;n++;
-            values[x]=Solve(id,"x").ToString("R",CultureInfo.InvariantCulture);values[y]=Solve(id,"y").ToString("R",CultureInfo.InvariantCulture);
+            values[x]=(Solve(id,"x")-bodyX).ToString("R",CultureInfo.InvariantCulture);values[y]=(Solve(id,"y")-bodyY).ToString("R",CultureInfo.InvariantCulture);
             // Signed solved coordinates use __n columns after moving sign outside the restricted evaluator.
             string Expr(string key){double v=double.Parse(values[key],CultureInfo.InvariantCulture);values[key]=Math.Abs(v).ToString("R",CultureInfo.InvariantCulture);return v<0?"-"+key:key;}
             holes.Add(new{id,diameterExpression=hole.GetProperty("diameterColumn").GetString(),xExpression=Expr(x),yExpression=Expr(y),presentIfColumn=(string?)null});
@@ -62,12 +74,14 @@ public static class CadPlanV3
         if(targets.Any(id=>!features.ContainsKey(id)))throw new Exception("Bilinmeyen kesit hedefi.");
         var activeTargets=targets.Where(active.Contains).ToArray();
         if(activeTargets.Length==0)throw new Exception("Aktif kesit hedefi yok.");
-        var normalized=new{schemaVersion=2,kind=geometry.GetProperty("kind").GetString(),parameters=new{outerDiameterExpression=geometry.GetProperty("outerDiameterColumn").GetString(),depthMm=geometry.GetProperty("depthMm").GetDouble(),thicknessMm=geometry.GetProperty("thicknessMm").GetDouble(),outerRadiusMm=geometry.GetProperty("outerRadiusMm").GetDouble()},holes,camera=source.GetProperty("camera"),section=new{mode="through-features",featureIds=activeTargets,label=section.TryGetProperty("label",out var label)?label.GetString():"A-A"},dimensions,fixedAnnotations=annotation.GetProperty("fixedAnnotations"),geometricTolerances=annotation.GetProperty("geometricTolerances"),issues=Array.Empty<object>()};
+        var normalized=new{schemaVersion=2,annotationOrigin=new{xMm=-bodyX,yMm=-bodyY},kind=geometry.GetProperty("kind").GetString(),parameters=new{outerDiameterExpression=geometry.GetProperty("outerDiameterColumn").GetString(),depthMm=geometry.GetProperty("depthMm").GetDouble(),thicknessMm=geometry.GetProperty("thicknessMm").GetDouble(),outerRadiusMm=geometry.GetProperty("outerRadiusMm").GetDouble()},holes,camera=source.GetProperty("camera"),section=new{mode="through-features",featureIds=activeTargets,label=section.TryGetProperty("label",out var label)?label.GetString():"A-A"},dimensions,fixedAnnotations=annotation.GetProperty("fixedAnnotations"),geometricTolerances=annotation.GetProperty("geometricTolerances"),issues=Array.Empty<object>()};
         return (JsonSerializer.SerializeToElement(normalized),values);
     }
     public static List<WorkflowIssue> Check(JsonElement plan,List<Dictionary<string,string>> rows)
     {
         var result=WorkflowReports.Inspect(plan).ToList();
+        if(plan.GetProperty("schemaVersion").GetInt32()==4)
+            try{CadReferenceFrame.Validate(plan);}catch(Exception ex){result.Add(new("REFERENCE_FRAME",ex is NotSupportedException?"software":"model","error",ex.Message,["coordinateFrame"],"Modelin referans sistemi veya yerel dönüşüm desteği incelenmeli."));return result;}
         if(plan.TryGetProperty("colorPolicyVersion",out _))result.AddRange(CheckColors(plan));
         foreach(var row in rows)try{
             var bound=Bind(plan,row);result.AddRange(WorkflowReports.CheckMeasurements(bound.Plan,new(){bound.Row}));

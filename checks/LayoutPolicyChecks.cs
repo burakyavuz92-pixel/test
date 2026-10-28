@@ -163,3 +163,22 @@ using(var v3=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtur
     using var red=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
     Check(CadPlanV3.CheckColors(red.RootElement).Any(i=>i.Code=="COLOR_GEOMETRY_SOURCE"),"red cannot be a geometry measurement source");
 }
+using(var fixture=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/fixtures/cad-v3.json")))
+{
+    var node=System.Text.Json.Nodes.JsonNode.Parse(fixture.RootElement.GetRawText())!;node["schemaVersion"]=4;
+    node["coordinateFrame"]=System.Text.Json.Nodes.JsonNode.Parse("""{"referenceView":{"id":"front","bbox01":[0.2,0.1,0.8,0.8]},"origin":{"kind":"axis-face-intersection","feature":"body","point01":[0.5,0.45],"evidence":"body axis and front face"},"axes":{"x":"right","y":"up","z":"toward-viewer"},"bodyAnchor":{"x":{"kind":"origin"},"y":{"kind":"origin"}}}""");
+    using var centered=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.Check(centered.RootElement,new(){row}).Count==0,"v4 explicit body-centered frame preserves relationships");
+    node["coordinateFrame"]["origin"]["kind"]="datum";
+    node["coordinateFrame"]["bodyAnchor"]["x"]=System.Text.Json.Nodes.JsonNode.Parse("""{"kind":"offset","reference":"origin","column":"F","sign":1}""");
+    using var datumFrame=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    var bound=CadPlanV3.Bind(datumFrame.RootElement,row);var upper=bound.Plan.GetProperty("holes")[0];
+    Check(Math.Abs(CadPlanWorkflow.Expression(upper.GetProperty("xExpression").GetString()!,bound.Row)+44.5)<1e-8,"v4 shifts every feature into the body frame");
+    Check(Math.Abs(bound.Plan.GetProperty("annotationOrigin").GetProperty("xMm").GetDouble()+44.5)<1e-8&&WorkflowReports.CheckMeasurements(bound.Plan,new(){bound.Row}).Count==0,"v4 moves annotation datum with the same transform");
+    node["coordinateFrame"]["origin"]["kind"]="axis-face-intersection";
+    using var badAnchor=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.Check(badAnchor.RootElement,new(){row}).Any(i=>i.Code=="REFERENCE_FRAME"),"v4 rejects inconsistent body origin and anchor");
+    node["coordinateFrame"]["origin"]["point01"]=new System.Text.Json.Nodes.JsonArray(0.95,0.95);
+    using var outOfView=System.Text.Json.JsonDocument.Parse(node.ToJsonString());
+    Check(CadPlanV3.Check(outOfView.RootElement,new(){row}).Any(i=>i.Code=="REFERENCE_FRAME"),"v4 rejects origin points outside the reference view");
+}

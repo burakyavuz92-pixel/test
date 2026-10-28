@@ -1,0 +1,123 @@
+{
+  "rawPlanUnmodified": true,
+  "geometryAndVisibilityMatchThisDataset": true,
+  "rows": [
+    {
+      "product": "11-30-212",
+      "holes": [
+        {
+          "id": "holeC",
+          "diameterColumn": "C",
+          "xMm": 0,
+          "yMm": 44.45
+        },
+        {
+          "id": "holeD",
+          "diameterColumn": "D",
+          "xMm": 0,
+          "yMm": -44.45
+        },
+        {
+          "id": "holeE",
+          "diameterColumn": "E",
+          "xMm": -44.5,
+          "yMm": 0
+        }
+      ],
+      "visibleDimensions": {
+        "A": true,
+        "B": true,
+        "C": true,
+        "D": true,
+        "E": true,
+        "F": true,
+        "G": false
+      }
+    },
+    {
+      "product": "11-30-200",
+      "holes": [
+        {
+          "id": "holeC",
+          "diameterColumn": "C",
+          "xMm": 0,
+          "yMm": 44.5
+        },
+        {
+          "id": "holeD",
+          "diameterColumn": "D",
+          "xMm": 0,
+          "yMm": -44.5
+        }
+      ],
+      "visibleDimensions": {
+        "A": true,
+        "B": true,
+        "C": true,
+        "D": true,
+        "E": false,
+        "F": false,
+        "G": false
+      }
+    },
+    {
+      "product": "11-30-92",
+      "holes": [
+        {
+          "id": "holeC",
+          "diameterColumn": "C",
+          "xMm": 0,
+          "yMm": 86.7
+        },
+        {
+          "id": "holeD",
+          "diameterColumn": "D",
+          "xMm": 0,
+          "yMm": -78.7
+        }
+      ],
+      "visibleDimensions": {
+        "A": true,
+        "B": true,
+        "C": true,
+        "D": true,
+        "E": false,
+        "F": false,
+        "G": true
+      }
+    },
+    {
+      "product": "11-30-381",
+      "holes": [
+        {
+          "id": "holeC",
+          "diameterColumn": "C",
+          "xMm": 0,
+          "yMm": 35
+        },
+        {
+          "id": "holeD",
+          "diameterColumn": "D",
+          "xMm": 0,
+          "yMm": -35
+        },
+        {
+          "id": "holeE",
+          "diameterColumn": "E",
+          "xMm": 0,
+          "yMm": 0
+        }
+      ],
+      "visibleDimensions": {
+        "A": true,
+        "B": true,
+        "C": true,
+        "D": true,
+        "E": true,
+        "F": false,
+        "G": false
+      }
+    }
+  ],
+  "limits": "Numeric summary is an independent local audit of declared relationships; no native drawing was run."
+}

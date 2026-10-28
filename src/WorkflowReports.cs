@@ -39,6 +39,7 @@ public static class WorkflowReports
                         CadPlanWorkflow.Expression(hole.GetProperty("yExpression").GetString()!,row),
                         CadPlanWorkflow.Expression(hole.GetProperty("diameterExpression").GetString()!,row)));
                 }
+                double ox=plan.TryGetProperty("annotationOrigin",out var origin)?origin.GetProperty("xMm").GetDouble():0,oy=plan.TryGetProperty("annotationOrigin",out origin)?origin.GetProperty("yMm").GetDouble():0;
                 foreach(var dimension in plan.GetProperty("dimensions").EnumerateArray())
                 {
                     string feature=dimension.GetProperty("feature").GetString()!,column=dimension.GetProperty("column").GetString()!,kind=dimension.GetProperty("kind").GetString()!;
@@ -46,8 +47,8 @@ public static class WorkflowReports
                     double actual;
                     if(kind=="diameter")actual=feature=="body"?CadPlanWorkflow.Expression(plan.GetProperty("parameters").GetProperty("outerDiameterExpression").GetString()!,row):points[feature].Diameter;
                     else if(kind=="centerDistance"){var ids=feature.Split(':');var a=points[ids[0]];var b=points[ids[1]];actual=Math.Sqrt(Math.Pow(a.X-b.X,2)+Math.Pow(a.Y-b.Y,2));}
-                    else if(kind=="horizontalOffset")actual=Math.Abs(points[feature].X);
-                    else if(kind=="verticalOffset")actual=Math.Abs(points[feature].Y);
+                    else if(kind=="horizontalOffset")actual=Math.Abs(points[feature].X-ox);
+                    else if(kind=="verticalOffset")actual=Math.Abs(points[feature].Y-oy);
                     else throw new Exception("Desteklenmeyen ölçü türü.");
                     double expected=GroupWorkflow.Value(row[column]);
                     if(Math.Abs(expected-actual)>1e-5)errors.Add(new("MODEL_MEASUREMENT_CONFLICT","model","error",$"{product}: modelde {column}={actual}, Excel nominali {expected}.",[product,column],"Model geometrik ilişkisi düzeltilmeli; geçerli Excel değeri değiştirilmemeli."));

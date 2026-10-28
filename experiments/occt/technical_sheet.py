@@ -179,6 +179,7 @@ def write_sheet(shape,data,out):
     holes={h['id']:h for h in data['holes']}
     for h in holes.values():
         x,y=cx+h['xMm']*s,cy-h['yMm']*s;half=h['diameterMm']*s/2+7;line(x-half,y,x+half,y,True);line(x,y-half,x,y+half,True)
+    datum=drawing.get('datumOrigin',{'xMm':0,'yMm':0});ox,oy=datum['xMm'],datum['yMm'];dx,dy=cx+ox*s,cy-oy*s
     measured=[]
     def nominal(raw):return float(re.search(r'\d+(?:[.,]\d+)?',raw)[0].replace(',','.'))
     for dim in drawing['dimensions']:
@@ -186,8 +187,8 @@ def write_sheet(shape,data,out):
         if dim['kind']=='diameter':actual=data['outerDiameterMm'] if feature=='body' else holes[feature]['diameterMm']
         elif dim['kind']=='centerDistance':
             h1,h2=[holes[i] for i in feature.split(':')];actual=math.hypot(h1['xMm']-h2['xMm'],h1['yMm']-h2['yMm'])
-        elif dim['kind']=='horizontalOffset':actual=abs(holes[feature]['xMm'])
-        elif dim['kind']=='verticalOffset':actual=abs(holes[feature]['yMm'])
+        elif dim['kind']=='horizontalOffset':actual=abs(holes[feature]['xMm']-ox)
+        elif dim['kind']=='verticalOffset':actual=abs(holes[feature]['yMm']-oy)
         else:raise ValueError('Unsupported dimension kind')
         if not math.isclose(actual,nominal(raw),abs_tol=1e-5):raise ValueError('Dimension does not match OCCT model: '+dim['id'])
         measured.append(dict(id=dim['id'],modelValueMm=actual,valueText=raw,visible=dim['visible']))
@@ -198,11 +199,11 @@ def write_sheet(shape,data,out):
             yt,yb=sorted((cy-h1['yMm']*s,cy-h2['yMm']*s));x=463
             line(x,yt,cx-15,yt);line(x,yb,cx-15,yb);line(x,yt,x,yb);arrow(x,yt,0,1);arrow(x,yb,0,-1);tolerance(raw,x-9,(yt+yb)/2,-90)
         elif dim['kind']=='horizontalOffset':
-            h=holes[feature];x1,x2=sorted((cx,cx+h['xMm']*s));y=cy-r-27
-            line(x1,y,x1,cy-h['yMm']*s);line(x2,y,x2,cy-h['yMm']*s);line(x1,y,x2,y);arrow(x1,y,1,0);arrow(x2,y,-1,0);tolerance(raw,(x1+x2)/2,y-9)
+            h=holes[feature];x1,x2=sorted((dx,cx+h['xMm']*s));y=cy-r-27
+            line(dx,y,dx,dy);line(cx+h['xMm']*s,y,cx+h['xMm']*s,cy-h['yMm']*s);line(x1,y,x2,y);arrow(x1,y,1,0);arrow(x2,y,-1,0);tolerance(raw,(x1+x2)/2,y-9)
         elif dim['kind']=='verticalOffset':
-            h=holes[feature];y1,y2=sorted((cy,cy-h['yMm']*s));x=cx+r+32
-            line(cx,y1,x,y1);line(cx,y2,x,y2);line(x,y1,x,y2);arrow(x,y1,0,1);arrow(x,y2,0,-1);tolerance(raw,x+19,(y1+y2)/2,-90)
+            h=holes[feature];y1,y2=sorted((dy,cy-h['yMm']*s));x=cx+r+32
+            line(dx,dy,x,dy);line(cx+h['xMm']*s,cy-h['yMm']*s,x,cy-h['yMm']*s);line(x,y1,x,y2);arrow(x,y1,0,1);arrow(x,y2,0,-1);tolerance(raw,x+19,(y1+y2)/2,-90)
         else:
             h=holes[feature];upper=h['yMm']>=0;side=-1 if h['xMm']<-.001 or abs(h['yMm'])<1e-6 else (1 if upper else -1)
             hx,hy=cx+h['xMm']*s+side*h['diameterMm']*s*.4,cy-h['yMm']*s+(-1 if upper else 1)*h['diameterMm']*s*.3

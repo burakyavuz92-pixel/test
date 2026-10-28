@@ -237,3 +237,13 @@ Yerel `tools/color_views.py`, kırmızı baskın pikselleri beyaz yaparak geomet
 İstenen ek çıktı `colorPolicyVersion:1`, `measurementSources` (sütun, siyah/yeşil, eksen, ölçü uçları, kanıt), sabit ölçülerde `sourceColor` alanlarıdır. Yeşil görünürlük ve kırmızı geometri kaynağı tutarsızlıkları denetlenir. Bu kontroller modelin kendi kaynak iddialarına dayanır; bağımsız görüntü doğrulaması değildir. Geometrik ilişkiler, ölçü koşulları, isteğe bağlı varlık ve kesit hedefleri ayrı kalır. Tolerans aralıklarının çakışması gizleme/eşitlik koşulunun sağlandığı anlamına gelmez; karşılaştırmalar nominalde yapılır.
 
 Son renk denemesi: previews/group2-color-analysis/NOTLAR.md. Modelin bildirdiği ölçü uçları ile ölçülendirme türünün gerektirdiği uçlar da karşılaştırılır; sayısal tesadüfler doğru eşleşme sayılmaz. Bu, kaynak JPEG'deki gerçek ölçü uçlarını bağımsız algılayan bir yöntem değildir.
+
+## Açık referans sistemi: şema v4
+
+Yeni grup analizi şema v4 ister. Model `coordinateFrame` içinde referans görünüşü (tam JPEG'de normalize bbox), orijini (tam JPEG'de normalize nokta, geometrik özellik ve kanıt), eksenleri ve gövdenin bu referanstaki ankrajını (`bodyAnchor`) tanımlar. Kullanıcı koordinat hazırlamaz. Görsel nokta milimetreye veya üretim ölçüsüne çevrilmez; kanıt/inceleme içindir. Model noktalarının gerçek eksen kesişimi olduğu bağımsız görüntü analiziyle doğrulanmış sayılmaz.
+
+Parça özellikleri ve gövde ankrajı aynı ilişkilerle çözülür. Yerel gövde oluşturucu kendi merkezini sıfırda kullandığından, tüm delik merkezlerinden gövde ankrajı çıkarılır. Kaynak orijin de aynı dönüşümle taşınır; ölçü hesapları bu taşınmış orijini kullanır. Yalnız gövdeyi veya yalnız delikleri kaydırmak yasaktır. Kamera doğrultusu bu ortak ötelemeden etkilenmez. Gövde ana ekseni–ön yüz kesişimi orijin olarak beyan edilmişse gövde ankrajı sıfır olmalıdır. Var olmayan/opsiyonel özelliğe bağlı orijin, döngü ve geçersiz görsel alan reddedilir.
+
+Bu sürümde yalnızca X sağ/Y yukarı/Z izleyiciye doğru bazı desteklenir; başka baz sessizce yansıtılmaz. Diğer bazların dönüşümü yazılana kadar raporlanır. Orijin referansının genel tanımı, bütün parça türleri için geometri oluşturucu eklendiği anlamına gelmez. V3 geçmiş planlar geriye uyumlu okunur. Analiz komutu çizim üretmez; orijin sözleşmesi değişikliğini görmek için diğer API ayarları (low reasoning ve çift tam görüntü) değiştirilmedi.
+
+Şema v4'ün ilk gerçek API denemesi ve değiştirilmemiş planı: previews/group2-reference-frame/NOTLAR.md. Dört satırın geometri/ölçü bağlantıları yerel doğrulamadan geçti; çizim üretilmedi. Bu sonuç bütün parça aileleri için garanti değildir.
