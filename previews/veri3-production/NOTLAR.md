@@ -6,7 +6,7 @@ Girdiler veri3.xlsx ve mevcut taslak2guncel.jpg. Yazılımın normal run-cad-gro
 
 - [82 tam çözünürlüklü JPEG — ZIP](veri3-82-jpeg.zip)
 - Önizleme sayfaları: [1](overview-1.jpg), [2](overview-2.jpg), [3](overview-3.jpg), [4](overview-4.jpg), [5](overview-5.jpg)
-- Tekil örnekler: [212](11-30-212.jpeg), [381](11-30-381.jpeg), [92](11-30-92.jpeg)
+- Tekil örnekler: [212](11-30-212.jpeg), [381](11-30-381.jpeg)
 - run-report.json: çalışma durumu, kaynak özetleri, API çağrısı ve maliyet.
 - analysis-plan.json: değiştirilmemiş model planı.
 - checks.json: 82 ürüne ait native geometri ve ölçü yerleşimi kontrolleri.
