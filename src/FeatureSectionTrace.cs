@@ -10,6 +10,19 @@ public static class FeatureSectionTrace
     static double Dot(double[] a,double[] b)=>a.Zip(b).Sum(t=>t.First*t.Second);
     static double[] Cross(double[] a,double[] b)=>new[]{a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]};
     static double[] Unit(double[] a){double d=Math.Sqrt(Dot(a,a));if(d<1e-9)throw new Exception("Kesit referans yönü geçersiz.");return Mul(a,1/d);}
+    // Check finite segments in the source-view projection, not infinite supporting planes.
+    public static bool CoversProjectedPoint(IReadOnlyList<double[]> path,double[] point,double tolerance=1e-7)
+    {
+        for(int i=1;i<path.Count;i++)
+        {
+            var a=path[i-1];var b=path[i];double dx=b[0]-a[0],dy=b[1]-a[1],length2=dx*dx+dy*dy;
+            if(length2<1e-20)continue;
+            double t=Math.Clamp(((point[0]-a[0])*dx+(point[1]-a[1])*dy)/length2,0,1);
+            double ex=point[0]-(a[0]+t*dx),ey=point[1]-(a[1]+t*dy);
+            if(ex*ex+ey*ey<=tolerance*tolerance)return true;
+        }
+        return false;
+    }
     public static JsonArray Expand(JsonArray sections,JsonNode resolved)
     {
         var ops=resolved["operations"]!.AsArray().ToDictionary(o=>o!["id"]!.GetValue<string>());
@@ -53,8 +66,8 @@ public static class FeatureSectionTrace
             var view=views[source["view"]!.GetValue<string>()]!;var parent=views[source["sourceView"]!.GetValue<string>()]!;
             var sweep=Unit(V(parent["direction"]));var normal=Unit(V(view["direction"]));if(Math.Abs(Dot(sweep,normal))>1e-3)throw new Exception("Kesit ve kaynak görünüş yönleri dik olmalı.");
             var along=Unit(Cross(normal,sweep));if(Dot(along,V(parent["up"]))<0)along=Mul(along,-1);
-            var points=source["through"]!.AsArray().Select(a=>Anchor(a!)).Where(a=>a is not null).Select(a=>new[]{Dot(Sub(a!,main),normal),Dot(Sub(a!,main),along)}).OrderByDescending(a=>a[1]).ToList();
-            for(int i=1;i<points.Count;i++)if(Math.Abs(points[i][1]-points[i-1][1])<1e-7&&Math.Abs(points[i][0]-points[i-1][0])>1e-7)throw new Exception("Aynı iz seviyesinde farklı eksenler var; kesit referansları belirsiz.");
+            var points=source["through"]!.AsArray().Select(a=>Anchor(a!)).Where(a=>a is not null).Select(a=>new[]{Dot(Sub(a!,main),normal),Dot(Sub(a!,main),along)}).Prepend(new double[2]).OrderByDescending(a=>a[1]).ToList();
+            // Stable sorting preserves reference order for equal longitudinal positions.
             // Conservative presentation extent; native executor can later clip to actual BRep bounds.
             double extent=10;
             foreach(var p in resolved["parameters"]!.AsObject())if(p.Value is JsonValue value&&value.TryGetValue<double>(out var n)&&double.IsFinite(n))extent=Math.Max(extent,Math.Abs(n)*2+10);
@@ -63,6 +76,8 @@ public static class FeatureSectionTrace
             foreach(var p in points){if(Math.Abs(p[0]-u)>1e-7){double jog=(prev+p[1])/2;trace.Add(new[]{u,jog});trace.Add(new[]{p[0],jog});}trace.Add(p);u=p[0];prev=p[1];}
             if(Math.Abs(u)>1e-7){double jog=(prev-extent)/2;trace.Add(new[]{u,jog});trace.Add(new[]{0.0,jog});}trace.Add(new[]{0.0,-extent});
             var clean=new List<double[]>();foreach(var p in trace)if(clean.Count==0||Math.Abs(p[0]-clean[^1][0])+Math.Abs(p[1]-clean[^1][1])>1e-7)clean.Add(p);
+            if(points.Any(p=>!CoversProjectedPoint(clean,p)))
+                throw new Exception("Kesit yolu mevcut referansların tümünden geçmiyor.");
             bool planar=clean.All(p=>Math.Abs(p[0])<1e-7);var output=source.DeepClone();output["kind"]=planar?"planar":"stepped";
             var world=clean.Select(p=>Add(main,Add(Mul(normal,p[0]),Mul(along,p[1])))).ToArray();
             if(planar){output["frame"]="__sectionWorld";output["plane"]=new JsonObject{["point"]=JsonSerializer.SerializeToNode(main),["normal"]=JsonSerializer.SerializeToNode(normal)};}

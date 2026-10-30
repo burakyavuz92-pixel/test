@@ -156,3 +156,22 @@ try
  File.WriteAllText(jpeg,"different");var wrong=Path.Combine(cacheRoot,"wrong");RecipeLibrary.Reuse(excel,jpeg,saved,wrong);Check(!File.Exists(Path.Combine(wrong,"new-part.resolved.json")),"different template does not silently reuse recipe");
 }
 finally{Environment.SetEnvironmentVariable("CAD_RECIPE_LIBRARY",oldLibrary);Directory.Delete(cacheRoot,true);Environment.ExitCode=0;}
+
+var anchoredTrace=featureTrace.DeepClone();
+foreach(var (id,y) in new[]{("upper",40),("lower",-40)})
+{
+ var anchorHole=JsonNode.Parse("""{"id":"anchor","kind":"hole","frame":"main","uses":["base"],"args":{"diameter":10,"origin":[0,0,0],"direction":[0,0,1],"throughAll":true,"depth":null}}""")!;
+ anchorHole["id"]=id;anchorHole["args"]!["origin"]![1]=y;
+ anchoredTrace["geometry"]["features"].AsArray().Add(anchorHole);
+}
+anchoredTrace["drawing"]["sections"][0]["main"]["feature"]="upper";
+anchoredTrace["drawing"]["sections"][0]["through"]=JsonNode.Parse("""[{"feature":"optionalHole","entity":"axis"},{"feature":"lower","entity":"axis"}]""");
+var anchoredResult=CadRecipeV7.Resolve(Doc(anchoredTrace),ftOffset);
+var anchorPath=anchoredResult.GetProperty("drawing").GetProperty("sections")[0].GetProperty("worldPath").EnumerateArray().Select(p=>p.EnumerateArray().Take(2).Select(v=>v.GetDouble()).ToArray()).ToArray();
+Check(FeatureSectionTrace.CoversProjectedPoint(anchorPath,new[]{0.0,40}),"main upper reference belongs to finite stepped trace");
+Check(FeatureSectionTrace.CoversProjectedPoint(anchorPath,new[]{44.5,0}),"offset reference remains covered after main-anchor fix");
+Check(FeatureSectionTrace.CoversProjectedPoint(anchorPath,new[]{0.0,-40}),"lower reference remains covered after main-anchor fix");
+Check(CadRecipeV7.Resolve(Doc(anchoredTrace),ftBlank).GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="planar","main-anchor fix preserves absent-feature planar section");
+Check(CadRecipeV7.Resolve(Doc(anchoredTrace),ftZero).GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="planar","main-anchor fix preserves zero-offset planar section");
+Check(!FeatureSectionTrace.CoversProjectedPoint(new[]{new[]{0.0,10},new[]{0.0,-10}},new[]{0.0,40}),"infinite-plane membership does not count as finite trace coverage");
+Check(!FeatureSectionTrace.CoversProjectedPoint(new[]{new[]{0.0,100},new[]{44.5,100},new[]{44.5,-20},new[]{0.0,-20},new[]{0.0,-100}},new[]{0.0,40}),"previous early-jog shape fails main-reference coverage check");

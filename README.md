@@ -57,7 +57,7 @@ Parametre birimleri promptta açıkça tanımlıdır: uzunluk/pay mm, açı deg,
 
 Model artık kesit yolu koordinatları yerine `{id,view,sourceView,kind:"featureTrace",main:reference,through:[reference,...]}` verir. Referans `{feature,entity:"axis"|"frameOrigin",instance?:index}` biçimindedir. Eksen çözümü hole/cylinder/revolve, dairesel extrude ve circularPattern örneklerini destekler. Diğer geometriler için frameOrigin kullanılabilir; her keyfi yüzün ekseni otomatik tanınmaz. Özellik kimliği ve desen örneğini model seçer; yazılım görüntüden parça tanımaz.
 
-Yazılım referans noktalarını kaynak görünüşe taşır, iz boyunca sıralar, kademe geçişlerini komşu referanslar arasında üretir. Mevcut olmayan özellik atlanır, sıfır sapma düz kesite dönüşür; boş değer sıfıra çevrilmez. Aynı iz seviyesinde farklı eksenler belirsizse raporlanır. İz uçları için muhafazakâr sunum uzanımı kullanılır; native BRep sınırlarıyla kırpma henüz uygulanmadı. Yerel birim/bağımlılık/geometri kontrolleri görsel doğruluk garantisi değildir.
+Yazılım referans noktalarını kaynak görünüşe taşır, iz boyunca sıralar, kademe geçişlerini komşu referanslar arasında üretir. Mevcut olmayan özellik atlanır, sıfır sapma düz kesite dönüşür; boş değer sıfıra çevrilmez. Aynı iz seviyesindeki referansların sırası korunur. Ana referans da zorunlu geçiş noktasıdır; tüm mevcut referansların sonlu kesit yolunda kapsanması doğrulanır. İz uçları için muhafazakâr sunum uzanımı kullanılır; native BRep sınırlarıyla kırpma henüz uygulanmadı. Yerel birim/bağımlılık/geometri kontrolleri görsel doğruluk garantisi değildir.
 
 Geçen analizde recipe-cache.json aday kaydı oluşur. Onay otomatik verilmez:
 
@@ -71,3 +71,5 @@ Onay komutu tarifi `.recipe-library/<image-sha256>` altına kaydeder (CAD_RECIPE
 `reuse-cad-group <xlsx> <jpeg> <saved-run> <output>` aday tarifi API'siz incelemeyi de sağlar; raporda aday/onaylı ayrılır. `analyze-fresh-cad-group` kayıtlı tarifi atlayıp açıkça yeni ücretli analiz yapar. Bu cache, provider token cache'i değildir. Genel native JPEG/STEP yürütücüsü hâlâ tamamlanmadı; run-cad-group kayıtlı tarif bulsa da yürütücü eksikliğini raporlar.
 
 64 kontrol geçti; kapak denemesi previews/kapak-feature-trace/NOTLAR.md içindedir.
+
+Ana referans düzeltmesiyle 71 kontrol geçti. Kayıtlı taslak2/kapak tariflerinin API’siz yeniden çözümü previews/section-main-anchor-fix/NOTLAR.md altında.
