@@ -1,0 +1,790 @@
+{
+  "schemaVersion": 7,
+  "geometry": {
+    "parameters": [
+      {
+        "id": "A",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      {
+        "id": "B",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      {
+        "id": "C",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      {
+        "id": "D",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      {
+        "id": "E",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      {
+        "id": "F",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      {
+        "id": "G",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "G"
+        }
+      },
+      {
+        "id": "two",
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      {
+        "id": "height",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 33
+        }
+      },
+      {
+        "id": "thickness",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      {
+        "id": "outerBend",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 8
+        }
+      },
+      {
+        "id": "kmo",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 5.656854
+        }
+      },
+      {
+        "id": "kmi",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 3.535534
+        }
+      },
+      {
+        "id": "R",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        }
+      },
+      {
+        "id": "Rc",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "R",
+            "outerBend"
+          ]
+        }
+      },
+      {
+        "id": "Rin",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "R",
+            "thickness"
+          ]
+        }
+      },
+      {
+        "id": "xmo",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "Rc",
+            "kmo"
+          ]
+        }
+      },
+      {
+        "id": "xmi",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "Rc",
+            "kmi"
+          ]
+        }
+      },
+      {
+        "id": "zA",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "height",
+            "outerBend"
+          ]
+        }
+      },
+      {
+        "id": "zB",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "height",
+            "thickness"
+          ]
+        }
+      },
+      {
+        "id": "yC",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "B",
+            "G"
+          ]
+        }
+      },
+      {
+        "id": "negG",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "zeroLen",
+            "G"
+          ]
+        }
+      },
+      {
+        "id": "zeroLen",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      {
+        "id": "negF",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "zeroLen",
+            "F"
+          ]
+        }
+      }
+    ],
+    "frames": [
+      {
+        "id": "world",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "features": [
+      {
+        "id": "profile",
+        "kind": "sketch",
+        "frame": "world",
+        "uses": [],
+        "args": {
+          "plane": "XZ",
+          "loops": [
+            {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    {
+                      "param": "height"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "Rc"
+                    },
+                    {
+                      "param": "height"
+                    }
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    {
+                      "param": "Rc"
+                    },
+                    {
+                      "param": "height"
+                    }
+                  ],
+                  "mid": [
+                    {
+                      "param": "xmo"
+                    },
+                    30.656854
+                  ],
+                  "end": [
+                    {
+                      "param": "R"
+                    },
+                    {
+                      "param": "zA"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "R"
+                    },
+                    {
+                      "param": "zA"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "R"
+                    },
+                    0
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "R"
+                    },
+                    0
+                  ],
+                  "end": [
+                    {
+                      "param": "Rin"
+                    },
+                    0
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "Rin"
+                    },
+                    0
+                  ],
+                  "end": [
+                    {
+                      "param": "Rin"
+                    },
+                    {
+                      "param": "zA"
+                    }
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    {
+                      "param": "Rin"
+                    },
+                    {
+                      "param": "zA"
+                    }
+                  ],
+                  "mid": [
+                    {
+                      "param": "xmi"
+                    },
+                    28.535534
+                  ],
+                  "end": [
+                    {
+                      "param": "Rc"
+                    },
+                    {
+                      "param": "zB"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "Rc"
+                    },
+                    {
+                      "param": "zB"
+                    }
+                  ],
+                  "end": [
+                    0,
+                    {
+                      "param": "zB"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    {
+                      "param": "zB"
+                    }
+                  ],
+                  "end": [
+                    0,
+                    {
+                      "param": "height"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "body",
+        "kind": "revolve",
+        "frame": "world",
+        "uses": [
+          "profile"
+        ],
+        "args": {
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "holeC",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "body"
+        ],
+        "args": {
+          "diameter": {
+            "param": "C"
+          },
+          "origin": [
+            0,
+            {
+              "param": "yC"
+            },
+            {
+              "param": "height"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeD",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "holeC"
+        ],
+        "args": {
+          "diameter": {
+            "param": "D"
+          },
+          "origin": [
+            0,
+            {
+              "param": "negG"
+            },
+            {
+              "param": "height"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeE",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "holeD"
+        ],
+        "presence": {
+          "kind": "columnPresent",
+          "column": "E"
+        },
+        "args": {
+          "diameter": {
+            "param": "E"
+          },
+          "origin": [
+            {
+              "param": "negF"
+            },
+            0,
+            {
+              "param": "height"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      }
+    ],
+    "result": "holeE"
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "center"
+          },
+          {
+            "operation": "holeD",
+            "role": "center"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "holeD",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "holeE",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "holeE",
+            "role": "center"
+          },
+          {
+            "operation": "body",
+            "role": "axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "black",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "axis"
+          },
+          {
+            "operation": "holeD",
+            "role": "center"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimHeight",
+        "type": "distance",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "height"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "baseOuterFace"
+          },
+          {
+            "operation": "body",
+            "role": "rimEndFace"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimThickness",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "thickness"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "baseThickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimBend",
+        "type": "radius",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "outerBend"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outerBendRadius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      }
+    ],
+    "views": [
+      {
+        "id": "top",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionView",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          1,
+          1,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "AA",
+        "view": "sectionView",
+        "kind": "planar",
+        "frame": "world",
+        "plane": {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ]
+        },
+        "targets": [
+          "holeE"
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
