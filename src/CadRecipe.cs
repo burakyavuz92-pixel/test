@@ -4,7 +4,7 @@ using System.Text.Json.Nodes;
 // Unified, non-executable recipe; no product-family switch or formula strings.
 public static class CadRecipe
 {
-    public static readonly HashSet<string> Operations=new(){"sketch","extrude","revolve","cylinder","cut","fuse","hole","circularPattern","linearPattern","fillet","chamfer"};
+    public static readonly HashSet<string> Operations=new(){"sketch","extrude","revolve","cylinder","cut","fuse","hole","circularPattern","linearPattern","fillet","chamfer","join"};
     public static JsonElement Resolve(JsonElement plan,Dictionary<string,string> row)
     {
         if(plan.GetProperty("schemaVersion").GetInt32()!=6)throw new Exception("CAD recipe v6 gerekli; önceki tarif sürümü otomatik dönüştürülmez.");
@@ -78,12 +78,19 @@ public static class CadRecipe
             if(!Operations.Contains(name))throw new NotSupportedException("İşlem sözleşmede yok: "+name);
             if(!frames.ContainsKey(op.GetProperty("frame").GetString()!))throw new Exception("İşlem referans bazı bilinmiyor.");
             var condition=op.GetProperty("when");bool present=condition.GetProperty("kind").GetString() switch {"always"=>true,"columnPresent"=>row[condition.GetProperty("column").GetString()!].Length>0,"parameterPositive"=>Eval(condition.GetProperty("parameter").GetString()!) is double v&&v>1e-8,_=>throw new Exception("Geçersiz varlık koşulu.")};
-            bool modifies=name is "hole" or "fillet" or "chamfer" or "cut";
+            bool modifies=name is "hole" or "fillet" or "chamfer" or "cut" or "join";
             string? target=op.TryGetProperty("target",out var targetNode)&&targetNode.ValueKind==JsonValueKind.String?targetNode.GetString():null;
             string? tool=op.TryGetProperty("tool",out var toolNode)&&toolNode.ValueKind==JsonValueKind.String?toolNode.GetString():null;
             var inputs=op.GetProperty("inputs").EnumerateArray().Select(i=>i.GetString()!).ToArray();
             var optional=op.TryGetProperty("optionalInputs",out var optionalList)?optionalList.EnumerateArray().Select(x=>x.GetString()!).ToHashSet():new HashSet<string>();
-            if(modifies)
+            if(name=="join")
+            {
+                if(target is null||tool is not null||inputs.Length==0||optional.Count!=0)throw new Exception("İç birleşim ana gövde ve ek gövdeler ister.");
+                Visit(target);foreach(var input in inputs)Visit(input);
+                if(!active[target])throw new Exception("Birleşim ana gövdesi mevcut değil.");
+                present=present&&inputs.Any(i=>active[i]);
+            }
+            else if(modifies)
             {
                 if(target is null||inputs.Length!=0||optional.Count!=0||(name=="cut"?tool is null:tool is not null))throw new Exception("Gövde değiştirme işlemi tek target kullanmalı; inputs/optionalInputs boş olmalı: "+id);
                 Visit(target);if(tool is not null)Visit(tool);

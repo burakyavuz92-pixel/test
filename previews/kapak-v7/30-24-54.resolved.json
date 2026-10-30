@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": 7,
+  "outputId": "30-24-54",
+  "geometry": {
+    "parameters": {
+      "A": 255,
+      "B": 143.7,
+      "C": 11.7,
+      "D": 47,
+      "E": 5,
+      "F": 5,
+      "collarOuterDiameter": 20,
+      "holeCount": 4,
+      "two": 2,
+      "minusOne": -1,
+      "halfA": 127.5,
+      "slotWidth": 14,
+      "slotDepth": 16.5,
+      "slotRadius": 7,
+      "slotLength": 30.5,
+      "halfSlotLength": 15.25,
+      "slotTipRadius": 111,
+      "slotCenterRadius": 126.25,
+      "sectionOvershoot": 10,
+      "sectionHalf": 137.5,
+      "sectionLength": 275,
+      "negSectionHalf": -137.5
+    },
+    "parameterMetadata": {
+      "A": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      "B": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      "C": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      "D": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      "E": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      "F": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      "collarOuterDiameter": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 20,
+          "precision": "estimated"
+        }
+      },
+      "holeCount": {
+        "unit": "count",
+        "source": {
+          "kind": "constant",
+          "value": 4,
+          "precision": "specified"
+        }
+      },
+      "two": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2,
+          "precision": "specified"
+        }
+      },
+      "minusOne": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": -1,
+          "precision": "specified"
+        }
+      },
+      "halfA": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        }
+      },
+      "slotWidth": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 14,
+          "precision": "specified"
+        }
+      },
+      "slotDepth": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 16.5,
+          "precision": "specified"
+        }
+      },
+      "slotRadius": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "slotWidth",
+            "two"
+          ]
+        }
+      },
+      "slotLength": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "slotDepth",
+            "slotWidth"
+          ]
+        }
+      },
+      "halfSlotLength": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "slotLength",
+            "two"
+          ]
+        }
+      },
+      "slotTipRadius": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "slotDepth"
+          ]
+        }
+      },
+      "slotCenterRadius": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "slotTipRadius",
+            "halfSlotLength"
+          ]
+        }
+      },
+      "sectionOvershoot": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 10,
+          "precision": "estimated"
+        }
+      },
+      "sectionHalf": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "halfA",
+            "sectionOvershoot"
+          ]
+        }
+      },
+      "sectionLength": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "sectionHalf",
+            "two"
+          ]
+        }
+      },
+      "negSectionHalf": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "sectionHalf",
+            "minusOne"
+          ]
+        }
+      }
+    },
+    "frames": [
+      {
+        "id": "frameMain",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "The plan view is seen from \u002BZ with X to the right and Y up. The disc centre (crossing of the centre lines) is the origin and the flat back face is z=0. The part is rotationally centred and the back face is the flatness datum face.",
+        "basisNormalizationApplied": false
+      },
+      {
+        "id": "slotFrame1",
+        "origin": [
+          0,
+          0,
+          -1
+        ],
+        "xAxis": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "Local X lies along the 45\u00B0 radial line of the upper-right notch in the plan view. Origin z=-1 gives a clean through cut.",
+        "basisNormalizationApplied": true
+      },
+      {
+        "id": "slotFrame2",
+        "origin": [
+          0,
+          0,
+          -1
+        ],
+        "xAxis": [
+          -0.7071067811865476,
+          -0.7071067811865476,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "Local X lies along the 225\u00B0 radial line of the lower-left notch, which is the 180\u00B0 rotated copy of the upper-right notch.",
+        "basisNormalizationApplied": true
+      },
+      {
+        "id": "sectionFrame",
+        "origin": [
+          0,
+          -137.5,
+          -1
+        ],
+        "xAxis": [
+          0,
+          1,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "The section A-A trace is the vertical line through the disc centre in the plan view, running along Y at x=0.",
+        "basisNormalizationApplied": false
+      }
+    ],
+    "operations": [
+      {
+        "id": "plateSketch",
+        "op": "sketch",
+        "frame": "frameMain",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "circle",
+              "center": [
+                0,
+                0
+              ],
+              "diameter": 255
+            }
+          ]
+        }
+      },
+      {
+        "id": "plate",
+        "op": "extrude",
+        "frame": "frameMain",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "plateSketch"
+        ],
+        "featureApplied": true,
+        "args": {
+          "length": 5,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "collarSeed",
+        "op": "cylinder",
+        "frame": "frameMain",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 20,
+          "length": 5,
+          "origin": [
+            0,
+            0,
+            5
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "collarPattern",
+        "op": "circularPattern",
+        "frame": "frameMain",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "collarSeed"
+        ],
+        "featureApplied": true,
+        "args": {
+          "count": 4,
+          "pitchDiameter": 143.7,
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            5
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "plateWithCollars",
+        "op": "join",
+        "frame": "frameMain",
+        "target": "plate",
+        "tool": null,
+        "inputs": [
+          "collarPattern"
+        ],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "slotSketch1",
+        "op": "sketch",
+        "frame": "slotFrame1",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "roundedSlot",
+              "center": [
+                126.25,
+                0
+              ],
+              "width": 14,
+              "length": 30.5,
+              "angleDeg": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "slotTool1",
+        "op": "extrude",
+        "frame": "slotFrame1",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "slotSketch1"
+        ],
+        "featureApplied": true,
+        "args": {
+          "length": 100,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "slotSketch2",
+        "op": "sketch",
+        "frame": "slotFrame2",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "roundedSlot",
+              "center": [
+                126.25,
+                0
+              ],
+              "width": 14,
+              "length": 30.5,
+              "angleDeg": 0
+            }
+          ]
+        }
+      },
+      {
+        "id": "slotTool2",
+        "op": "extrude",
+        "frame": "slotFrame2",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "slotSketch2"
+        ],
+        "featureApplied": true,
+        "args": {
+          "length": 100,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "slotCut1",
+        "op": "cut",
+        "frame": "frameMain",
+        "target": "plateWithCollars",
+        "tool": "slotTool1",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "slotCut2",
+        "op": "cut",
+        "frame": "frameMain",
+        "target": "slotCut1",
+        "tool": "slotTool2",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "centerHole",
+        "op": "hole",
+        "frame": "frameMain",
+        "target": "slotCut2",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 47,
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeSeed",
+        "op": "cylinder",
+        "frame": "frameMain",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 11.7,
+          "length": 60,
+          "origin": [
+            0,
+            0,
+            -5
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "holePattern",
+        "op": "circularPattern",
+        "frame": "frameMain",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "holeSeed"
+        ],
+        "featureApplied": true,
+        "args": {
+          "count": 4,
+          "pitchDiameter": 143.7,
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            -5
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "holeCut",
+        "op": "cut",
+        "frame": "frameMain",
+        "target": "centerHole",
+        "tool": "holePattern",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      }
+    ],
+    "result": "holeCut",
+    "featureApplied": {
+      "plateSketch": true,
+      "plate": true,
+      "collarSeed": true,
+      "collarPattern": true,
+      "plateWithCollars": true,
+      "slotSketch1": true,
+      "slotTool1": true,
+      "slotSketch2": true,
+      "slotTool2": true,
+      "slotCut1": true,
+      "slotCut2": true,
+      "centerHole": true,
+      "holeSeed": true,
+      "holePattern": true,
+      "holeCut": true
+    }
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u00D8\u0027A\u0027 dimension in the section view over the full height of the disc.",
+        "parameter": "A",
+        "effectiveVisible": true,
+        "nominal": 255,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 255,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimB",
+        "type": "pitchDiameter",
+        "targets": [
+          {
+            "operation": "holePattern",
+            "role": "pitchCircle"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u00D8\u0027B\u0027 with a leader to the dash-dot pitch circle in the plan view.",
+        "parameter": "B",
+        "effectiveVisible": true,
+        "nominal": 143.7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 143.7,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "holePattern",
+            "role": "holeDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 4,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "4x \u00D8\u0027C\u0027 dimension on the lower hole in the section view.",
+        "parameter": "C",
+        "effectiveVisible": true,
+        "nominal": 11.7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 11.7,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.1,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "centerHole",
+            "role": "boreDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u00D8\u0027D\u0027 dimension on the central gap of the section view.",
+        "parameter": "D",
+        "effectiveVisible": true,
+        "nominal": 47,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 47,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "collarPattern",
+            "role": "collarTopFace"
+          },
+          {
+            "operation": "plate",
+            "role": "frontFace"
+          }
+        ],
+        "axis": "Z",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        },
+        "evidence": "\u0027E\u0027 is the height of the left-hand collar step from the plate face. It is hidden if E is zero (no collar).",
+        "parameter": "E",
+        "effectiveVisible": true,
+        "nominal": 5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "backFace"
+          },
+          {
+            "operation": "plate",
+            "role": "frontFace"
+          }
+        ],
+        "axis": "Z",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u0027F\u0027 under the section view is the sheet thickness.",
+        "parameter": "F",
+        "effectiveVisible": true,
+        "nominal": 5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null
+        }
+      },
+      {
+        "id": "dimSlotWidth",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "slotCut1",
+            "role": "slotWidth"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": false,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "Green 14,00 across the notch mouth. It is construction information and is hidden. It is measured tangentially to the radial notch axis.",
+        "parameter": "slotWidth",
+        "effectiveVisible": false,
+        "nominal": 14,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotWidth"
+        }
+      },
+      {
+        "id": "dimSlotDepth",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "slotCut1",
+            "role": "slotDepth"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": false,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "Green 16,50 along the notch axis from the outer edge to the rounded tip.",
+        "parameter": "slotDepth",
+        "effectiveVisible": false,
+        "nominal": 16.5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotDepth"
+        }
+      },
+      {
+        "id": "dimSlotRadius",
+        "type": "radius",
+        "targets": [
+          {
+            "operation": "slotCut1",
+            "role": "slotEndRadius"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": false,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "Green R7,00 of the notch end.",
+        "parameter": "slotRadius",
+        "effectiveVisible": false,
+        "nominal": 7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotRadius"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "planView",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "evidence": "The plan view looks onto the \u002BZ face (collar side) with X right and Y up."
+      },
+      {
+        "id": "sectionAAView",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "evidence": "Section A-A is shown to the left of the plan, looking toward -X from \u002BX. Screen right is then -Z, so the collars appear on the left and the flat back face on the right, as in the drawing."
+      },
+      {
+        "id": "isoView",
+        "direction": [
+          0.6,
+          -1,
+          0.9
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic",
+        "evidence": "Reference-like isometric from the \u002BZ face side: the collars face the viewer and the two notches appear at the right and the lower left, as in the thumbnail."
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "sectionAAView",
+        "frame": "sectionFrame",
+        "kind": "planar",
+        "path": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            275,
+            0,
+            0
+          ]
+        ],
+        "extrusionDirection": [
+          0,
+          0,
+          1
+        ],
+        "targets": [
+          "holePattern",
+          "centerHole"
+        ],
+        "evidence": "The A-A trace is the vertical centre line of the plan view along Y at x=0. It passes through the central bore and the top and bottom holes."
+      }
+    ],
+    "geometricTolerances": [
+      {
+        "kind": "flatness",
+        "value": 0.5,
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "backFace"
+          }
+        ],
+        "evidence": "The 0,5 flatness frame in the section view has its arrow on the flat right-hand face of the plate (z=0)."
+      }
+    ]
+  },
+  "executionStatus": "recipe-resolved-not-rendered"
+}

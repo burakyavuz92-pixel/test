@@ -1,0 +1,1074 @@
+{
+  "schemaVersion": 7,
+  "description": "ALT TABAN (bottom sheet): a flat circular sheet disc of outer diameter A and thickness F, lying in the XY plane with its flat back face at z=0 and its centre on the Z axis. It has a central through bore of diameter D. Four through holes of diameter C sit on a pitch circle of diameter B at 0/90/180/270 degrees. Each hole has a raised round collar of height E on the \u002BZ face, which is the face seen in the plan view and the isometric view. Two identical radial U-notches (width 14, radius 7, depth 16.5 from the outer edge, green construction dimensions) are cut from the outer edge at 45 and 225 degrees. Section A-A runs along the Y axis at x=0 and passes through the top and bottom holes. Collar outer diameter is estimated from the proportional section and plan views because it is not dimensioned. Column H is not a measurement; the output ID is used for the title block only.",
+  "geometry": {
+    "parameters": [
+      {
+        "id": "A",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        },
+        "evidence": "\u00D8\u0027A\u0027 in the section view is the outer disc diameter (236 / 255 mm)."
+      },
+      {
+        "id": "B",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        },
+        "evidence": "\u00D8\u0027B\u0027 with a leader to the dash-dot circle in the plan view is the pitch circle diameter of the four holes."
+      },
+      {
+        "id": "C",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        },
+        "evidence": "4x \u00D8\u0027C\u0027 is the diameter of the four holes (11.7 mm)."
+      },
+      {
+        "id": "D",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        },
+        "evidence": "\u00D8\u0027D\u0027 in the section view is the central bore diameter."
+      },
+      {
+        "id": "E",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        },
+        "evidence": "\u0027E\u0027 in the section view is the collar height above the plate face (about 18 px of the 3.85 px/mm scale, \u22485 mm)."
+      },
+      {
+        "id": "F",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        },
+        "evidence": "\u0027F\u0027 at the bottom of the section view is the sheet thickness (about 19 px, \u22485 mm)."
+      },
+      {
+        "id": "collarOuterDiameter",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 20,
+          "precision": "estimated"
+        },
+        "evidence": "Not dimensioned. In the section the collar spans about 77 px, \u224820 mm (the plan rings read 19\u201322 mm). Estimated from proportional views."
+      },
+      {
+        "id": "holeCount",
+        "unit": "count",
+        "source": {
+          "kind": "constant",
+          "value": 4,
+          "precision": "specified"
+        },
+        "evidence": "The \u00274x \u00D8\u0027C\u0027\u0027 note and four holes in the plan view."
+      },
+      {
+        "id": "two",
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2,
+          "precision": "specified"
+        },
+        "evidence": "Helper constant for diameter/radius conversion."
+      },
+      {
+        "id": "minusOne",
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": -1,
+          "precision": "specified"
+        },
+        "evidence": "Helper constant for sign inversion."
+      },
+      {
+        "id": "halfA",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        },
+        "evidence": "Outer radius = A/2."
+      },
+      {
+        "id": "slotWidth",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 14,
+          "precision": "specified"
+        },
+        "evidence": "Green dimension 14,00 across the notch."
+      },
+      {
+        "id": "slotDepth",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 16.5,
+          "precision": "specified"
+        },
+        "evidence": "Green dimension 16,50: radial depth of the notch from the outer edge to the tip of the rounded end."
+      },
+      {
+        "id": "slotRadius",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "slotWidth",
+            "two"
+          ]
+        },
+        "evidence": "Green R7,00 = slot width/2, matching the 14,00 width."
+      },
+      {
+        "id": "slotLength",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "slotDepth",
+            "slotWidth"
+          ]
+        },
+        "evidence": "Overall end-to-end length of the cutting slot: 16.5 mm inside the edge plus 14 mm outside it, so the notch opens fully through the outer edge."
+      },
+      {
+        "id": "halfSlotLength",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "slotLength",
+            "two"
+          ]
+        },
+        "evidence": "Half the overall slot length, used to find the slot centre."
+      },
+      {
+        "id": "slotTipRadius",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "slotDepth"
+          ]
+        },
+        "evidence": "Radial position of the inner tip of the notch = A/2 - 16.5 (\u2248101.5 mm for A=236, matching the plan view)."
+      },
+      {
+        "id": "slotCenterRadius",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "slotTipRadius",
+            "halfSlotLength"
+          ]
+        },
+        "evidence": "Radial position of the slot centre = tip radius \u002B half length."
+      },
+      {
+        "id": "sectionOvershoot",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 10,
+          "precision": "estimated"
+        },
+        "evidence": "The section trace in the plan view extends beyond the disc edge; this overshoot is estimated and is for presentation only."
+      },
+      {
+        "id": "sectionHalf",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "halfA",
+            "sectionOvershoot"
+          ]
+        },
+        "evidence": "Half length of the section line."
+      },
+      {
+        "id": "sectionLength",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "sectionHalf",
+            "two"
+          ]
+        },
+        "evidence": "Total length of the section line."
+      },
+      {
+        "id": "negSectionHalf",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "sectionHalf",
+            "minusOne"
+          ]
+        },
+        "evidence": "Start of the section line at the -Y side."
+      }
+    ],
+    "frames": [
+      {
+        "id": "frameMain",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "The plan view is seen from \u002BZ with X to the right and Y up. The disc centre (crossing of the centre lines) is the origin and the flat back face is z=0. The part is rotationally centred and the back face is the flatness datum face."
+      },
+      {
+        "id": "slotFrame1",
+        "origin": [
+          0,
+          0,
+          -1
+        ],
+        "xAxis": [
+          0.70710678,
+          0.70710678,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "Local X lies along the 45\u00B0 radial line of the upper-right notch in the plan view. Origin z=-1 gives a clean through cut."
+      },
+      {
+        "id": "slotFrame2",
+        "origin": [
+          0,
+          0,
+          -1
+        ],
+        "xAxis": [
+          -0.70710678,
+          -0.70710678,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "Local X lies along the 225\u00B0 radial line of the lower-left notch, which is the 180\u00B0 rotated copy of the upper-right notch."
+      },
+      {
+        "id": "sectionFrame",
+        "origin": [
+          0,
+          {
+            "param": "negSectionHalf"
+          },
+          -1
+        ],
+        "xAxis": [
+          0,
+          1,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "evidence": "The section A-A trace is the vertical line through the disc centre in the plan view, running along Y at x=0."
+      }
+    ],
+    "features": [
+      {
+        "id": "plateSketch",
+        "kind": "sketch",
+        "frame": "frameMain",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "circle",
+              "center": [
+                0,
+                0
+              ],
+              "diameter": {
+                "param": "A"
+              }
+            }
+          ]
+        },
+        "evidence": "The plan outline is a circle of diameter A."
+      },
+      {
+        "id": "plate",
+        "kind": "extrude",
+        "frame": "frameMain",
+        "uses": [
+          "plateSketch"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "length": {
+            "param": "F"
+          },
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "The sheet thickness F runs from z=0 to z=F in the section view."
+      },
+      {
+        "id": "collarSeed",
+        "kind": "cylinder",
+        "frame": "frameMain",
+        "uses": [],
+        "presence": {
+          "kind": "parameterPositive",
+          "parameter": "E"
+        },
+        "args": {
+          "diameter": {
+            "param": "collarOuterDiameter"
+          },
+          "length": {
+            "param": "E"
+          },
+          "origin": [
+            0,
+            0,
+            {
+              "param": "F"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "The collar sits on the \u002BZ plate face (the face with concentric rings in plan and the isometric) and rises by E. It exists only when E\u003E0."
+      },
+      {
+        "id": "collarPattern",
+        "kind": "circularPattern",
+        "frame": "frameMain",
+        "uses": [
+          "collarSeed"
+        ],
+        "presence": {
+          "kind": "parameterPositive",
+          "parameter": "E"
+        },
+        "args": {
+          "count": {
+            "param": "holeCount"
+          },
+          "pitchDiameter": {
+            "param": "B"
+          },
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            {
+              "param": "F"
+            }
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "Four collars on the pitch circle B at 0/90/180/270\u00B0, as in the plan view."
+      },
+      {
+        "id": "plateWithCollars",
+        "kind": "fuse",
+        "frame": "frameMain",
+        "uses": [
+          "plate",
+          "collarPattern"
+        ],
+        "presence": {
+          "kind": "parameterPositive",
+          "parameter": "E"
+        },
+        "args": {},
+        "evidence": "The collars are part of the same pressed sheet and are fused to the plate."
+      },
+      {
+        "id": "slotSketch1",
+        "kind": "sketch",
+        "frame": "slotFrame1",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "roundedSlot",
+              "center": [
+                {
+                  "param": "slotCenterRadius"
+                },
+                0
+              ],
+              "width": {
+                "param": "slotWidth"
+              },
+              "length": {
+                "param": "slotLength"
+              },
+              "angleDeg": 0
+            }
+          ]
+        },
+        "evidence": "The upper-right notch is a radial U-slot, width 14, with its rounded end R7 at radius A/2-16.5, opening outward through the disc edge."
+      },
+      {
+        "id": "slotTool1",
+        "kind": "extrude",
+        "frame": "slotFrame1",
+        "uses": [
+          "slotSketch1"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "length": 100,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "Cutting tool covering the whole sheet thickness; the collars are far away from the notches."
+      },
+      {
+        "id": "slotSketch2",
+        "kind": "sketch",
+        "frame": "slotFrame2",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "roundedSlot",
+              "center": [
+                {
+                  "param": "slotCenterRadius"
+                },
+                0
+              ],
+              "width": {
+                "param": "slotWidth"
+              },
+              "length": {
+                "param": "slotLength"
+              },
+              "angleDeg": 0
+            }
+          ]
+        },
+        "evidence": "The lower-left notch is identical and rotated 180\u00B0 (225\u00B0 radial line)."
+      },
+      {
+        "id": "slotTool2",
+        "kind": "extrude",
+        "frame": "slotFrame2",
+        "uses": [
+          "slotSketch2"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "length": 100,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "Cutting tool for the second notch."
+      },
+      {
+        "id": "slotCut1",
+        "kind": "cut",
+        "frame": "frameMain",
+        "uses": [
+          "plateWithCollars",
+          "slotTool1"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {},
+        "evidence": "Cut the upper-right notch. If the collars are absent, the plate body is forwarded automatically."
+      },
+      {
+        "id": "slotCut2",
+        "kind": "cut",
+        "frame": "frameMain",
+        "uses": [
+          "slotCut1",
+          "slotTool2"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {},
+        "evidence": "Cut the lower-left notch."
+      },
+      {
+        "id": "centerHole",
+        "kind": "hole",
+        "frame": "frameMain",
+        "uses": [
+          "slotCut2"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "diameter": {
+            "param": "D"
+          },
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        },
+        "evidence": "The large central circle in the plan view and the \u00D8\u0027D\u0027 gap in the section view show a central through bore."
+      },
+      {
+        "id": "holeSeed",
+        "kind": "cylinder",
+        "frame": "frameMain",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "diameter": {
+            "param": "C"
+          },
+          "length": 60,
+          "origin": [
+            0,
+            0,
+            -5
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "Hole cutter of diameter C, long enough to pass through the plate and the collar."
+      },
+      {
+        "id": "holePattern",
+        "kind": "circularPattern",
+        "frame": "frameMain",
+        "uses": [
+          "holeSeed"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "count": {
+            "param": "holeCount"
+          },
+          "pitchDiameter": {
+            "param": "B"
+          },
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            -5
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        },
+        "evidence": "Four holes at 0/90/180/270\u00B0 on the pitch circle B, with top and bottom holes on the section line."
+      },
+      {
+        "id": "holeCut",
+        "kind": "cut",
+        "frame": "frameMain",
+        "uses": [
+          "centerHole",
+          "holePattern"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {},
+        "evidence": "Cut the four holes through the plate and the collars."
+      }
+    ],
+    "result": "holeCut"
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u00D8\u0027A\u0027 dimension in the section view over the full height of the disc."
+      },
+      {
+        "id": "dimB",
+        "type": "pitchDiameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "holePattern",
+            "role": "pitchCircle"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u00D8\u0027B\u0027 with a leader to the dash-dot pitch circle in the plan view."
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holePattern",
+            "role": "holeDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 4,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "4x \u00D8\u0027C\u0027 dimension on the lower hole in the section view."
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "centerHole",
+            "role": "boreDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u00D8\u0027D\u0027 dimension on the central gap of the section view."
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "collarPattern",
+            "role": "collarTopFace"
+          },
+          {
+            "operation": "plate",
+            "role": "frontFace"
+          }
+        ],
+        "axis": "Z",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        },
+        "evidence": "\u0027E\u0027 is the height of the left-hand collar step from the plate face. It is hidden if E is zero (no collar)."
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "backFace"
+          },
+          {
+            "operation": "plate",
+            "role": "frontFace"
+          }
+        ],
+        "axis": "Z",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "\u0027F\u0027 under the section view is the sheet thickness."
+      },
+      {
+        "id": "dimSlotWidth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotWidth"
+        },
+        "targets": [
+          {
+            "operation": "slotCut1",
+            "role": "slotWidth"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": false,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "Green 14,00 across the notch mouth. It is construction information and is hidden. It is measured tangentially to the radial notch axis."
+      },
+      {
+        "id": "dimSlotDepth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotDepth"
+        },
+        "targets": [
+          {
+            "operation": "slotCut1",
+            "role": "slotDepth"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": false,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "Green 16,50 along the notch axis from the outer edge to the rounded tip."
+      },
+      {
+        "id": "dimSlotRadius",
+        "type": "radius",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotRadius"
+        },
+        "targets": [
+          {
+            "operation": "slotCut1",
+            "role": "slotEndRadius"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": false,
+        "hideIf": {
+          "kind": "never"
+        },
+        "evidence": "Green R7,00 of the notch end."
+      }
+    ],
+    "views": [
+      {
+        "id": "planView",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "evidence": "The plan view looks onto the \u002BZ face (collar side) with X right and Y up."
+      },
+      {
+        "id": "sectionAAView",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic",
+        "evidence": "Section A-A is shown to the left of the plan, looking toward -X from \u002BX. Screen right is then -Z, so the collars appear on the left and the flat back face on the right, as in the drawing."
+      },
+      {
+        "id": "isoView",
+        "direction": [
+          0.6,
+          -1,
+          0.9
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic",
+        "evidence": "Reference-like isometric from the \u002BZ face side: the collars face the viewer and the two notches appear at the right and the lower left, as in the thumbnail."
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "sectionAAView",
+        "frame": "sectionFrame",
+        "kind": "planar",
+        "path": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            {
+              "param": "sectionLength"
+            },
+            0,
+            0
+          ]
+        ],
+        "extrusionDirection": [
+          0,
+          0,
+          1
+        ],
+        "targets": [
+          "holePattern",
+          "centerHole"
+        ],
+        "evidence": "The A-A trace is the vertical centre line of the plan view along Y at x=0. It passes through the central bore and the top and bottom holes."
+      }
+    ],
+    "geometricTolerances": [
+      {
+        "kind": "flatness",
+        "value": 0.5,
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "backFace"
+          }
+        ],
+        "evidence": "The 0,5 flatness frame in the section view has its arrow on the flat right-hand face of the plate (z=0)."
+      }
+    ]
+  },
+  "issues": [
+    {
+      "code": "COLLAR_DIAMETER_ESTIMATED",
+      "category": "model",
+      "severity": "warning",
+      "message": "Yaka (collar) d\u0131\u015F \u00E7ap\u0131 \u00E7izimde \u00F6l\u00E7\u00FClendirilmemi\u015Ftir. Kesit ve \u00FCst g\u00F6r\u00FCn\u00FC\u015F\u00FCn orant\u0131s\u0131ndan yakla\u015F\u0131k 20 mm olarak tahmin edilmi\u015Ftir. Yakan\u0131n tabandaki konik/yuvarlat\u0131lm\u0131\u015F ge\u00E7i\u015Fi ve delik a\u011Fz\u0131 detaylar\u0131 modellenmemi\u015F, d\u00FCz silindir olarak al\u0131nm\u0131\u015Ft\u0131r. Bu bir imalat \u00F6l\u00E7\u00FCs\u00FC de\u011Fildir.",
+      "affectedFields": [
+        "collarOuterDiameter",
+        "collarSeed"
+      ],
+      "recommendedAction": "Ger\u00E7ek yaka \u00E7ap\u0131 ve ge\u00E7i\u015F geometrisi biliniyorsa sabit parametre g\u00FCncellenmelidir."
+    },
+    {
+      "code": "COLLAR_SIDE_ASSUMPTION",
+      "category": "model",
+      "severity": "warning",
+      "message": "Yakalar \u002BZ (\u00FCst g\u00F6r\u00FCn\u00FC\u015Fe bakan) y\u00FCz\u00FCnde kabul edilmi\u015Ftir. \u00DCst g\u00F6r\u00FCn\u00FC\u015Fteki konsantrik halkalar, izometrideki \u00E7\u0131k\u0131nt\u0131lar ve kesitin sol taraf\u0131ndaki basamak buna dayan\u0131r. Kesit g\u00F6r\u00FCn\u00FC\u015F y\u00F6n\u00FC [1,0,0] olarak se\u00E7ilmi\u015Ftir.",
+      "affectedFields": [
+        "collarSeed",
+        "sectionAAView"
+      ],
+      "recommendedAction": "Kesit oklar\u0131 ters y\u00F6ndeyse g\u00F6r\u00FCn\u00FC\u015F y\u00F6n\u00FC ve yaka y\u00FCz\u00FC kontrol edilmelidir."
+    },
+    {
+      "code": "E_ZERO_OPTIONAL",
+      "category": "input",
+      "severity": "warning",
+      "message": "Tablodaki sat\u0131rlarda E her zaman pozitiftir. T\u00FCm sat\u0131rlara uygulanabilmesi i\u00E7in E s\u0131f\u0131r veya bo\u015F ise yakalar\u0131n olu\u015Fturulmamas\u0131 ve E \u00F6l\u00E7\u00FCs\u00FCn\u00FCn gizlenmesi varsay\u0131lm\u0131\u015Ft\u0131r.",
+      "affectedFields": [
+        "E",
+        "collarSeed",
+        "collarPattern",
+        "plateWithCollars",
+        "dimE"
+      ],
+      "recommendedAction": "E=0 durumunda yakas\u0131z sac isteniyorsa bu varsay\u0131m do\u011Frudur; aksi halde kural\u0131 de\u011Fi\u015Ftirin."
+    },
+    {
+      "code": "SLOT_LENGTH_CONVENTION",
+      "category": "software",
+      "severity": "warning",
+      "message": "roundedSlot \u0027length\u0027 de\u011Feri u\u00E7tan uca toplam uzunluk olarak yorumlanm\u0131\u015Ft\u0131r (16,5 \u002B 14 = 30,5 mm). Yar\u0131\u00E7ap u\u00E7lar\u0131 dahil. Yar\u0131k d\u0131\u015Ftaki daire kenar\u0131n\u0131 tamamen a\u00E7acak bi\u00E7imde d\u0131\u015Far\u0131 ta\u015Far; i\u00E7 u\u00E7 noktas\u0131 A/2 - 16,5 yar\u0131\u00E7ap\u0131ndad\u0131r.",
+      "affectedFields": [
+        "slotLength",
+        "slotSketch1",
+        "slotSketch2"
+      ],
+      "recommendedAction": "Yaz\u0131l\u0131m \u0027length\u0027 de\u011Ferini merkezden merkeze al\u0131yorsa slotLength t\u00FCretmesini 16,5 - 7 \u002B 14 (merkezden merkeze) olarak d\u00FCzeltin."
+    },
+    {
+      "code": "SLOT_WIDTH_AXIS",
+      "category": "software",
+      "severity": "warning",
+      "message": "Yar\u0131k geni\u015Fli\u011Fi (14,00) radyal eksene dik (te\u011Fet) \u00F6l\u00E7\u00FCl\u00FCr; mevcut eksen s\u00F6zl\u00FC\u011F\u00FCnde (X|Y|Z|radial) tam kar\u015F\u0131l\u0131\u011F\u0131 yoktur ve \u0027radial\u0027 kullan\u0131lm\u0131\u015Ft\u0131r. Bu \u00F6l\u00E7\u00FCler ye\u015Fil oldu\u011Fu i\u00E7in gizlenir ve geometriyi etkilemez.",
+      "affectedFields": [
+        "dimSlotWidth"
+      ],
+      "recommendedAction": "Gerekirse yaz\u0131l\u0131m taraf\u0131nda te\u011Fet eksen deste\u011Fi eklenmelidir."
+    },
+    {
+      "code": "B_ROW_PROPORTION",
+      "category": "input",
+      "severity": "warning",
+      "message": "\u00C7izimdeki oran B\u22480,61\u00B7A (143,7/236) ile uyumludur; tablodaki 30-24-422 sat\u0131r\u0131nda B=200, A=236 olup yaka d\u0131\u015F yar\u0131\u00E7ap\u0131 (\u2248110 mm) h\u00E2l\u00E2 disk d\u0131\u015F\u0131na ta\u015Fmaz (118 mm) ve yar\u0131klarla \u00E7ak\u0131\u015Fmaz. Geometri t\u00FCm sat\u0131rlar i\u00E7in ge\u00E7erlidir. Sat\u0131rlar aras\u0131nda tutarl\u0131l\u0131k kontrol\u00FC \u00F6nerilir.",
+      "affectedFields": [
+        "B",
+        "A"
+      ],
+      "recommendedAction": "B de\u011Ferinin 200 oldu\u011Funu \u00FCretimden do\u011Frulay\u0131n."
+    },
+    {
+      "code": "UNUSED_CROSSHAIR",
+      "category": "input",
+      "severity": "warning",
+      "message": "\u00DCst g\u00F6r\u00FCn\u00FC\u015F\u00FCn sa\u011F alt k\u0131sm\u0131ndaki k\u00FC\u00E7\u00FCk merkez i\u015Fareti (art\u0131) anlaml\u0131 bir \u00F6zellik olarak yorumlanmam\u0131\u015F ve modele dahil edilmemi\u015Ftir. K\u0131rm\u0131z\u0131 \u00E7izim notu bulunmamaktad\u0131r. Ba\u015Fl\u0131k blo\u011Fundaki \u0027H\u0027 par\u00E7a numaras\u0131 outputId\u0027den gelir, H s\u00FCtunu \u00F6l\u00E7\u00FC de\u011Fildir.",
+      "affectedFields": [
+        "geometry.features"
+      ],
+      "recommendedAction": "Bu i\u015Faret bir delik veya i\u015Faretleme \u00F6zelli\u011Fini temsil ediyorsa belirtilmelidir."
+    }
+  ]
+}

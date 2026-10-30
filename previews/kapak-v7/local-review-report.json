@@ -1,0 +1,105 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [
+    {
+      "Code": "COLLAR_DIAMETER_ESTIMATED",
+      "Category": "model",
+      "Severity": "warning",
+      "Message": "Yaka (collar) d\u0131\u015F \u00E7ap\u0131 \u00E7izimde \u00F6l\u00E7\u00FClendirilmemi\u015Ftir. Kesit ve \u00FCst g\u00F6r\u00FCn\u00FC\u015F\u00FCn orant\u0131s\u0131ndan yakla\u015F\u0131k 20 mm olarak tahmin edilmi\u015Ftir. Yakan\u0131n tabandaki konik/yuvarlat\u0131lm\u0131\u015F ge\u00E7i\u015Fi ve delik a\u011Fz\u0131 detaylar\u0131 modellenmemi\u015F, d\u00FCz silindir olarak al\u0131nm\u0131\u015Ft\u0131r. Bu bir imalat \u00F6l\u00E7\u00FCs\u00FC de\u011Fildir.",
+      "AffectedFields": [
+        "collarOuterDiameter",
+        "collarSeed"
+      ],
+      "RecommendedAction": "Ger\u00E7ek yaka \u00E7ap\u0131 ve ge\u00E7i\u015F geometrisi biliniyorsa sabit parametre g\u00FCncellenmelidir.",
+      "Origin": "model"
+    },
+    {
+      "Code": "COLLAR_SIDE_ASSUMPTION",
+      "Category": "model",
+      "Severity": "warning",
+      "Message": "Yakalar \u002BZ (\u00FCst g\u00F6r\u00FCn\u00FC\u015Fe bakan) y\u00FCz\u00FCnde kabul edilmi\u015Ftir. \u00DCst g\u00F6r\u00FCn\u00FC\u015Fteki konsantrik halkalar, izometrideki \u00E7\u0131k\u0131nt\u0131lar ve kesitin sol taraf\u0131ndaki basamak buna dayan\u0131r. Kesit g\u00F6r\u00FCn\u00FC\u015F y\u00F6n\u00FC [1,0,0] olarak se\u00E7ilmi\u015Ftir.",
+      "AffectedFields": [
+        "collarSeed",
+        "sectionAAView"
+      ],
+      "RecommendedAction": "Kesit oklar\u0131 ters y\u00F6ndeyse g\u00F6r\u00FCn\u00FC\u015F y\u00F6n\u00FC ve yaka y\u00FCz\u00FC kontrol edilmelidir.",
+      "Origin": "model"
+    },
+    {
+      "Code": "E_ZERO_OPTIONAL",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Tablodaki sat\u0131rlarda E her zaman pozitiftir. T\u00FCm sat\u0131rlara uygulanabilmesi i\u00E7in E s\u0131f\u0131r veya bo\u015F ise yakalar\u0131n olu\u015Fturulmamas\u0131 ve E \u00F6l\u00E7\u00FCs\u00FCn\u00FCn gizlenmesi varsay\u0131lm\u0131\u015Ft\u0131r.",
+      "AffectedFields": [
+        "E",
+        "collarSeed",
+        "collarPattern",
+        "plateWithCollars",
+        "dimE"
+      ],
+      "RecommendedAction": "E=0 durumunda yakas\u0131z sac isteniyorsa bu varsay\u0131m do\u011Frudur; aksi halde kural\u0131 de\u011Fi\u015Ftirin.",
+      "Origin": "model"
+    },
+    {
+      "Code": "SLOT_LENGTH_CONVENTION",
+      "Category": "software",
+      "Severity": "warning",
+      "Message": "roundedSlot \u0027length\u0027 de\u011Feri u\u00E7tan uca toplam uzunluk olarak yorumlanm\u0131\u015Ft\u0131r (16,5 \u002B 14 = 30,5 mm). Yar\u0131\u00E7ap u\u00E7lar\u0131 dahil. Yar\u0131k d\u0131\u015Ftaki daire kenar\u0131n\u0131 tamamen a\u00E7acak bi\u00E7imde d\u0131\u015Far\u0131 ta\u015Far; i\u00E7 u\u00E7 noktas\u0131 A/2 - 16,5 yar\u0131\u00E7ap\u0131ndad\u0131r.",
+      "AffectedFields": [
+        "slotLength",
+        "slotSketch1",
+        "slotSketch2"
+      ],
+      "RecommendedAction": "Yaz\u0131l\u0131m \u0027length\u0027 de\u011Ferini merkezden merkeze al\u0131yorsa slotLength t\u00FCretmesini 16,5 - 7 \u002B 14 (merkezden merkeze) olarak d\u00FCzeltin.",
+      "Origin": "model"
+    },
+    {
+      "Code": "SLOT_WIDTH_AXIS",
+      "Category": "software",
+      "Severity": "warning",
+      "Message": "Yar\u0131k geni\u015Fli\u011Fi (14,00) radyal eksene dik (te\u011Fet) \u00F6l\u00E7\u00FCl\u00FCr; mevcut eksen s\u00F6zl\u00FC\u011F\u00FCnde (X|Y|Z|radial) tam kar\u015F\u0131l\u0131\u011F\u0131 yoktur ve \u0027radial\u0027 kullan\u0131lm\u0131\u015Ft\u0131r. Bu \u00F6l\u00E7\u00FCler ye\u015Fil oldu\u011Fu i\u00E7in gizlenir ve geometriyi etkilemez.",
+      "AffectedFields": [
+        "dimSlotWidth"
+      ],
+      "RecommendedAction": "Gerekirse yaz\u0131l\u0131m taraf\u0131nda te\u011Fet eksen deste\u011Fi eklenmelidir.",
+      "Origin": "model"
+    },
+    {
+      "Code": "B_ROW_PROPORTION",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "\u00C7izimdeki oran B\u22480,61\u00B7A (143,7/236) ile uyumludur; tablodaki 30-24-422 sat\u0131r\u0131nda B=200, A=236 olup yaka d\u0131\u015F yar\u0131\u00E7ap\u0131 (\u2248110 mm) h\u00E2l\u00E2 disk d\u0131\u015F\u0131na ta\u015Fmaz (118 mm) ve yar\u0131klarla \u00E7ak\u0131\u015Fmaz. Geometri t\u00FCm sat\u0131rlar i\u00E7in ge\u00E7erlidir. Sat\u0131rlar aras\u0131nda tutarl\u0131l\u0131k kontrol\u00FC \u00F6nerilir.",
+      "AffectedFields": [
+        "B",
+        "A"
+      ],
+      "RecommendedAction": "B de\u011Ferinin 200 oldu\u011Funu \u00FCretimden do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "UNUSED_CROSSHAIR",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "\u00DCst g\u00F6r\u00FCn\u00FC\u015F\u00FCn sa\u011F alt k\u0131sm\u0131ndaki k\u00FC\u00E7\u00FCk merkez i\u015Fareti (art\u0131) anlaml\u0131 bir \u00F6zellik olarak yorumlanmam\u0131\u015F ve modele dahil edilmemi\u015Ftir. K\u0131rm\u0131z\u0131 \u00E7izim notu bulunmamaktad\u0131r. Ba\u015Fl\u0131k blo\u011Fundaki \u0027H\u0027 par\u00E7a numaras\u0131 outputId\u0027den gelir, H s\u00FCtunu \u00F6l\u00E7\u00FC de\u011Fildir.",
+      "AffectedFields": [
+        "geometry.features"
+      ],
+      "RecommendedAction": "Bu i\u015Faret bir delik veya i\u015Faretleme \u00F6zelli\u011Fini temsil ediyorsa belirtilmelidir.",
+      "Origin": "model"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "70D7746782979BF580298A25677CDBD43D96C0D0E57F361FBFBE22310589BFBB",
+      "ImageSha256": "CC4EB1175DA80A59FDC9E44874FDC5FDFB8F9FACCCFB0C29C44ECC02C5395870"
+    },
+    "SourceRun": "/workspace/test/output/kapak-v7-complete",
+    "NewApiCalls": 0,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

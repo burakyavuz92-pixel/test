@@ -46,3 +46,46 @@ var ambiguous=conditional.DeepClone();ambiguous["operations"][2]["inputs"]=new J
 Check(CadRecipe.Check(Doc(ambiguous),new(){withE}).Any(i=>i.Severity=="error"),"modifier cannot mix target with alternate inputs");
 var cycleTarget=conditional.DeepClone();cycleTarget["operations"][2]["target"]="nextHole";
 Check(CadRecipe.Check(Doc(cycleTarget),new(){withE}).Any(i=>i.Message.Contains("Döngüsel")),"cycles through target references rejected");
+
+// Public v7 contract separates solid geometry from source-linked drawing measurements.
+var v7=JsonNode.Parse("""
+{"schemaVersion":7,"description":"cover","geometry":{"parameters":[],"frames":[],"features":[],"result":"base"},"drawing":{"dimensions":[],"views":[],"sections":[],"geometricTolerances":[]},"issues":[]}
+""")!;
+v7["geometry"]["parameters"]=recipe["parameters"].DeepClone();
+v7["geometry"]["parameters"][2]["source"]["precision"]="specified";
+v7["geometry"]["frames"]=recipe["frames"].DeepClone();
+foreach(var op in recipe["operations"].AsArray())v7["geometry"]["features"].AsArray().Add(new JsonObject{["id"]=op["id"].DeepClone(),["kind"]=op["op"].DeepClone(),["frame"]=op["frame"].DeepClone(),["uses"]=op["inputs"].DeepClone(),["args"]=op["args"].DeepClone()});
+var dimension=recipe["dimensions"][0].DeepClone();dimension.AsObject().Remove("parameter");dimension["valueSource"]=JsonNode.Parse("""{"kind":"column","column":"A"}""");v7["drawing"]["dimensions"].AsArray().Add(dimension);
+var v7result=CadRecipeV7.Resolve(Doc(v7),row);
+Check(v7result.GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("sourceMeasurement").GetProperty("tolerance").GetProperty("upperDeviationMm").GetDouble()==1,"v7 annotation receives original Excel tolerance locally");
+Check(!v7result.GetProperty("geometry").TryGetProperty("tolerance",out _),"geometry has no annotation tolerance payload");
+Check(v7result.GetProperty("geometry").GetProperty("parameterMetadata").GetProperty("OD").GetProperty("source").GetProperty("column").GetString()=="A","parameter unit and source survive resolution");
+var rowChanged=new Dictionary<string,string>(row){["A"]="Ø236±9"};var changed=CadRecipeV7.Resolve(Doc(v7),rowChanged);
+Check(changed.GetProperty("geometry").GetRawText()==v7result.GetProperty("geometry").GetRawText(),"changing only tolerance never changes solid geometry");
+Check(changed.GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("sourceMeasurement").GetProperty("tolerance").GetProperty("upperDeviationMm").GetDouble()==9,"changed tolerance reaches drawing independently");
+var badV7=v7.DeepClone();badV7["drawing"]["dimensions"][0]["valueSource"]["column"]="missing";
+Check(CadRecipeV7.Check(Doc(badV7),new(){row}).Any(i=>i.Severity=="error"),"unknown annotation source rejected");
+var arcRecipe=v7.DeepClone();arcRecipe["geometry"]["features"][0]["args"]["loops"]=JsonNode.Parse("""[{"kind":"path","closed":true,"segments":[{"kind":"arc","start":[-1,0],"mid":[0,1],"end":[1,0]},{"kind":"line","start":[1,0],"end":[-1,0]}]}]""");
+Check(CadRecipeV7.Check(Doc(arcRecipe),new(){row}).All(i=>i.Severity!="error"),"general three-point arc profile supported");
+arcRecipe["geometry"]["features"][0]["args"]["loops"][0]["segments"][0]["mid"]=new JsonArray(0,0);
+Check(CadRecipeV7.Check(Doc(arcRecipe),new(){row}).Any(i=>i.Severity=="error"),"degenerate profile arc rejected");
+var symbolicQuantity=v7.DeepClone();symbolicQuantity["drawing"]["dimensions"][0]["quantity"]=JsonNode.Parse("""{"param":"two"}""");
+Check(CadRecipeV7.Resolve(Doc(symbolicQuantity),row).GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("quantity").GetDouble()==2,"symbolic annotation quantity resolved locally");
+var v7optional=v7.DeepClone();v7optional["geometry"]["parameters"]=conditional["parameters"].DeepClone();v7optional["geometry"]["parameters"][2]["source"]["precision"]="specified";
+foreach(var op in conditional["operations"].AsArray().Skip(2))v7optional["geometry"]["features"].AsArray().Add(new JsonObject{["id"]=op["id"].DeepClone(),["kind"]=op["op"].DeepClone(),["frame"]=op["frame"].DeepClone(),["uses"]=new JsonArray(op["target"].GetValue<string>()),["presence"]=op["when"].DeepClone(),["args"]=op["args"].DeepClone()});
+v7optional["geometry"]["result"]="nextHole";
+var optionalV7Result=CadRecipeV7.Resolve(Doc(v7optional),noE);
+Check(optionalV7Result.GetProperty("geometry").GetProperty("operations").EnumerateArray().Single(o=>o.GetProperty("id").GetString()=="optionalHole").GetProperty("op").GetString()=="passThrough","v7 dependencies compile optional modifier without asking model for body forwarding");
+var sectionV7=v7.DeepClone();sectionV7["drawing"]["views"]=JsonNode.Parse("""[{"id":"front","direction":[0,0,1],"up":[0,1,0]}]""");
+sectionV7["drawing"]["sections"]=JsonNode.Parse("""[{"id":"AA","view":"front","frame":"main","kind":"planar","path":[[0,0,0],[0,{"param":"R"},0]],"extrusionDirection":[0,0,1],"targets":["base"]}]""");
+Check(CadRecipeV7.Resolve(Doc(sectionV7),row).GetProperty("drawing").GetProperty("sections")[0].GetProperty("path")[1][1].GetDouble()==118,"section trace uses same resolved geometry parameters");
+sectionV7["drawing"]["views"][0]["up"]=new JsonArray(0,0,1);
+Check(CadRecipeV7.Check(Doc(sectionV7),new(){row}).Any(i=>i.Severity=="error"),"degenerate camera orientation rejected");
+var noQuestion=v7.DeepClone();noQuestion["questions"]=new JsonArray("What size?");
+Check(CadRecipeV7.Check(Doc(noQuestion),new(){row}).Any(i=>i.Severity=="error"),"v7 returns reports instead of questions");
+var union=v7.DeepClone();union["geometry"]["parameters"].AsArray().Add(JsonNode.Parse("""{"id":"E","unit":"mm","source":{"kind":"column","column":"E"}}"""));
+union["geometry"]["features"].AsArray().Add(JsonNode.Parse("""{"id":"extra","kind":"cylinder","frame":"main","uses":[],"presence":{"kind":"parameterPositive","parameter":"E"},"args":{"diameter":10,"length":{"param":"E"},"origin":[0,0,0],"direction":[0,0,1]}}"""));
+union["geometry"]["features"].AsArray().Add(JsonNode.Parse("""{"id":"union","kind":"fuse","frame":"main","uses":["base","extra"],"presence":{"kind":"parameterPositive","parameter":"E"},"args":{}}"""));union["geometry"]["result"]="union";
+Check(CadRecipeV7.Resolve(Doc(union),noE).GetProperty("geometry").GetProperty("operations").EnumerateArray().Last().GetProperty("op").GetString()=="passThrough","v7 optional union preserves main body when E blank");
+Check(CadRecipeV7.Resolve(Doc(union),new Dictionary<string,string>(row){["E"]="0"}).GetProperty("geometry").GetProperty("operations").EnumerateArray().Last().GetProperty("op").GetString()=="passThrough","v7 optional union preserves main body when E zero");
+Check(CadRecipeV7.Resolve(Doc(union),withE).GetProperty("geometry").GetProperty("operations").EnumerateArray().Last().GetProperty("op").GetString()=="join","v7 positive addition compiles into deterministic body union");

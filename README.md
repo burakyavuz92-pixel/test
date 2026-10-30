@@ -1,8 +1,8 @@
-# DrawingTool — genel CAD tarifi v6
+# DrawingTool — genel CAD sözleşmesi v7
 
-Girdi JPEG + Excel. Model parçayı genel bir parametre/işlem tarifiyle tanımlar; ölçüler ve kesitler aynı işlem kimliklerine bağlıdır. Eski pleyt/Skia kökenli tarif ve v4 adaptörü aktif akıştan kaldırılmıştır; archive/legacy-v4 geri izleme içindir.
+Girdi **bir JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır; OpenRouter'a **bir orijinal JPEG ve bir ayrıştırılmış örnek satır tablosu** gönderir. Kırmızı temizlenmiş ikinci görüntü ve nominal verilerin ikinci kopyası artık gönderilmez. Gruptaki bütün satırlar yerelde çözülür; büyük tablolarda modele en fazla sekiz temsilci satır gönderilir.
 
-**Mevcut aşama:** tek API analizi, parametre/işlem bağımlılıklarının doğrulanması ve her Excel satırı için çözümlenmiş JSON üretimi. Genel işlem listesini OCCT katısına ve teknik paftaya dönüştüren yeni yürütücü henüz uygulanmamıştır. Bu sürüm eski 82-pleyt üretimini yeniden çalıştırmaz. Eski native deney experiments/occt altında kalır, v5 CLI onu çağırmaz. Bir tarifin doğrulanması gerçek katının üretildiği veya JPEG'in doğru olduğu anlamına gelmez.
+**Mevcut aşama:** genel parametrik tarif analizi ve satır başına çözümlenmiş JSON. Yeni genel OCCT katı/teknik pafta yürütücüsü henüz uygulanmadı. Analizin geçmesi, gerçek katının veya JPEG'in doğru üretildiği anlamına gelmez. Eski pleyt üretim yolu aktif komutlardan çağrılmaz.
 
 ## Kullanım
 
@@ -10,34 +10,28 @@ Girdi JPEG + Excel. Model parçayı genel bir parametre/işlem tarifiyle tanıml
 dotnet run --project src/DrawingTool.csproj -- analyze-cad-group input.xlsx template.jpg output/empty-run
 ```
 
-Varsayılan sade teknik resim yorumu, high akıl yürütme, tek API çağrısı. max_tokens=20000 üst sınırdır, her çağrıda bu kadar harcanmaz. Otomatik yeniden değerlendirme yok. Eksik yanıt, eksik parametre, bilinmeyen işlem veya çelişki raporlanır. Kaynak SHA256 özetleri ve özgün yanıt saklanır. API anahtarı/Arial fontu repoya konmaz. Model analizi OpenRouter üzerinden, çözümleme yereldir.
+OPENROUTER_API_KEY ve OPENROUTER_MODEL ortamdan okunur; anahtar/font repoya eklenmez. High akıl yürütme, tek çağrı, max_tokens=32768, beş dakika HTTP zaman aşımı. Otomatik yeniden değerlendirme yok. Soru beklemek yerine rapor üretir. Özgün yanıt, kaynak özetleri ve istek metni yerelde saklanır. Modelin özel akıl yürütme metni içerebilen ham API yanıtı yayımlanmaz.
 
-`run-cad-group` aynı güncel analizden sonra genel native yürütücünün eksikliğini raporlar; sessizce eski pleyt motoruna dönmez. Eski run-cad/render-cad-plan/occt-demo komutları kaldırılmıştır. Tarihsel çıktılar previews altında korunmuştur.
+## Geometri ve ölçülendirme ayrımı
 
-## Sözleşme
+- `geometry`: nominal parametreler, birimler/kaynaklar, koordinat bazları, özellikler ve son gövde. Tolerans sapmaları katı geometrisine katılmaz.
+- `drawing`: aynı özelliklere bağlı ölçüler, görünüşler, kesitler ve geometrik toleranslar. Excel ölçüsü `valueSource={kind:"column",column:"A"}` ile bağlanır. Yazılım kaynak toleransını kendisi ekler; modelden tekrar yazması istenmez.
+- Çözümlenen geometri nominal sayıları ve kaynak/birim metadatasını taşır. Ölçülendirme kendi `sourceMeasurement` kaydında nominal, tolerans, çap işareti ve sıfır/boş bilgilerini korur. Yeşil ölçülerin görünürlüğü yerelde kapatılır.
+- Model özellikler için tek `uses` bağımlılık listesi döndürür. `cut` için [gövde, araç], gövde değiştiren işlemler için [gövde], diğerleri için geometrik girdiler. Yazılım `target/tool/inputs` ayrımını kendisi derler; atlanan koşullu özelliğin gövdesini ileri taşır.
+- Sabit parametreler `precision=specified|estimated` ile ayırt edilir. Piksel oranından tahmin edilen detay belirtilmiş üretim ölçüsü sayılmaz. Açıklama/kanıt için kelime sınırı yok.
+- Profil sözlüğünde daire, kapalı çokgen, yuvarlatılmış kanal ve doğru/üç noktalı yay segmentlerinden kapalı yol bulunur. Kenar seçimleri adın yanında geometrik yakın nokta ve yön içerir. Kesitler koordinat bazında kesme izi ve süpürme yönü taşır.
 
-- parameters: Excel nominali, sabit sayı veya iki parametreye bağlı add/subtract/multiply/divide. mm/deg/count/scalar birim kontrolleri; döngü/sıfıra bölme kontrolü. Toleranslar kaynak Excel'de ayrıca korunur.
-- frames: origin, xAxis/zAxis ve görsel kanıt. Bazlar normal ve dik olmalı.
-- operations: sketch, extrude, revolve, cylinder, cut, fuse, hole, circularPattern, linearPattern, fillet/chamfer. Bu liste **tarif sözcük dağarcığıdır**, yeni native uygulamanın tamamlandığı anlamına gelmez. İşlem args doğrulaması temel alan/girdi/dependency kontrolüdür; bütün geometrik ayrıntıları doğrulamaz.
-- inputs/optionalInputs/when: bağımlılık, isteğe bağlı özellikler ve sıfır yüksekliğe bağlı topoloji değişimi.
-- dimensions: parametre ve semantik operasyon/yüz/eksen hedefleri, adet, renk ve gösterim koşulu. Yeşilin effectiveVisible değeri yerelde false yapılır; kaynak plan değiştirilmez.
-- views/sections/geometricTolerances: aynı özellik kimliklerine bağlı sunum tarifi. Semantik yüz hedeflerinin gerçek OCCT yüzleriyle eşleştirilmesi henüz tamamlanmadı.
+`CadRecipeV7` dış sözleşmeyi derler; mevcut test edilmiş `CadRecipe` bağımlılık/parametre çözücüsü özel iç temsil olarak kullanılır. Bu iç temsil API'ye gönderilmez. Tarihsel v6 JSON kayıtları yeni analiz komutunca otomatik dönüştürülmez. `review-cad-group` v7 yanıtını yeni API çağrısı olmadan, kaynak özetlerini kontrol ederek inceler.
 
-Katı oluşturma, ölçü ilişkilerinin genel geometrik çözümü, native topoloji eşlemesi ve genel pafta yerleşimi sonraki geliştirmelerdir. Modelin tarifi doğru anlaması bağımsız görsel doğrulamayla garanti edilmez.
+Sınırlamalar: desteklenen özellik sözlüğü sonlu; genel cebirsel kısıt çözümü, native kenar/yüz eşlemesi ve genel pafta yürütücüsü tamamlanmadı. Doğrulama yapısal/aritmetik kontroller sağlar; görsel/geometrik doğruluğun tam kanıtı değildir. `run-cad-group` bu eksik yürütücüyü raporlar, eski pleyt motoruna sessizce dönmez.
 
-## Kurulum ve kontrol
+## Kontroller
 
-.NET SDK global.json ile sabitlenir, ClosedXML NuGet paketidir. OPENROUTER_API_KEY ve OPENROUTER_MODEL ortamda tanımlanmalı. Analiz ön işleme için Python/Pillow gerekir (OCCT_PYTHON seçilebilir; bulutta /workspace/occt-venv/bin/python). Yeni paket eklenmedi.
+.NET SDK global.json ile sabitlenir; ClosedXML NuGet paketidir. Tek görüntülü analiz için Python ön işlemesi gerekmez.
 
 ```bash
 dotnet build src/DrawingTool.csproj
 dotnet run --project checks/LayoutPolicyChecks.csproj
 ```
 
-Eski testler arşivdedir; güncel testler yeni tarif çözümleyicisine aittir. Başarılı testler native CAD çıktısı üretildiği anlamına gelmez.
-
-## v6: tek hedef ve koşullu gövde akışı
-
-Aktif tarif sürümü 6'dır. hole/fillet/chamfer tek `target`, cut tek `target` ve `tool` kullanır; bu işlemlerde inputs/optionalInputs boş olmalıdır. Koşul false ise etkin gövde sonucu target'ın aynısıdır, çözümlenmiş planda passThrough kaydı oluşturulur; boş özellik parametreleri bağlanmaz. `featureApplied=false` ayrı tutulur: gövdenin mevcut olması deliğin/özelliğin oluştuğu anlamına gelmez. Atlanan özelliğin ölçüleri ve kesit hedefleri çıkarılır. Oluşturma işlemlerinde false koşul hâlâ hiç şekil üretmemek demektir; fuse yalnız kendi optionalInputs kayıtlarını atlayabilir. Eski alternatif-gövde-listesi semantiği kabul edilmez. Sürüm 5 kayıtları otomatik dönüştürülmez. v6 da hâlâ tarif/çözümleme aşamasındadır; genel native yürütücü tamamlanmadı.
-
-26 tarif kontrolü geçti. Aynı notsuz taslak2guncel JPEG ve Excel'in v6 analizi previews/group2-v6-analysis/NOTLAR.md içinde. Koşullu zincir geçti, ancak modelin R8'i iç yarıçap kabul etmesi ayrıca incelenmeli; biçim doğrulamasının geçmesi bütün geometri yorumunun onayı değildir.
+Testler tolerans değişiminin geometriyi değiştirmediğini, ölçülendirmeye kayıpsız ulaştığını, kaynak/birimlerin korunduğunu, bağımlılık/boş-sıfır/yeşil davranışını ve yay profillerini denetler. Native çizim testi değildir.
