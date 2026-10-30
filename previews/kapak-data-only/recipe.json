@@ -1,0 +1,1033 @@
+{
+  "schemaVersion": 7,
+  "geometry": {
+    "parameters": [
+      {
+        "id": "A",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      {
+        "id": "B",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      {
+        "id": "C",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      {
+        "id": "D",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      {
+        "id": "E",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      {
+        "id": "F",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      {
+        "id": "two",
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      {
+        "id": "bossD",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 22
+        }
+      },
+      {
+        "id": "slotLen",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 16.5
+        }
+      },
+      {
+        "id": "slotW",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 14
+        }
+      },
+      {
+        "id": "slotR",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 7
+        }
+      },
+      {
+        "id": "slotRneg",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": -7
+        }
+      },
+      {
+        "id": "slotExt",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 5
+        }
+      },
+      {
+        "id": "halfA",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        }
+      },
+      {
+        "id": "tipX",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "slotLen"
+          ]
+        }
+      },
+      {
+        "id": "arcCx",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "tipX",
+            "slotR"
+          ]
+        }
+      },
+      {
+        "id": "outerX",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "halfA",
+            "slotExt"
+          ]
+        }
+      },
+      {
+        "id": "topZ",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "E",
+            "two"
+          ]
+        }
+      },
+      {
+        "id": "t2",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "topZ",
+            "F"
+          ]
+        }
+      },
+      {
+        "id": "toolLen",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "t2",
+            "two"
+          ]
+        }
+      },
+      {
+        "id": "fPlus2",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "F",
+            "two"
+          ]
+        }
+      }
+    ],
+    "frames": [
+      {
+        "id": "world",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "id": "slotFrame1",
+        "origin": [
+          0,
+          0,
+          1
+        ],
+        "xAxis": [
+          0.70711,
+          0.70711,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "id": "slotFrame2",
+        "origin": [
+          0,
+          0,
+          1
+        ],
+        "xAxis": [
+          -0.70711,
+          -0.70711,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "features": [
+      {
+        "id": "plateSketch",
+        "kind": "sketch",
+        "frame": "world",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "circle",
+              "center": [
+                0,
+                0
+              ],
+              "diameter": {
+                "param": "A"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "id": "plateBody",
+        "kind": "extrude",
+        "frame": "world",
+        "uses": [
+          "plateSketch"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "length": {
+            "param": "F"
+          },
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        }
+      },
+      {
+        "id": "bossSeed",
+        "kind": "cylinder",
+        "frame": "world",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "diameter": {
+            "param": "bossD"
+          },
+          "length": {
+            "param": "E"
+          },
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "bossPattern",
+        "kind": "circularPattern",
+        "frame": "world",
+        "uses": [
+          "bossSeed"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "count": 4,
+          "pitchDiameter": {
+            "param": "B"
+          },
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "plateBoss",
+        "kind": "fuse",
+        "frame": "world",
+        "uses": [
+          "plateBody",
+          "bossPattern"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {}
+      },
+      {
+        "id": "holeSeed",
+        "kind": "cylinder",
+        "frame": "world",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "diameter": {
+            "param": "C"
+          },
+          "length": {
+            "param": "toolLen"
+          },
+          "origin": [
+            0,
+            0,
+            {
+              "param": "topZ"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        }
+      },
+      {
+        "id": "holePattern",
+        "kind": "circularPattern",
+        "frame": "world",
+        "uses": [
+          "holeSeed"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "count": 4,
+          "pitchDiameter": {
+            "param": "B"
+          },
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "holesCut",
+        "kind": "cut",
+        "frame": "world",
+        "uses": [
+          "plateBoss",
+          "holePattern"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {}
+      },
+      {
+        "id": "boreCut",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "holesCut"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "diameter": {
+            "param": "D"
+          },
+          "origin": [
+            0,
+            0,
+            {
+              "param": "topZ"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "slot1Sketch",
+        "kind": "sketch",
+        "frame": "slotFrame1",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ],
+                  "mid": [
+                    {
+                      "param": "tipX"
+                    },
+                    0
+                  ],
+                  "end": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "slot1Tool",
+        "kind": "extrude",
+        "frame": "slotFrame1",
+        "uses": [
+          "slot1Sketch"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "length": {
+            "param": "fPlus2"
+          },
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        }
+      },
+      {
+        "id": "slot1Cut",
+        "kind": "cut",
+        "frame": "world",
+        "uses": [
+          "boreCut",
+          "slot1Tool"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {}
+      },
+      {
+        "id": "slot2Sketch",
+        "kind": "sketch",
+        "frame": "slotFrame2",
+        "uses": [],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "outerX"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotRneg"
+                    }
+                  ],
+                  "mid": [
+                    {
+                      "param": "tipX"
+                    },
+                    0
+                  ],
+                  "end": [
+                    {
+                      "param": "arcCx"
+                    },
+                    {
+                      "param": "slotR"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "slot2Tool",
+        "kind": "extrude",
+        "frame": "slotFrame2",
+        "uses": [
+          "slot2Sketch"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {
+          "length": {
+            "param": "fPlus2"
+          },
+          "direction": [
+            0,
+            0,
+            -1
+          ]
+        }
+      },
+      {
+        "id": "slot2Cut",
+        "kind": "cut",
+        "frame": "world",
+        "uses": [
+          "slot1Cut",
+          "slot2Tool"
+        ],
+        "presence": {
+          "kind": "always"
+        },
+        "args": {}
+      }
+    ],
+    "result": "slot2Cut"
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "plateBody",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimB",
+        "type": "pitchDiameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "holePattern",
+            "role": "pitchCircle"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holePattern",
+            "role": "holeDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 4,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "boreCut",
+            "role": "boreDiameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "bossSeed",
+            "role": "bossHeight"
+          }
+        ],
+        "axis": "Z",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "plateBody",
+            "role": "thickness"
+          }
+        ],
+        "axis": "Z",
+        "quantity": 1,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimSlotLength",
+        "type": "distance",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotLen"
+        },
+        "targets": [
+          {
+            "operation": "slot1Tool",
+            "role": "slotLength"
+          }
+        ],
+        "axis": "X",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimSlotWidth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotW"
+        },
+        "targets": [
+          {
+            "operation": "slot1Tool",
+            "role": "slotWidth"
+          }
+        ],
+        "axis": "Y",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimSlotRadius",
+        "type": "radius",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotR"
+        },
+        "targets": [
+          {
+            "operation": "slot1Tool",
+            "role": "slotEndRadius"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 1,
+        "sourceColor": "green",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viewFront",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "viewSection",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "viewIso",
+        "direction": [
+          1,
+          -1,
+          1
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "viewSection",
+        "frame": "world",
+        "kind": "planar",
+        "path": [
+          [
+            0,
+            -150,
+            0
+          ],
+          [
+            0,
+            150,
+            0
+          ]
+        ],
+        "extrusionDirection": [
+          1,
+          0,
+          0
+        ],
+        "targets": [
+          "plateBody",
+          "bossPattern",
+          "holesCut",
+          "boreCut"
+        ]
+      }
+    ],
+    "geometricTolerances": [
+      {
+        "kind": "flatness",
+        "value": 0.5,
+        "targets": [
+          {
+            "operation": "plateBody",
+            "role": "face"
+          }
+        ]
+      }
+    ]
+  }
+}

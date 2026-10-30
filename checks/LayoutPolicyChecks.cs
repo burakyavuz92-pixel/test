@@ -89,3 +89,19 @@ union["geometry"]["features"].AsArray().Add(JsonNode.Parse("""{"id":"union","kin
 Check(CadRecipeV7.Resolve(Doc(union),noE).GetProperty("geometry").GetProperty("operations").EnumerateArray().Last().GetProperty("op").GetString()=="passThrough","v7 optional union preserves main body when E blank");
 Check(CadRecipeV7.Resolve(Doc(union),new Dictionary<string,string>(row){["E"]="0"}).GetProperty("geometry").GetProperty("operations").EnumerateArray().Last().GetProperty("op").GetString()=="passThrough","v7 optional union preserves main body when E zero");
 Check(CadRecipeV7.Resolve(Doc(union),withE).GetProperty("geometry").GetProperty("operations").EnumerateArray().Last().GetProperty("op").GetString()=="join","v7 positive addition compiles into deterministic body union");
+var dataOnly=v7.DeepClone();dataOnly.AsObject().Remove("description");dataOnly.AsObject().Remove("issues");
+void RemoveCommentary(JsonNode node)
+{
+ if(node is JsonObject obj){foreach(var key in new[]{"evidence","precision","description"})obj.Remove(key);foreach(var child in obj.Select(kv=>kv.Value).Where(v=>v!=null).ToArray())RemoveCommentary(child!);}
+ else if(node is JsonArray array)foreach(var child in array.Where(v=>v!=null))RemoveCommentary(child!);
+}
+RemoveCommentary(dataOnly);
+var bareDim=dataOnly["drawing"]["dimensions"][0];foreach(var key in new[]{"quantity","visible","hideIf"})bareDim.AsObject().Remove(key);
+var bareResult=CadRecipeV7.Resolve(Doc(dataOnly),row);
+Check(bareResult.GetProperty("geometry").GetProperty("parameters").GetProperty("OD").GetDouble()==236,"data-only response accepted without explanations or estimate tags");
+Check(bareResult.GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("quantity").GetInt32()==1,"omitted annotation defaults supplied by software");
+Check(CadRecipeV7.Check(Doc(dataOnly),new(){row}).All(i=>i.Severity!="error"),"data-only success needs no issues report");
+var shortError=JsonDocument.Parse("""{"error":"Taslak okunamıyor."}""");
+Check(CadRecipeV7.Check(shortError.RootElement,new(){row}).Single().Code=="MODEL_RECIPE_ERROR","short model failure handled without attempting CAD resolution");
+var mixedError=JsonNode.Parse("""{"error":"Hata.","geometry":{}}""");
+Check(CadRecipeV7.Check(Doc(mixedError),new(){row}).Single().Code=="MODEL_ERROR_PROTOCOL","mixed success and failure rejected");

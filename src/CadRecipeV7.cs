@@ -9,12 +9,9 @@ public static class CadRecipeV7
     {
         var root=JsonNode.Parse(recipe.GetRawText())!;
         if(root["schemaVersion"]?.GetValue<int>()!=7)throw new Exception("CAD sözleşmesi v7 gerekli.");
-        if(root["questions"] is not null)throw new Exception("Soru yerine issues raporu gerekli.");
+        if(root["questions"] is not null)throw new Exception("Soru yerine kısa hata yanıtı gerekli.");
         var geometry=root["geometry"]!;var drawing=root["drawing"]!;
         var parameters=Copy(geometry["parameters"]).AsArray();
-        foreach(var p in parameters)
-            if(p!["source"]!["kind"]!.GetValue<string>()=="constant"&&p["source"]?["precision"]?.GetValue<string>() is not ("specified" or "estimated"))
-                throw new Exception("Sabit parametre specified/estimated kaynağı belirtmeli: "+p["id"]);
         var features=geometry["features"]!.AsArray();var ops=new JsonArray();
         foreach(var f in features)
         {
@@ -34,7 +31,7 @@ public static class CadRecipeV7
                 ["inputs"]=JsonSerializer.SerializeToNode(modifier?Array.Empty<string>():kind=="fuse"?uses.Skip(1).ToArray():uses),
                 ["optionalInputs"]=new JsonArray(),
                 ["when"]=f["presence"]?.DeepClone()??new JsonObject{["kind"]="always"},
-                ["args"]=Copy(f["args"]),["evidence"]=f["evidence"]?.DeepClone()});
+                ["args"]=Copy(f["args"])});
         }
         var dimensions=new JsonArray();
         foreach(var d in drawing["dimensions"]!.AsArray())
@@ -50,9 +47,12 @@ public static class CadRecipeV7
             }
             else if(kind=="parameter")param=source["parameter"]!.GetValue<string>();
             else throw new Exception("Bilinmeyen ölçü kaynağı.");
+            copy["quantity"]??=JsonValue.Create(1);
+            copy["visible"]??=JsonValue.Create(true);
+            copy["hideIf"]??=new JsonObject{["kind"]="never"};
             copy["parameter"]=param;copy.AsObject().Remove("valueSource");dimensions.Add(copy);
         }
-        var compiled=new JsonObject{["schemaVersion"]=6,["parameters"]=parameters,["frames"]=Copy(geometry["frames"]),["operations"]=ops,["result"]=Copy(geometry["result"]),["dimensions"]=dimensions,["views"]=Copy(drawing["views"]),["sections"]=Copy(drawing["sections"]),["geometricTolerances"]=Copy(drawing["geometricTolerances"]),["issues"]=Copy(root["issues"])};
+        var compiled=new JsonObject{["schemaVersion"]=6,["parameters"]=parameters,["frames"]=Copy(geometry["frames"]),["operations"]=ops,["result"]=Copy(geometry["result"]),["dimensions"]=dimensions,["views"]=Copy(drawing["views"]),["sections"]=Copy(drawing["sections"]),["geometricTolerances"]=Copy(drawing["geometricTolerances"]),["issues"]=root["issues"]?.DeepClone()??new JsonArray()};
         ValidatePresentation(compiled);
         return JsonSerializer.SerializeToElement(compiled);
     }
@@ -161,6 +161,12 @@ public static class CadRecipeV7
     public static List<WorkflowIssue> Check(JsonElement recipe,List<Dictionary<string,string>> rows)
     {
         var issues=new List<WorkflowIssue>();
+        if(recipe.TryGetProperty("error",out var error))
+        {
+            if(recipe.EnumerateObject().Count()!=1||error.ValueKind!=JsonValueKind.String||string.IsNullOrWhiteSpace(error.GetString()))
+                return new(){new("MODEL_ERROR_PROTOCOL","model","error","Geçersiz kısa hata yanıtı.",[],"")};
+            return new(){new("MODEL_RECIPE_ERROR","model","error",error.GetString()!,[],"",Origin:"model")};
+        }
         try
         {
             var compiled=Compile(recipe);issues.AddRange(CadRecipe.Check(compiled,rows));
