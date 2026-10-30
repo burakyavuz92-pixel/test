@@ -204,3 +204,5 @@ using(var fixture=System.Text.Json.JsonDocument.Parse(File.ReadAllText("checks/f
     var bound=CadPlanV3.Bind(raw.RootElement,row);
     Check(!bound.Plan.GetProperty("dimensions").EnumerateArray().Single(d=>d.GetProperty("column").GetString()=="F").GetProperty("visible").GetBoolean()&&bound.Plan.GetProperty("holes").GetArrayLength()==3,"green dimension hides without removing its hole");
 }
+Check(CadAnalysisPrompt.TechnicalJargonDraft.Contains("engineering drawing conventions")&&!CadAnalysisPrompt.TechnicalJargonDraft.Contains("do not infer symmetry"),"technical-jargon experiment uses general interpretation instruction");
+Check(CadAnalysisPrompt.Instructions!=CadAnalysisPrompt.TechnicalJargonDraft,"failed experimental prompt is separate from production default");

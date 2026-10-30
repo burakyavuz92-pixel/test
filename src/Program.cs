@@ -23,8 +23,8 @@ try
     }
     if(args[0] == "analyze-cad-group")
     {
-        if(args.Length!=4)throw new Exception("analyze-cad-group <xlsx> <jpeg> <empty-output>");
-        await CadGroupWorkflow.Run(args[1],args[2],args[3],analysisOnly:true);return;
+        if(args.Length is not (4 or 5)||args.Length==5&&args[4]!="--technical-jargon")throw new Exception("analyze-cad-group <xlsx> <jpeg> <empty-output> [--technical-jargon]");
+        await CadGroupWorkflow.Run(args[1],args[2],args[3],analysisOnly:true,technicalJargon:args.Length==5);return;
     }
     if(args[0] == "run-cad-group")
     {

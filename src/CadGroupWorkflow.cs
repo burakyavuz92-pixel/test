@@ -48,7 +48,7 @@ public static class CadGroupWorkflow
         WorkflowReports.Save(output,status,issues,new{Source=binding,RowCount=rows.Count,NewApiCalls=0,ProducedImages=0,SourceRun=Path.GetFullPath(saved)});
         Environment.ExitCode=WorkflowReports.ExitCode(status);
     }
-    public static async Task Run(string xlsx,string image,string output,bool analysisOnly=false)
+    public static async Task Run(string xlsx,string image,string output,bool analysisOnly=false,bool technicalJargon=false)
     {
         if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
         Directory.CreateDirectory(output);var issues=new List<WorkflowIssue>();string status="failed";int calls=0,produced=0;double cost=0;int rowCount=0;int suppliedRows=0;bool apiCompleted=false;
@@ -66,7 +66,7 @@ public static class CadGroupWorkflow
             string geometryImage=Path.Combine(output,"geometry-no-red.jpg");await ImageAssets.PrepareGeometryView(image,geometryImage);
             var geometryInput=new{lengthUnit="mm",rows=modelInput.rows.Select(r=>new{r.outputId,cells=r.cells.ToDictionary(k=>k.Key,k=>new{k.Value.state,k.Value.nominalMm,k.Value.isZero,k.Value.diameterSymbol})})};
             File.WriteAllText(Path.Combine(output,"geometry-input.json"),JsonSerializer.Serialize(geometryInput,WorkflowReports.Json));
-            string prompt=CadAnalysisPrompt.Instructions+"\ngeometryInput: "+JsonSerializer.Serialize(geometryInput)+"\nannotationInput: "+JsonSerializer.Serialize(modelInput);
+            string prompt=(technicalJargon?CadAnalysisPrompt.TechnicalJargonDraft:CadAnalysisPrompt.Instructions)+"\ngeometryInput: "+JsonSerializer.Serialize(geometryInput)+"\nannotationInput: "+JsonSerializer.Serialize(modelInput);
             File.WriteAllText(Path.Combine(output,"model-input.json"),JsonSerializer.Serialize(modelInput,WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"request-prompt.txt"),prompt);
             var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");var model=Environment.GetEnvironmentVariable("OPENROUTER_MODEL")??throw new Exception("Model yok.");
@@ -102,6 +102,6 @@ public static class CadGroupWorkflow
         }
         catch(FormatException ex){issues.Add(new("EXCEL_PARSE","input","error",ex.Message,[],"Desteklenmeyen hücre gösterimini kontrol edin; nominal/tolerans tahmini yapılmaz."));status="blocked-with-report";}
         catch(Exception ex){issues.Add(new("RUN_FAILURE","software","error",ex.Message,[],"Rapor ve kayıtlı yanıt incelenmeli; yeni veri tahmin edilmez."));status="failed-with-report";}
-        finally{Environment.ExitCode=WorkflowReports.ExitCode(status);WorkflowReports.Save(output,status,issues,new{Source=source,RowCount=rowCount,ModelSampleRowCount=suppliedRows,ExcelInputSchemaVersion=1,ApiCalls=calls,ApiResponseReceived=apiCompleted,ReportedCostUsd=cost,ProducedImages=produced,AnalysisOnly=analysisOnly,ColorPolicyVersion=1,AssistantAnswersUsed=false});Console.WriteLine(status+"; rapor: "+Path.Combine(output,"RAPOR.md"));}
+        finally{Environment.ExitCode=WorkflowReports.ExitCode(status);WorkflowReports.Save(output,status,issues,new{Source=source,RowCount=rowCount,ModelSampleRowCount=suppliedRows,ExcelInputSchemaVersion=1,ApiCalls=calls,ApiResponseReceived=apiCompleted,ReportedCostUsd=cost,ProducedImages=produced,AnalysisOnly=analysisOnly,PromptVariant=technicalJargon?"technical-jargon-draft":"production",ColorPolicyVersion=1,AssistantAnswersUsed=false});Console.WriteLine(status+"; rapor: "+Path.Combine(output,"RAPOR.md"));}
     }
 }

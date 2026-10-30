@@ -259,3 +259,7 @@ Yeni grup yolunda (`CadPlanV3`, v3/v4) `ColorVisibilityPolicy` modelin `measurem
 Normal grup promptundan yeşilin gösterimini kapatma görevi çıkarıldı; model yalnızca kaynak rengini tanır ve renk dışındaki gösterim koşullarını tarif eder. Görsel renk algısını tamamen kaldırmak doğru değildir: yerel kod hangi ölçünün yeşil olduğunu bu kayıttan öğrenir. Bu işlem bağımsız renk-algılama doğrulaması değildir. Tarihsel v1 tek-ürün yolu bu yeni politikanın kapsamında değildir.
 
 Kayıtlı veri3 yanıtı yerelde review-cad-group ile yeniden değerlendirildi: 82 satırdaki ilişki kontrollerinde bloklama kalmadı. Bu doğrulama yeni API veya çizim üretmez; 82 native çizimin başarı garantisi değildir. 75 C# kontrolü geçti. Regresyonlar yeşil sabit/ölçü görünürlüğünü, ham yanıt ve geometrinin korunmasını, siyah ölçülerin etkilenmemesini kapsar.
+
+## Teknik resim jargonuyla sade yorumlama denemesi
+
+`analyze-cad-group <xlsx> <jpeg> <empty-output> --technical-jargon` genel yorumlama talimatlı taslak promptunu seçer. Normal analiz/üretim son başarılı üretim talimatlarını kullanmaya devam eder. Sade taslak, kırmızı notsuz dört satır analizinde üst delikleri simetrik kabul ederek asimetrik 92'de 8 mm hata verdi; bu nedenle varsayılan yapılmadı. Geçersiz sonuç çizilmedi ve elle tamamlanmadı. Deneme kaydı previews/group2-jargon-no-notes/NOTLAR.md altında.

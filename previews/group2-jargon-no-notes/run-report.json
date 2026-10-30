@@ -1,0 +1,113 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "B_G_REDUNDANT",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "B ve 2G ili\u015Fkisi sat\u0131rlarda tutars\u0131z (\u00F6r. 88.9 vs 2\u00D744.45 uyumlu, 89 vs 2\u00D744.5 uyumlu, 165.4 vs 157.4 uyumsuz).",
+      "AffectedFields": [
+        "B",
+        "G"
+      ],
+      "RecommendedAction": "Delik konumlar\u0131 i\u00E7in G kullan\u0131ld\u0131; 11-30-92 sat\u0131r\u0131nda B ile G do\u011Frulanmal\u0131.",
+      "Origin": "model"
+    },
+    {
+      "Code": "E_F_BLANK_OR_ZERO",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Baz\u0131 sat\u0131rlarda E/F bo\u015F; 11-30-381\u0027de F s\u0131f\u0131r ve E deli\u011Fi eksen \u00FCzerinde, \u00E7izimdeki sol konumla farkl\u0131.",
+      "AffectedFields": [
+        "E",
+        "F"
+      ],
+      "RecommendedAction": "Bo\u015F E i\u00E7in delik olu\u015Fturulmaz; F=0 say\u0131sal s\u0131f\u0131r olarak i\u015Flenir.",
+      "Origin": "model"
+    },
+    {
+      "Code": "MEASUREMENT_ENDPOINT_CONFLICT",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "F: \u00F6l\u00E7\u00FC kayna\u011F\u0131n\u0131n u\u00E7lar\u0131, \u00F6l\u00E7\u00FClendirme tan\u0131m\u0131yla uyu\u015Fmuyor.",
+      "AffectedFields": [
+        "F"
+      ],
+      "RecommendedAction": "Modelin renk/\u00F6l\u00E7\u00FC e\u015Flemesi incelenmeli; kaynak veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "MEASUREMENT_ENDPOINT_CONFLICT",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "G: \u00F6l\u00E7\u00FC kayna\u011F\u0131n\u0131n u\u00E7lar\u0131, \u00F6l\u00E7\u00FClendirme tan\u0131m\u0131yla uyu\u015Fmuyor.",
+      "AffectedFields": [
+        "G"
+      ],
+      "RecommendedAction": "Modelin renk/\u00F6l\u00E7\u00FC e\u015Flemesi incelenmeli; kaynak veri de\u011Fi\u015Ftirilmez.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "COLOR_VISIBILITY_APPLIED",
+      "Category": "presentation",
+      "Severity": "warning",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FCn\u00FCn g\u00F6sterimi yerel kuralla kapat\u0131ld\u0131.",
+      "AffectedFields": [
+        "radius"
+      ],
+      "RecommendedAction": "Girdi de\u011Fi\u015Fikli\u011Fi gerekmez; geometri korunur.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "COLOR_VISIBILITY_APPLIED",
+      "Category": "presentation",
+      "Severity": "warning",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FCn\u00FCn g\u00F6sterimi yerel kuralla kapat\u0131ld\u0131.",
+      "AffectedFields": [
+        "depth"
+      ],
+      "RecommendedAction": "Girdi de\u011Fi\u015Fikli\u011Fi gerekmez; geometri korunur.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "COLOR_VISIBILITY_APPLIED",
+      "Category": "presentation",
+      "Severity": "warning",
+      "Message": "Ye\u015Fil sabit \u00F6l\u00E7\u00FCn\u00FCn g\u00F6sterimi yerel kuralla kapat\u0131ld\u0131.",
+      "AffectedFields": [
+        "thickness"
+      ],
+      "RecommendedAction": "Girdi de\u011Fi\u015Fikli\u011Fi gerekmez; geometri korunur.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "MODEL_MEASUREMENT_CONFLICT",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-92: modelde B=157.4, Excel nominali 165.4.",
+      "AffectedFields": [
+        "11-30-92",
+        "B"
+      ],
+      "RecommendedAction": "Model geometrik ili\u015Fkisi d\u00FCzeltilmeli; ge\u00E7erli Excel de\u011Feri de\u011Fi\u015Ftirilmemeli.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "4FAF7C74874632F42A3E1E1025E67B0BDD51EBD36D58DCBBCF3D10D8E83FE66A"
+    },
+    "RowCount": 4,
+    "ModelSampleRowCount": 4,
+    "ExcelInputSchemaVersion": 1,
+    "ApiCalls": 1,
+    "ApiResponseReceived": true,
+    "ReportedCostUsd": 0.050798,
+    "ProducedImages": 0,
+    "AnalysisOnly": true,
+    "ColorPolicyVersion": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

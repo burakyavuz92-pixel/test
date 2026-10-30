@@ -1,0 +1,27 @@
+{
+  "source": "samples/group2-updated/taslak2guncel.jpg",
+  "target": "samples/group2-updated/taslak2guncel-notesiz.jpg",
+  "noteRectanglesPixels": [
+    [
+      3113,
+      434,
+      3517,
+      658
+    ],
+    [
+      3990,
+      2179,
+      4385,
+      2399
+    ]
+  ],
+  "method": "White-fill only the two red instructional note rectangles; original source unchanged. JPEG recompression may change edge pixels.",
+  "size": [
+    7016,
+    4961
+  ],
+  "dpi": [
+    300,
+    300
+  ]
+}
