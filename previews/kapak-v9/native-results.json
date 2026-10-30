@@ -1,0 +1,482 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "30-24-143",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 218717.68054292136
+        },
+        {
+          "id": "__v9_2",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_3",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_4",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.0168469733467
+        },
+        {
+          "id": "__v9_5",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_6",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 8876.067387893387
+        },
+        {
+          "id": "boss",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 226114.40336616582
+        },
+        {
+          "id": "__v9_9",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 64184.78814738075
+        },
+        {
+          "id": "centerHole",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 206872.14836292836
+        },
+        {
+          "id": "__v9_12",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561113
+        },
+        {
+          "id": "__v9_14",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561122
+        },
+        {
+          "id": "__v9_16",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561113
+        },
+        {
+          "id": "__v9_18",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561124
+        },
+        {
+          "id": "__v9_19",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 7172.453591424446
+        },
+        {
+          "id": "holes",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 202571.62217942928
+        },
+        {
+          "id": "__v9_22",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4318.590321031538
+        },
+        {
+          "id": "__v9_24",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4318.590321031531
+        },
+        {
+          "id": "__v9_25",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 2,
+          "volumeMm3": 8637.180642063066
+        },
+        {
+          "id": "slot",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 200484.427583926
+        }
+      ],
+      "volumeMm3": 200484.427583926,
+      "stepRoundtrip": true,
+      "drafting": {
+        "details": [],
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF"
+        ]
+      }
+    },
+    {
+      "outputId": "30-24-422",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 218717.68054292136
+        },
+        {
+          "id": "__v9_2",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.0168469733467
+        },
+        {
+          "id": "__v9_3",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_4",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.0168469733467
+        },
+        {
+          "id": "__v9_5",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_6",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 8876.067387893385
+        },
+        {
+          "id": "boss",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 226114.40336616588
+        },
+        {
+          "id": "__v9_9",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 64184.78814738075
+        },
+        {
+          "id": "centerHole",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 206872.14836292842
+        },
+        {
+          "id": "__v9_12",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.113397856111
+        },
+        {
+          "id": "__v9_14",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561122
+        },
+        {
+          "id": "__v9_16",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561113
+        },
+        {
+          "id": "__v9_18",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1793.1133978561118
+        },
+        {
+          "id": "__v9_19",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 7172.453591424448
+        },
+        {
+          "id": "holes",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 202571.62217942922
+        },
+        {
+          "id": "__v9_22",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4318.590321031538
+        },
+        {
+          "id": "__v9_24",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4318.590321031531
+        },
+        {
+          "id": "__v9_25",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 2,
+          "volumeMm3": 8637.180642063066
+        },
+        {
+          "id": "slot",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 200484.427583926
+        }
+      ],
+      "volumeMm3": 200484.427583926,
+      "stepRoundtrip": true,
+      "drafting": {
+        "details": [],
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF"
+        ]
+      }
+    },
+    {
+      "outputId": "30-24-54",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 255352.57787459533
+        },
+        {
+          "id": "__v9_2",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_3",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_4",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.0168469733467
+        },
+        {
+          "id": "__v9_5",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2219.016846973346
+        },
+        {
+          "id": "__v9_6",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 8876.067387893387
+        },
+        {
+          "id": "boss",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 262749.30069783976
+        },
+        {
+          "id": "__v9_9",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 29867.524530519568
+        },
+        {
+          "id": "centerHole",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 254074.577983115
+        },
+        {
+          "id": "__v9_12",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1850.867104111734
+        },
+        {
+          "id": "__v9_14",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1850.867104111735
+        },
+        {
+          "id": "__v9_16",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1850.867104111734
+        },
+        {
+          "id": "__v9_18",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1850.8671041117352
+        },
+        {
+          "id": "__v9_19",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 7403.468416446938
+        },
+        {
+          "id": "holes",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 249774.05179961596
+        },
+        {
+          "id": "__v9_22",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4457.686151299405
+        },
+        {
+          "id": "__v9_24",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4457.686151299396
+        },
+        {
+          "id": "__v9_25",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 2,
+          "volumeMm3": 8915.372302598806
+        },
+        {
+          "id": "slot",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 247686.20580454942
+        }
+      ],
+      "volumeMm3": 247686.20580454942,
+      "stepRoundtrip": true,
+      "drafting": {
+        "details": [],
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF"
+        ]
+      }
+    }
+  ]
+}

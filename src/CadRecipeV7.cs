@@ -92,6 +92,7 @@ public static class CadRecipeV7
 
     public static JsonElement Resolve(JsonElement recipe,Dictionary<string,string> row)
     {
+        if(CadRecipeV9.IsV9(recipe))return CadRecipeV9.Resolve(recipe,row);
         if(CadRecipeV8.IsV8(recipe))return Resolve(CadRecipeV8.Lower(recipe,row),row);
         var compiled=Compile(recipe);var resolved=CadRecipe.Resolve(compiled,row);
         var node=JsonNode.Parse(resolved.GetRawText())!;
@@ -193,6 +194,7 @@ public static class CadRecipeV7
     }
     public static List<WorkflowIssue> Check(JsonElement recipe,List<Dictionary<string,string>> rows)
     {
+        if(CadRecipeV9.IsV9(recipe))return CadRecipeV9.Check(recipe,rows);
         if(CadRecipeV8.IsV8(recipe))return CadRecipeV8.Check(recipe,rows);
         var issues=new List<WorkflowIssue>();
         if(recipe.TryGetProperty("error",out var error))

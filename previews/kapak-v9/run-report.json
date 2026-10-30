@@ -1,0 +1,50 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "30-24-422: Object reference not set to an instance of an object.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "30-24-143: Object reference not set to an instance of an object.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "30-24-54: Object reference not set to an instance of an object.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "70D7746782979BF580298A25677CDBD43D96C0D0E57F361FBFBE22310589BFBB",
+      "ImageSha256": "CC4EB1175DA80A59FDC9E44874FDC5FDFB8F9FACCCFB0C29C44ECC02C5395870"
+    },
+    "SchemaVersion": 9,
+    "RowCount": 3,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.07353,
+    "ReasoningEffort": "high",
+    "MaxCompletionTokens": 32768,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

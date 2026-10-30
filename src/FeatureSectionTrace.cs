@@ -40,10 +40,10 @@ public static class FeatureSectionTrace
             string kind=op["op"]!.GetValue<string>();double[] point;
             if(kind is "hole" or "cylinder")point=V(args["origin"]);
             else if(kind=="revolve")point=V(args["axisOrigin"]);
-            else if(kind=="extrude")
+            else if(kind is "extrude" or "throughExtrude")
             {
                 var sketch=ops[op["inputs"]![0]!.GetValue<string>()]!;var loops=sketch["args"]!["loops"]!.AsArray();
-                if(loops.Count!=1||loops[0]!["kind"]!.GetValue<string>()!="circle")throw new Exception("Bu profil için eksen referansı yok; frameOrigin kullanılabilir.");
+                if((loops.Count!=1&&sketch["args"]!["profileHoles"]?.GetValue<bool>()!=true)||loops[0]!["kind"]!.GetValue<string>()!="circle")throw new Exception("Bu profil için eksen referansı yok; frameOrigin kullanılabilir.");
                 var xy=V(loops[0]!["center"]);string plane=sketch["args"]!["plane"]!.GetValue<string>();
                 point=plane switch{"XY"=>new[]{xy[0],xy[1],0.0},"XZ"=>new[]{xy[0],0.0,xy[1]},"YZ"=>new[]{0.0,xy[0],xy[1]},_=>throw new Exception("Profil düzlemi bilinmiyor.")};frame=sketch["frame"]!.GetValue<string>();
             }

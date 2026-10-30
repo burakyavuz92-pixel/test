@@ -207,3 +207,13 @@ var v8resolved2=CadRecipeV7.Resolve(v8,v8row2);
 Check(v8resolved2.GetProperty("geometry").GetProperty("operations")[0].GetProperty("args").GetProperty("diameter").GetDouble()==300,"v8 shared recipe applies second row nominal rather than tolerance");
 Check(v8resolved2.GetProperty("geometry").GetProperty("featureApplied").GetProperty("optional").GetBoolean(),"v8 optional feature becomes present on a different row");
 Check(v8.GetProperty("schemaVersion").GetInt32()==8&&v8.GetProperty("geometry").GetProperty("features")[0].GetProperty("args").GetProperty("length").TryGetProperty("expr",out _),"v8 lowering preserves original model response");
+var v9=JsonDocument.Parse("""
+{"schemaVersion":9,"geometry":{"variables":{"r":"=A/2"},"features":[{"id":"body","op":"add","shape":{"kind":"cylinder","origin":[0,0,0],"direction":[0,0,1],"diameter":"=r*2","length":5}}]},"drawing":{"views":[],"sections":[],"dimensions":[],"details":[],"geometricTolerances":[]}}
+""").RootElement;
+var v9resolved=CadRecipeV7.Resolve(v9,row);
+Check(v9resolved.GetProperty("geometry").GetProperty("operations")[0].GetProperty("args").GetProperty("diameter").GetDouble()==236,"v9 C# to local data compiler integration");
+Check(v9resolved.GetProperty("geometry").GetProperty("result").GetString()=="body","v9 last current body is result");
+var v9plane=JsonNode.Parse(v9.GetRawText())!;
+v9plane["drawing"]!["views"]=JsonNode.Parse("""[{"id":"section","direction":[1,0,0],"up":[0,1,0],"projection":"orthographic"}]""");
+v9plane["drawing"]!["sections"]=JsonNode.Parse("""[{"id":"A","view":"section","kind":"planar","point":[0,0,0],"normal":[1,0,0]}]""");
+Check(CadRecipeV7.Resolve(Doc(v9plane),row).GetProperty("drawing").GetProperty("sections")[0].GetProperty("cuttingPlanes").GetArrayLength()==1,"v9 planar point/normal lowered to native section plane");

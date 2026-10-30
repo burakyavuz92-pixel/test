@@ -16,12 +16,12 @@ public static class CadRecipeWorkflow
         string state=issues.Any(i=>i.Severity=="error")?"blocked-with-report":"recipe-analysis-only";
         if(state=="recipe-analysis-only")foreach(var row in rows)File.WriteAllText(Path.Combine(output,row["jpeg file name"]+".resolved.json"),JsonSerializer.Serialize(CadRecipeV7.Resolve(pd.RootElement,row),WorkflowReports.Json));
         if(state=="recipe-analysis-only"){File.Copy(Path.Combine(saved,"recipe.json"),Path.Combine(output,"recipe.json"));RecipeLibrary.SaveCandidate(output,image,rows);}
-        WorkflowReports.Save(output,state,issues,new{Source=binding,SourceRun=Path.GetFullPath(saved),NewApiCalls=0,ProducedImages=0,NativeExecutionImplemented=false,ImageCount=1,TableCount=1,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);
+        WorkflowReports.Save(output,state,issues,new{Source=binding,SourceRun=Path.GetFullPath(saved),NewApiCalls=0,ProducedImages=0,NativeExecutionImplemented=true,ImageCount=1,TableCount=1,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);
     }
-    public static async Task Analyze(string excel,string image,string output,bool execute=false,bool useLibrary=true)
+    public static async Task Analyze(string excel,string image,string output,bool useLibrary=true)
     {
         if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
-        if(useLibrary&&RecipeLibrary.TryReuseApproved(excel,image,output,execute))return;
+        if(useLibrary&&RecipeLibrary.TryReuseApproved(excel,image,output,false))return;
         Directory.CreateDirectory(output);var issues=new List<WorkflowIssue>();string state="failed-with-report";int calls=0,count=0;double? cost=null;
         var source=new{ExcelSha256=Hash(excel),ImageSha256=Hash(image)};
         try
@@ -44,9 +44,8 @@ public static class CadRecipeWorkflow
             foreach(var row in rows)File.WriteAllText(Path.Combine(output,row["jpeg file name"]+".resolved.json"),JsonSerializer.Serialize(CadRecipeV7.Resolve(plan,row),WorkflowReports.Json));
             RecipeLibrary.SaveCandidate(output,image,rows);
             state="recipe-analysis-only";
-            if(execute){issues.Add(new("GENERAL_EXECUTOR_PENDING","software","error","Genel CAD tarifi çözüldü; yeni native geometri/pafta yürütücüsü henüz uygulanmadı.",[],"İşlem yürütücüsü ve genel ölçülendirme desteği tamamlanmalı; eski pleyt motoruna zorlanmaz."));state="blocked-with-report";}
         }
         catch(Exception ex){issues.Add(new("RECIPE_RUN_FAILURE","software","error",ex.Message,[],"Kayıtlar incelenmeli; kullanıcı cevabı beklenmez."));}
-        finally{WorkflowReports.Save(output,state,issues,new{Source=source,SchemaVersion=8,RowCount=count,ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort="high",MaxCompletionTokens=32768,ProducedImages=0,NativeExecutionImplemented=false,ImageCount=1,TableCount=1,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);Console.WriteLine(state+"; "+Path.Combine(output,"RAPOR.md"));}
+        finally{WorkflowReports.Save(output,state,issues,new{Source=source,SchemaVersion=9,RowCount=count,ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort="high",MaxCompletionTokens=32768,ProducedImages=0,NativeExecutionImplemented=true,ImageCount=1,TableCount=1,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);Console.WriteLine(state+"; "+Path.Combine(output,"RAPOR.md"));}
     }
 }

@@ -1,0 +1,12 @@
+{
+  "ApiCalls": 1,
+  "Model": "anthropic/claude-sonnet-5.5",
+  "ReportedCostUsd": 0.07353,
+  "FinalPreviewCount": 3,
+  "AssistantRecipeEdits": false,
+  "SoftwareAdapterFixes": [
+    "planar section point/normal lowering",
+    "dimension nominal field mapping"
+  ],
+  "RecipeSha256": "78bd5c079e4c5c0a3b6c9fcd84127d6e6bcb6fd8a054a5cbcc499df70d885229"
+}

@@ -1,4 +1,4 @@
-# DrawingTool — genel CAD sözleşmesi v8
+# DrawingTool — genel CAD sözleşmesi v9
 
 Girdi **bir JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır; OpenRouter'a **bir orijinal JPEG ve bir ayrıştırılmış örnek satır tablosu** gönderir. Kırmızı temizlenmiş ikinci görüntü ve nominal verilerin ikinci kopyası artık gönderilmez. Gruptaki bütün satırlar yerelde çözülür; büyük tablolarda modele en fazla sekiz temsilci satır gönderilir.
 
@@ -105,3 +105,7 @@ STEP ve iki yönden geometri JPEG'i üretir; teknik pafta/kesit/ölçülendirme 
 ## Güncel API sözleşmesi: v8
 
 Yeni `analyze-fresh-cad-group` çağrıları, bağımsız sayısal ifadeler ve açık işlem alanları kullanan v8 JSON tarifini ister. Parametre/yardımcı hesap grafiğini modelin kurması gerekmez; tekrar serbesttir. [Sözleşme ve yürütücü sınırları](contracts/cad-v8.md). Betik deneyi varsayılan CAD yolu değildir. Kesit, detay ve ölçülendirme bu JSON yolunda kapsamda kalır.
+
+## V9 sıralı gövde yürütücüsü
+
+Aktif prompt ve sözleşme [burada](contracts/cad-v9-draft/README.md). Model ara gövde grafiği yazmaz; yerel derleyici sıralı add/cut işlemlerini indirger. `run-fresh-cad-group <xlsx> <jpeg> <empty-output>` tek yeni API yanıtı alıp bütün satırlar için native STEP/JPEG inceleme önizlemesi üretir; otomatik onarım çağrısı yoktur. Python yolu OCCT_PYTHON ile seçilir (bulutta /workspace/occt-venv/bin/python). [Kapak testi ve müdahale kaydı](previews/kapak-v9/NOTLAR.md). Sonuçlar üretim anteti ve gerçek ölçü okları tamamlanmış pafta değildir.

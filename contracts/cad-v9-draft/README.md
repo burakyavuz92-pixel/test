@@ -1,6 +1,6 @@
 # CAD v9 — prompt ve sözleşme taslağı
 
-Durum: **yazılım entegrasyonu bekliyor**. Bu klasör tek başına dağıtıma alınmış bir özellik değildir. Aktif `src/CadRecipePrompt.cs`, v8 ayrıştırıcı/yürütücü ve API çağrı kodları değiştirilmedi. API testi yapılmadı; token/maliyet düşüşü ölçülmedi.
+Durum: **v9 yerel yürütücüye bağlandı; kapak grubu ile denendi**. `src/CadRecipePrompt.cs` bu klasördeki prompt ve sözleşmeyi birer kez okur. `CadRecipeV9` ve `tools/cad_v9_compiler.py` ifadeleri/koşulları çözer; sıralı işlemleri özel native yürütücü yapısına indirger. API sonucu ve sınırlar: `previews/kapak-v9/NOTLAR.md`. Bu sonuç tam üretim paftası veya bütün parça aileleri için doğrulama değildir.
 
 Model isteği hazırlanacağı zaman `prompt.txt` ve `contract.txt` birer kez, ardından mevcut ayrıştırılmış `tableInput` ve bir JPEG gönderilecek. Kullanıcı JPEG/Excel vermeye devam eder; koordinat hazırlamaz. Bu dosyalar yeni model talimatıdır; bu README modele gönderilmez.
 
@@ -15,10 +15,12 @@ Model isteği hazırlanacağı zaman `prompt.txt` ve `contract.txt` birer kez, a
 
 25 bin karakterlik dış sözleşme kopyalanmadı. Loft/sweep/shell, ayrıntılı antet hücre tarifi, expected/ölçülen değer karşılaştırması ve otomatik ek API/onarım çağrısı eklenmedi. Betik üretimi kullanılmaz. Genel parça desteğinin kapsamı tanımlı geometrik işlemlerle sınırlıdır; her parçayı ifade etme iddiası yoktur.
 
-## Sonraki emirle yapılacak entegrasyon
+## Entegrasyon ve kalan sınırlar
 
-V9 ifade dili, isteğe bağlı değişkenler, koşullar ve tek gövde işlem sırası için ayrıştırıcı/yürütücü uyarlanmalı. Özellik ID'leri ayrı gövdeler değil, sıralı işlemlerin kökenini belirtir; ölçü/kesit/kenar referansları buna göre çözümlenmeli. `featureTrace` profil içindeki bir deliğe ayrı ID vermiyorsa o deliğe referans kuramaz; kesitte adı gereken bir deliği ayrı cut işlemi yapmak mümkündür. Bu sürüm kesit izinin yerel algoritmasını düzeltmiş sayılmaz.
+V9 ifade dili, isteğe bağlı değişkenler, koşullar ve tek gövde işlem sırası ayrıştırıcı/yürütücüye bağlandı. Özellik ID'leri ayrı gövdeler değil, sıralı işlemlerin kökenini belirtir; ölçü/kesit/kenar referansları buna göre çözümlenmeli. `featureTrace` profil içindeki bir deliğe ayrı ID vermiyorsa o deliğe referans kuramaz; kesitte adı gereken bir deliği ayrı cut işlemi yapmak mümkündür. Bu sürüm kesit izinin yerel algoritmasını düzeltmiş sayılmaz.
 
 Önceden kalan taslak anteti, sayfa düzeni ve gerçek ölçü okları eksikleri bu metinler hazırlanarak giderilmiş sayılmaz. Raporlama/OCCT geçerlilik kontrolleri kaldırılmadı; yalnız yeni gerçek ölçü karşılaştırma sistemi eklenmedi.
 
-Entegrasyona kadar bu sözleşmeyle modele çağrı yapılmamalı: mevcut uygulama v9 yanıtını yürütemez. Taslak3/4 vb. için özel geometrik ipuçları isteme eklenmedi.
+API çağrısı ve native inceleme için: `dotnet run --project src/DrawingTool.csproj -- run-fresh-cad-group <xlsx> <jpeg> <empty-output>`. Kayıtlı yanıtı API çağrısı yapmadan tekrar yürütmek için `render-saved-group <xlsx> <jpeg> <saved-run> <empty-output>` kullanılır. Eski v7/v8 kayıtları desteklenir. Ayrı C++ köprü yazılmadı; mevcut yerel Python/OCP katmanı kullanılır. Taslak3/4 vb. için özel geometrik ipuçları isteme eklenmedi.
+
+Kenar seçimi native yürütücüde near/direction ile yapılır; operation köken kapsamını bütün Boolean değişimlerinde kesin takip etme desteği tamamlanmış değildir. Kesit featureTrace algoritmasının önceki sınırlamaları sürer. Modelin kapak yanıtında fillet veya featureTrace yoktur; bu test o yolların başarısını kanıtlamaz.

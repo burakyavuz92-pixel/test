@@ -1,0 +1,387 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "R": "=A/2",
+      "PR": "=B/2",
+      "SL": "=21.5",
+      "SC": "=(A/2-16.5\u002BSL/2)*0.70710678"
+    },
+    "features": [
+      {
+        "id": "plate",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=A",
+          "length": "=F"
+        }
+      },
+      {
+        "id": "boss",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=PR",
+            0,
+            "=F-1"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=C\u002B10",
+          "length": "=E\u002B1"
+        },
+        "instances": {
+          "kind": "polar",
+          "count": 4,
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "startAngleDeg": 0,
+          "stepAngleDeg": 90
+        }
+      },
+      {
+        "id": "centerHole",
+        "op": "cut",
+        "shape": {
+          "kind": "extrude",
+          "profile": {
+            "outer": {
+              "kind": "circle",
+              "center": [
+                0,
+                0
+              ],
+              "diameter": "=D"
+            }
+          },
+          "extent": "throughAll"
+        }
+      },
+      {
+        "id": "holes",
+        "op": "cut",
+        "shape": {
+          "kind": "extrude",
+          "profile": {
+            "outer": {
+              "kind": "circle",
+              "center": [
+                "=PR",
+                0
+              ],
+              "diameter": "=C"
+            }
+          },
+          "extent": "throughAll"
+        },
+        "instances": {
+          "kind": "polar",
+          "count": 4,
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "startAngleDeg": 0,
+          "stepAngleDeg": 90
+        }
+      },
+      {
+        "id": "slot",
+        "op": "cut",
+        "shape": {
+          "kind": "extrude",
+          "profile": {
+            "outer": {
+              "kind": "roundedSlot",
+              "center": [
+                "=SC",
+                "=SC"
+              ],
+              "width": 14,
+              "length": "=SL",
+              "angleDeg": 45
+            }
+          },
+          "extent": "throughAll"
+        },
+        "instances": {
+          "kind": "polar",
+          "count": 2,
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "startAngleDeg": 0,
+          "stepAngleDeg": 180
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "outer circular edge diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "pitchDiameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "holes",
+            "role": "pitch circle through the centers of the four holes"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holes",
+            "role": "hole diameter",
+            "instance": 0
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 4
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "centerHole",
+            "role": "central through hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "boss",
+            "role": "boss height above plate face",
+            "instance": 0
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "plate thickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimSlotWidth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 14,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "slot",
+            "role": "slot width",
+            "instance": 0
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimSlotDepth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 16.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "slot",
+            "role": "slot depth from outer edge to rounded end",
+            "instance": 0
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimSlotRadius",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 7,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "slot",
+            "role": "slot end radius",
+            "instance": 0
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      }
+    ],
+    "views": [
+      {
+        "id": "front",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionAA",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          1,
+          -1,
+          1
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "A-A",
+        "view": "sectionAA",
+        "sourceView": "front",
+        "kind": "planar",
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "normal": [
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "details": [],
+    "geometricTolerances": [
+      {
+        "kind": "flatness",
+        "value": 0.5,
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "flat plate face opposite the bosses"
+          }
+        ]
+      }
+    ]
+  }
+}

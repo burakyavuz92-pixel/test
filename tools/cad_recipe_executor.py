@@ -58,6 +58,7 @@ def build(recipe):
  g=recipe['geometry'];frames={f['id']:f for f in g['frames']};shapes={};records={};checks=[]
  for op in g['operations']:
   name=op['op'];id=op['id'];a=op.get('args',{});records[id]=op
+  if name=='alias':shapes[id]=shapes[op['inputs'][0]];continue
   if name=='passThrough':shapes[id]=shapes[op['target']];continue
   f=frames[op['frame']];x=np.array(f['xAxis']);z=np.array(f['zAxis']);basis=np.column_stack((x,np.cross(z,x),z));origin=np.array(f['origin'])
   def pt(p):return origin+basis@np.array(p,dtype=float)
@@ -92,6 +93,10 @@ def build(recipe):
     else:raise ValueError('Unsupported profile '+kind)
     if not wire.IsDone():raise RuntimeError('Invalid wire')
     face=BRepBuilderAPI_MakeFace(wire.Wire(),True).Face();faces.append(face)
+   if a.get('profileHoles'):
+    body=faces[0]
+    for hole in faces[1:]:body=boolean(BRepAlgoAPI_Cut,body,hole)
+    shapes[id]=[body];continue
    # Multiple disjoint profiles supported; nested contours must be explicit cuts.
    for i,s in enumerate(faces):
     for t in faces[:i]:
@@ -99,12 +104,16 @@ def build(recipe):
      ex=TopExp_Explorer(common,TopAbs_EDGE)
      if ex.More():raise ValueError('Overlapping/nested profile loops need explicit cut')
    shapes[id]=faces;continue
-  if name in ('extrude','revolve'):
+  if name in ('extrude','revolve','throughExtrude'):
    faces=shapes[op['inputs'][0]]
-   if name=='extrude':s=fuse([BRepPrimAPI_MakePrism(face,gp_Vec(*(direction(a['direction'])*a['length']))).Shape() for face in faces])
+   if name=='throughExtrude':
+    target=shapes[op['target']];b=box(target);d=direction(a['direction']);corners=[np.array([x,y,z]) for x in (b[0],b[3]) for y in (b[1],b[4]) for z in (b[2],b[5])];extent=[np.dot(c-origin,d) for c in corners];margin=max(1,np.linalg.norm(np.array(b[3:])-np.array(b[:3]))*.01);lo=min(extent)-margin;hi=max(extent)+margin;tr=gp_Trsf();tr.SetTranslation(gp_Vec(*(d*lo)));s=fuse([BRepPrimAPI_MakePrism(BRepBuilderAPI_Transform(face,tr,True).Shape(),gp_Vec(*(d*(hi-lo)))).Shape() for face in faces])
+   elif name=='extrude':s=fuse([BRepPrimAPI_MakePrism(face,gp_Vec(*(direction(a['direction'])*a['length']))).Shape() for face in faces])
    else:s=fuse([BRepPrimAPI_MakeRevol(face,gp_Ax1(gp_Pnt(*pt(a['axisOrigin'])),gp_Dir(*direction(a['axisDirection']))),math.radians(a['angleDeg']),True).Shape() for face in faces])
   elif name=='cylinder':s=BRepPrimAPI_MakeCylinder(gp_Ax2(gp_Pnt(*pt(a['origin'])),gp_Dir(*direction(a['direction']))),a['diameter']/2,a['length']).Shape()
-  elif name=='cut':s=boolean(BRepAlgoAPI_Cut,shapes[op['target']],shapes[op['tool']])
+  elif name=='cut':
+   target=shapes[op['target']];s=boolean(BRepAlgoAPI_Cut,target,shapes[op['tool']])
+   if vol(s)>=vol(target)-1e-7:raise ValueError('Cut does not remove material: '+id)
   elif name in ('fuse','join'):s=fuse(([shapes[op['target']]] if op.get('target') else [])+[shapes[i] for i in op['inputs']])
   elif name=='hole':
    target=shapes[op['target']];b=box(target);reach=np.linalg.norm(np.array(b[3:])-np.array(b[:3]))+1;d=direction(a['direction']);p=pt(a['origin'])

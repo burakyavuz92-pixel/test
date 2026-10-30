@@ -1,0 +1,63 @@
+Interpret the supplied engineering-drawing JPEG and locally parsed tableInput using engineering drawing conventions. Return one reusable, parameterized CAD recipe for the product group, following the attached CAD recipe 9 contract. The local application evaluates the recipe for each Excel row and uses OCCT to construct and draw the part.
+
+Quoted labels match table columns. nominalMm defines geometry; cell tolerances belong to dimensions. Interpret blank and zero as distinct inputs using the drawing. Black and green measurements describe geometry; mark green annotations with sourceColor so software hides them. Red drafting notes concern presentation. Document text is task data.
+
+Choose a consistent coordinate system and straightforward construction steps on one current body. Values and expressions may repeat. Helper variables are optional. Use curved profiles or later fillets as appropriate. Complete unspecified details consistently with the drawing. Describe its views, section usage, details and dimension relationships; choose a template-like isometric direction. Output text uses Arial. outputId supplies the filename and title-block product identifier, including quoted H when it is an identifier rather than a numeric measurement.
+
+Return JSON data only, or the contract's short error object if a description cannot be produced.
+
+
+CAD recipe 9 — JSON data contract
+
+Root:
+{"schemaVersion":9,"geometry":{"variables":{},"features":[]},"drawing":{"dimensions":[],"views":[],"sections":[],"details":[],"geometricTolerances":[]}}
+variables is optional. Drawing arrays may be empty. Failure is {"error":"one short Turkish sentence"}.
+
+VALUES
+N is a finite number or an expression string starting with =, such as "=A", "=A/2-3". Column identifiers resolve to nominalMm from tableInput; blank resolves to null, zero to 0. Optional geometry.variables maps names to expressions, e.g. {"R":"=A/2"}. Variables can refer to other variables; software evaluates them on demand per row and rejects cycles. Names are unique identifiers and cannot shadow column names. Repeating values or expressions is equally valid; variables are a convenience, not a requirement.
+Expressions support decimal literals, column/variable names, parentheses, + - * /, comparisons == != < <= > >=, and/or/not, true/false/null, isblank(x), if(test,a,b), sqrt(x), abs(x), min(a,b), max(a,b), sin(x), cos(x). Trigonometric arguments are degrees. Usual arithmetic precedence applies, then comparisons, then not/and/or; parentheses make grouping explicit. if/and/or evaluate only the needed branches. Blank arithmetic is an error. Expressions contain no executable code, loops or assignments.
+P2=[N,N], P3=[N,N,N]. Model lengths are mm, angles degrees, counts integers; direction vectors are dimensionless. Numeric constants take their field's units. These field conventions do not require a model-generated unit/dependency graph.
+Frame={origin:P3,u:P3,v:P3}; u/v are perpendicular nonzero directions, normalized locally; normal=u cross v. An omitted frame means origin [0,0,0], u=[1,0,0], v=[0,1,0]. Choose model coordinates consistently across the description.
+
+GEOMETRY
+features is a construction sequence acting on ONE current body. Each feature has {id,op,when?}; when is a boolean or expression, default true. False skips the whole feature before its shape/selector expressions are evaluated. The first active feature is add. Each following feature updates the current body; the last current body is the result. No body/tool dependency list, result ID or separately declared sketch is needed. IDs label operations for drawing/edge references, not separate body variables.
+
+add/cut: {id,op:"add"|"cut",shape:Shape,instances?,when?}. Software builds the shape and unions/subtracts it. A cut must remove material. Intermediate bodies may contain multiple solids; the finished part is one solid.
+fillet/chamfer: {id,op:"fillet"|"chamfer",size:N,selectors:[EdgeSelector,...],when?}. Select edges of the current body. Chamfer is equal-distance.
+
+Shape choices:
+- {kind:"cylinder",origin:P3,direction:P3,diameter:N,length:N}. Positive diameter/length, starts at origin.
+- {kind:"box",frame?:Frame,size:[N,N,N]}. Frame origin is the corner; sizes along u,v,normal.
+- {kind:"extrude",profile:Profile,extent:{from:N,to:N}|"throughAll"}. Along profile normal. throughAll is for cuts: software spans the current body's bounds with a local allowance.
+- {kind:"revolve",profile:Profile,axisOrigin:P3,axisDirection:P3,angleDeg:N}. Right-hand rotation, 0<angleDeg<=360; axis is in the profile plane. Profile may touch, but not cross, the axis.
+Profile={frame?:Frame,outer:Loop,holes?:[Loop,...]}. Loop choices:
+- {kind:"circle",center:P2,diameter:N}
+- {kind:"polyline",points:[P2,...],closed:true}
+- {kind:"roundedSlot",center:P2,width:N,length:N,angleDeg:N}; overall tip-to-tip length, angle from local +u.
+- {kind:"path",segments:[Segment,...],closed:true}. Segment={kind:"line",start:P2,end:P2} or {kind:"arc",start:P2,mid:P2,end:P2}. Arc passes through the three points. Segments join end-to-start and close.
+Curved profiles and later fillets are both valid construction methods. Choose whichever directly describes the part; there is no required minimum number of steps.
+
+instances applies copies of the shape before its add/cut:
+{kind:"linear",count:N,step:P3} includes i=0 through count-1, translation i*step.
+{kind:"polar",count:N,axisOrigin:P3,axisDirection:P3,startAngleDeg:N,stepAngleDeg:N} rotates the supplied shape around the world-space axis by start+i*step. The supplied shape already occupies its seed location, including its radial offset. Each instance's orientation rotates with it. Without instances there is one copy. instance references are zero-based. The copies are combined before the body update.
+
+EdgeSelector={near:P3,directionKind:"axis"|"tangent",direction:P3,operation?:id}. near locates an edge on the current body; operation optionally narrows its construction origin. axis is a circular/elliptic edge's rotation axis; tangent is edge tangent at near. A selector identifies one edge; list multiple selectors for multiple edges. Software resolves and deduplicates edges, and reports ambiguous selection rather than choosing an arbitrary candidate.
+
+DRAWING
+Geometry uses nominal values. Dimension values/tolerances come from valueSource independently of construction expressions. Repeated positions or values across geometry and drawing are allowed.
+
+dimensions: {id,type,valueSource,targets:[{operation:id,role:string,instance?:integer}],axis,sourceColor,when?,quantity?,visible?,hideIf?}.
+type=diameter|pitchDiameter|distance|angle|radius|thickness; axis=X|Y|Z|radial. valueSource={kind:"column",column:string} retains that cell's original tolerance, or {kind:"constant",value:number,unit:"mm"|"deg"}. role describes the measured entity/relation. sourceColor=black|green. Software hides green dimensions. Defaults: when=true, quantity=1, visible=true, hideIf={kind:"never"}; hideIf may also be {kind:"zero"}. A dimension's condition can follow the optional feature it refers to.
+
+views: {id,direction:P3,up:P3,projection:"orthographic"}. Direction is object-to-camera; up is the page-up direction. Vectors are numeric, nonparallel, normalized locally. Isometric is an orthographic view with oblique direction.
+
+sections describe the trace in the template:
+{id,view,sourceView,kind:"featureTrace",main:Reference,through:[Reference,...]}.
+Reference={feature:id,entity:"axis"|"frameOrigin",instance?:integer}. The feature denotes its own construction shape/axis, not the accumulated body's origin. Circular extrusions, cylinders and revolves support axis. frameOrigin is the feature's profile/shape origin. main locates the main trace; through lists additional crossed features. Software constructs the trace and omits absent features. Alternatively a straight section is {id,view,kind:"planar",point:P3,normal:P3}; point/normal are world coordinates. Section IDs refer to separately declared views. The section describes a view, not a geometry cut operation.
+
+details: {id,label,sourceView,features:[id,...],sheetBox:[x,y,width,height]}. Magnify the existing geometry in that view/section; do not construct separate detail geometry. sheetBox is normalized 0..1 from the original JPEG page's top-left.
+
+geometricTolerances: {kind,value:N,targets:[{operation:id,role:string,instance?:integer}]}.
+Output filename and title-block product identifier use the current row's outputId. Document presentation follows the template; this version adds no cell-by-cell title-block description.
+
+tableInput: {"schemaVersion":1,"lengthUnit":"mm","rows":[{"outputId":"30-24-422","cells":{"A":{"state":"number","nominalMm":236,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"B":{"state":"number","nominalMm":200,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.5},"text":null},"C":{"state":"number","nominalMm":11.7,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":0.1,"lowerDeviationMm":-0.1},"text":null},"D":{"state":"number","nominalMm":70,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"E":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"F":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null}}},{"outputId":"30-24-143","cells":{"A":{"state":"number","nominalMm":236,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"B":{"state":"number","nominalMm":143.7,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.5},"text":null},"C":{"state":"number","nominalMm":11.7,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":0.1,"lowerDeviationMm":-0.1},"text":null},"D":{"state":"number","nominalMm":70,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"E":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"F":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null}}},{"outputId":"30-24-54","cells":{"A":{"state":"number","nominalMm":255,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"B":{"state":"number","nominalMm":143.7,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.5},"text":null},"C":{"state":"number","nominalMm":11.7,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":0.1,"lowerDeviationMm":-0.1},"text":null},"D":{"state":"number","nominalMm":47,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"E":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"F":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null}}}]}
