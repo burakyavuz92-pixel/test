@@ -1,0 +1,50 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "RECIPE_V7_RESOLUTION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-200: Kesit bo\u015F/bilinmeyen parametre kullan\u0131yor.",
+      "AffectedFields": [],
+      "RecommendedAction": "Tarif incelenmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V7_RESOLUTION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-92: Kesit bo\u015F/bilinmeyen parametre kullan\u0131yor.",
+      "AffectedFields": [],
+      "RecommendedAction": "Tarif incelenmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V7_RESOLUTION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-381: Kesit y\u00F6n\u00FC s\u0131f\u0131r olamaz.",
+      "AffectedFields": [],
+      "RecommendedAction": "Tarif incelenmeli.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "4FAF7C74874632F42A3E1E1025E67B0BDD51EBD36D58DCBBCF3D10D8E83FE66A"
+    },
+    "SchemaVersion": 7,
+    "RowCount": 4,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.128836,
+    "ReasoningEffort": "high",
+    "MaxCompletionTokens": 32768,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

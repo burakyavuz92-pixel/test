@@ -1,0 +1,883 @@
+{
+  "schemaVersion": 7,
+  "geometry": {
+    "parameters": [
+      {
+        "id": "A",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      {
+        "id": "B",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      {
+        "id": "C",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      {
+        "id": "D",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      {
+        "id": "E",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      {
+        "id": "F",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      {
+        "id": "G",
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "G"
+        }
+      },
+      {
+        "id": "two",
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      {
+        "id": "minusOne",
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": -1
+        }
+      },
+      {
+        "id": "t",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      {
+        "id": "depth",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 33
+        }
+      },
+      {
+        "id": "rOut",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 8
+        }
+      },
+      {
+        "id": "midOutOff",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 2.3431
+        }
+      },
+      {
+        "id": "midInOff",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 4.4645
+        }
+      },
+      {
+        "id": "margin",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 10
+        }
+      },
+      {
+        "id": "jog",
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 20
+        }
+      },
+      {
+        "id": "halfA",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        }
+      },
+      {
+        "id": "rm8",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "rOut"
+          ]
+        }
+      },
+      {
+        "id": "rm3",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "t"
+          ]
+        }
+      },
+      {
+        "id": "rmOut",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "midOutOff"
+          ]
+        }
+      },
+      {
+        "id": "rmIn",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "halfA",
+            "midInOff"
+          ]
+        }
+      },
+      {
+        "id": "zPlate",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "t",
+            "minusOne"
+          ]
+        }
+      },
+      {
+        "id": "zFillet",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "rOut",
+            "minusOne"
+          ]
+        }
+      },
+      {
+        "id": "zRim",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "depth",
+            "minusOne"
+          ]
+        }
+      },
+      {
+        "id": "yC",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "B",
+            "G"
+          ]
+        }
+      },
+      {
+        "id": "yD",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "G",
+            "minusOne"
+          ]
+        }
+      },
+      {
+        "id": "xE",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "F",
+            "minusOne"
+          ]
+        }
+      },
+      {
+        "id": "ext",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "halfA",
+            "margin"
+          ]
+        }
+      },
+      {
+        "id": "negExt",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "ext",
+            "minusOne"
+          ]
+        }
+      },
+      {
+        "id": "negJog",
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "jog",
+            "minusOne"
+          ]
+        }
+      }
+    ],
+    "frames": [
+      {
+        "id": "world",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "features": [
+      {
+        "id": "profileSketch",
+        "kind": "sketch",
+        "frame": "world",
+        "uses": [],
+        "args": {
+          "plane": "XZ",
+          "loops": [
+            {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    0
+                  ],
+                  "end": [
+                    {
+                      "param": "rm8"
+                    },
+                    0
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    {
+                      "param": "rm8"
+                    },
+                    0
+                  ],
+                  "mid": [
+                    {
+                      "param": "rmOut"
+                    },
+                    -2.3431
+                  ],
+                  "end": [
+                    {
+                      "param": "halfA"
+                    },
+                    {
+                      "param": "zFillet"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "halfA"
+                    },
+                    {
+                      "param": "zFillet"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "halfA"
+                    },
+                    {
+                      "param": "zRim"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "halfA"
+                    },
+                    {
+                      "param": "zRim"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "rm3"
+                    },
+                    {
+                      "param": "zRim"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "rm3"
+                    },
+                    {
+                      "param": "zRim"
+                    }
+                  ],
+                  "end": [
+                    {
+                      "param": "rm3"
+                    },
+                    {
+                      "param": "zFillet"
+                    }
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    {
+                      "param": "rm3"
+                    },
+                    {
+                      "param": "zFillet"
+                    }
+                  ],
+                  "mid": [
+                    {
+                      "param": "rmIn"
+                    },
+                    -4.4645
+                  ],
+                  "end": [
+                    {
+                      "param": "rm8"
+                    },
+                    {
+                      "param": "zPlate"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    {
+                      "param": "rm8"
+                    },
+                    {
+                      "param": "zPlate"
+                    }
+                  ],
+                  "end": [
+                    0,
+                    {
+                      "param": "zPlate"
+                    }
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    {
+                      "param": "zPlate"
+                    }
+                  ],
+                  "end": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "body",
+        "kind": "revolve",
+        "frame": "world",
+        "uses": [
+          "profileSketch"
+        ],
+        "args": {
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "holeC",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "body"
+        ],
+        "args": {
+          "diameter": {
+            "param": "C"
+          },
+          "origin": [
+            0,
+            {
+              "param": "yC"
+            },
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeD",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "holeC"
+        ],
+        "args": {
+          "diameter": {
+            "param": "D"
+          },
+          "origin": [
+            0,
+            {
+              "param": "yD"
+            },
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeE",
+        "kind": "hole",
+        "frame": "world",
+        "uses": [
+          "holeD"
+        ],
+        "presence": {
+          "kind": "columnPresent",
+          "column": "E"
+        },
+        "args": {
+          "diameter": {
+            "param": "E"
+          },
+          "origin": [
+            {
+              "param": "xE"
+            },
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      }
+    ],
+    "result": "holeE"
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "axis"
+          },
+          {
+            "operation": "holeD",
+            "role": "axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "holeD",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "holeE",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "holeE",
+            "role": "axis"
+          },
+          {
+            "operation": "body",
+            "role": "axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "black",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "axis"
+          },
+          {
+            "operation": "holeD",
+            "role": "axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimDepth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "depth"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "plateOuterFace"
+          },
+          {
+            "operation": "body",
+            "role": "rimEndFace"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimThickness",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "t"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "plate"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimFillet",
+        "type": "radius",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "rOut"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outerFillet"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      }
+    ],
+    "views": [
+      {
+        "id": "front",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          0.577,
+          0.577,
+          0.577
+        ],
+        "up": [
+          -0.408,
+          0.816,
+          -0.408
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "viewSectionAA",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "viewSectionAA",
+        "kind": "stepped",
+        "sourceView": "front",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "path": [
+          [
+            0,
+            {
+              "param": "ext"
+            }
+          ],
+          [
+            0,
+            {
+              "param": "jog"
+            }
+          ],
+          [
+            {
+              "param": "xE"
+            },
+            {
+              "param": "jog"
+            }
+          ],
+          [
+            {
+              "param": "xE"
+            },
+            {
+              "param": "negJog"
+            }
+          ],
+          [
+            0,
+            {
+              "param": "negJog"
+            }
+          ],
+          [
+            0,
+            {
+              "param": "negExt"
+            }
+          ]
+        ],
+        "targets": [
+          "body"
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
