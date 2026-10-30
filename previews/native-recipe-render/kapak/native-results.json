@@ -1,0 +1,290 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "30-24-143",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "plate",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 218717.68054292141
+        },
+        {
+          "id": "bossSeed",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1900.6635554218249
+        },
+        {
+          "id": "bossPattern",
+          "op": "circularPattern",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 7602.654221687299
+        },
+        {
+          "id": "plateWithBosses",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 226320.3347646087
+        },
+        {
+          "id": "centerBore",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 207078.0797613712
+        },
+        {
+          "id": "boltSeed",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4300.526183499068
+        },
+        {
+          "id": "boltPattern",
+          "op": "circularPattern",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 17202.104733996253
+        },
+        {
+          "id": "boltHolesCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 202777.55357787214
+        },
+        {
+          "id": "slotExtrude",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 2,
+          "volumeMm3": 25196.282401553985
+        },
+        {
+          "id": "finalCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 200687.5577366269
+        }
+      ],
+      "volumeMm3": 200687.5577366269,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF"
+        ]
+      }
+    },
+    {
+      "outputId": "30-24-422",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "plate",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 218717.68054292141
+        },
+        {
+          "id": "bossSeed",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1900.6635554218249
+        },
+        {
+          "id": "bossPattern",
+          "op": "circularPattern",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 7602.654221687299
+        },
+        {
+          "id": "plateWithBosses",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 226320.3347646087
+        },
+        {
+          "id": "centerBore",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 207078.0797613712
+        },
+        {
+          "id": "boltSeed",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4300.526183499068
+        },
+        {
+          "id": "boltPattern",
+          "op": "circularPattern",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 17202.10473399625
+        },
+        {
+          "id": "boltHolesCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 202777.55357787214
+        },
+        {
+          "id": "slotExtrude",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 2,
+          "volumeMm3": 25196.282401553985
+        },
+        {
+          "id": "finalCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 200687.5577366269
+        }
+      ],
+      "volumeMm3": 200687.5577366269,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF"
+        ]
+      }
+    },
+    {
+      "outputId": "30-24-54",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "plate",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 255352.57787459533
+        },
+        {
+          "id": "bossSeed",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1900.6635554218249
+        },
+        {
+          "id": "bossPattern",
+          "op": "circularPattern",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 7602.654221687299
+        },
+        {
+          "id": "plateWithBosses",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 262955.23209628265
+        },
+        {
+          "id": "centerBore",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 254280.50938155787
+        },
+        {
+          "id": "boltSeed",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4300.526183499068
+        },
+        {
+          "id": "boltPattern",
+          "op": "circularPattern",
+          "validBrep": true,
+          "solidCount": 4,
+          "volumeMm3": 17202.104733996253
+        },
+        {
+          "id": "boltHolesCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 249979.9831980588
+        },
+        {
+          "id": "slotExtrude",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 2,
+          "volumeMm3": 25196.28240155397
+        },
+        {
+          "id": "finalCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 247889.2643470374
+        }
+      ],
+      "volumeMm3": 247889.2643470374,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF"
+        ]
+      }
+    }
+  ]
+}

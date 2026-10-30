@@ -1,0 +1,87 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "11-30-212",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "outerBody",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 663504.3684381644
+        },
+        {
+          "id": "innerBody",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 577421.5881371503
+        },
+        {
+          "id": "cupCut",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 104709.28314414766
+        },
+        {
+          "id": "outerFillet",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 97959.76864256141
+        },
+        {
+          "id": "innerFillet",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100517.75792840394
+        },
+        {
+          "id": "holeC",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100282.13847938462
+        },
+        {
+          "id": "holeD",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100046.51903036547
+        },
+        {
+          "id": "holeE",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 99987.61416811054
+        }
+      ],
+      "volumeMm3": 99987.61416811054,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimG"
+        ]
+      }
+    }
+  ]
+}

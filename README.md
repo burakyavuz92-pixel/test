@@ -73,3 +73,9 @@ Onay komutu tarifi `.recipe-library/<image-sha256>` altına kaydeder (CAD_RECIPE
 64 kontrol geçti; kapak denemesi previews/kapak-feature-trace/NOTLAR.md içindedir.
 
 Ana referans düzeltmesiyle 71 kontrol geçti. Kayıtlı taslak2/kapak tariflerinin API’siz yeniden çözümü previews/section-main-anchor-fix/NOTLAR.md altında.
+
+## Kayıtlı v7 tarifinden native önizleme
+
+`render-saved-group <xlsx> <jpeg> <saved-api-run> <empty-output>` kaynak özetlerini kontrol eder, güncel çözümlenmiş tarifleri oluşturur ve tools/cad_recipe_executor.py ile OCCT katısı, STEP ve JPEG inceleme önizlemesi üretir. Yeni API çağrısı yapmaz. Mevcut son kapak/taslak2 tariflerinin 7 ürünü ve212'nin eski kesit karşılaştırması previews/native-recipe-render/NOTLAR.md altında.
+
+Bu yürütücü gerçek geometri/görünüş/kesit üretir; henüz orijinal antetli, oklarla ölçülendirilmiş üretim paftası üretmez. Ölçüler/toleranslar tabloda gösterilir. Eski genel yürütücü eksikliği notları tam üretim paftası açısından hâlâ geçerli; kayıtlı tarif için native inceleme yolu artık vardır. Ağ çağrısı yoktur. OCCT_PYTHON ve Arial yolu (ARIAL_FONT) yerel kurulumda ayarlanabilir. Python bağımlılıkları mevcut OCCT deney ortamındadır; Windows paketleme bu çalışmada doğrulanmadı.
