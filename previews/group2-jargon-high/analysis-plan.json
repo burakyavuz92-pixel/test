@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 4,
+  "colorPolicyVersion": 1,
+  "coordinateFrame": {
+    "referenceView": {
+      "id": "front-view-with-holes",
+      "bbox01": [
+        0.30,
+        0.13,
+        0.68,
+        0.70
+      ]
+    },
+    "origin": {
+      "kind": "axis-face-intersection",
+      "feature": "body",
+      "point01": [
+        0.512,
+        0.407
+      ],
+      "evidence": "G\u00F6vde dairesinin merkez \u00E7izgilerinin kesi\u015Fimi; \u00F6n y\u00FCz ekseni."
+    },
+    "axes": {
+      "x": "right",
+      "y": "up",
+      "z": "toward-viewer"
+    },
+    "bodyAnchor": {
+      "x": {
+        "kind": "origin"
+      },
+      "y": {
+        "kind": "origin"
+      }
+    }
+  },
+  "measurementSources": [
+    {
+      "column": "A",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "body",
+      "toFeature": "body",
+      "evidence": "Kesitte ve \u00F6n g\u00F6r\u00FCn\u00FC\u015Fte d\u0131\u015F \u00E7ap \u00F6l\u00E7\u00FCs\u00FC \u2300\u0027A\u0027."
+    },
+    {
+      "column": "B",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "holeD",
+      "toFeature": "holeC",
+      "evidence": "Alt ve \u00FCst delik merkezleri aras\u0131 d\u00FC\u015Fey \u00F6l\u00E7\u00FC \u0027B\u0027."
+    },
+    {
+      "column": "C",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "holeC",
+      "toFeature": "holeC",
+      "evidence": "\u00DCst delik i\u00E7in \u2300\u0027C\u0027 \u00E7ap \u00E7\u0131k\u0131nt\u0131 \u00E7izgisi."
+    },
+    {
+      "column": "D",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "holeD",
+      "toFeature": "holeD",
+      "evidence": "Alt delik i\u00E7in \u2300\u0027D\u0027 \u00E7ap \u00E7\u0131k\u0131nt\u0131 \u00E7izgisi."
+    },
+    {
+      "column": "E",
+      "color": "black",
+      "axis": "diameter",
+      "fromFeature": "holeE",
+      "toFeature": "holeE",
+      "evidence": "Sol k\u00FC\u00E7\u00FCk delik i\u00E7in \u2300\u0027E\u0027 \u00E7ap \u00E7\u0131k\u0131nt\u0131 \u00E7izgisi."
+    },
+    {
+      "column": "F",
+      "color": "black",
+      "axis": "X",
+      "fromFeature": "holeE",
+      "toFeature": "body",
+      "evidence": "E deli\u011Fi merkezinden A-A d\u00FC\u015Fey eksenine yatay \u00F6l\u00E7\u00FC \u0027F\u0027."
+    },
+    {
+      "column": "G",
+      "color": "black",
+      "axis": "Y",
+      "fromFeature": "body",
+      "toFeature": "holeD",
+      "evidence": "Merkez yatay \u00E7izgisinden alt delik merkezine d\u00FC\u015Fey \u00F6l\u00E7\u00FC \u0027G\u0027."
+    }
+  ],
+  "geometry": {
+    "kind": "revolved-plate",
+    "outerDiameterColumn": "A",
+    "depthMm": 33,
+    "thicknessMm": 3,
+    "outerRadiusMm": 8,
+    "holes": [
+      {
+        "id": "holeC",
+        "diameterColumn": "C",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "holeD",
+            "column": "B",
+            "sign": 1
+          }
+        }
+      },
+      {
+        "id": "holeD",
+        "diameterColumn": "D",
+        "presentIfColumn": null,
+        "position": {
+          "x": {
+            "kind": "origin"
+          },
+          "y": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "G",
+            "sign": -1
+          }
+        }
+      },
+      {
+        "id": "holeE",
+        "diameterColumn": "E",
+        "presentIfColumn": "E",
+        "position": {
+          "x": {
+            "kind": "offset",
+            "reference": "origin",
+            "column": "F",
+            "sign": -1
+          },
+          "y": {
+            "kind": "origin"
+          }
+        }
+      }
+    ]
+  },
+  "annotations": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "kind": "diameter",
+        "feature": "body",
+        "column": "A",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimB",
+        "kind": "centerDistance",
+        "feature": "holeD:holeC",
+        "column": "B",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimC",
+        "kind": "diameter",
+        "feature": "holeC",
+        "column": "C",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimD",
+        "kind": "diameter",
+        "feature": "holeD",
+        "column": "D",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimE",
+        "kind": "diameter",
+        "feature": "holeE",
+        "column": "E",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        }
+      },
+      {
+        "id": "dimF",
+        "kind": "horizontalOffset",
+        "feature": "holeE",
+        "column": "F",
+        "visible": true,
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "kind": "verticalOffset",
+        "feature": "holeD",
+        "column": "G",
+        "visible": true,
+        "hideIf": {
+          "kind": "equalsScaledColumn",
+          "column": "B",
+          "factor": 0.5
+        }
+      }
+    ],
+    "fixedAnnotations": [
+      {
+        "kind": "radius",
+        "visible": true,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "depth",
+        "visible": true,
+        "sourceColor": "green"
+      },
+      {
+        "kind": "thickness",
+        "visible": true,
+        "sourceColor": "green"
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "section": {
+    "mode": "parallel-through-features",
+    "travelAxis": "Y",
+    "label": "A-A",
+    "featureIds": [
+      "holeC",
+      "holeD",
+      "holeE"
+    ],
+    "evidence": "A-A d\u00FC\u015Fey kesit d\u00FCzlemi merkez ekseninden ge\u00E7er; delik bo\u015Fluklar\u0131 kesitte g\u00F6r\u00FCn\u00FCr."
+  },
+  "camera": {
+    "direction": [
+      -0.55,
+      0.35,
+      0.76
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic",
+    "confidence": "medium",
+    "evidence": "\u0130zometrik g\u00F6r\u00FCn\u00FC\u015Fte delikli \u00F6n y\u00FCz solda, g\u00F6vde sa\u011Fa ve arkaya uzan\u0131yor; kamera hafif yukar\u0131da."
+  },
+  "issues": [],
+  "evidence": [
+    "Kesitte 33,0 derinlik, 3 et kal\u0131nl\u0131\u011F\u0131 ve R8 d\u0131\u015F k\u00F6\u015Fe yar\u0131\u00E7ap\u0131 ye\u015Fil \u00F6l\u00E7\u00FClerdir.",
+    "Alt delik y=-G, \u00FCst delik alt delikten B kadar yukar\u0131dad\u0131r; 11-30-92 sat\u0131r\u0131nda G\u2260B/2 oldu\u011Fundan delikler simetrik de\u011Fildir.",
+    "E ve F bo\u015F oldu\u011Funda (11-30-212 d\u0131\u015F\u0131ndaki 200 ve 92 sat\u0131rlar\u0131) E deli\u011Fi yoktur; F=0 say\u0131sal s\u0131f\u0131rd\u0131r ve E merkezdedir.",
+    "Tolerans sapmalar\u0131 nominal geometriyi de\u011Fi\u015Ftirmez."
+  ]
+}

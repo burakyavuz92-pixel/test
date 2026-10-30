@@ -263,3 +263,5 @@ Kayıtlı veri3 yanıtı yerelde review-cad-group ile yeniden değerlendirildi: 
 ## Teknik resim jargonuyla sade yorumlama denemesi
 
 `analyze-cad-group <xlsx> <jpeg> <empty-output> --technical-jargon` genel yorumlama talimatlı taslak promptunu seçer. Normal analiz/üretim son başarılı üretim talimatlarını kullanmaya devam eder. Sade taslak, kırmızı notsuz dört satır analizinde üst delikleri simetrik kabul ederek asimetrik 92'de 8 mm hata verdi; bu nedenle varsayılan yapılmadı. Geçersiz sonuç çizilmedi ve elle tamamlanmadı. Deneme kaydı previews/group2-jargon-no-notes/NOTLAR.md altında.
+
+Analiz komutunda `--reasoning=low|medium|high` açıkça seçilebilir; varsayılan low'dur. Örnek: `analyze-cad-group <xlsx> <jpeg> <output> --technical-jargon --reasoning=high`. Modelin desteklediği parametre kullanılmalı; istekteki ayar rapora ReasoningEffort olarak kaydedilir. İlk aynı-girdi karşılaştırması previews/group2-jargon-high/NOTLAR.md altında: high ile doğru B/G ilişkisi döndü, çizim yapılmadı. Tek başarılı çağrı bütün taslaklar için garanti değildir; üretim varsayılanları korunmuştur.

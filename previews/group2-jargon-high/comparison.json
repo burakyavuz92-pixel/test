@@ -1,0 +1,77 @@
+{
+  "inputChecks": {
+    "request-prompt.txt": {
+      "identical": true,
+      "sha256": "7427c6be18b71bce760892671f3e33e889f1d78a76031c40c48b21fd7ebe2afd"
+    },
+    "model-input.json": {
+      "identical": true,
+      "sha256": "c6b722b85fdafc43eb2a684eef1e6373da7b1ccd91158c7a08ac584016d1fae8"
+    },
+    "geometry-input.json": {
+      "identical": true,
+      "sha256": "33bc8edfccbc1f436c5e6fd44561afc66af6c728d39197ecef554f59e3d51633"
+    },
+    "geometry-no-red.jpg": {
+      "identical": true,
+      "sha256": "26b0dde5822d9e7593b8e0ed23c66e076b7bd4bf4752ffd9afc2fd1f236dcda8"
+    }
+  },
+  "rawPlanUnmodified": true,
+  "calls": {
+    "low": {
+      "model": "anthropic/claude-sonnet-5.5",
+      "provider": "Claude Platform on AWS",
+      "usage": {
+        "prompt_tokens": 14889,
+        "completion_tokens": 2102,
+        "total_tokens": 16991,
+        "cost": 0.050798,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.050798,
+          "upstream_inference_prompt_cost": 0.029778,
+          "upstream_inference_completions_cost": 0.02102
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "high": {
+      "model": "anthropic/claude-sonnet-5.5",
+      "provider": "Claude Platform on AWS",
+      "usage": {
+        "prompt_tokens": 14889,
+        "completion_tokens": 4793,
+        "total_tokens": 19682,
+        "cost": 0.077708,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.077708,
+          "upstream_inference_prompt_cost": 0.029778,
+          "upstream_inference_completions_cost": 0.04793
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2264,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    }
+  }
+}

@@ -23,8 +23,9 @@ try
     }
     if(args[0] == "analyze-cad-group")
     {
-        if(args.Length is not (4 or 5)||args.Length==5&&args[4]!="--technical-jargon")throw new Exception("analyze-cad-group <xlsx> <jpeg> <empty-output> [--technical-jargon]");
-        await CadGroupWorkflow.Run(args[1],args[2],args[3],analysisOnly:true,technicalJargon:args.Length==5);return;
+        if(args.Length<4||args.Skip(4).Any(a=>a!="--technical-jargon"&&a is not ("--reasoning=low" or "--reasoning=medium" or "--reasoning=high"))||args.Skip(4).Count(a=>a.StartsWith("--reasoning="))>1)throw new Exception("analyze-cad-group <xlsx> <jpeg> <empty-output> [--technical-jargon] [--reasoning=low|medium|high]");
+        string effort=args.Skip(4).FirstOrDefault(a=>a.StartsWith("--reasoning="))?.Split('=')[1]??"low";
+        await CadGroupWorkflow.Run(args[1],args[2],args[3],analysisOnly:true,technicalJargon:args.Skip(4).Contains("--technical-jargon"),reasoningEffort:effort);return;
     }
     if(args[0] == "run-cad-group")
     {

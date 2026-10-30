@@ -48,8 +48,9 @@ public static class CadGroupWorkflow
         WorkflowReports.Save(output,status,issues,new{Source=binding,RowCount=rows.Count,NewApiCalls=0,ProducedImages=0,SourceRun=Path.GetFullPath(saved)});
         Environment.ExitCode=WorkflowReports.ExitCode(status);
     }
-    public static async Task Run(string xlsx,string image,string output,bool analysisOnly=false,bool technicalJargon=false)
+    public static async Task Run(string xlsx,string image,string output,bool analysisOnly=false,bool technicalJargon=false,string reasoningEffort="low")
     {
+        if(reasoningEffort is not ("low" or "medium" or "high"))throw new Exception("Geçersiz akıl yürütme ayarı.");
         if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
         Directory.CreateDirectory(output);var issues=new List<WorkflowIssue>();string status="failed";int calls=0,produced=0;double cost=0;int rowCount=0;int suppliedRows=0;bool apiCompleted=false;
         string Hash(string path)=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path)));
@@ -72,7 +73,7 @@ public static class CadGroupWorkflow
             var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");var model=Environment.GetEnvironmentVariable("OPENROUTER_MODEL")??throw new Exception("Model yok.");
             using var client=new HttpClient{Timeout=TimeSpan.FromMinutes(3)};client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",key);
             var messages=new List<object>{new{role="user",content=new object[]{new{type="text",text=prompt},new{type="text",text="IMAGE 1: GEOMETRY — black and green, red excluded."},new{type="image_url",image_url=new{url="data:image/jpeg;base64,"+Convert.ToBase64String(File.ReadAllBytes(geometryImage))}},new{type="text",text="IMAGE 2: ORIGINAL COLOR REFERENCE — annotation rules only."},new{type="image_url",image_url=new{url="data:image/jpeg;base64,"+Convert.ToBase64String(File.ReadAllBytes(image))}}}}};
-            var body=new{model,max_tokens=6000,reasoning=new{effort="low"},response_format=new{type="json_object"},messages};
+            var body=new{model,max_tokens=6000,reasoning=new{effort=reasoningEffort},response_format=new{type="json_object"},messages};
             calls++;using var response=await client.PostAsync("https://openrouter.ai/api/v1/chat/completions",new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json"));response.EnsureSuccessStatusCode();apiCompleted=true;string raw=await response.Content.ReadAsStringAsync();File.WriteAllText(Path.Combine(output,"api-response.json"),raw);
             using var rd=JsonDocument.Parse(raw);if(rd.RootElement.TryGetProperty("usage",out var u)&&u.TryGetProperty("cost",out var c))cost=c.GetDouble();
             var choice=rd.RootElement.GetProperty("choices")[0];if(choice.GetProperty("finish_reason").GetString()!="stop")throw new Exception("API yanıtı eksik.");
@@ -102,6 +103,6 @@ public static class CadGroupWorkflow
         }
         catch(FormatException ex){issues.Add(new("EXCEL_PARSE","input","error",ex.Message,[],"Desteklenmeyen hücre gösterimini kontrol edin; nominal/tolerans tahmini yapılmaz."));status="blocked-with-report";}
         catch(Exception ex){issues.Add(new("RUN_FAILURE","software","error",ex.Message,[],"Rapor ve kayıtlı yanıt incelenmeli; yeni veri tahmin edilmez."));status="failed-with-report";}
-        finally{Environment.ExitCode=WorkflowReports.ExitCode(status);WorkflowReports.Save(output,status,issues,new{Source=source,RowCount=rowCount,ModelSampleRowCount=suppliedRows,ExcelInputSchemaVersion=1,ApiCalls=calls,ApiResponseReceived=apiCompleted,ReportedCostUsd=cost,ProducedImages=produced,AnalysisOnly=analysisOnly,PromptVariant=technicalJargon?"technical-jargon-draft":"production",ColorPolicyVersion=1,AssistantAnswersUsed=false});Console.WriteLine(status+"; rapor: "+Path.Combine(output,"RAPOR.md"));}
+        finally{Environment.ExitCode=WorkflowReports.ExitCode(status);WorkflowReports.Save(output,status,issues,new{Source=source,RowCount=rowCount,ModelSampleRowCount=suppliedRows,ExcelInputSchemaVersion=1,ApiCalls=calls,ApiResponseReceived=apiCompleted,ReportedCostUsd=cost,ProducedImages=produced,AnalysisOnly=analysisOnly,ReasoningEffort=reasoningEffort,PromptVariant=technicalJargon?"technical-jargon-draft":"production",ColorPolicyVersion=1,AssistantAnswersUsed=false});Console.WriteLine(status+"; rapor: "+Path.Combine(output,"RAPOR.md"));}
     }
 }
