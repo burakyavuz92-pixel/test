@@ -93,3 +93,11 @@ Medium+detay ile aynı taslak4 girdisinin denemesi previews/group4-medium-detail
 Yeni fillet/chamfer seçicileri `directionKind=axis|tangent` taşır. `axis`, daire/elips eğrisinin dönme eksenidir; `tangent`, near noktasındaki kenar teğetidir. Yönler işlemin koordinat bazındadır ve dünya bazına taşınır. Eksene yönü paralel olan silindir dikişi, dairesel eksen seçimi diye kabul edilmez. Gerçek farklı adaylar eşit yakınsa seçim hâlâ reddedilir; yüz/kenar numarası tahmin edilmez. Eski v7 kayıtlarında directionKind yoksa önceki tangent anlamı korunur; eski API yanıtları yeniden yazılmaz.
 
 77 C# kontrolü ve12 native test geçti: circle axis/tangent ile aynı kenarı seçme, döndürülmüş bazda axis seçimi ve yanlış türün sessizce yeniden yorumlanmaması dahil. Sonraki taslak4 denemesinde aynı google/gemini-4-argon modeli, high isteği ve aynı kaynak dosyalar kullanıldı; alan tipi ile reasoning birlikte değiştiğinden sonuç tek-değişken deneyi değildir.
+
+## Deneysel: grup başına tek CadQuery geometri betiği
+
+`analyze-script-group <xlsx> <jpeg> <empty-output>` yalnız geometri isteyen kısa promptla tek parametrik build_part(p) fonksiyonu alır. C# Excel nominal değerlerini yerelde ayrıştırır; kaynak toleransları saklar. Model ve high ayarı mevcut ortamdan/iş akışından korunur. Aynı fonksiyon yerelde bütün satırlar için çağrılır. Satır başına API yanıtı veya model betiği oluşturulmaz.
+
+CadQuery için ayrı Python ortamı gerekir: CADQUERY_PYTHON (bulutta /workspace/cq-venv/bin/python); paketler tools/cadquery-script-requirements.lock. Eski OCCT ortamı değişmedi. `run-saved-script <saved-folder>` part.py ve rows.json ile API'siz tekrar çalışır. İnceleme betikleri AST/IO kontrolleriyle sınırlanır; tam bir OS sandbox iddiası yok. Bu yol kod üretir; yalnız veri protokolünden ayrı bir deneydir.
+
+STEP ve iki yönden geometri JPEG'i üretir; teknik pafta/kesit/ölçülendirme istemez ve yapmaz. Eski genel JSON yolu korunmuştur. Gerçek taslak4 denemesi previews/group4-script/NOTLAR.md altında; daha az tokena rağmen F yönündeki yanlış yorum devam etti. 80 sentetik tekrar yerelde aynı betikle doğrulandı;80 yeni ürün doğruluğu iddia edilmez. Yeni betik kitaplığı/onay/pafta bağlantısı sonraki karar konusudur.

@@ -1,0 +1,35 @@
+{
+  "apiCalls": 0,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "3e4759041a32e802ffc331cec457690d5b8e9d3ef2487351f3b89ce74685d81a",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "11-24-13",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 226400.3715983261,
+      "stepRoundtrip": true,
+      "seconds": 6.0242958250019
+    },
+    {
+      "outputId": "11-24-216",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 100382.06517540719,
+      "stepRoundtrip": true,
+      "seconds": 5.500551167002413
+    },
+    {
+      "outputId": "11-24-372",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 59704.564924968276,
+      "stepRoundtrip": true,
+      "seconds": 5.603211289999308
+    }
+  ]
+}
