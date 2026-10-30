@@ -1,0 +1,784 @@
+{
+  "schemaVersion": 7,
+  "outputId": "11-30-92",
+  "geometry": {
+    "parameters": {
+      "A": 286,
+      "B": 165.4,
+      "C": 21,
+      "D": 12.6,
+      "E": null,
+      "F": null,
+      "G": 78.7,
+      "thickness": 3,
+      "height": 33,
+      "filletR": 8,
+      "two": 2,
+      "minusOne": -1,
+      "c1": 2.3431,
+      "c2": 4.4645,
+      "ro": 143,
+      "roMinusFillet": 135,
+      "roMinusT": 140,
+      "roMidOut": 140.6569,
+      "roMidIn": 138.5355,
+      "yC": 86.7,
+      "yD": -78.7
+    },
+    "parameterMetadata": {
+      "A": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      "B": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      "C": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      "D": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      "E": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      "F": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      "G": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "G"
+        }
+      },
+      "thickness": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      "height": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 33
+        }
+      },
+      "filletR": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 8
+        }
+      },
+      "two": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "minusOne": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": -1
+        }
+      },
+      "c1": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 2.3431
+        }
+      },
+      "c2": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 4.4645
+        }
+      },
+      "ro": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        }
+      },
+      "roMinusFillet": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "ro",
+            "filletR"
+          ]
+        }
+      },
+      "roMinusT": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "ro",
+            "thickness"
+          ]
+        }
+      },
+      "roMidOut": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "ro",
+            "c1"
+          ]
+        }
+      },
+      "roMidIn": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "ro",
+            "c2"
+          ]
+        }
+      },
+      "yC": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "B",
+            "G"
+          ]
+        }
+      },
+      "yD": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "G",
+            "minusOne"
+          ]
+        }
+      }
+    },
+    "frames": [
+      {
+        "id": "world",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "basisNormalizationApplied": false
+      }
+    ],
+    "operations": [
+      {
+        "id": "profileSketch",
+        "op": "sketch",
+        "frame": "world",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "plane": "XZ",
+          "loops": [
+            {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    0
+                  ],
+                  "end": [
+                    135,
+                    0
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    135,
+                    0
+                  ],
+                  "mid": [
+                    140.6569,
+                    2.3431
+                  ],
+                  "end": [
+                    143,
+                    8
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    143,
+                    8
+                  ],
+                  "end": [
+                    143,
+                    33
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    143,
+                    33
+                  ],
+                  "end": [
+                    140,
+                    33
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    140,
+                    33
+                  ],
+                  "end": [
+                    140,
+                    8
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    140,
+                    8
+                  ],
+                  "mid": [
+                    138.5355,
+                    4.4645
+                  ],
+                  "end": [
+                    135,
+                    3
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    135,
+                    3
+                  ],
+                  "end": [
+                    0,
+                    3
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    3
+                  ],
+                  "end": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "body",
+        "op": "revolve",
+        "frame": "world",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "profileSketch"
+        ],
+        "featureApplied": true,
+        "args": {
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "holeC",
+        "op": "hole",
+        "frame": "world",
+        "target": "body",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 21,
+          "origin": [
+            0,
+            86.7,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeD",
+        "op": "hole",
+        "frame": "world",
+        "target": "holeC",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 12.6,
+          "origin": [
+            0,
+            -78.7,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "holeE",
+        "op": "passThrough",
+        "target": "holeD",
+        "featureApplied": false
+      }
+    ],
+    "result": "holeE",
+    "featureApplied": {
+      "profileSketch": true,
+      "body": true,
+      "holeC": true,
+      "holeD": true,
+      "holeE": false
+    }
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "A",
+        "effectiveVisible": true,
+        "nominal": 286,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 286,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "axis"
+          },
+          {
+            "operation": "holeD",
+            "role": "axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "B",
+        "effectiveVisible": true,
+        "nominal": 165.4,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 165.4,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "C",
+        "effectiveVisible": true,
+        "nominal": 21,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 21,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.1,
+            "lowerDeviationMm": -0
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "holeD",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "D",
+        "effectiveVisible": true,
+        "nominal": 12.6,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 12.6,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.1,
+            "lowerDeviationMm": -0
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimG",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "body",
+            "role": "axis"
+          },
+          {
+            "operation": "holeD",
+            "role": "axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "G",
+        "effectiveVisible": true,
+        "nominal": 78.7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 78.7,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimThickness",
+        "type": "thickness",
+        "targets": [
+          {
+            "operation": "body",
+            "role": "plateThickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "thickness",
+        "effectiveVisible": false,
+        "nominal": 3,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "thickness"
+        }
+      },
+      {
+        "id": "dimHeight",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "body",
+            "role": "overallHeight"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "height",
+        "effectiveVisible": false,
+        "nominal": 33,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "height"
+        }
+      },
+      {
+        "id": "dimFillet",
+        "type": "radius",
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outerFillet"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "filletR",
+        "effectiveVisible": false,
+        "nominal": 8,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "filletR"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "viewPlan",
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "viewSection",
+        "direction": [
+          -1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "viewIso",
+        "direction": [
+          -0.8,
+          0.6,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "viewSection",
+        "kind": "planar",
+        "frame": "world",
+        "plane": {
+          "point": [
+            0,
+            0,
+            0
+          ],
+          "normal": [
+            -1,
+            0,
+            0
+          ]
+        },
+        "targets": [],
+        "cuttingPlanes": [
+          {
+            "point": [
+              0,
+              0,
+              0
+            ],
+            "normal": [
+              -1,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "executionStatus": "recipe-resolved-not-rendered"
+}
