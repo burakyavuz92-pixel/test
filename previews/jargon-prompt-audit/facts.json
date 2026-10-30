@@ -1,0 +1,110 @@
+{
+  "rawApiMatchesSavedPlan": true,
+  "finishReason": "stop",
+  "BObservation": {
+    "column": "B",
+    "color": "black",
+    "axis": "Y",
+    "fromFeature": "holeC",
+    "toFeature": "holeD",
+    "evidence": "Üst ve alt delik merkezleri arası dikey ölçü."
+  },
+  "geometryPositions": [
+    {
+      "id": "holeC",
+      "position": {
+        "x": {
+          "kind": "origin"
+        },
+        "y": {
+          "kind": "offset",
+          "reference": "origin",
+          "column": "G",
+          "sign": 1
+        }
+      }
+    },
+    {
+      "id": "holeD",
+      "position": {
+        "x": {
+          "kind": "origin"
+        },
+        "y": {
+          "kind": "offset",
+          "reference": "origin",
+          "column": "G",
+          "sign": -1
+        }
+      }
+    },
+    {
+      "id": "holeE",
+      "position": {
+        "x": {
+          "kind": "offset",
+          "reference": "origin",
+          "column": "F",
+          "sign": -1
+        },
+        "y": {
+          "kind": "origin"
+        }
+      }
+    }
+  ],
+  "modelContradictionAcknowledgement": {
+    "code": "B_G_REDUNDANT",
+    "category": "input",
+    "severity": "warning",
+    "message": "B ve 2G ilişkisi satırlarda tutarsız (ör. 88.9 vs 2×44.45 uyumlu, 89 vs 2×44.5 uyumlu, 165.4 vs 157.4 uyumsuz).",
+    "affectedFields": [
+      "B",
+      "G"
+    ],
+    "recommendedAction": "Delik konumları için G kullanıldı; 11-30-92 satırında B ile G doğrulanmalı."
+  },
+  "asymmetricRow": {
+    "B": {
+      "state": "number",
+      "nominalMm": 165.4,
+      "isZero": false,
+      "diameterSymbol": false
+    },
+    "G": {
+      "state": "number",
+      "nominalMm": 78.7,
+      "isZero": false,
+      "diameterSymbol": false
+    }
+  },
+  "observedPattern": [
+    {
+      "product": "11-30-212",
+      "B": 88.9,
+      "G": 44.45,
+      "BEquals2G": true
+    },
+    {
+      "product": "11-30-200",
+      "B": 89,
+      "G": 44.5,
+      "BEquals2G": true
+    },
+    {
+      "product": "11-30-92",
+      "B": 165.4,
+      "G": 78.7,
+      "BEquals2G": false
+    },
+    {
+      "product": "11-30-381",
+      "B": 70,
+      "G": 35,
+      "BEquals2G": true
+    }
+  ],
+  "newApiCalls": 0,
+  "newDrawings": 0,
+  "applicationCodeChanged": false
+}
