@@ -187,6 +187,37 @@ def section_lines(shape,spec,view):
  if not lines:raise RuntimeError('Empty section')
  return lines,loops
 
+def clipped_lines(lines,roi):
+ result=[]
+ for line in lines:
+  for a,b in zip(line,line[1:]):
+   dx=b[0]-a[0];dy=b[1]-a[1];lo=0.;hi=1.;keep=True
+   for p,q in [(-dx,a[0]-roi[0]),(dx,roi[2]-a[0]),(-dy,a[1]-roi[1]),(dy,roi[3]-a[1])]:
+    if abs(p)<1e-12:
+     if q<0:keep=False;break
+    elif p<0:lo=max(lo,q/p)
+    else:hi=min(hi,q/p)
+   if keep and lo<=hi:result.append([(a[0]+lo*dx,a[1]+lo*dy),(a[0]+hi*dx,a[1]+hi*dy)])
+ return result
+
+def detail_region(recipe,shapes,detail,view):
+ right,up,n=basis(view);ops={o['id']:o for o in recipe['geometry']['operations']};frames={f['id']:f for f in recipe['geometry']['frames']};projected=[]
+ primary=[id for id in detail['features'] if ops[id]['op'] in ('cylinder','extrude','revolve','circularPattern','linearPattern')]
+ for id in detail['features']:
+  if primary and id not in primary:continue
+  op=ops[id];a=op.get('args',{})
+  if op['op'] in ('fillet','chamfer'):
+   f=frames[op['frame']];x=np.array(f['xAxis']);z=np.array(f['zAxis']);rotation=np.column_stack([x,np.cross(z,x),z]);radius=max(a['size']*3,1.)
+   centers=[np.array(f['origin'])+rotation@np.array(s['near']) for s in a['selectors']]
+   boxes=[tuple(c-radius)+tuple(c+radius) for c in centers]
+  else:boxes=[box(shapes[id])]
+  for b in boxes:
+   for x in (b[0],b[3]):
+    for y in (b[1],b[4]):
+     for z in (b[2],b[5]):projected.append((np.dot([x,y,z],right),np.dot([x,y,z],up)))
+ xs=[p[0] for p in projected];ys=[p[1] for p in projected];w=max(xs)-min(xs);h=max(ys)-min(ys);pad=max(w,h)*.15+0.1
+ return [min(xs)-pad,min(ys)-pad,max(xs)+pad,max(ys)+pad]
+
 def text_value(d):
  v=f"{d['nominal']:g}".replace('.',',');m=d.get('sourceMeasurement',{});tol=m.get('tolerance');prefix='Ø' if d['type'] in ('diameter','pitchDiameter') else 'R' if d['type']=='radius' else ''
  if d.get('quantity',1)>1:prefix=f"{d['quantity']:g}×"+prefix
@@ -212,7 +243,8 @@ def sheet(recipe,shape,shapes,out,source):
     layer=Image.new('1',im.size);ImageDraw.Draw(layer).polygon([pix(p) for p in loop],fill=1);mask=ImageChops.logical_xor(mask,layer)
    hatch=Image.new('RGB',im.size,'white');hd=ImageDraw.Draw(hatch)
    for offset in range(-im.height,im.width,12*S):hd.line((offset,im.height,offset+im.height,0),fill='#777777',width=1)
-   im.paste(hatch,(0,0),mask)
+   region=Image.new('1',im.size);ImageDraw.Draw(region).rectangle((int(x*S),int(y*S),int((x+w)*S),int((y+h)*S)),fill=1)
+   mask=ImageChops.logical_and(mask,region);im.paste(hatch,(0,0),mask)
   for line in lines:
    if len(line)>1:draw.line([pix(p) for p in line],fill='black',width=2,joint='curve')
   if trace:
@@ -226,20 +258,37 @@ def sheet(recipe,shape,shapes,out,source):
  trace=None
  sec=sections[0]
  if sec.get('worldPath'):trace=[(np.dot(p,right),np.dot(p,up)) for p in sec['worldPath']]
- pix=panel(hlr(shape,front),(100,130,880,720),trace=trace)
- txt(370,875,'Ana görünüş',16)
+ details=recipe['drawing'].get('details',[])
+ frontHeight=720
+ for detail in details:
+  bx,by,bw,bh=detail['sheetBox']
+  if bx*1754<980 and (bx+bw)*1754>100 and by*1240>180:frontHeight=min(frontHeight,by*1240-175)
+ pix=panel(hlr(shape,front),(100,130,880,max(frontHeight,120)),trace=trace)
+ txt(370,150+max(frontHeight,120),'Ana görünüş',16)
  sl,loops=section_lines(shape,sec,sv);panel(sl,(1110,140,470,380),loops);txt(1220,540,'Kesit '+sec['id'],16)
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
- image=Image.open(out/'occt-preview.png').convert('RGB');image.thumbnail((570*S,340*S));im.paste(image,(int(1100*S+(570*S-image.width)/2),int(590*S+(340*S-image.height)/2)))
+ with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
+ image.thumbnail((570*S,340*S));im.paste(image,(int(1100*S+(570*S-image.width)/2),int(590*S+(340*S-image.height)/2)))
+ detailReports=[]
+ for detail in details:
+  sourceView=next(v for v in views if v['id']==detail['sourceView']);section=next((s for s in sections if s['view']==sourceView['id']),None)
+  if section:sourceLines,sourceLoops=section_lines(shape,section,sourceView)
+  else:sourceLines=hlr(shape,sourceView);sourceLoops=[]
+  roi=detail_region(recipe,shapes,detail,sourceView);lines=clipped_lines(sourceLines,roi)
+  if not lines:raise ValueError('Detail region contains no geometry: '+detail['id'])
+  x,y,w,h=detail['sheetBox'];rect=(x*1754,y*1240,w*1754,h*1240)
+  panel(lines,rect,sourceLoops);txt(rect[0],rect[1]+rect[3]+6,'DETAY '+detail.get('label',detail['id']),15)
+  detailReports.append({'id':detail['id'],'sourceView':detail['sourceView'],'features':detail['features'],'sheetBox':detail['sheetBox'],'roiMm':roi})
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  visible=[d for d in recipe['drawing']['dimensions'] if d['effectiveVisible']]
- y=980;txt(45,y,'Ölçüler / toleranslar (mm)',16)
+ y=max([980]+[(d['sheetBox'][1]+d['sheetBox'][3])*1240+36 for d in details]);txt(45,y,'Ölçüler / toleranslar (mm)',16)
  for i,d in enumerate(visible):
   col=i%4;row=i//4;label=d.get('valueSource',{}).get('column',d['id']);txt(45+col*420,y+30+row*40,label+': '+text_value(d),17)
  for i,tol in enumerate(recipe['drawing'].get('geometricTolerances',[])):txt(45+i*400,1125,tol['kind']+': '+f"{tol['value']:g}".replace('.',','),16)
  txt(45,1170,'Model verisinden üretildi • Görsel kontrol gerektirir',15)
- dpi=Image.open(source).info.get('dpi',(300,300));im.resize((1754,1240),Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=dpi)
- return {'annotationMode':'resolved-dimension-table','limits':['Template title block/layout not reconstructed','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
+ with Image.open(source) as inputImage:dpi=inputImage.info.get('dpi',(300,300))
+ im.resize((1754,1240),Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=dpi)
+ return {'details':detailReports,'annotationMode':'resolved-dimension-table','limits':['Template title block/layout not reconstructed','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
 
 def run(folder,source):
  folder=pathlib.Path(folder);results=[]

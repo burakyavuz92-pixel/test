@@ -1,5 +1,5 @@
 import unittest,math,copy
-from cad_recipe_executor import build,vol
+from cad_recipe_executor import build,vol,clipped_lines,detail_region,sheet
 class NativeRecipeTests(unittest.TestCase):
  def recipe(self):
   return {'geometry':{'frames':[{'id':'world','origin':[0,0,0],'xAxis':[1,0,0],'zAxis':[0,0,1]}],'operations':[
@@ -15,4 +15,26 @@ class NativeRecipeTests(unittest.TestCase):
  def test_unknown_operation_not_reinterpreted(self):
   r=self.recipe();r['geometry']['operations'][1]['op']='unknown'
   with self.assertRaisesRegex(ValueError,'Unsupported'):build(r)
+class DetailTests(unittest.TestCase):
+ def test_line_crossing_crop_keeps_visible_segment(self):
+  self.assertEqual(clipped_lines([[(-2.,0.),(2.,0.)]],[-1.,-1.,1.,1.]),[[(-1.,0.),(1.,0.)]])
+ def test_line_outside_crop_is_removed(self):
+  self.assertEqual(clipped_lines([[(2.,2.),(3.,3.)]],[-1.,-1.,1.,1.]),[])
+ def test_detail_reuses_focus_solid_not_whole_modified_body(self):
+  r=NativeRecipeTests().recipe();_,shapes,_=build(r)
+  r['geometry']['operations'].insert(1,{'id':'boss','op':'cylinder','frame':'world','args':{'origin':[0,0,0],'direction':[0,0,1],'diameter':4,'length':2}})
+  _,shapes,_=build(r)
+  roi=detail_region(r,shapes,{'features':['boss','hole']},{'direction':[0,0,1],'up':[0,1,0]})
+  self.assertLess(roi[2]-roi[0],6)
+ def test_detail_preview_is_rendered_from_existing_shape(self):
+  import tempfile,pathlib
+  from PIL import Image
+  r=NativeRecipeTests().recipe();r['outputId']='detail-test';shape,shapes,_=build(r)
+  r['drawing']={'dimensions':[],'views':[{'id':'front','direction':[0,0,1],'up':[0,1,0],'projection':'orthographic'},{'id':'cut','direction':[1,0,0],'up':[0,1,0],'projection':'orthographic'},{'id':'iso','direction':[1,-1,1],'up':[0,0,1],'projection':'orthographic'}],
+   'sections':[{'id':'AA','view':'cut','kind':'planar','cuttingPlanes':[{'point':[0,0,0],'normal':[1,0,0]}]}],
+   'details':[{'id':'B','label':'B','sourceView':'cut','features':['base'],'sheetBox':[.3,.64,.12,.16]}]}
+  with tempfile.TemporaryDirectory() as temp:
+   folder=pathlib.Path(temp);source=folder/'source.jpg';Image.new('RGB',(20,20),'white').save(source)
+   report=sheet(r,shape,shapes,folder,source)
+   self.assertEqual(report['details'][0]['sourceView'],'cut');self.assertTrue((folder/'detail-test.jpeg').exists())
 if __name__=='__main__':unittest.main()

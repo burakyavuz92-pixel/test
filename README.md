@@ -10,7 +10,7 @@ Girdi **bir JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır; OpenRo
 dotnet run --project src/DrawingTool.csproj -- analyze-cad-group input.xlsx template.jpg output/empty-run
 ```
 
-OPENROUTER_API_KEY ve OPENROUTER_MODEL ortamdan okunur; anahtar/font repoya eklenmez. High akıl yürütme, tek çağrı, max_tokens=32768, beş dakika HTTP zaman aşımı. Otomatik yeniden değerlendirme yok. Soru beklemek yerine rapor üretir. Özgün yanıt, kaynak özetleri ve istek metni yerelde saklanır. Modelin özel akıl yürütme metni içerebilen ham API yanıtı yayımlanmaz.
+OPENROUTER_API_KEY ve OPENROUTER_MODEL ortamdan okunur; anahtar/font repoya eklenmez. Medium akıl yürütme (son kullanıcı tercihi), tek çağrı, max_tokens=32768, beş dakika HTTP zaman aşımı. Otomatik yeniden değerlendirme yok. Soru beklemek yerine rapor üretir. Özgün yanıt, kaynak özetleri ve istek metni yerelde saklanır. Modelin özel akıl yürütme metni içerebilen ham API yanıtı yayımlanmaz.
 
 ## Geometri ve ölçülendirme ayrımı
 
@@ -39,7 +39,7 @@ Testler tolerans değişiminin geometriyi değiştirmediğini, ölçülendirmeye
 
 ## Yalnız veri promptu
 
-High akıl yürütme ve tek JPEG/tek tablo korunur. Sıfır ve boş veriler değiştirilmeden, yorumları dayatılmadan iletilir. Özellik varlığı ve gizleme koşulları sözleşmenin seçenekleridir; prompt belirli bir sütuna özel sıfır senaryosu anlatmaz. quantity=1, visible=true, hideIf=never ve presence=always varsayılanlarını yazılım ekleyebilir. Eski v7 kayıtlarını inceleyebilmek için eski açıklama alanları okunabilir; yeni yanıtta istenmez. Belirsizliği açıklama üretme zorunluluğuna dönüştürmez. Geometri/ölçü ilişkileri ve işlem argümanlarının kesin anlamları korunur.
+Tek JPEG/tek tablo korunur; son kullanıcı tercihiyle akıl yürütme medium olarak ayarlandı. Sıfır ve boş veriler değiştirilmeden, yorumları dayatılmadan iletilir. Özellik varlığı ve gizleme koşulları sözleşmenin seçenekleridir; prompt belirli bir sütuna özel sıfır senaryosu anlatmaz. quantity=1, visible=true, hideIf=never ve presence=always varsayılanlarını yazılım ekleyebilir. Eski v7 kayıtlarını inceleyebilmek için eski açıklama alanları okunabilir; yeni yanıtta istenmez. Belirsizliği açıklama üretme zorunluluğuna dönüştürmez. Geometri/ölçü ilişkileri ve işlem argümanlarının kesin anlamları korunur.
 
 ## Kesit sözleşmesi: düzlem ve görünüşte iz
 
@@ -79,3 +79,10 @@ Ana referans düzeltmesiyle 71 kontrol geçti. Kayıtlı taslak2/kapak tarifleri
 `render-saved-group <xlsx> <jpeg> <saved-api-run> <empty-output>` kaynak özetlerini kontrol eder, güncel çözümlenmiş tarifleri oluşturur ve tools/cad_recipe_executor.py ile OCCT katısı, STEP ve JPEG inceleme önizlemesi üretir. Yeni API çağrısı yapmaz. Mevcut son kapak/taslak2 tariflerinin 7 ürünü ve212'nin eski kesit karşılaştırması previews/native-recipe-render/NOTLAR.md altında.
 
 Bu yürütücü gerçek geometri/görünüş/kesit üretir; henüz orijinal antetli, oklarla ölçülendirilmiş üretim paftası üretmez. Ölçüler/toleranslar tabloda gösterilir. Eski genel yürütücü eksikliği notları tam üretim paftası açısından hâlâ geçerli; kayıtlı tarif için native inceleme yolu artık vardır. Ağ çağrısı yoktur. OCCT_PYTHON ve Arial yolu (ARIAL_FONT) yerel kurulumda ayarlanabilir. Python bağımlılıkları mevcut OCCT deney ortamındadır; Windows paketleme bu çalışmada doğrulanmadı.
+
+
+## Detay görünüşü
+
+`drawing.details` isteğe bağlıdır: `{id,label,sourceView,features:[featureId,...],sheetBox:[x,y,width,height]}`. sheetBox orijinal taslak sayfasının sol üstünden 0..1 normalize bölgedir. Yeni geometri oluşturulmaz; mevcut katının ilgili görünüş/kesit eğrileri özellik sınırlarına göre kırpılıp bu bölgeye büyütülür. Bir oluşturma özelliği ile onu delen/değiştiren özellik birlikte seçilmişse odak sınırı oluşturma özelliğinden alınır; kaynak görünüş yine son katıdan gelir. Geçersiz görünüş/özellik veya sayfa dışı kutu reddedilir. Eski kayıtlarda details yoksa boş kabul edilir. Bu ek, tüm pafta yerleşimi/antet desteğinin tamamlandığı anlamına gelmez.
+
+Medium+detay ile aynı taslak4 girdisinin denemesi previews/group4-medium-details/NOTLAR.md altında. Yanıt geometri hataları içerdiği için bu denemeden JPEG üretilemedi; otomatik düzeltme/tekrar çağrı yapılmadı. İstekte medium gönderilse de sağlayıcı kullanımında reasoning_tokens0 raporlandı. 74 C# kontrolü ve detay görüntüsü üretimini de içeren8 native test geçti.

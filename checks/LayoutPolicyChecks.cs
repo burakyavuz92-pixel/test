@@ -175,3 +175,10 @@ Check(CadRecipeV7.Resolve(Doc(anchoredTrace),ftBlank).GetProperty("drawing").Get
 Check(CadRecipeV7.Resolve(Doc(anchoredTrace),ftZero).GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="planar","main-anchor fix preserves zero-offset planar section");
 Check(!FeatureSectionTrace.CoversProjectedPoint(new[]{new[]{0.0,10},new[]{0.0,-10}},new[]{0.0,40}),"infinite-plane membership does not count as finite trace coverage");
 Check(!FeatureSectionTrace.CoversProjectedPoint(new[]{new[]{0.0,100},new[]{44.5,100},new[]{44.5,-20},new[]{0.0,-20},new[]{0.0,-100}},new[]{0.0,40}),"previous early-jog shape fails main-reference coverage check");
+var detailRecipe=newSection.DeepClone();detailRecipe["drawing"]["sections"]=new JsonArray();
+detailRecipe["drawing"]["details"]=JsonNode.Parse("""[{"id":"B","label":"B","sourceView":"front","features":["base"],"sheetBox":[0.25,0.65,0.2,0.18]}]""");
+Check(CadRecipeV7.Resolve(Doc(detailRecipe),row).GetProperty("drawing").GetProperty("details")[0].GetProperty("features")[0].GetString()=="base","detail references existing solid geometry without new dimensions");
+detailRecipe["drawing"]["details"][0]["sheetBox"]=new JsonArray(0.9,0.9,0.2,0.2);
+Check(CadRecipeV7.Check(Doc(detailRecipe),new(){row}).Any(i=>i.Severity=="error"),"detail outside page rejected");
+detailRecipe["drawing"]["details"][0]["sheetBox"]=new JsonArray(0.2,0.6,0.2,0.2);detailRecipe["drawing"]["details"][0]["features"]=new JsonArray("missing");
+Check(CadRecipeV7.Check(Doc(detailRecipe),new(){row}).Any(i=>i.Severity=="error"),"detail cannot silently invent unknown geometry");

@@ -131,10 +131,24 @@ public static class CadRecipeV7
         if(sectionFrames.Any(f=>f!["id"]!.GetValue<string>()=="__sectionWorld"))throw new Exception("Ayrılmış kesit bazı adı kullanılamaz.");
         sectionFrames.Add(JsonNode.Parse("""{"id":"__sectionWorld","origin":[0,0,0],"xAxis":[1,0,0],"zAxis":[0,0,1]}"""));
         var sections=SectionGeometry.Resolve(expandedSections,sectionFrames,node["views"]!.AsArray());
+        var details=new JsonArray();var detailIds=new HashSet<string>();
+        var knownViews=node["views"]!.AsArray().Select(v=>v!["id"]!.GetValue<string>()).ToHashSet();
+        if(recipe.TryGetProperty("drawing",out var drawing)&&drawing.TryGetProperty("details",out var definitions))
+        foreach(var definition in definitions.EnumerateArray())
+        {
+            if(!detailIds.Add(definition.GetProperty("id").GetString()!))throw new Exception("Tekrarlı detay kimliği.");
+            if(!knownViews.Contains(definition.GetProperty("sourceView").GetString()!))throw new Exception("Detay kaynak görünüşü bilinmiyor.");
+            var box=definition.GetProperty("sheetBox").EnumerateArray().Select(x=>x.GetDouble()).ToArray();
+            if(box.Length!=4||box.Any(x=>!double.IsFinite(x))||box[0]<0||box[1]<0||box[2]<=0||box[3]<=0||box[0]+box[2]>1.000001||box[1]+box[3]>1.000001)throw new Exception("Detay yerleşim kutusu 0..1 sayfa sınırlarında olmalı.");
+            var ids=definition.GetProperty("features").EnumerateArray().Select(x=>x.GetString()!).ToArray();
+            if(ids.Length==0||ids.Any(id=>node["featureApplied"]![id] is null))throw new Exception("Detay geometri referansı bilinmiyor/boş.");
+            ids=ids.Where(id=>node["featureApplied"]![id]!.GetValue<bool>()).ToArray();if(ids.Length==0)continue;
+            var detail=JsonNode.Parse(definition.GetRawText())!;detail["features"]=JsonSerializer.SerializeToNode(ids);details.Add(detail);
+        }
         return JsonSerializer.SerializeToElement(new JsonObject{
             ["schemaVersion"]=7,["outputId"]=node["outputId"]!.DeepClone(),
             ["geometry"]=new JsonObject{["parameters"]=node["parameters"]!.DeepClone(),["parameterMetadata"]=parameterMetadata,["frames"]=sectionFrames.DeepClone(),["operations"]=node["operations"]!.DeepClone(),["result"]=node["result"]!.DeepClone(),["featureApplied"]=node["featureApplied"]!.DeepClone()},
-            ["drawing"]=new JsonObject{["dimensions"]=Bind(node["dimensions"]),["views"]=node["views"]!.DeepClone(),["sections"]=sections,["geometricTolerances"]=node["geometricTolerances"]!.DeepClone()},
+            ["drawing"]=new JsonObject{["dimensions"]=Bind(node["dimensions"]),["views"]=node["views"]!.DeepClone(),["sections"]=sections,["details"]=details,["geometricTolerances"]=node["geometricTolerances"]!.DeepClone()},
             ["executionStatus"]="recipe-resolved-not-rendered"});
     }
     static void ValidateProfiles(JsonArray loops)
