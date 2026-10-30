@@ -70,13 +70,12 @@ public static class CadRecipeV7
         }
         foreach(var s in plan["sections"]!.AsArray())
         {
-            if(!views.Contains(s!["view"]!.GetValue<string>())||!frames.Contains(s["frame"]!.GetValue<string>()))throw new Exception("Kesit görünüşü/bazı bilinmiyor.");
-            string kind=s["kind"]!.GetValue<string>();var path=s["path"]!.AsArray();
-            if(kind is not ("planar" or "stepped")||path.Count<2||kind=="planar"&&path.Count!=2)throw new Exception("Kesit yolu en az iki nokta, düzlemsel kesit tam iki nokta ister.");
-            foreach(var p in path)if(p!.AsArray().Count!=3)throw new Exception("Kesit noktası üç koordinat ister.");
-            if(s["extrusionDirection"]!.AsArray().Count!=3)throw new Exception("Kesit süpürme yönü gerekli.");
+            if(!views.Contains(s!["view"]!.GetValue<string>()))throw new Exception("Kesit görünüşü bilinmiyor.");
+            if(s["kind"]!.GetValue<string>()=="planar"||s["sourceView"] is null)
+                if(!frames.Contains(s["frame"]!.GetValue<string>()))throw new Exception("Kesit bazı bilinmiyor.");
         }
     }
+
     public static JsonElement Resolve(JsonElement recipe,Dictionary<string,string> row)
     {
         var compiled=Compile(recipe);var resolved=CadRecipe.Resolve(compiled,row);
@@ -119,10 +118,11 @@ public static class CadRecipeV7
             if(n is JsonArray arr){var copy=new JsonArray();foreach(var x in arr)copy.Add(Bind(x));return copy;}
             return n?.DeepClone();
         }
+        var sections=SectionGeometry.Resolve(Bind(node["sections"])!.AsArray(),node["frames"]!.AsArray(),node["views"]!.AsArray());
         return JsonSerializer.SerializeToElement(new JsonObject{
             ["schemaVersion"]=7,["outputId"]=node["outputId"]!.DeepClone(),
             ["geometry"]=new JsonObject{["parameters"]=node["parameters"]!.DeepClone(),["parameterMetadata"]=parameterMetadata,["frames"]=node["frames"]!.DeepClone(),["operations"]=node["operations"]!.DeepClone(),["result"]=node["result"]!.DeepClone(),["featureApplied"]=node["featureApplied"]!.DeepClone()},
-            ["drawing"]=new JsonObject{["dimensions"]=Bind(node["dimensions"]),["views"]=node["views"]!.DeepClone(),["sections"]=Bind(node["sections"]),["geometricTolerances"]=node["geometricTolerances"]!.DeepClone()},
+            ["drawing"]=new JsonObject{["dimensions"]=Bind(node["dimensions"]),["views"]=node["views"]!.DeepClone(),["sections"]=sections,["geometricTolerances"]=node["geometricTolerances"]!.DeepClone()},
             ["executionStatus"]="recipe-resolved-not-rendered"});
     }
     static void ValidateProfiles(JsonArray loops)

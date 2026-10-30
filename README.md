@@ -40,3 +40,13 @@ Testler tolerans değişiminin geometriyi değiştirmediğini, ölçülendirmeye
 ## Yalnız veri promptu
 
 High akıl yürütme ve tek JPEG/tek tablo korunur. Sıfır ve boş veriler değiştirilmeden, yorumları dayatılmadan iletilir. Özellik varlığı ve gizleme koşulları sözleşmenin seçenekleridir; prompt belirli bir sütuna özel sıfır senaryosu anlatmaz. quantity=1, visible=true, hideIf=never ve presence=always varsayılanlarını yazılım ekleyebilir. Eski v7 kayıtlarını inceleyebilmek için eski açıklama alanları okunabilir; yeni yanıtta istenmez. Belirsizliği açıklama üretme zorunluluğuna dönüştürmez. Geometri/ölçü ilişkileri ve işlem argümanlarının kesin anlamları korunur.
+
+## Kesit sözleşmesi: düzlem ve görünüşte iz
+
+Düz kesit: `{id,view,kind:"planar",frame,plane:{point:[x,y,z],normal:[nx,ny,nz]},targets:[]}`. Nokta ve normal belirtilen koordinat bazındadır. Yazılım dünya koordinatına dönüştürüp normali normalize eder; kesit görünüş yönüyle paralellik kontrol edilir. Model kesme yüzeyi için süpürme yönü veya çizgi uzunluğu hesaplamaz.
+
+Kademeli kesit: `{id,view,kind:"stepped",sourceView,origin:[x,y,z],path:[[u,v],...],targets:[]}`. origin dünya koordinatıdır; u/v kaynak görünüşün ekrandaki sağ/yukarı yönlerinde mm değerleridir. Yazılım kaynak görünüş derinliğini ve iz noktalarının dünya koordinatlarını türetir. Her parça için modelden gelen yolu kullanır; belirli delik sayısına/ürüne özel kural yoktur. Çözümlenmiş kayıt `worldPath`, `sweepDirection` ve segment başına `cuttingPlanes` içerir. Planar kayıtta dünya koordinatlarında tek `cuttingPlanes` kaydı vardır.
+
+Eski v7 path/extrusionDirection kesitleri yerel inceleme için okunabilir; yanlış yönleri sessizce onarılmaz. Önceki kapaktaki Y izi + X süpürmesi, X yönünden kesit görünüşü için artık doğrulamada reddedilir. Kaynak model tarifi değiştirilmez. Kesit yolu seçiminin teknik resim açısından doğru olması hâlâ model ve insan incelemesinin sorumluluğudur; bu kontrol mekanik tutarlılık sağlar.
+
+Kesit verisi/çözümleme güncellendi; native OCCT katı ve kesit yürütücüsü bu değişiklikle tamamlanmış sayılmaz. 55 yerel kontrol geçti; bu değişiklikte ücretli API çağrısı veya çizim yapılmadı. Uzunluk/birim ve delme sözleşmeleri değiştirilmedi.
