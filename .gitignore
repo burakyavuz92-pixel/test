@@ -4,3 +4,5 @@ output/
 .env
 
 **/__pycache__/
+
+.recipe-library/

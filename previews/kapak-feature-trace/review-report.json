@@ -1,0 +1,18 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "70D7746782979BF580298A25677CDBD43D96C0D0E57F361FBFBE22310589BFBB",
+      "ImageSha256": "CC4EB1175DA80A59FDC9E44874FDC5FDFB8F9FACCCFB0C29C44ECC02C5395870"
+    },
+    "SourceRun": "/workspace/test/output/kapak-feature-trace",
+    "NewApiCalls": 0,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

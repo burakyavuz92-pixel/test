@@ -1,0 +1,17 @@
+{
+  "Contract": "cad-v7-feature-trace-1",
+  "ImageSha256": "CC4EB1175DA80A59FDC9E44874FDC5FDFB8F9FACCCFB0C29C44ECC02C5395870",
+  "RecipeSha256": "9DCF31E977676FDA3D7C9AD658B44565FB128990C59B433D790CBFE373743EA2",
+  "Columns": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "Patterns": [
+    "A:value|B:value|C:value|D:value|E:value|F:value"
+  ],
+  "HumanApproved": false
+}

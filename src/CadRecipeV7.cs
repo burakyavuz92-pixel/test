@@ -47,12 +47,20 @@ public static class CadRecipeV7
             }
             else if(kind=="parameter")param=source["parameter"]!.GetValue<string>();
             else throw new Exception("Bilinmeyen ölçü kaynağı.");
+            copy["sourceColor"]??=JsonValue.Create("black");
             copy["quantity"]??=JsonValue.Create(1);
             copy["visible"]??=JsonValue.Create(true);
             copy["hideIf"]??=new JsonObject{["kind"]="never"};
             copy["parameter"]=param;copy.AsObject().Remove("valueSource");dimensions.Add(copy);
         }
-        var compiled=new JsonObject{["schemaVersion"]=6,["parameters"]=parameters,["frames"]=Copy(geometry["frames"]),["operations"]=ops,["result"]=Copy(geometry["result"]),["dimensions"]=dimensions,["views"]=Copy(drawing["views"]),["sections"]=Copy(drawing["sections"]),["geometricTolerances"]=Copy(drawing["geometricTolerances"]),["issues"]=root["issues"]?.DeepClone()??new JsonArray()};
+        var sectionData=Copy(drawing["sections"]).AsArray();
+        foreach(var section in sectionData)
+            if(section!["kind"]!.GetValue<string>()=="featureTrace")
+            {
+                var ids=section["through"]!.AsArray().Select(a=>a!["feature"]!.GetValue<string>()).Prepend(section["main"]!["feature"]!.GetValue<string>()).Distinct();
+                section["targets"]=JsonSerializer.SerializeToNode(ids.ToArray());
+            }
+        var compiled=new JsonObject{["schemaVersion"]=6,["parameters"]=parameters,["frames"]=Copy(geometry["frames"]),["operations"]=ops,["result"]=Copy(geometry["result"]),["dimensions"]=dimensions,["views"]=Copy(drawing["views"]),["sections"]=sectionData,["geometricTolerances"]=Copy(drawing["geometricTolerances"]),["issues"]=root["issues"]?.DeepClone()??new JsonArray()};
         ValidatePresentation(compiled);
         return JsonSerializer.SerializeToElement(compiled);
     }
@@ -118,10 +126,14 @@ public static class CadRecipeV7
             if(n is JsonArray arr){var copy=new JsonArray();foreach(var x in arr)copy.Add(Bind(x));return copy;}
             return n?.DeepClone();
         }
-        var sections=SectionGeometry.Resolve(Bind(node["sections"])!.AsArray(),node["frames"]!.AsArray(),node["views"]!.AsArray());
+        var expandedSections=FeatureSectionTrace.Expand(Bind(node["sections"])!.AsArray(),node);
+        var sectionFrames=node["frames"]!.DeepClone().AsArray();
+        if(sectionFrames.Any(f=>f!["id"]!.GetValue<string>()=="__sectionWorld"))throw new Exception("Ayrılmış kesit bazı adı kullanılamaz.");
+        sectionFrames.Add(JsonNode.Parse("""{"id":"__sectionWorld","origin":[0,0,0],"xAxis":[1,0,0],"zAxis":[0,0,1]}"""));
+        var sections=SectionGeometry.Resolve(expandedSections,sectionFrames,node["views"]!.AsArray());
         return JsonSerializer.SerializeToElement(new JsonObject{
             ["schemaVersion"]=7,["outputId"]=node["outputId"]!.DeepClone(),
-            ["geometry"]=new JsonObject{["parameters"]=node["parameters"]!.DeepClone(),["parameterMetadata"]=parameterMetadata,["frames"]=node["frames"]!.DeepClone(),["operations"]=node["operations"]!.DeepClone(),["result"]=node["result"]!.DeepClone(),["featureApplied"]=node["featureApplied"]!.DeepClone()},
+            ["geometry"]=new JsonObject{["parameters"]=node["parameters"]!.DeepClone(),["parameterMetadata"]=parameterMetadata,["frames"]=sectionFrames.DeepClone(),["operations"]=node["operations"]!.DeepClone(),["result"]=node["result"]!.DeepClone(),["featureApplied"]=node["featureApplied"]!.DeepClone()},
             ["drawing"]=new JsonObject{["dimensions"]=Bind(node["dimensions"]),["views"]=node["views"]!.DeepClone(),["sections"]=sections,["geometricTolerances"]=node["geometricTolerances"]!.DeepClone()},
             ["executionStatus"]="recipe-resolved-not-rendered"});
     }

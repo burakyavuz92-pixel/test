@@ -123,3 +123,36 @@ oldSection["drawing"]["sections"]=JsonNode.Parse("""[{"id":"AA","view":"cut","fr
 Check(CadRecipeV7.Check(Doc(oldSection),new(){row}).Any(i=>i.Severity=="error"),"previous cover wrong sweep detected without silently correcting raw recipe");
 oldSection["drawing"]["sections"][0]["extrusionDirection"]=new JsonArray(0,0,1);
 Check(CadRecipeV7.Check(Doc(oldSection),new(){row}).All(i=>i.Severity!="error"),"historical valid trace remains reviewable");
+var featureTrace=v7optional.DeepClone();
+featureTrace["geometry"]["parameters"].AsArray().Add(JsonNode.Parse("""{"id":"Q","unit":"mm","source":{"kind":"column","column":"Q"}}"""));
+featureTrace["geometry"]["features"][2]["args"]["origin"]=JsonNode.Parse("""[{"param":"Q"},0,0]""");
+featureTrace["drawing"]["views"]=JsonNode.Parse("""[{"id":"front","direction":[0,0,1],"up":[0,1,0]},{"id":"cut","direction":[1,0,0],"up":[0,1,0]}]""");
+featureTrace["drawing"]["sections"]=JsonNode.Parse("""[{"id":"AA","view":"cut","sourceView":"front","kind":"featureTrace","main":{"feature":"base","entity":"axis"},"through":[{"feature":"optionalHole","entity":"axis"}]}]""");
+var ftBlank=new Dictionary<string,string>(noE){["Q"]=""};var ftZero=new Dictionary<string,string>(withE){["Q"]="0"};var ftOffset=new Dictionary<string,string>(withE){["Q"]="44.5"};
+var absentTrace=CadRecipeV7.Resolve(Doc(featureTrace),ftBlank);var centerTrace=CadRecipeV7.Resolve(Doc(featureTrace),ftZero);var offsetTrace=CadRecipeV7.Resolve(Doc(featureTrace),ftOffset);
+Check(absentTrace.GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="planar","feature trace skips absent feature without converting blank to zero");
+Check(centerTrace.GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="planar"&&centerTrace.GetProperty("geometry").GetProperty("featureApplied").GetProperty("optionalHole").GetBoolean(),"zero offset becomes planar while real hole remains");
+Check(offsetTrace.GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="stepped","offset feature produces stepped trace without model jog coordinates");
+Check(offsetTrace.GetProperty("drawing").GetProperty("sections")[0].GetProperty("worldPath").EnumerateArray().Any(p=>Math.Abs(p[0].GetDouble()-44.5)<1e-9),"derived trace goes through referenced feature");
+var oldLibrary=Environment.GetEnvironmentVariable("CAD_RECIPE_LIBRARY");
+var cacheRoot=Path.Combine(Path.GetTempPath(),"recipe-library-"+Guid.NewGuid());Directory.CreateDirectory(cacheRoot);
+try
+{
+ Environment.SetEnvironmentVariable("CAD_RECIPE_LIBRARY",Path.Combine(cacheRoot,"library"));
+ var excel=Path.Combine(cacheRoot,"input.xlsx");var jpeg=Path.Combine(cacheRoot,"input.jpg");File.WriteAllText(jpeg,"fixture");
+ void Workbook(string a,string f)
+ {
+  using var wb=new ClosedXML.Excel.XLWorkbook();var ws=wb.AddWorksheet("Data");ws.Cell(1,1).Value="jpeg file name";ws.Cell(1,2).Value="A";ws.Cell(1,3).Value="F";ws.Cell(2,1).Value="new-part";ws.Cell(2,2).Value=a;ws.Cell(2,3).Value=f;wb.SaveAs(excel);
+ }
+ var saved=Path.Combine(cacheRoot,"saved");Directory.CreateDirectory(saved);File.WriteAllText(Path.Combine(saved,"recipe.json"),dataOnly.ToJsonString());
+ Workbook("Ø236±1","5");RecipeLibrary.SaveCandidate(saved,jpeg,WorkflowReports.ReadRows(excel));
+ Workbook("Ø255±2","6");var reuse=Path.Combine(cacheRoot,"reused");RecipeLibrary.Reuse(excel,jpeg,saved,reuse);
+ using(var report=JsonDocument.Parse(File.ReadAllText(Path.Combine(reuse,"run-report.json"))))Check(report.RootElement.GetProperty("Run").GetProperty("ApiCalls").GetInt32()==0&&File.Exists(Path.Combine(reuse,"new-part.resolved.json")),"new nominal rows reuse saved candidate with zero API calls");
+ Workbook("Ø255±2","0");var bad=Path.Combine(cacheRoot,"unknown");RecipeLibrary.Reuse(excel,jpeg,saved,bad);
+ Check(!File.Exists(Path.Combine(bad,"new-part.resolved.json")),"unseen state pattern rejected without API fallback");
+ RecipeLibrary.Approve(saved);Workbook("Ø255±2","6");var approved=Path.Combine(cacheRoot,"approved");RecipeLibrary.Reuse(excel,jpeg,saved,approved);
+ using(var report=JsonDocument.Parse(File.ReadAllText(Path.Combine(approved,"run-report.json"))))Check(report.RootElement.GetProperty("Run").GetProperty("RecipeHumanApproved").GetBoolean(),"explicit approval stored separately from candidate verification");
+ Check(RecipeLibrary.TryReuseApproved(excel,jpeg,Path.Combine(cacheRoot,"automatic")),"approved matching template automatically selects local recipe");
+ File.WriteAllText(jpeg,"different");var wrong=Path.Combine(cacheRoot,"wrong");RecipeLibrary.Reuse(excel,jpeg,saved,wrong);Check(!File.Exists(Path.Combine(wrong,"new-part.resolved.json")),"different template does not silently reuse recipe");
+}
+finally{Environment.SetEnvironmentVariable("CAD_RECIPE_LIBRARY",oldLibrary);Directory.Delete(cacheRoot,true);Environment.ExitCode=0;}

@@ -1,0 +1,904 @@
+{
+  "schemaVersion": 7,
+  "outputId": "30-24-143",
+  "geometry": {
+    "parameters": {
+      "A": 236,
+      "B": 143.7,
+      "C": 11.7,
+      "D": 70,
+      "E": 5,
+      "F": 5,
+      "bossDia": 22,
+      "slotWidth": 14,
+      "slotDepth": 16.5,
+      "slotRadius": 7,
+      "kTwo": 2,
+      "kHalf": 0.5,
+      "kDiag": 0.70710678,
+      "kDiagNeg": -0.70710678,
+      "slotLength": 33,
+      "outerRadius": 118,
+      "slotPos": 83.43860004000001,
+      "slotNeg": -83.43860004000001
+    },
+    "parameterMetadata": {
+      "A": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      "B": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      "C": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      "D": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      "E": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      "F": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      "bossDia": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 22
+        }
+      },
+      "slotWidth": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 14
+        }
+      },
+      "slotDepth": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 16.5
+        }
+      },
+      "slotRadius": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 7
+        }
+      },
+      "kTwo": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "kHalf": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 0.5
+        }
+      },
+      "kDiag": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 0.70710678
+        }
+      },
+      "kDiagNeg": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": -0.70710678
+        }
+      },
+      "slotLength": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "slotDepth",
+            "kTwo"
+          ]
+        }
+      },
+      "outerRadius": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "A",
+            "kHalf"
+          ]
+        }
+      },
+      "slotPos": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "outerRadius",
+            "kDiag"
+          ]
+        }
+      },
+      "slotNeg": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "outerRadius",
+            "kDiagNeg"
+          ]
+        }
+      }
+    },
+    "frames": [
+      {
+        "id": "worldFrame",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "basisNormalizationApplied": false
+      },
+      {
+        "id": "slotFrame",
+        "origin": [
+          0,
+          0,
+          -10
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "basisNormalizationApplied": false
+      },
+      {
+        "id": "__sectionWorld",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "operations": [
+      {
+        "id": "plateSketch",
+        "op": "sketch",
+        "frame": "worldFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "circle",
+              "center": [
+                0,
+                0
+              ],
+              "diameter": 236
+            }
+          ]
+        }
+      },
+      {
+        "id": "plate",
+        "op": "extrude",
+        "frame": "worldFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "plateSketch"
+        ],
+        "featureApplied": true,
+        "args": {
+          "length": 5,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "bossSeed",
+        "op": "cylinder",
+        "frame": "worldFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 22,
+          "length": 5,
+          "origin": [
+            0,
+            0,
+            5
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "bossPattern",
+        "op": "circularPattern",
+        "frame": "worldFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "bossSeed"
+        ],
+        "featureApplied": true,
+        "args": {
+          "count": 4,
+          "pitchDiameter": 143.7,
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            5
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "plateWithBosses",
+        "op": "join",
+        "frame": "worldFrame",
+        "target": "plate",
+        "tool": null,
+        "inputs": [
+          "bossPattern"
+        ],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "centerBore",
+        "op": "hole",
+        "frame": "worldFrame",
+        "target": "plateWithBosses",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 70,
+          "origin": [
+            0,
+            0,
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "boltSeed",
+        "op": "cylinder",
+        "frame": "worldFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 11.7,
+          "length": 40,
+          "origin": [
+            0,
+            0,
+            -10
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "boltPattern",
+        "op": "circularPattern",
+        "frame": "worldFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "boltSeed"
+        ],
+        "featureApplied": true,
+        "args": {
+          "count": 4,
+          "pitchDiameter": 143.7,
+          "startAngleDeg": 0,
+          "totalAngleDeg": 360,
+          "center": [
+            0,
+            0,
+            -10
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "boltHolesCut",
+        "op": "cut",
+        "frame": "worldFrame",
+        "target": "centerBore",
+        "tool": "boltPattern",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "slotSketch",
+        "op": "sketch",
+        "frame": "slotFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "plane": "XY",
+          "loops": [
+            {
+              "kind": "roundedSlot",
+              "center": [
+                83.43860004000001,
+                83.43860004000001
+              ],
+              "width": 14,
+              "length": 33,
+              "angleDeg": 45
+            },
+            {
+              "kind": "roundedSlot",
+              "center": [
+                -83.43860004000001,
+                -83.43860004000001
+              ],
+              "width": 14,
+              "length": 33,
+              "angleDeg": 45
+            }
+          ]
+        }
+      },
+      {
+        "id": "slotExtrude",
+        "op": "extrude",
+        "frame": "slotFrame",
+        "target": null,
+        "tool": null,
+        "inputs": [
+          "slotSketch"
+        ],
+        "featureApplied": true,
+        "args": {
+          "length": 30,
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "finalCut",
+        "op": "cut",
+        "frame": "worldFrame",
+        "target": "boltHolesCut",
+        "tool": "slotExtrude",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      }
+    ],
+    "result": "finalCut",
+    "featureApplied": {
+      "plateSketch": true,
+      "plate": true,
+      "bossSeed": true,
+      "bossPattern": true,
+      "plateWithBosses": true,
+      "centerBore": true,
+      "boltSeed": true,
+      "boltPattern": true,
+      "boltHolesCut": true,
+      "slotSketch": true,
+      "slotExtrude": true,
+      "finalCut": true
+    }
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "outerDiameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "A",
+        "effectiveVisible": true,
+        "nominal": 236,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 236,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimB",
+        "type": "pitchDiameter",
+        "targets": [
+          {
+            "operation": "boltPattern",
+            "role": "pitchCircle"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "B",
+        "effectiveVisible": true,
+        "nominal": 143.7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 143.7,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "boltPattern",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "quantity": 4,
+        "sourceColor": "black",
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "C",
+        "effectiveVisible": true,
+        "nominal": 11.7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 11.7,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.1,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "centerBore",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "D",
+        "effectiveVisible": true,
+        "nominal": 70,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 70,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "bossPattern",
+            "role": "height"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "E",
+        "effectiveVisible": true,
+        "nominal": 5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "thickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "F",
+        "effectiveVisible": true,
+        "nominal": 5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null
+        }
+      },
+      {
+        "id": "dimSlotWidth",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "slotExtrude",
+            "role": "width"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "slotWidth",
+        "effectiveVisible": false,
+        "nominal": 14,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotWidth"
+        }
+      },
+      {
+        "id": "dimSlotDepth",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "slotExtrude",
+            "role": "depth"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "slotDepth",
+        "effectiveVisible": false,
+        "nominal": 16.5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotDepth"
+        }
+      },
+      {
+        "id": "dimSlotRadius",
+        "type": "radius",
+        "targets": [
+          {
+            "operation": "slotExtrude",
+            "role": "tipRadius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "slotRadius",
+        "effectiveVisible": false,
+        "nominal": 7,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "slotRadius"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "topView",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionView",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "isoView",
+        "direction": [
+          1,
+          -1,
+          1
+        ],
+        "up": [
+          -1,
+          1,
+          2
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "sectionView",
+        "sourceView": "topView",
+        "kind": "planar",
+        "main": {
+          "feature": "centerBore",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "boltPattern",
+            "entity": "axis",
+            "instance": 1
+          },
+          {
+            "feature": "boltPattern",
+            "entity": "axis",
+            "instance": 3
+          }
+        ],
+        "targets": [
+          "centerBore",
+          "boltPattern"
+        ],
+        "frame": "__sectionWorld",
+        "plane": {
+          "point": [
+            0,
+            0,
+            -1
+          ],
+          "normal": [
+            1,
+            0,
+            0
+          ]
+        },
+        "cuttingPlanes": [
+          {
+            "point": [
+              0,
+              0,
+              -1
+            ],
+            "normal": [
+              1,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "geometricTolerances": [
+      {
+        "kind": "flatness",
+        "value": 0.5,
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "face"
+          }
+        ]
+      }
+    ]
+  },
+  "executionStatus": "recipe-resolved-not-rendered"
+}
