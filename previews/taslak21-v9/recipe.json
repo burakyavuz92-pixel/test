@@ -1,0 +1,455 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "R": "=A/2"
+    },
+    "features": [
+      {
+        "id": "cup",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    3
+                  ],
+                  "end": [
+                    "=R-8",
+                    3
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=R-8",
+                    3
+                  ],
+                  "mid": [
+                    "=R-8\u002B8*cos(45)",
+                    "=-5\u002B8*sin(45)"
+                  ],
+                  "end": [
+                    "=R",
+                    -5
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R",
+                    -5
+                  ],
+                  "end": [
+                    "=R",
+                    -30
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R",
+                    -30
+                  ],
+                  "end": [
+                    "=R-3",
+                    -30
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R-3",
+                    -30
+                  ],
+                  "end": [
+                    "=R-3",
+                    -5
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=R-3",
+                    -5
+                  ],
+                  "mid": [
+                    "=R-8\u002B5*cos(45)",
+                    "=-5\u002B5*sin(45)"
+                  ],
+                  "end": [
+                    "=R-8",
+                    0
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R-8",
+                    0
+                  ],
+                  "end": [
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    0
+                  ],
+                  "end": [
+                    0,
+                    3
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "holeC",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=B-G",
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=C",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeD",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=-G",
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=D",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeE",
+        "op": "cut",
+        "when": "=not isblank(E)",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=-F",
+            0,
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=E",
+          "length": 5
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer diameter of cup"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "hole axis"
+          },
+          {
+            "operation": "holeD",
+            "role": "hole axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeC",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "holeD",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "holeE",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "when": "=not isblank(E)"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "holeE",
+            "role": "hole axis"
+          },
+          {
+            "operation": "cup",
+            "role": "central axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "black",
+        "when": "=not isblank(F)",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimG",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeD",
+            "role": "hole axis"
+          },
+          {
+            "operation": "cup",
+            "role": "central axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimThickness",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "wall thickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimRadius",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer bend radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimHeight",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "overall cup height"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      }
+    ],
+    "views": [
+      {
+        "id": "planView",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionViewAA",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "isoView",
+        "direction": [
+          -1,
+          -0.8,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "sectionAA",
+        "view": "sectionViewAA",
+        "sourceView": "planView",
+        "kind": "planar",
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "normal": [
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "details": [],
+    "geometricTolerances": []
+  }
+}
