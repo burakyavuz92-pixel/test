@@ -10,6 +10,7 @@ from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut,BRepAlgoAPI_Fuse,BRepAlgoAPI_Common,
 from OCP.BRepFilletAPI import BRepFilletAPI_MakeFillet,BRepFilletAPI_MakeChamfer
 from OCP.BRepExtrema import BRepExtrema_DistShapeShape
 from OCP.BRepAdaptor import BRepAdaptor_Curve
+from OCP.GeomAbs import GeomAbs_Circle,GeomAbs_Ellipse
 from OCP.BRepCheck import BRepCheck_Analyzer
 from OCP.BRepMesh import BRepMesh_IncrementalMesh
 from OCP.BRepBndLib import BRepBndLib
@@ -131,11 +132,21 @@ def build(recipe):
     near=pt(sel['near']);wanted=direction(sel['direction']);vertex=BRepBuilderAPI_MakeVertex(gp_Pnt(*near)).Vertex();candidates=[];ex=TopExp_Explorer(target,TopAbs_EDGE)
     while ex.More():
      edge=TopoDS.Edge_s(ex.Current());dist=BRepExtrema_DistShapeShape(vertex,edge);dist.Perform();curve=BRepAdaptor_Curve(edge)
+     direction_kind=sel.get('directionKind','tangent')
+     if direction_kind not in ('axis','tangent'):raise ValueError('Unknown selector directionKind')
      try:
-      try:parameter=dist.ParOnEdgeS2(1)[0]
-      except Exception:
-       parameter=min(np.linspace(curve.FirstParameter(),curve.LastParameter(),129),key=lambda t:curve.Value(float(t)).Distance(gp_Pnt(*near)))
-      pnt=gp_Pnt();tangent=gp_Vec();curve.D1(float(parameter),pnt,tangent);alignment=abs(np.dot(unit([tangent.X(),tangent.Y(),tangent.Z()]),wanted))
+      if direction_kind=='axis':
+       kind=curve.GetType()
+       if kind==GeomAbs_Circle:vec=curve.Circle().Axis().Direction()
+       elif kind==GeomAbs_Ellipse:vec=curve.Ellipse().Axis().Direction()
+       else:raise ValueError('Curve has no supported axis')
+       candidate_direction=unit([vec.X(),vec.Y(),vec.Z()])
+      else:
+       try:parameter=dist.ParOnEdgeS2(1)[0]
+       except Exception:
+        parameter=min(np.linspace(curve.FirstParameter(),curve.LastParameter(),129),key=lambda t:curve.Value(float(t)).Distance(gp_Pnt(*near)))
+       pnt=gp_Pnt();tangent=gp_Vec();curve.D1(float(parameter),pnt,tangent);candidate_direction=unit([tangent.X(),tangent.Y(),tangent.Z()])
+      alignment=abs(np.dot(candidate_direction,wanted))
      except Exception:alignment=0
      if alignment>.9 and not any(edge.IsSame(existing) for _,existing in candidates):candidates.append((dist.Value(),edge))
      ex.Next()
@@ -282,10 +293,15 @@ def sheet(recipe,shape,shapes,out,source):
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  visible=[d for d in recipe['drawing']['dimensions'] if d['effectiveVisible']]
  y=max([980]+[(d['sheetBox'][1]+d['sheetBox'][3])*1240+36 for d in details]);txt(45,y,'Ölçüler / toleranslar (mm)',16)
+ tight=y>1030
+ if tight:y=min(y,1108)
+ columns=max(4,math.ceil(len(visible)/2)) if tight else 4
+ if columns>6:raise ValueError('Too many dimensions for preview table with detail region')
+ rowHeight=28 if tight else 40
  for i,d in enumerate(visible):
-  col=i%4;row=i//4;label=d.get('valueSource',{}).get('column',d['id']);txt(45+col*420,y+30+row*40,label+': '+text_value(d),17)
+  col=i%columns;row=i//columns;label=d.get('valueSource',{}).get('column',d['id']);txt(45+col*(1664/columns),y+28+row*rowHeight,label+': '+text_value(d),15 if tight else 17)
  for i,tol in enumerate(recipe['drawing'].get('geometricTolerances',[])):txt(45+i*400,1125,tol['kind']+': '+f"{tol['value']:g}".replace('.',','),16)
- txt(45,1170,'Model verisinden üretildi • Görsel kontrol gerektirir',15)
+ txt(45,1200 if tight else 1170,'Model verisinden üretildi • Görsel kontrol gerektirir',12 if tight else 15)
  with Image.open(source) as inputImage:dpi=inputImage.info.get('dpi',(300,300))
  im.resize((1754,1240),Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=dpi)
  return {'details':detailReports,'annotationMode':'resolved-dimension-table','limits':['Template title block/layout not reconstructed','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}

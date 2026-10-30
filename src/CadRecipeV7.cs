@@ -23,8 +23,14 @@ public static class CadRecipeV7
             if(modifier&&uses.Length!=(kind=="cut"?2:1))throw new Exception("Özellik bağımlılığı: "+f["id"]);
             if(kind is "fillet" or "chamfer")
                 foreach(var selector in f["args"]!["selectors"]!.AsArray())
+                {
                     if(selector!["near"]?.AsArray().Count!=3||selector["direction"]?.AsArray().Count!=3)
                         throw new Exception("Kenar seçimi geometrik near/direction gerektirir: "+f["id"]);
+                    string directionKind=selector["directionKind"]?.GetValue<string>()??"tangent";
+                    if(directionKind is not ("axis" or "tangent"))throw new Exception("Kenar directionKind axis/tangent olmalı.");
+                    var vector=selector["direction"]!.AsArray().Select(n=>n!.GetValue<double>()).ToArray();
+                    if(vector.Any(v=>!double.IsFinite(v))||vector.Sum(v=>v*v)<1e-16)throw new Exception("Kenar yönü sonlu ve sıfırdan farklı olmalı.");
+                }
             ops.Add(new JsonObject{
                 ["id"]=Copy(f["id"]),["op"]=kind=="fuse"?"join":kind,["frame"]=Copy(f["frame"]),
                 ["target"]=modifier||kind=="fuse"?uses[0]:null,["tool"]=kind=="cut"?uses[1]:null,

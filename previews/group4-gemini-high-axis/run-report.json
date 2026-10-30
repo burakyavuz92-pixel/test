@@ -1,0 +1,22 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "542437FB7575F75BBD77E8F5CE9B19F3BD330CACD7F271DED87698B90DEB092A",
+      "ImageSha256": "1B2B8E457FE9836D2BF23B1A5ADE3DF07B9C03A3CD587A2AACC706672F212346"
+    },
+    "SchemaVersion": 7,
+    "RowCount": 3,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.186762,
+    "ReasoningEffort": "high",
+    "MaxCompletionTokens": 32768,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

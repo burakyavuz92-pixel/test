@@ -182,3 +182,9 @@ detailRecipe["drawing"]["details"][0]["sheetBox"]=new JsonArray(0.9,0.9,0.2,0.2)
 Check(CadRecipeV7.Check(Doc(detailRecipe),new(){row}).Any(i=>i.Severity=="error"),"detail outside page rejected");
 detailRecipe["drawing"]["details"][0]["sheetBox"]=new JsonArray(0.2,0.6,0.2,0.2);detailRecipe["drawing"]["details"][0]["features"]=new JsonArray("missing");
 Check(CadRecipeV7.Check(Doc(detailRecipe),new(){row}).Any(i=>i.Severity=="error"),"detail cannot silently invent unknown geometry");
+var directionRecipe=v7.DeepClone();directionRecipe["geometry"]["features"].AsArray().Add(JsonNode.Parse("""{"id":"edgeRound","kind":"fillet","frame":"main","uses":["base"],"args":{"size":1,"selectors":[{"operation":"base","role":"rim","near":[118,0,0],"directionKind":"axis","direction":[0,0,1]}]}}"""));directionRecipe["geometry"]["result"]="edgeRound";
+Check(CadRecipeV7.Check(Doc(directionRecipe),new(){row}).All(i=>i.Severity!="error"),"explicit selector axis type accepted");
+directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]["directionKind"]="guess";
+Check(CadRecipeV7.Check(Doc(directionRecipe),new(){row}).Any(i=>i.Severity=="error"),"unknown selector direction type rejected");
+directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]["directionKind"]="tangent";directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]["direction"]=new JsonArray(0,0,0);
+Check(CadRecipeV7.Check(Doc(directionRecipe),new(){row}).Any(i=>i.Severity=="error"),"zero selector direction rejected");

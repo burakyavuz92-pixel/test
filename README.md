@@ -10,7 +10,7 @@ Girdi **bir JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır; OpenRo
 dotnet run --project src/DrawingTool.csproj -- analyze-cad-group input.xlsx template.jpg output/empty-run
 ```
 
-OPENROUTER_API_KEY ve OPENROUTER_MODEL ortamdan okunur; anahtar/font repoya eklenmez. Medium akıl yürütme (son kullanıcı tercihi), tek çağrı, max_tokens=32768, beş dakika HTTP zaman aşımı. Otomatik yeniden değerlendirme yok. Soru beklemek yerine rapor üretir. Özgün yanıt, kaynak özetleri ve istek metni yerelde saklanır. Modelin özel akıl yürütme metni içerebilen ham API yanıtı yayımlanmaz.
+OPENROUTER_API_KEY ve OPENROUTER_MODEL ortamdan okunur; anahtar/font repoya eklenmez. High akıl yürütme (son kullanıcı tercihi), tek çağrı, max_tokens=32768, beş dakika HTTP zaman aşımı. Otomatik yeniden değerlendirme yok. Soru beklemek yerine rapor üretir. Özgün yanıt, kaynak özetleri ve istek metni yerelde saklanır. Modelin özel akıl yürütme metni içerebilen ham API yanıtı yayımlanmaz.
 
 ## Geometri ve ölçülendirme ayrımı
 
@@ -39,7 +39,7 @@ Testler tolerans değişiminin geometriyi değiştirmediğini, ölçülendirmeye
 
 ## Yalnız veri promptu
 
-Tek JPEG/tek tablo korunur; son kullanıcı tercihiyle akıl yürütme medium olarak ayarlandı. Sıfır ve boş veriler değiştirilmeden, yorumları dayatılmadan iletilir. Özellik varlığı ve gizleme koşulları sözleşmenin seçenekleridir; prompt belirli bir sütuna özel sıfır senaryosu anlatmaz. quantity=1, visible=true, hideIf=never ve presence=always varsayılanlarını yazılım ekleyebilir. Eski v7 kayıtlarını inceleyebilmek için eski açıklama alanları okunabilir; yeni yanıtta istenmez. Belirsizliği açıklama üretme zorunluluğuna dönüştürmez. Geometri/ölçü ilişkileri ve işlem argümanlarının kesin anlamları korunur.
+Tek JPEG/tek tablo korunur; son kullanıcı tercihiyle akıl yürütme yeniden high olarak ayarlandı. Sıfır ve boş veriler değiştirilmeden, yorumları dayatılmadan iletilir. Özellik varlığı ve gizleme koşulları sözleşmenin seçenekleridir; prompt belirli bir sütuna özel sıfır senaryosu anlatmaz. quantity=1, visible=true, hideIf=never ve presence=always varsayılanlarını yazılım ekleyebilir. Eski v7 kayıtlarını inceleyebilmek için eski açıklama alanları okunabilir; yeni yanıtta istenmez. Belirsizliği açıklama üretme zorunluluğuna dönüştürmez. Geometri/ölçü ilişkileri ve işlem argümanlarının kesin anlamları korunur.
 
 ## Kesit sözleşmesi: düzlem ve görünüşte iz
 
@@ -86,3 +86,10 @@ Bu yürütücü gerçek geometri/görünüş/kesit üretir; henüz orijinal ante
 `drawing.details` isteğe bağlıdır: `{id,label,sourceView,features:[featureId,...],sheetBox:[x,y,width,height]}`. sheetBox orijinal taslak sayfasının sol üstünden 0..1 normalize bölgedir. Yeni geometri oluşturulmaz; mevcut katının ilgili görünüş/kesit eğrileri özellik sınırlarına göre kırpılıp bu bölgeye büyütülür. Bir oluşturma özelliği ile onu delen/değiştiren özellik birlikte seçilmişse odak sınırı oluşturma özelliğinden alınır; kaynak görünüş yine son katıdan gelir. Geçersiz görünüş/özellik veya sayfa dışı kutu reddedilir. Eski kayıtlarda details yoksa boş kabul edilir. Bu ek, tüm pafta yerleşimi/antet desteğinin tamamlandığı anlamına gelmez.
 
 Medium+detay ile aynı taslak4 girdisinin denemesi previews/group4-medium-details/NOTLAR.md altında. Yanıt geometri hataları içerdiği için bu denemeden JPEG üretilemedi; otomatik düzeltme/tekrar çağrı yapılmadı. İstekte medium gönderilse de sağlayıcı kullanımında reasoning_tokens0 raporlandı. 74 C# kontrolü ve detay görüntüsü üretimini de içeren8 native test geçti.
+
+
+## Kenar seçicinin yön türü
+
+Yeni fillet/chamfer seçicileri `directionKind=axis|tangent` taşır. `axis`, daire/elips eğrisinin dönme eksenidir; `tangent`, near noktasındaki kenar teğetidir. Yönler işlemin koordinat bazındadır ve dünya bazına taşınır. Eksene yönü paralel olan silindir dikişi, dairesel eksen seçimi diye kabul edilmez. Gerçek farklı adaylar eşit yakınsa seçim hâlâ reddedilir; yüz/kenar numarası tahmin edilmez. Eski v7 kayıtlarında directionKind yoksa önceki tangent anlamı korunur; eski API yanıtları yeniden yazılmaz.
+
+77 C# kontrolü ve12 native test geçti: circle axis/tangent ile aynı kenarı seçme, döndürülmüş bazda axis seçimi ve yanlış türün sessizce yeniden yorumlanmaması dahil. Sonraki taslak4 denemesinde aynı google/gemini-4-argon modeli, high isteği ve aynı kaynak dosyalar kullanıldı; alan tipi ile reasoning birlikte değiştiğinden sonuç tek-değişken deneyi değildir.

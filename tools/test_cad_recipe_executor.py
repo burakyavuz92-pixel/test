@@ -15,6 +15,19 @@ class NativeRecipeTests(unittest.TestCase):
  def test_unknown_operation_not_reinterpreted(self):
   r=self.recipe();r['geometry']['operations'][1]['op']='unknown'
   with self.assertRaisesRegex(ValueError,'Unsupported'):build(r)
+class SelectorTests(unittest.TestCase):
+ def filleted(self,kind,direction):
+  r=NativeRecipeTests().recipe();r['geometry']['operations'].append({'id':'rounded','op':'fillet','frame':'world','target':'hole','args':{'size':1,'selectors':[{'operation':'base','role':'edge','near':[10,0,0],'directionKind':kind,'direction':direction}]}});r['geometry']['result']='rounded';return r
+ def test_circle_axis_selector(self):
+  s,_,_=build(self.filleted('axis',[0,0,1]));self.assertLess(vol(s),math.pi*96*5)
+ def test_circle_tangent_selector(self):
+  a,_,_=build(self.filleted('axis',[0,0,1]));t,_,_=build(self.filleted('tangent',[0,1,0]));self.assertAlmostEqual(vol(a),vol(t),places=5)
+ def test_axis_is_not_silently_used_as_tangent(self):
+  from OCP.Standard import Standard_Failure
+  # Z is a cylinder seam tangent, not the circular edge tangent; it must not round the circle.
+  with self.assertRaises((ValueError,Standard_Failure)):build(self.filleted('tangent',[0,0,1]))
+ def test_rotated_frame_axis(self):
+  r=self.filleted('axis',[0,0,1]);r['geometry']['frames'][0]['xAxis']=[0,1,0];r['geometry']['frames'][0]['zAxis']=[1,0,0];s,_,_=build(r);self.assertGreater(vol(s),0)
 class DetailTests(unittest.TestCase):
  def test_line_crossing_crop_keeps_visible_segment(self):
   self.assertEqual(clipped_lines([[(-2.,0.),(2.,0.)]],[-1.,-1.,1.,1.]),[[(-1.,0.),(1.,0.)]])

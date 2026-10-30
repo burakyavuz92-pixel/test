@@ -1,0 +1,1419 @@
+{
+  "schemaVersion": 7,
+  "outputId": "11-24-216",
+  "geometry": {
+    "parameters": {
+      "A": 160,
+      "B": 44.5,
+      "C": 89,
+      "D": 19,
+      "E": 9,
+      "F": 0.5,
+      "G": 14,
+      "I": 14,
+      "J": 11.5,
+      "zero": 0,
+      "two": 2,
+      "cup_depth": 33,
+      "wall_thickness": 3,
+      "double_wall_thickness": 6,
+      "r_outer_fillet": 8,
+      "r_inner_fillet": 5,
+      "r_rim_fillet": 1.5,
+      "r_boss_fillet": 2,
+      "inner_diameter": 154,
+      "inner_depth": 30,
+      "r_outer": 80,
+      "r_inner": 77,
+      "r_boss": 9.5,
+      "neg_B": -44.5,
+      "half_C": 44.5,
+      "neg_half_C": -44.5,
+      "D_plus_J": 30.5,
+      "D_recess": 15.25
+    },
+    "parameterMetadata": {
+      "A": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "A"
+        }
+      },
+      "B": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "B"
+        }
+      },
+      "C": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "C"
+        }
+      },
+      "D": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "D"
+        }
+      },
+      "E": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "E"
+        }
+      },
+      "F": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "F"
+        }
+      },
+      "G": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "G"
+        }
+      },
+      "I": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "I"
+        }
+      },
+      "J": {
+        "unit": "mm",
+        "source": {
+          "kind": "column",
+          "column": "J"
+        }
+      },
+      "zero": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 0
+        }
+      },
+      "two": {
+        "unit": "scalar",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "cup_depth": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 33
+        }
+      },
+      "wall_thickness": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 3
+        }
+      },
+      "double_wall_thickness": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "multiply",
+          "args": [
+            "wall_thickness",
+            "two"
+          ]
+        }
+      },
+      "r_outer_fillet": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 8
+        }
+      },
+      "r_inner_fillet": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "r_outer_fillet",
+            "wall_thickness"
+          ]
+        }
+      },
+      "r_rim_fillet": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 1.5
+        }
+      },
+      "r_boss_fillet": {
+        "unit": "mm",
+        "source": {
+          "kind": "constant",
+          "value": 2
+        }
+      },
+      "inner_diameter": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "A",
+            "double_wall_thickness"
+          ]
+        }
+      },
+      "inner_depth": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "cup_depth",
+            "wall_thickness"
+          ]
+        }
+      },
+      "r_outer": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "A",
+            "two"
+          ]
+        }
+      },
+      "r_inner": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "inner_diameter",
+            "two"
+          ]
+        }
+      },
+      "r_boss": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "D",
+            "two"
+          ]
+        }
+      },
+      "neg_B": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "zero",
+            "B"
+          ]
+        }
+      },
+      "half_C": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "C",
+            "two"
+          ]
+        }
+      },
+      "neg_half_C": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "subtract",
+          "args": [
+            "zero",
+            "half_C"
+          ]
+        }
+      },
+      "D_plus_J": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "add",
+          "args": [
+            "D",
+            "J"
+          ]
+        }
+      },
+      "D_recess": {
+        "unit": "mm",
+        "source": {
+          "kind": "derived",
+          "op": "divide",
+          "args": [
+            "D_plus_J",
+            "two"
+          ]
+        }
+      }
+    },
+    "frames": [
+      {
+        "id": "root",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "basisNormalizationApplied": false
+      },
+      {
+        "id": "frame_boss",
+        "origin": [
+          -44.5,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ],
+        "basisNormalizationApplied": false
+      },
+      {
+        "id": "__sectionWorld",
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "xAxis": [
+          1,
+          0,
+          0
+        ],
+        "zAxis": [
+          0,
+          0,
+          1
+        ]
+      }
+    ],
+    "operations": [
+      {
+        "id": "cyl_outer",
+        "op": "cylinder",
+        "frame": "root",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 160,
+          "length": 33,
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "cyl_inner",
+        "op": "cylinder",
+        "frame": "root",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 154,
+          "length": 30,
+          "origin": [
+            0,
+            0,
+            3
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "cut_cup",
+        "op": "cut",
+        "frame": "root",
+        "target": "cyl_outer",
+        "tool": "cyl_inner",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "fillet_outer_r8",
+        "op": "fillet",
+        "frame": "root",
+        "target": "cut_cup",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "size": 8,
+          "selectors": [
+            {
+              "operation": "cyl_outer",
+              "role": "bottom",
+              "near": [
+                80,
+                0,
+                0
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "fillet_inner_r5",
+        "op": "fillet",
+        "frame": "root",
+        "target": "fillet_outer_r8",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "size": 5,
+          "selectors": [
+            {
+              "operation": "cyl_inner",
+              "role": "bottom",
+              "near": [
+                77,
+                0,
+                3
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "fillet_rim_r1_5",
+        "op": "fillet",
+        "frame": "root",
+        "target": "fillet_inner_r5",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "size": 1.5,
+          "selectors": [
+            {
+              "operation": "cyl_outer",
+              "role": "top",
+              "near": [
+                80,
+                0,
+                33
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "cyl_boss",
+        "op": "cylinder",
+        "frame": "frame_boss",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 19,
+          "length": 9,
+          "origin": [
+            0,
+            0,
+            3
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "fuse_boss",
+        "op": "join",
+        "frame": "root",
+        "target": "fillet_rim_r1_5",
+        "tool": null,
+        "inputs": [
+          "cyl_boss"
+        ],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "fillet_boss_r2",
+        "op": "fillet",
+        "frame": "frame_boss",
+        "target": "fuse_boss",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "size": 2,
+          "selectors": [
+            {
+              "operation": "cyl_boss",
+              "role": "bottom",
+              "near": [
+                9.5,
+                0,
+                3
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "cyl_recess_F",
+        "op": "cylinder",
+        "frame": "frame_boss",
+        "target": null,
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 15.25,
+          "length": 0.5,
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "cut_recess_F",
+        "op": "cut",
+        "frame": "frame_boss",
+        "target": "fillet_boss_r2",
+        "tool": "cyl_recess_F",
+        "inputs": [],
+        "featureApplied": true,
+        "args": {}
+      },
+      {
+        "id": "hole_J",
+        "op": "hole",
+        "frame": "frame_boss",
+        "target": "cut_recess_F",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 11.5,
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "hole_G",
+        "op": "hole",
+        "frame": "root",
+        "target": "hole_J",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 14,
+          "origin": [
+            0,
+            44.5,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "hole_I",
+        "op": "hole",
+        "frame": "root",
+        "target": "hole_G",
+        "tool": null,
+        "inputs": [],
+        "featureApplied": true,
+        "args": {
+          "diameter": 14,
+          "origin": [
+            0,
+            -44.5,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      }
+    ],
+    "result": "hole_I",
+    "featureApplied": {
+      "cyl_outer": true,
+      "cyl_inner": true,
+      "cut_cup": true,
+      "fillet_outer_r8": true,
+      "fillet_inner_r5": true,
+      "fillet_rim_r1_5": true,
+      "cyl_boss": true,
+      "fuse_boss": true,
+      "fillet_boss_r2": true,
+      "cyl_recess_F": true,
+      "cut_recess_F": true,
+      "hole_J": true,
+      "hole_G": true,
+      "hole_I": true
+    }
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dim_A",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "cyl_outer",
+            "role": "side"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "A",
+        "effectiveVisible": true,
+        "nominal": 160,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 160,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dim_B",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "cyl_outer",
+            "role": "axis"
+          },
+          {
+            "operation": "hole_J",
+            "role": "axis"
+          }
+        ],
+        "axis": "X",
+        "hideIf": {
+          "kind": "zero"
+        },
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "parameter": "B",
+        "effectiveVisible": true,
+        "nominal": 44.5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 44.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null
+        }
+      },
+      {
+        "id": "dim_C",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "hole_G",
+            "role": "axis"
+          },
+          {
+            "operation": "hole_I",
+            "role": "axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "C",
+        "effectiveVisible": true,
+        "nominal": 89,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 89,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null
+        }
+      },
+      {
+        "id": "dim_D",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "cyl_boss",
+            "role": "side"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "D",
+        "effectiveVisible": true,
+        "nominal": 19,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 19,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dim_E",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "cyl_inner",
+            "role": "bottom"
+          },
+          {
+            "operation": "cyl_boss",
+            "role": "top"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "E",
+        "effectiveVisible": true,
+        "nominal": 9,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 9,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 1,
+            "lowerDeviationMm": -1
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dim_F",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "cyl_outer",
+            "role": "bottom"
+          },
+          {
+            "operation": "cyl_recess_F",
+            "role": "top"
+          }
+        ],
+        "axis": "Z",
+        "hideIf": {
+          "kind": "zero"
+        },
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "parameter": "F",
+        "effectiveVisible": true,
+        "nominal": 0.5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 0.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.2
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dim_G",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "hole_G",
+            "role": "side"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "G",
+        "effectiveVisible": true,
+        "nominal": 14,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null
+        }
+      },
+      {
+        "id": "dim_I",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "hole_I",
+            "role": "side"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "I",
+        "effectiveVisible": true,
+        "nominal": 14,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 14,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null
+        }
+      },
+      {
+        "id": "dim_J",
+        "type": "diameter",
+        "targets": [
+          {
+            "operation": "hole_J",
+            "role": "side"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "J",
+        "effectiveVisible": true,
+        "nominal": 11.5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "sourceMeasurement": {
+          "state": "number",
+          "nominalMm": 11.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null
+        }
+      },
+      {
+        "id": "dim_cup_depth",
+        "type": "distance",
+        "targets": [
+          {
+            "operation": "cyl_outer",
+            "role": "bottom"
+          },
+          {
+            "operation": "cyl_outer",
+            "role": "top"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "cup_depth",
+        "effectiveVisible": false,
+        "nominal": 33,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "cup_depth"
+        }
+      },
+      {
+        "id": "dim_wall_thickness",
+        "type": "thickness",
+        "targets": [
+          {
+            "operation": "cyl_outer",
+            "role": "side"
+          },
+          {
+            "operation": "cyl_inner",
+            "role": "side"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "wall_thickness",
+        "effectiveVisible": false,
+        "nominal": 3,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "wall_thickness"
+        }
+      },
+      {
+        "id": "dim_r_outer_fillet",
+        "type": "radius",
+        "targets": [
+          {
+            "operation": "fillet_outer_r8",
+            "role": "fillet"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "r_outer_fillet",
+        "effectiveVisible": false,
+        "nominal": 8,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "r_outer_fillet"
+        }
+      },
+      {
+        "id": "dim_r_rim_fillet",
+        "type": "radius",
+        "targets": [
+          {
+            "operation": "fillet_rim_r1_5",
+            "role": "fillet"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "r_rim_fillet",
+        "effectiveVisible": false,
+        "nominal": 1.5,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "r_rim_fillet"
+        }
+      },
+      {
+        "id": "dim_r_boss_fillet",
+        "type": "radius",
+        "targets": [
+          {
+            "operation": "fillet_boss_r2",
+            "role": "fillet"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green",
+        "quantity": 1,
+        "visible": true,
+        "hideIf": {
+          "kind": "never"
+        },
+        "parameter": "r_boss_fillet",
+        "effectiveVisible": false,
+        "nominal": 2,
+        "unit": "mm",
+        "valueSource": {
+          "kind": "parameter",
+          "parameter": "r_boss_fillet"
+        }
+      }
+    ],
+    "views": [
+      {
+        "id": "front",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "section_AA",
+        "direction": [
+          -1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "isometric",
+        "direction": [
+          -1,
+          0.5,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "A-A",
+        "view": "section_AA",
+        "kind": "stepped",
+        "main": {
+          "feature": "cyl_outer",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "hole_G",
+            "entity": "axis"
+          },
+          {
+            "feature": "hole_J",
+            "entity": "axis"
+          },
+          {
+            "feature": "hole_I",
+            "entity": "axis"
+          }
+        ],
+        "targets": [
+          "cyl_outer",
+          "hole_G",
+          "hole_J",
+          "hole_I"
+        ],
+        "frame": "__sectionWorld",
+        "path": [
+          [
+            0,
+            330,
+            0
+          ],
+          [
+            0,
+            44.5,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -44.5,
+            0,
+            0
+          ],
+          [
+            -44.5,
+            -22.25,
+            0
+          ],
+          [
+            0,
+            -22.25,
+            0
+          ],
+          [
+            0,
+            -44.5,
+            0
+          ],
+          [
+            0,
+            -330,
+            0
+          ]
+        ],
+        "extrusionDirection": [
+          0,
+          0,
+          1
+        ],
+        "worldPath": [
+          [
+            0,
+            330,
+            0
+          ],
+          [
+            0,
+            44.5,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            -44.5,
+            0,
+            0
+          ],
+          [
+            -44.5,
+            -22.25,
+            0
+          ],
+          [
+            0,
+            -22.25,
+            0
+          ],
+          [
+            0,
+            -44.5,
+            0
+          ],
+          [
+            0,
+            -330,
+            0
+          ]
+        ],
+        "sweepDirection": [
+          0,
+          0,
+          1
+        ],
+        "cuttingPlanes": [
+          {
+            "point": [
+              0,
+              330,
+              0
+            ],
+            "normal": [
+              -1,
+              0,
+              0
+            ]
+          },
+          {
+            "point": [
+              0,
+              44.5,
+              0
+            ],
+            "normal": [
+              -1,
+              0,
+              0
+            ]
+          },
+          {
+            "point": [
+              0,
+              0,
+              0
+            ],
+            "normal": [
+              0,
+              1,
+              -0
+            ]
+          },
+          {
+            "point": [
+              -44.5,
+              0,
+              0
+            ],
+            "normal": [
+              -1,
+              0,
+              0
+            ]
+          },
+          {
+            "point": [
+              -44.5,
+              -22.25,
+              0
+            ],
+            "normal": [
+              0,
+              -1,
+              0
+            ]
+          },
+          {
+            "point": [
+              0,
+              -22.25,
+              0
+            ],
+            "normal": [
+              -1,
+              0,
+              0
+            ]
+          },
+          {
+            "point": [
+              0,
+              -44.5,
+              0
+            ],
+            "normal": [
+              -1,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "details": [
+      {
+        "id": "detail_B",
+        "label": "B",
+        "sourceView": "section_AA",
+        "features": [
+          "cyl_boss",
+          "fillet_boss_r2",
+          "cyl_recess_F",
+          "cut_recess_F",
+          "hole_J"
+        ],
+        "sheetBox": [
+          0.29,
+          0.63,
+          0.12,
+          0.24
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  },
+  "executionStatus": "recipe-resolved-not-rendered"
+}
