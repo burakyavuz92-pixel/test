@@ -19,6 +19,7 @@ public static class CadRecipeV9
         foreach(var section in d["sections"]!.AsArray())
             if(section!["kind"]!.GetValue<string>()=="planar")section["plane"]=new JsonObject{["point"]=section["point"]!.DeepClone(),["normal"]=section["normal"]!.DeepClone()};
         var expanded=FeatureSectionTrace.Expand(d["sections"]!.AsArray(),flat);
+        g["frames"]!.AsArray().Add(JsonNode.Parse("""{"id":"__sectionWorld","origin":[0,0,0],"xAxis":[1,0,0],"zAxis":[0,0,1]}"""));
         d["sections"]=SectionGeometry.Resolve(expanded,g["frames"]!.AsArray(),d["views"]!.AsArray());
         return JsonSerializer.SerializeToElement(root);
     }

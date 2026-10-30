@@ -1,0 +1,50 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "11-24-13: The given key \u0027__sectionWorld\u0027 was not present in the dictionary.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "11-24-216: The given key \u0027__sectionWorld\u0027 was not present in the dictionary.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "11-24-372: The given key \u0027__sectionWorld\u0027 was not present in the dictionary.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "542437FB7575F75BBD77E8F5CE9B19F3BD330CACD7F271DED87698B90DEB092A",
+      "ImageSha256": "1B2B8E457FE9836D2BF23B1A5ADE3DF07B9C03A3CD587A2AACC706672F212346"
+    },
+    "SchemaVersion": 9,
+    "RowCount": 3,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.114974,
+    "ReasoningEffort": "high",
+    "MaxCompletionTokens": 32768,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": true,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

@@ -217,3 +217,7 @@ var v9plane=JsonNode.Parse(v9.GetRawText())!;
 v9plane["drawing"]!["views"]=JsonNode.Parse("""[{"id":"section","direction":[1,0,0],"up":[0,1,0],"projection":"orthographic"}]""");
 v9plane["drawing"]!["sections"]=JsonNode.Parse("""[{"id":"A","view":"section","kind":"planar","point":[0,0,0],"normal":[1,0,0]}]""");
 Check(CadRecipeV7.Resolve(Doc(v9plane),row).GetProperty("drawing").GetProperty("sections")[0].GetProperty("cuttingPlanes").GetArrayLength()==1,"v9 planar point/normal lowered to native section plane");
+var v9trace=JsonNode.Parse(v9plane.ToJsonString())!;
+v9trace["drawing"]!["views"]!.AsArray().Add(JsonNode.Parse("""{"id":"front","direction":[0,0,1],"up":[0,1,0],"projection":"orthographic"}"""));
+v9trace["drawing"]!["sections"]=JsonNode.Parse("""[{"id":"A","view":"section","sourceView":"front","kind":"featureTrace","main":{"feature":"body","entity":"axis"},"through":[]}]""");
+Check(CadRecipeV7.Resolve(Doc(v9trace),row).GetProperty("drawing").GetProperty("sections")[0].GetProperty("cuttingPlanes").GetArrayLength()==1,"v9 feature trace creates reserved section world frame");
