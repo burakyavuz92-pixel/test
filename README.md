@@ -50,3 +50,5 @@ Kademeli kesit: `{id,view,kind:"stepped",sourceView,origin:[x,y,z],path:[[u,v],.
 Eski v7 path/extrusionDirection kesitleri yerel inceleme için okunabilir; yanlış yönleri sessizce onarılmaz. Önceki kapaktaki Y izi + X süpürmesi, X yönünden kesit görünüşü için artık doğrulamada reddedilir. Kaynak model tarifi değiştirilmez. Kesit yolu seçiminin teknik resim açısından doğru olması hâlâ model ve insan incelemesinin sorumluluğudur; bu kontrol mekanik tutarlılık sağlar.
 
 Kesit verisi/çözümleme güncellendi; native OCCT katı ve kesit yürütücüsü bu değişiklikle tamamlanmış sayılmaz. 55 yerel kontrol geçti; bu değişiklikte ücretli API çağrısı veya çizim yapılmadı. Uzunluk/birim ve delme sözleşmeleri değiştirilmedi.
+
+Parametre birimleri promptta açıkça tanımlıdır: uzunluk/pay mm, açı deg, adet count, oran/çarpan scalar. Sayısal işlem alanlarının birimi alan anlamından gelir; yön vektörleri boyutsuzdur. Türetilmiş hesaplarda birim kontrolü korunur. Son birim promptu revizyonu için yeni API çağrısı yapılmadı. Ek sözleşme verim önerileri previews/contract-optimization-review/NOTLAR.md içindedir; öneriler otomatik uygulanmış değildir.
