@@ -1,0 +1,670 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "Ro": "=A/2",
+      "rt": "=J/2\u002B2"
+    },
+    "features": [
+      {
+        "id": "cup",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    33
+                  ],
+                  "end": [
+                    "=Ro-8",
+                    33
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Ro-8",
+                    33
+                  ],
+                  "mid": [
+                    "=Ro-8\u002B8*cos(45)",
+                    "=25\u002B8*sin(45)"
+                  ],
+                  "end": [
+                    "=Ro",
+                    25
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro",
+                    25
+                  ],
+                  "end": [
+                    "=Ro",
+                    1.5
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Ro",
+                    1.5
+                  ],
+                  "mid": [
+                    "=Ro-1.5",
+                    0
+                  ],
+                  "end": [
+                    "=Ro-3",
+                    1.5
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro-3",
+                    1.5
+                  ],
+                  "end": [
+                    "=Ro-3",
+                    25
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Ro-3",
+                    25
+                  ],
+                  "mid": [
+                    "=Ro-8\u002B5*cos(45)",
+                    "=25\u002B5*sin(45)"
+                  ],
+                  "end": [
+                    "=Ro-8",
+                    30
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro-8",
+                    30
+                  ],
+                  "end": [
+                    0,
+                    30
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    30
+                  ],
+                  "end": [
+                    0,
+                    33
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "collar",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                "=-B",
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    "=33-E"
+                  ],
+                  "end": [
+                    "=rt",
+                    "=33-E"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=rt",
+                    "=33-E"
+                  ],
+                  "end": [
+                    "=rt",
+                    28
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=rt",
+                    28
+                  ],
+                  "mid": [
+                    "=rt\u002B2-2*cos(45)",
+                    "=28\u002B2*sin(45)"
+                  ],
+                  "end": [
+                    "=rt\u002B2",
+                    30
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=rt\u002B2",
+                    30
+                  ],
+                  "end": [
+                    "=rt\u002B2",
+                    33
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=rt\u002B2",
+                    33
+                  ],
+                  "end": [
+                    "=D/2",
+                    33
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=D/2",
+                    33
+                  ],
+                  "end": [
+                    "=D/2",
+                    "=33\u002BF"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=D/2",
+                    "=33\u002BF"
+                  ],
+                  "end": [
+                    0,
+                    "=33\u002BF"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    "=33\u002BF"
+                  ],
+                  "end": [
+                    0,
+                    "=33-E"
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            "=-B",
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "holeCollar",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=-B",
+            0,
+            15
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J",
+          "length": 30
+        }
+      },
+      {
+        "id": "holeG",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            20
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=G",
+          "length": 20
+        }
+      },
+      {
+        "id": "holeI",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=-C/2",
+            20
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=I",
+          "length": 20
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer diameter of cup"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "collar axis offset from part axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "green",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole axis"
+          },
+          {
+            "operation": "holeI",
+            "role": "hole axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "outer diameter of boss at outer face"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "collar length from outer face"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "boss height above outer face"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimG",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimI",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "holeI",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "holeCollar",
+            "role": "collar bore diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimDepth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "overall cup depth"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimThk",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "sheet thickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimR8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer corner radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimR15",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "rim end radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimR2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "collar root fillet radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      }
+    ],
+    "views": [
+      {
+        "id": "top",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionA",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          1,
+          1,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "A-A",
+        "view": "sectionA",
+        "sourceView": "top",
+        "kind": "featureTrace",
+        "main": {
+          "feature": "holeG",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "holeCollar",
+            "entity": "axis"
+          },
+          {
+            "feature": "holeI",
+            "entity": "axis"
+          }
+        ]
+      }
+    ],
+    "details": [
+      {
+        "id": "B",
+        "label": "B",
+        "sourceView": "sectionA",
+        "features": [
+          "collar",
+          "holeCollar"
+        ],
+        "sheetBox": [
+          0.3,
+          0.637,
+          0.115,
+          0.185
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
