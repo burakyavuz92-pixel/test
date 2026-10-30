@@ -1,0 +1,746 @@
+{
+  "schemaVersion": 5,
+  "description": "Kapal\u0131 taban\u0131 Z=0 d\u0131\u015F y\u00FCz\u00FCnde olan s\u0131\u011F sac kap; taban plakas\u0131nda iki ana delik ve ko\u015Fullu k\u00FC\u00E7\u00FCk \u00FC\u00E7\u00FCnc\u00FC delik bulunur.",
+  "parameters": [
+    {
+      "id": "A",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "A"
+      },
+      "evidence": "\u00D8\u0027A\u0027 d\u0131\u015F \u00E7ap, kesit ve \u00F6n g\u00F6r\u00FCn\u00FC\u015F"
+    },
+    {
+      "id": "B",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "B"
+      },
+      "evidence": "\u0027B\u0027 iki b\u00FCy\u00FCk delik merkezi aras\u0131"
+    },
+    {
+      "id": "C",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "C"
+      },
+      "evidence": "\u00D8\u0027C\u0027 \u00FCst delik"
+    },
+    {
+      "id": "D",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "D"
+      },
+      "evidence": "\u00D8\u0027D\u0027 alt delik"
+    },
+    {
+      "id": "E",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "E"
+      },
+      "evidence": "\u00D8\u0027E\u0027 ko\u015Fullu k\u00FC\u00E7\u00FCk delik; bo\u015F olabilir"
+    },
+    {
+      "id": "F",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "F"
+      },
+      "evidence": "\u0027F\u0027 E deli\u011Finin eksene yatay uzakl\u0131\u011F\u0131; 0 olabilir"
+    },
+    {
+      "id": "G",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "G"
+      },
+      "evidence": "\u0027G\u0027 merkezden D deli\u011Fine d\u00FC\u015Fey mesafe"
+    },
+    {
+      "id": "wallThickness",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 3
+      },
+      "evidence": "Kesitte sabit 3 \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "id": "cupHeight",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 33
+      },
+      "evidence": "Kesitte 33,0 toplam derinlik"
+    },
+    {
+      "id": "outerBendRadius",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 8
+      },
+      "evidence": "Kesitte R8 d\u0131\u015F b\u00FCk\u00FCm"
+    },
+    {
+      "id": "two",
+      "unit": "scalar",
+      "source": {
+        "kind": "constant",
+        "value": 2
+      },
+      "evidence": "\u00C7ap-yar\u0131\u00E7ap ve et kal\u0131nl\u0131\u011F\u0131 hesab\u0131 i\u00E7in"
+    },
+    {
+      "id": "minusOne",
+      "unit": "scalar",
+      "source": {
+        "kind": "constant",
+        "value": -1
+      },
+      "evidence": "Y\u00F6n i\u015Fareti i\u00E7in"
+    },
+    {
+      "id": "doubleWall",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "multiply",
+        "args": [
+          "wallThickness",
+          "two"
+        ]
+      },
+      "evidence": "\u0130\u00E7 \u00E7ap i\u00E7in iki et kal\u0131nl\u0131\u011F\u0131"
+    },
+    {
+      "id": "innerDiameter",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "subtract",
+        "args": [
+          "A",
+          "doubleWall"
+        ]
+      },
+      "evidence": "D\u0131\u015F \u00E7ap eksi iki et kal\u0131nl\u0131\u011F\u0131"
+    },
+    {
+      "id": "cavityDepth",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "subtract",
+        "args": [
+          "cupHeight",
+          "wallThickness"
+        ]
+      },
+      "evidence": "Toplam derinlik eksi taban kal\u0131nl\u0131\u011F\u0131"
+    },
+    {
+      "id": "innerBendRadius",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "subtract",
+        "args": [
+          "outerBendRadius",
+          "wallThickness"
+        ]
+      },
+      "evidence": "Sabit kal\u0131nl\u0131kta i\u00E7 b\u00FCk\u00FCm yar\u0131\u00E7ap\u0131"
+    },
+    {
+      "id": "upperHoleY",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "subtract",
+        "args": [
+          "B",
+          "G"
+        ]
+      },
+      "evidence": "B = \u00FCst \u002B alt mesafe (G alt)"
+    },
+    {
+      "id": "lowerHoleY",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "multiply",
+        "args": [
+          "G",
+          "minusOne"
+        ]
+      },
+      "evidence": "D deli\u011Fi merkezin alt\u0131nda"
+    },
+    {
+      "id": "smallHoleX",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "multiply",
+        "args": [
+          "F",
+          "minusOne"
+        ]
+      },
+      "evidence": "E deli\u011Fi merkez ekseninin solunda"
+    }
+  ],
+  "frames": [
+    {
+      "id": "part",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        1,
+        0,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Orijin: taban d\u0131\u015F y\u00FCz\u00FC merkezi; \u002BZ a\u00E7\u0131k a\u011Fza do\u011Fru"
+    }
+  ],
+  "operations": [
+    {
+      "id": "outerBody",
+      "op": "cylinder",
+      "frame": "part",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "diameter": {
+          "param": "A"
+        },
+        "length": {
+          "param": "cupHeight"
+        },
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "\u00D8 A, derinlik 33"
+    },
+    {
+      "id": "cavity",
+      "op": "cylinder",
+      "frame": "part",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "diameter": {
+          "param": "innerDiameter"
+        },
+        "length": {
+          "param": "cavityDepth"
+        },
+        "origin": [
+          0,
+          0,
+          {
+            "param": "wallThickness"
+          }
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "A\u00E7\u0131k i\u00E7 bo\u015Fluk, kesit"
+    },
+    {
+      "id": "cup",
+      "op": "cut",
+      "frame": "part",
+      "inputs": [
+        "outerBody",
+        "cavity"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {},
+      "evidence": "Kesitte taban ve yan duvar"
+    },
+    {
+      "id": "innerFillet",
+      "op": "fillet",
+      "frame": "part",
+      "inputs": [
+        "cup"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "size": {
+          "param": "innerBendRadius"
+        },
+        "selectors": [
+          {
+            "operation": "cup",
+            "role": "innerBendEdge"
+          }
+        ]
+      },
+      "evidence": "\u0130\u00E7 b\u00FCk\u00FCm R8-3"
+    },
+    {
+      "id": "outerFillet",
+      "op": "fillet",
+      "frame": "part",
+      "inputs": [
+        "innerFillet"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "size": {
+          "param": "outerBendRadius"
+        },
+        "selectors": [
+          {
+            "operation": "cup",
+            "role": "outerRim"
+          }
+        ]
+      },
+      "evidence": "R8 d\u0131\u015F b\u00FCk\u00FCm"
+    },
+    {
+      "id": "holeE",
+      "op": "hole",
+      "frame": "part",
+      "inputs": [
+        "outerFillet"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "columnPresent",
+        "column": "E"
+      },
+      "args": {
+        "diameter": {
+          "param": "E"
+        },
+        "origin": [
+          {
+            "param": "smallHoleX"
+          },
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "throughAll": false,
+        "depth": {
+          "param": "wallThickness"
+        }
+      },
+      "evidence": "\u00D6n g\u00F6r\u00FCn\u00FC\u015Fte sol k\u00FC\u00E7\u00FCk delik"
+    },
+    {
+      "id": "holeC",
+      "op": "hole",
+      "frame": "part",
+      "inputs": [
+        "outerFillet",
+        "holeE"
+      ],
+      "optionalInputs": [
+        "holeE"
+      ],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "diameter": {
+          "param": "C"
+        },
+        "origin": [
+          0,
+          {
+            "param": "upperHoleY"
+          },
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "throughAll": false,
+        "depth": {
+          "param": "wallThickness"
+        }
+      },
+      "evidence": "\u00DCst delik merkez ekseninde"
+    },
+    {
+      "id": "holeD",
+      "op": "hole",
+      "frame": "part",
+      "inputs": [
+        "holeC"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "diameter": {
+          "param": "D"
+        },
+        "origin": [
+          0,
+          {
+            "param": "lowerHoleY"
+          },
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "throughAll": false,
+        "depth": {
+          "param": "wallThickness"
+        }
+      },
+      "evidence": "Alt delik merkez ekseninde"
+    }
+  ],
+  "result": "holeD",
+  "dimensions": [
+    {
+      "id": "dimA",
+      "type": "diameter",
+      "parameter": "A",
+      "targets": [
+        {
+          "operation": "outerBody",
+          "role": "outerRim"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u00D8\u0027A\u0027"
+    },
+    {
+      "id": "dimB",
+      "type": "distance",
+      "parameter": "B",
+      "targets": [
+        {
+          "operation": "holeC",
+          "role": "holeAxis"
+        },
+        {
+          "operation": "holeD",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "Y",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D6n g\u00F6r\u00FCn\u00FC\u015Fte d\u00FC\u015Fey \u0027B\u0027"
+    },
+    {
+      "id": "dimC",
+      "type": "diameter",
+      "parameter": "C",
+      "targets": [
+        {
+          "operation": "holeC",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D8\u0027C\u0027 \u00FCst delik"
+    },
+    {
+      "id": "dimD",
+      "type": "diameter",
+      "parameter": "D",
+      "targets": [
+        {
+          "operation": "holeD",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D8\u0027D\u0027 alt delik"
+    },
+    {
+      "id": "dimE",
+      "type": "diameter",
+      "parameter": "E",
+      "targets": [
+        {
+          "operation": "holeE",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D8\u0027E\u0027 k\u00FC\u00E7\u00FCk delik"
+    },
+    {
+      "id": "dimF",
+      "type": "distance",
+      "parameter": "F",
+      "targets": [
+        {
+          "operation": "holeE",
+          "role": "holeAxis"
+        },
+        {
+          "operation": "outerBody",
+          "role": "patternAxis"
+        }
+      ],
+      "axis": "X",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "zero"
+      },
+      "evidence": "Yatay \u0027F\u0027, A-A kesit \u00E7izgisine"
+    },
+    {
+      "id": "dimG",
+      "type": "distance",
+      "parameter": "G",
+      "targets": [
+        {
+          "operation": "outerBody",
+          "role": "patternAxis"
+        },
+        {
+          "operation": "holeD",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "Y",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Merkezden alt deli\u011Fe \u0027G\u0027"
+    },
+    {
+      "id": "dimHeight",
+      "type": "distance",
+      "parameter": "cupHeight",
+      "targets": [
+        {
+          "operation": "outerBody",
+          "role": "backFace"
+        },
+        {
+          "operation": "outerBody",
+          "role": "frontFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": false,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Ye\u015Fil 33,0 kesit \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "id": "dimThickness",
+      "type": "thickness",
+      "parameter": "wallThickness",
+      "targets": [
+        {
+          "operation": "cup",
+          "role": "backFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": false,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Ye\u015Fil 3 taban kal\u0131nl\u0131\u011F\u0131"
+    },
+    {
+      "id": "dimBendR",
+      "type": "radius",
+      "parameter": "outerBendRadius",
+      "targets": [
+        {
+          "operation": "outerFillet",
+          "role": "outerRim"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": false,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Ye\u015Fil R8"
+    }
+  ],
+  "geometricTolerances": [],
+  "views": [
+    {
+      "id": "frontView",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "\u00D6n g\u00F6r\u00FCn\u00FC\u015F, delikli daireler"
+    },
+    {
+      "id": "sectionViewAA",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "KESIT A-A, taban solda"
+    }
+  ],
+  "sections": [
+    {
+      "id": "AA",
+      "view": "sectionViewAA",
+      "kind": "planar",
+      "targets": [
+        "cup",
+        "holeC",
+        "holeD"
+      ],
+      "evidence": "A-A d\u00FC\u015Fey merkez d\u00FCzlemi"
+    }
+  ],
+  "issues": [
+    {
+      "code": "SCALE_MISMATCH",
+      "category": "input",
+      "severity": "warning",
+      "message": "\u00C7izim \u00F6l\u00E7ekli de\u011Fil; piksel oranlar\u0131 B ve F de\u011Ferleriyle uyu\u015Fmuyor, parametreler esas al\u0131nd\u0131.",
+      "affectedFields": [
+        "B",
+        "F"
+      ],
+      "recommendedAction": "\u00D6l\u00E7\u00FC de\u011Ferlerini do\u011Frulay\u0131n."
+    },
+    {
+      "code": "HOLE_E_SIDE",
+      "category": "input",
+      "severity": "warning",
+      "message": "E deli\u011Finin sol tarafta oldu\u011Fu \u00F6n g\u00F6r\u00FCn\u00FC\u015Ften \u00E7\u0131kar\u0131ld\u0131; yans\u0131ma y\u00F6n\u00FC kesin de\u011Fil.",
+      "affectedFields": [
+        "E",
+        "F"
+      ],
+      "recommendedAction": "Delik y\u00F6n\u00FCn\u00FC do\u011Frulay\u0131n."
+    },
+    {
+      "code": "RIM_EDGE_UNMEASURED",
+      "category": "input",
+      "severity": "warning",
+      "message": "Kap a\u011Fz\u0131ndaki hafif yuvarlatma \u00F6l\u00E7\u00FCs\u00FCz oldu\u011Fu i\u00E7in modele eklenmedi.",
+      "affectedFields": [
+        "outerBody"
+      ],
+      "recommendedAction": "Gerekirse a\u011F\u0131z kenar\u0131 yar\u0131\u00E7ap\u0131n\u0131 belirtin."
+    }
+  ]
+}

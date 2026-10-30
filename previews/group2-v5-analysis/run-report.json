@@ -1,0 +1,99 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "SCALE_MISMATCH",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "\u00C7izim \u00F6l\u00E7ekli de\u011Fil; piksel oranlar\u0131 B ve F de\u011Ferleriyle uyu\u015Fmuyor, parametreler esas al\u0131nd\u0131.",
+      "AffectedFields": [
+        "B",
+        "F"
+      ],
+      "RecommendedAction": "\u00D6l\u00E7\u00FC de\u011Ferlerini do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "HOLE_E_SIDE",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "E deli\u011Finin sol tarafta oldu\u011Fu \u00F6n g\u00F6r\u00FCn\u00FC\u015Ften \u00E7\u0131kar\u0131ld\u0131; yans\u0131ma y\u00F6n\u00FC kesin de\u011Fil.",
+      "AffectedFields": [
+        "E",
+        "F"
+      ],
+      "RecommendedAction": "Delik y\u00F6n\u00FCn\u00FC do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "RIM_EDGE_UNMEASURED",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Kap a\u011Fz\u0131ndaki hafif yuvarlatma \u00F6l\u00E7\u00FCs\u00FCz oldu\u011Fu i\u00E7in modele eklenmedi.",
+      "AffectedFields": [
+        "outerBody"
+      ],
+      "RecommendedAction": "Gerekirse a\u011F\u0131z kenar\u0131 yar\u0131\u00E7ap\u0131n\u0131 belirtin.",
+      "Origin": "model"
+    },
+    {
+      "Code": "RECIPE_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-212: Ge\u00E7ersiz i\u015Flem girdi say\u0131s\u0131: holeC",
+      "AffectedFields": [
+        "11-30-212"
+      ],
+      "RecommendedAction": "Tarif veya desteklenen i\u015Flem s\u00F6zle\u015Fmesi incelenmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-200: Ge\u00E7ersiz i\u015Flem girdi say\u0131s\u0131: holeC",
+      "AffectedFields": [
+        "11-30-200"
+      ],
+      "RecommendedAction": "Tarif veya desteklenen i\u015Flem s\u00F6zle\u015Fmesi incelenmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-92: Ge\u00E7ersiz i\u015Flem girdi say\u0131s\u0131: holeC",
+      "AffectedFields": [
+        "11-30-92"
+      ],
+      "RecommendedAction": "Tarif veya desteklenen i\u015Flem s\u00F6zle\u015Fmesi incelenmeli.",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_VALIDATION",
+      "Category": "model",
+      "Severity": "error",
+      "Message": "11-30-381: Ge\u00E7ersiz i\u015Flem girdi say\u0131s\u0131: holeC",
+      "AffectedFields": [
+        "11-30-381"
+      ],
+      "RecommendedAction": "Tarif veya desteklenen i\u015Flem s\u00F6zle\u015Fmesi incelenmeli.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "4FAF7C74874632F42A3E1E1025E67B0BDD51EBD36D58DCBBCF3D10D8E83FE66A"
+    },
+    "SchemaVersion": 5,
+    "RowCount": 4,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.116524,
+    "ReasoningEffort": "high",
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}
