@@ -1,0 +1,230 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "11-24-13",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "cup",
+          "op": "revolve",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 222866.92980819818
+        },
+        {
+          "id": "collar",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 9987.123045761951
+        },
+        {
+          "id": "cupWithCollar",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 230130.29202329784
+        },
+        {
+          "id": "collarFillet",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 230224.39155899239
+        },
+        {
+          "id": "holeJ",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 226593.69219914707
+        },
+        {
+          "id": "holeG",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 226131.87807906928
+        },
+        {
+          "id": "holeI",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 225670.06395899164
+        }
+      ],
+      "volumeMm3": 225670.06395899164,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimJ",
+          "dimFilletR"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-216",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "cup",
+          "op": "revolve",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100041.44156249674
+        },
+        {
+          "id": "collar",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2693.523001371549
+        },
+        {
+          "id": "cupWithCollar",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 101884.37835290866
+        },
+        {
+          "id": "collarFillet",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 101938.02639540429
+        },
+        {
+          "id": "holeJ",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100951.27177786583
+        },
+        {
+          "id": "holeG",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100489.4576577881
+        },
+        {
+          "id": "holeI",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100027.64353771057
+        }
+      ],
+      "volumeMm3": 100027.64353771057,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimJ",
+          "dimFilletR"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-372",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "cup",
+          "op": "revolve",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 58686.829930238324
+        },
+        {
+          "id": "collar",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3455.751918948772
+        },
+        {
+          "id": "cupWithCollar",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 61200.104053110146
+        },
+        {
+          "id": "collarFillet",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 61256.44886181911
+        },
+        {
+          "id": "holeJ",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 60113.890883616594
+        },
+        {
+          "id": "holeG",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59652.07676353894
+        },
+        {
+          "id": "holeI",
+          "op": "hole",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59190.26264346126
+        }
+      ],
+      "volumeMm3": 59190.26264346126,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimJ",
+          "dimFilletR"
+        ]
+      }
+    }
+  ]
+}
