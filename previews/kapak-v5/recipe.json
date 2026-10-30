@@ -1,0 +1,933 @@
+{
+  "schemaVersion": 5,
+  "description": "D\u00F6rt delikli, ortas\u0131 delikli, y\u00FCz\u00FCnde delik \u00E7evresi y\u00FCkseltileri ve kenar\u0131nda iki radyal yuvas\u0131 olan ince yuvarlak taban sac\u0131.",
+  "parameters": [
+    {
+      "id": "outerDia",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "A"
+      },
+      "evidence": "Plan g\u00F6r\u00FCn\u00FC\u015F d\u0131\u015F \u00E7ap \u2205\u0027A\u0027"
+    },
+    {
+      "id": "pitchDia",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "B"
+      },
+      "evidence": "\u2205\u0027B\u0027 k\u0131lavuz \u00E7izgisi kesik \u00E7izgili delik daire \u00E7ap\u0131na gider"
+    },
+    {
+      "id": "holeDia",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "C"
+      },
+      "evidence": "4x \u2205\u0027C\u0027 delik \u00F6l\u00E7\u00FCs\u00FC"
+    },
+    {
+      "id": "boreDia",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "D"
+      },
+      "evidence": "Kesitte ve planda orta delik \u2205\u0027D\u0027"
+    },
+    {
+      "id": "bossHeight",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "E"
+      },
+      "evidence": "Kesitte delik \u00E7evresi y\u00FCkselti y\u00FCksekli\u011Fi \u0027E\u0027"
+    },
+    {
+      "id": "plateThickness",
+      "unit": "mm",
+      "source": {
+        "kind": "column",
+        "column": "F"
+      },
+      "evidence": "Kesitte levha kal\u0131nl\u0131\u011F\u0131 \u0027F\u0027"
+    },
+    {
+      "id": "two",
+      "unit": "scalar",
+      "source": {
+        "kind": "constant",
+        "value": 2
+      },
+      "evidence": "\u00C7ap-yar\u0131\u00E7ap d\u00F6n\u00FC\u015F\u00FCm\u00FC i\u00E7in sabit"
+    },
+    {
+      "id": "holeCount",
+      "unit": "count",
+      "source": {
+        "kind": "constant",
+        "value": 4
+      },
+      "evidence": "4x \u2205\u0027C\u0027 notu"
+    },
+    {
+      "id": "slotWidth",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 14
+      },
+      "evidence": "Yuva geni\u015Fli\u011Fi 14,00"
+    },
+    {
+      "id": "slotDepth",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 16.5
+      },
+      "evidence": "Yuva derinli\u011Fi 16,50"
+    },
+    {
+      "id": "slotRadius",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "divide",
+        "args": [
+          "slotWidth",
+          "two"
+        ]
+      },
+      "evidence": "R7,00 = 14,00 / 2"
+    },
+    {
+      "id": "slotOvershoot",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 10
+      },
+      "evidence": "Varsay\u0131m: yuva arac\u0131 d\u0131\u015F kenar\u0131 a\u015Far"
+    },
+    {
+      "id": "bossDia",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 21.6
+      },
+      "evidence": "\u00D6l\u00E7\u00FCs\u00FCz; plandan piksel ile yakla\u015F\u0131k"
+    },
+    {
+      "id": "flatnessTol",
+      "unit": "mm",
+      "source": {
+        "kind": "constant",
+        "value": 0.5
+      },
+      "evidence": "D\u00FCzlemsellik 0,5 \u00E7er\u00E7evesi"
+    },
+    {
+      "id": "pitchRadius",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "divide",
+        "args": [
+          "pitchDia",
+          "two"
+        ]
+      },
+      "evidence": "Delik dairesi yar\u0131\u00E7ap\u0131"
+    },
+    {
+      "id": "outerRadius",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "divide",
+        "args": [
+          "outerDia",
+          "two"
+        ]
+      },
+      "evidence": "D\u0131\u015F yar\u0131\u00E7ap"
+    },
+    {
+      "id": "slotTipDist",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "subtract",
+        "args": [
+          "outerRadius",
+          "slotDepth"
+        ]
+      },
+      "evidence": "Yuva dibi merkezden uzakl\u0131\u011F\u0131"
+    },
+    {
+      "id": "slotLength",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "add",
+        "args": [
+          "slotDepth",
+          "slotOvershoot"
+        ]
+      },
+      "evidence": "Yuva arac\u0131 toplam uzunlu\u011Fu"
+    },
+    {
+      "id": "slotHalfLength",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "divide",
+        "args": [
+          "slotLength",
+          "two"
+        ]
+      },
+      "evidence": "Yuva yar\u0131 uzunlu\u011Fu"
+    },
+    {
+      "id": "slotCenterDist",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "add",
+        "args": [
+          "slotTipDist",
+          "slotHalfLength"
+        ]
+      },
+      "evidence": "Yuva orta noktas\u0131 merkezden uzakl\u0131\u011F\u0131"
+    },
+    {
+      "id": "totalHeight",
+      "unit": "mm",
+      "source": {
+        "kind": "derived",
+        "op": "add",
+        "args": [
+          "plateThickness",
+          "bossHeight"
+        ]
+      },
+      "evidence": "Levha \u002B y\u00FCkselti toplam y\u00FCksekli\u011Fi"
+    }
+  ],
+  "frames": [
+    {
+      "id": "main",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        1,
+        0,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Plan g\u00F6r\u00FCn\u00FC\u015F merkezi, arka y\u00FCz Z=0, \u00F6n y\u00FCz \u002BZ"
+    },
+    {
+      "id": "slot1Frame",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        0.7071,
+        0.7071,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Sa\u011F \u00FCst yuva yakla\u015F\u0131k 45\u00B0 ekseninde"
+    },
+    {
+      "id": "slot2Frame",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        -0.7071,
+        -0.7071,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Sol alt yuva kar\u015F\u0131 tarafta, yakla\u015F\u0131k 225\u00B0"
+    }
+  ],
+  "operations": [
+    {
+      "id": "plateSketch",
+      "op": "sketch",
+      "frame": "main",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "plane": "XY",
+        "loops": [
+          {
+            "kind": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "diameter": {
+              "param": "outerDia"
+            }
+          },
+          {
+            "kind": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "diameter": {
+              "param": "boreDia"
+            }
+          }
+        ]
+      },
+      "evidence": "D\u0131\u015F \u00E7ap ve orta delik e\u015F merkezli"
+    },
+    {
+      "id": "plateBody",
+      "op": "extrude",
+      "frame": "main",
+      "inputs": [
+        "plateSketch"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "length": {
+          "param": "plateThickness"
+        },
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "Kesitte d\u00FCz levha kal\u0131nl\u0131\u011F\u0131 F"
+    },
+    {
+      "id": "bossTool",
+      "op": "cylinder",
+      "frame": "main",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "diameter": {
+          "param": "bossDia"
+        },
+        "length": {
+          "param": "bossHeight"
+        },
+        "origin": [
+          {
+            "param": "pitchRadius"
+          },
+          0,
+          {
+            "param": "plateThickness"
+          }
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "Kesitte delik \u00E7evresi \u00F6n y\u00FCzde y\u00FCkselti"
+    },
+    {
+      "id": "bossPattern",
+      "op": "circularPattern",
+      "frame": "main",
+      "inputs": [
+        "bossTool"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "count": {
+          "param": "holeCount"
+        },
+        "pitchDiameter": {
+          "param": "pitchDia"
+        },
+        "startAngleDeg": 0,
+        "totalAngleDeg": 360,
+        "center": [
+          0,
+          0,
+          {
+            "param": "plateThickness"
+          }
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "D\u00F6rt delik 0/90/180/270\u00B0 konumunda"
+    },
+    {
+      "id": "bodyFuse",
+      "op": "fuse",
+      "frame": "main",
+      "inputs": [
+        "plateBody",
+        "bossPattern"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {},
+      "evidence": "Levha ve y\u00FCkseltiler tek g\u00F6vde"
+    },
+    {
+      "id": "holeTool",
+      "op": "cylinder",
+      "frame": "main",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "diameter": {
+          "param": "holeDia"
+        },
+        "length": {
+          "param": "totalHeight"
+        },
+        "origin": [
+          {
+            "param": "pitchRadius"
+          },
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "Delik y\u00FCkselti dahil t\u00FCm y\u00FCksekli\u011Fi ge\u00E7er"
+    },
+    {
+      "id": "holePattern",
+      "op": "circularPattern",
+      "frame": "main",
+      "inputs": [
+        "holeTool"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "count": {
+          "param": "holeCount"
+        },
+        "pitchDiameter": {
+          "param": "pitchDia"
+        },
+        "startAngleDeg": 0,
+        "totalAngleDeg": 360,
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "4x \u2205\u0027C\u0027 e\u015Fit aral\u0131kl\u0131"
+    },
+    {
+      "id": "holeCut",
+      "op": "cut",
+      "frame": "main",
+      "inputs": [
+        "bodyFuse",
+        "holePattern"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {},
+      "evidence": "Delikler g\u00F6vdeden \u00E7\u0131kar\u0131l\u0131r"
+    },
+    {
+      "id": "slot1Sketch",
+      "op": "sketch",
+      "frame": "slot1Frame",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "plane": "XY",
+        "loops": [
+          {
+            "kind": "roundedSlot",
+            "center": [
+              {
+                "param": "slotCenterDist"
+              },
+              0
+            ],
+            "width": {
+              "param": "slotWidth"
+            },
+            "length": {
+              "param": "slotLength"
+            },
+            "angleDeg": 0
+          }
+        ]
+      },
+      "evidence": "Radyal yuva, R7 u\u00E7lu, kenara a\u00E7\u0131k"
+    },
+    {
+      "id": "slot1Tool",
+      "op": "extrude",
+      "frame": "slot1Frame",
+      "inputs": [
+        "slot1Sketch"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "length": {
+          "param": "plateThickness"
+        },
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "Yuva levha kal\u0131nl\u0131\u011F\u0131n\u0131 ge\u00E7er"
+    },
+    {
+      "id": "slot1Cut",
+      "op": "cut",
+      "frame": "main",
+      "inputs": [
+        "holeCut",
+        "slot1Tool"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {},
+      "evidence": "Sa\u011F \u00FCst yuva kesimi"
+    },
+    {
+      "id": "slot2Sketch",
+      "op": "sketch",
+      "frame": "slot2Frame",
+      "inputs": [],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "plane": "XY",
+        "loops": [
+          {
+            "kind": "roundedSlot",
+            "center": [
+              {
+                "param": "slotCenterDist"
+              },
+              0
+            ],
+            "width": {
+              "param": "slotWidth"
+            },
+            "length": {
+              "param": "slotLength"
+            },
+            "angleDeg": 0
+          }
+        ]
+      },
+      "evidence": "Sol alt yuva ayn\u0131 bi\u00E7imde"
+    },
+    {
+      "id": "slot2Tool",
+      "op": "extrude",
+      "frame": "slot2Frame",
+      "inputs": [
+        "slot2Sketch"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {
+        "length": {
+          "param": "plateThickness"
+        },
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      },
+      "evidence": "Yuva levha kal\u0131nl\u0131\u011F\u0131n\u0131 ge\u00E7er"
+    },
+    {
+      "id": "slot2Cut",
+      "op": "cut",
+      "frame": "main",
+      "inputs": [
+        "slot1Cut",
+        "slot2Tool"
+      ],
+      "optionalInputs": [],
+      "when": {
+        "kind": "always"
+      },
+      "args": {},
+      "evidence": "Sol alt yuva kesimi"
+    }
+  ],
+  "result": "slot2Cut",
+  "dimensions": [
+    {
+      "id": "dimOuter",
+      "type": "diameter",
+      "parameter": "outerDia",
+      "targets": [
+        {
+          "operation": "plateBody",
+          "role": "outerRim"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u2205\u0027A\u0027"
+    },
+    {
+      "id": "dimBore",
+      "type": "diameter",
+      "parameter": "boreDia",
+      "targets": [
+        {
+          "operation": "plateSketch",
+          "role": "boreAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u2205\u0027D\u0027"
+    },
+    {
+      "id": "dimPitch",
+      "type": "pitchDiameter",
+      "parameter": "pitchDia",
+      "targets": [
+        {
+          "operation": "holePattern",
+          "role": "patternAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Planda \u2205\u0027B\u0027 k\u0131lavuz \u00E7izgisi"
+    },
+    {
+      "id": "dimHole",
+      "type": "diameter",
+      "parameter": "holeDia",
+      "targets": [
+        {
+          "operation": "holePattern",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 4,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "4x \u2205\u0027C\u0027"
+    },
+    {
+      "id": "dimBossHeight",
+      "type": "thickness",
+      "parameter": "bossHeight",
+      "targets": [
+        {
+          "operation": "bossPattern",
+          "role": "frontFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 4,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u0027E\u0027 y\u00FCkselti"
+    },
+    {
+      "id": "dimPlate",
+      "type": "thickness",
+      "parameter": "plateThickness",
+      "targets": [
+        {
+          "operation": "plateBody",
+          "role": "frontFace"
+        },
+        {
+          "operation": "plateBody",
+          "role": "backFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u0027F\u0027 kal\u0131nl\u0131k"
+    },
+    {
+      "id": "dimSlotWidth",
+      "type": "distance",
+      "parameter": "slotWidth",
+      "targets": [
+        {
+          "operation": "slot1Tool",
+          "role": "slotWidth"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Yuva geni\u015Fli\u011Fi 14,00"
+    },
+    {
+      "id": "dimSlotDepth",
+      "type": "distance",
+      "parameter": "slotDepth",
+      "targets": [
+        {
+          "operation": "slot1Tool",
+          "role": "slotDepth"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Yuva derinli\u011Fi 16,50"
+    },
+    {
+      "id": "dimSlotRadius",
+      "type": "radius",
+      "parameter": "slotRadius",
+      "targets": [
+        {
+          "operation": "slot1Tool",
+          "role": "slotEndArc"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Yuva ucu R7,00"
+    }
+  ],
+  "geometricTolerances": [
+    {
+      "kind": "flatness",
+      "value": {
+        "param": "flatnessTol"
+      },
+      "targets": [
+        {
+          "operation": "plateBody",
+          "role": "backFace"
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "planView",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "Sa\u011Fdaki plan g\u00F6r\u00FCn\u00FC\u015F, \u00F6n y\u00FCzden bak\u0131\u015F"
+    },
+    {
+      "id": "sectionViewAA",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "A-A oklar\u0131 sola bakar, kesit solda"
+    }
+  ],
+  "sections": [
+    {
+      "id": "sectionAA",
+      "view": "sectionViewAA",
+      "kind": "planar",
+      "targets": [
+        "plateBody",
+        "bossPattern",
+        "holeCut"
+      ],
+      "evidence": "D\u00FC\u015Fey eksen d\u00FCzleminden \u00FCst/alt delikler kesilir"
+    }
+  ],
+  "issues": [
+    {
+      "code": "PITCH_DIAMETER_SYMBOL",
+      "category": "input",
+      "severity": "warning",
+      "message": "B girdisinde \u00E7ap sembol\u00FC yok ancak \u00E7izimde \u2205\u0027B\u0027 var; B delik daire \u00E7ap\u0131 olarak yorumland\u0131.",
+      "affectedFields": [
+        "B",
+        "dimPitch"
+      ],
+      "recommendedAction": "B\u0027nin delik dairesi \u00E7ap\u0131 oldu\u011Funu do\u011Frulay\u0131n."
+    },
+    {
+      "code": "BOSS_DIAMETER_UNMEASURED",
+      "category": "input",
+      "severity": "warning",
+      "message": "Delik \u00E7evresi y\u00FCkselti \u00E7ap\u0131 \u00F6l\u00E7\u00FCl\u00FC de\u011Fil; plandan yakla\u015F\u0131k 21,6 mm varsay\u0131ld\u0131. Y\u00FCkselti kenar ge\u00E7i\u015Fi/yuvarlatmas\u0131 da modellenmedi.",
+      "affectedFields": [
+        "bossDia",
+        "bossPattern"
+      ],
+      "recommendedAction": "Y\u00FCkselti \u00E7ap\u0131 ve kenar geometrisi \u00F6l\u00E7\u00FCs\u00FCn\u00FC do\u011Frulay\u0131n."
+    },
+    {
+      "code": "SLOT_ASSUMPTIONS",
+      "category": "input",
+      "severity": "warning",
+      "message": "Yuva a\u00E7\u0131s\u0131 (45\u00B0 ve 225\u00B0) g\u00F6rselden tahmin edildi; 16,50 \u00F6l\u00E7\u00FCs\u00FCn\u00FCn d\u0131\u015F \u00E7evreden yuva dibine oldu\u011Fu ve yuva uzunlu\u011Funun toplam uzunluk oldu\u011Fu varsay\u0131ld\u0131; ta\u015Fma 10 mm varsay\u0131m.",
+      "affectedFields": [
+        "slotDepth",
+        "slotOvershoot",
+        "slot1Frame",
+        "slot2Frame"
+      ],
+      "recommendedAction": "Yuva a\u00E7\u0131s\u0131 ve derinlik referans\u0131n\u0131 do\u011Frulay\u0131n."
+    },
+    {
+      "code": "SLOT_QUANTITY",
+      "category": "input",
+      "severity": "warning",
+      "message": "Yuva \u00F6l\u00E7\u00FCleri yaln\u0131z bir yuvada verilmi\u015F; ikinci yuvan\u0131n ayn\u0131 oldu\u011Fu varsay\u0131ld\u0131.",
+      "affectedFields": [
+        "slot2Tool"
+      ],
+      "recommendedAction": "\u0130kinci yuva \u00F6l\u00E7\u00FClerini do\u011Frulay\u0131n."
+    }
+  ]
+}

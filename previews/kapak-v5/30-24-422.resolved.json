@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 5,
+  "outputId": "30-24-422",
+  "parameters": {
+    "outerDia": 236,
+    "pitchDia": 200,
+    "holeDia": 11.7,
+    "boreDia": 70,
+    "bossHeight": 5,
+    "plateThickness": 5,
+    "two": 2,
+    "holeCount": 4,
+    "slotWidth": 14,
+    "slotDepth": 16.5,
+    "slotRadius": 7,
+    "slotOvershoot": 10,
+    "bossDia": 21.6,
+    "flatnessTol": 0.5,
+    "pitchRadius": 100,
+    "outerRadius": 118,
+    "slotTipDist": 101.5,
+    "slotLength": 26.5,
+    "slotHalfLength": 13.25,
+    "slotCenterDist": 114.75,
+    "totalHeight": 10
+  },
+  "frames": [
+    {
+      "id": "main",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        1,
+        0,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Plan g\u00F6r\u00FCn\u00FC\u015F merkezi, arka y\u00FCz Z=0, \u00F6n y\u00FCz \u002BZ",
+      "basisNormalizationApplied": false
+    },
+    {
+      "id": "slot1Frame",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        0.7071067811865476,
+        0.7071067811865476,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Sa\u011F \u00FCst yuva yakla\u015F\u0131k 45\u00B0 ekseninde",
+      "basisNormalizationApplied": true
+    },
+    {
+      "id": "slot2Frame",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        -0.7071067811865476,
+        -0.7071067811865476,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "Sol alt yuva kar\u015F\u0131 tarafta, yakla\u015F\u0131k 225\u00B0",
+      "basisNormalizationApplied": true
+    }
+  ],
+  "operations": [
+    {
+      "id": "plateSketch",
+      "op": "sketch",
+      "frame": "main",
+      "inputs": [],
+      "args": {
+        "plane": "XY",
+        "loops": [
+          {
+            "kind": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "diameter": 236
+          },
+          {
+            "kind": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "diameter": 70
+          }
+        ]
+      }
+    },
+    {
+      "id": "plateBody",
+      "op": "extrude",
+      "frame": "main",
+      "inputs": [
+        "plateSketch"
+      ],
+      "args": {
+        "length": 5,
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "bossTool",
+      "op": "cylinder",
+      "frame": "main",
+      "inputs": [],
+      "args": {
+        "diameter": 21.6,
+        "length": 5,
+        "origin": [
+          100,
+          0,
+          5
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "bossPattern",
+      "op": "circularPattern",
+      "frame": "main",
+      "inputs": [
+        "bossTool"
+      ],
+      "args": {
+        "count": 4,
+        "pitchDiameter": 200,
+        "startAngleDeg": 0,
+        "totalAngleDeg": 360,
+        "center": [
+          0,
+          0,
+          5
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "bodyFuse",
+      "op": "fuse",
+      "frame": "main",
+      "inputs": [
+        "plateBody",
+        "bossPattern"
+      ],
+      "args": {}
+    },
+    {
+      "id": "holeTool",
+      "op": "cylinder",
+      "frame": "main",
+      "inputs": [],
+      "args": {
+        "diameter": 11.7,
+        "length": 10,
+        "origin": [
+          100,
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "holePattern",
+      "op": "circularPattern",
+      "frame": "main",
+      "inputs": [
+        "holeTool"
+      ],
+      "args": {
+        "count": 4,
+        "pitchDiameter": 200,
+        "startAngleDeg": 0,
+        "totalAngleDeg": 360,
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "holeCut",
+      "op": "cut",
+      "frame": "main",
+      "inputs": [
+        "bodyFuse",
+        "holePattern"
+      ],
+      "args": {}
+    },
+    {
+      "id": "slot1Sketch",
+      "op": "sketch",
+      "frame": "slot1Frame",
+      "inputs": [],
+      "args": {
+        "plane": "XY",
+        "loops": [
+          {
+            "kind": "roundedSlot",
+            "center": [
+              114.75,
+              0
+            ],
+            "width": 14,
+            "length": 26.5,
+            "angleDeg": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "slot1Tool",
+      "op": "extrude",
+      "frame": "slot1Frame",
+      "inputs": [
+        "slot1Sketch"
+      ],
+      "args": {
+        "length": 5,
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "slot1Cut",
+      "op": "cut",
+      "frame": "main",
+      "inputs": [
+        "holeCut",
+        "slot1Tool"
+      ],
+      "args": {}
+    },
+    {
+      "id": "slot2Sketch",
+      "op": "sketch",
+      "frame": "slot2Frame",
+      "inputs": [],
+      "args": {
+        "plane": "XY",
+        "loops": [
+          {
+            "kind": "roundedSlot",
+            "center": [
+              114.75,
+              0
+            ],
+            "width": 14,
+            "length": 26.5,
+            "angleDeg": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "slot2Tool",
+      "op": "extrude",
+      "frame": "slot2Frame",
+      "inputs": [
+        "slot2Sketch"
+      ],
+      "args": {
+        "length": 5,
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "slot2Cut",
+      "op": "cut",
+      "frame": "main",
+      "inputs": [
+        "slot1Cut",
+        "slot2Tool"
+      ],
+      "args": {}
+    }
+  ],
+  "result": "slot2Cut",
+  "dimensions": [
+    {
+      "id": "dimOuter",
+      "type": "diameter",
+      "parameter": "outerDia",
+      "targets": [
+        {
+          "operation": "plateBody",
+          "role": "outerRim"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u2205\u0027A\u0027",
+      "effectiveVisible": true,
+      "nominal": 236
+    },
+    {
+      "id": "dimBore",
+      "type": "diameter",
+      "parameter": "boreDia",
+      "targets": [
+        {
+          "operation": "plateSketch",
+          "role": "boreAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u2205\u0027D\u0027",
+      "effectiveVisible": true,
+      "nominal": 70
+    },
+    {
+      "id": "dimPitch",
+      "type": "pitchDiameter",
+      "parameter": "pitchDia",
+      "targets": [
+        {
+          "operation": "holePattern",
+          "role": "patternAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Planda \u2205\u0027B\u0027 k\u0131lavuz \u00E7izgisi",
+      "effectiveVisible": true,
+      "nominal": 200
+    },
+    {
+      "id": "dimHole",
+      "type": "diameter",
+      "parameter": "holeDia",
+      "targets": [
+        {
+          "operation": "holePattern",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 4,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "4x \u2205\u0027C\u0027",
+      "effectiveVisible": true,
+      "nominal": 11.7
+    },
+    {
+      "id": "dimBossHeight",
+      "type": "thickness",
+      "parameter": "bossHeight",
+      "targets": [
+        {
+          "operation": "bossPattern",
+          "role": "frontFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 4,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u0027E\u0027 y\u00FCkselti",
+      "effectiveVisible": true,
+      "nominal": 5
+    },
+    {
+      "id": "dimPlate",
+      "type": "thickness",
+      "parameter": "plateThickness",
+      "targets": [
+        {
+          "operation": "plateBody",
+          "role": "frontFace"
+        },
+        {
+          "operation": "plateBody",
+          "role": "backFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Kesitte \u0027F\u0027 kal\u0131nl\u0131k",
+      "effectiveVisible": true,
+      "nominal": 5
+    },
+    {
+      "id": "dimSlotWidth",
+      "type": "distance",
+      "parameter": "slotWidth",
+      "targets": [
+        {
+          "operation": "slot1Tool",
+          "role": "slotWidth"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Yuva geni\u015Fli\u011Fi 14,00",
+      "effectiveVisible": false,
+      "nominal": 14
+    },
+    {
+      "id": "dimSlotDepth",
+      "type": "distance",
+      "parameter": "slotDepth",
+      "targets": [
+        {
+          "operation": "slot1Tool",
+          "role": "slotDepth"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Yuva derinli\u011Fi 16,50",
+      "effectiveVisible": false,
+      "nominal": 16.5
+    },
+    {
+      "id": "dimSlotRadius",
+      "type": "radius",
+      "parameter": "slotRadius",
+      "targets": [
+        {
+          "operation": "slot1Tool",
+          "role": "slotEndArc"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Yuva ucu R7,00",
+      "effectiveVisible": false,
+      "nominal": 7
+    }
+  ],
+  "views": [
+    {
+      "id": "planView",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "Sa\u011Fdaki plan g\u00F6r\u00FCn\u00FC\u015F, \u00F6n y\u00FCzden bak\u0131\u015F"
+    },
+    {
+      "id": "sectionViewAA",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "A-A oklar\u0131 sola bakar, kesit solda"
+    }
+  ],
+  "sections": [
+    {
+      "id": "sectionAA",
+      "view": "sectionViewAA",
+      "kind": "planar",
+      "targets": [
+        "plateBody",
+        "bossPattern",
+        "holeCut"
+      ],
+      "evidence": "D\u00FC\u015Fey eksen d\u00FCzleminden \u00FCst/alt delikler kesilir"
+    }
+  ],
+  "geometricTolerances": [
+    {
+      "kind": "flatness",
+      "value": 0.5,
+      "targets": [
+        {
+          "operation": "plateBody",
+          "role": "backFace"
+        }
+      ]
+    }
+  ],
+  "executionStatus": "recipe-resolved-not-rendered"
+}

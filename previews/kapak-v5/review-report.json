@@ -1,0 +1,66 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [
+    {
+      "Code": "PITCH_DIAMETER_SYMBOL",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "B girdisinde \u00E7ap sembol\u00FC yok ancak \u00E7izimde \u2205\u0027B\u0027 var; B delik daire \u00E7ap\u0131 olarak yorumland\u0131.",
+      "AffectedFields": [
+        "B",
+        "dimPitch"
+      ],
+      "RecommendedAction": "B\u0027nin delik dairesi \u00E7ap\u0131 oldu\u011Funu do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "BOSS_DIAMETER_UNMEASURED",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Delik \u00E7evresi y\u00FCkselti \u00E7ap\u0131 \u00F6l\u00E7\u00FCl\u00FC de\u011Fil; plandan yakla\u015F\u0131k 21,6 mm varsay\u0131ld\u0131. Y\u00FCkselti kenar ge\u00E7i\u015Fi/yuvarlatmas\u0131 da modellenmedi.",
+      "AffectedFields": [
+        "bossDia",
+        "bossPattern"
+      ],
+      "RecommendedAction": "Y\u00FCkselti \u00E7ap\u0131 ve kenar geometrisi \u00F6l\u00E7\u00FCs\u00FCn\u00FC do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "SLOT_ASSUMPTIONS",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Yuva a\u00E7\u0131s\u0131 (45\u00B0 ve 225\u00B0) g\u00F6rselden tahmin edildi; 16,50 \u00F6l\u00E7\u00FCs\u00FCn\u00FCn d\u0131\u015F \u00E7evreden yuva dibine oldu\u011Fu ve yuva uzunlu\u011Funun toplam uzunluk oldu\u011Fu varsay\u0131ld\u0131; ta\u015Fma 10 mm varsay\u0131m.",
+      "AffectedFields": [
+        "slotDepth",
+        "slotOvershoot",
+        "slot1Frame",
+        "slot2Frame"
+      ],
+      "RecommendedAction": "Yuva a\u00E7\u0131s\u0131 ve derinlik referans\u0131n\u0131 do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "SLOT_QUANTITY",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Yuva \u00F6l\u00E7\u00FCleri yaln\u0131z bir yuvada verilmi\u015F; ikinci yuvan\u0131n ayn\u0131 oldu\u011Fu varsay\u0131ld\u0131.",
+      "AffectedFields": [
+        "slot2Tool"
+      ],
+      "RecommendedAction": "\u0130kinci yuva \u00F6l\u00E7\u00FClerini do\u011Frulay\u0131n.",
+      "Origin": "model"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "70D7746782979BF580298A25677CDBD43D96C0D0E57F361FBFBE22310589BFBB",
+      "ImageSha256": "CC4EB1175DA80A59FDC9E44874FDC5FDFB8F9FACCCFB0C29C44ECC02C5395870"
+    },
+    "SourceRun": "/workspace/test/output/kapak-v5-complete",
+    "NewApiCalls": 0,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}
