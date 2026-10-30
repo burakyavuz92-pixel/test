@@ -1,4 +1,4 @@
-# DrawingTool — genel CAD sözleşmesi v7
+# DrawingTool — genel CAD sözleşmesi v8
 
 Girdi **bir JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır; OpenRouter'a **bir orijinal JPEG ve bir ayrıştırılmış örnek satır tablosu** gönderir. Kırmızı temizlenmiş ikinci görüntü ve nominal verilerin ikinci kopyası artık gönderilmez. Gruptaki bütün satırlar yerelde çözülür; büyük tablolarda modele en fazla sekiz temsilci satır gönderilir.
 
@@ -101,3 +101,7 @@ Yeni fillet/chamfer seçicileri `directionKind=axis|tangent` taşır. `axis`, da
 CadQuery için ayrı Python ortamı gerekir: CADQUERY_PYTHON (bulutta /workspace/cq-venv/bin/python); paketler tools/cadquery-script-requirements.lock. Eski OCCT ortamı değişmedi. `run-saved-script <saved-folder>` part.py ve rows.json ile API'siz tekrar çalışır. İnceleme betikleri AST/IO kontrolleriyle sınırlanır; tam bir OS sandbox iddiası yok. Bu yol kod üretir; yalnız veri protokolünden ayrı bir deneydir.
 
 STEP ve iki yönden geometri JPEG'i üretir; teknik pafta/kesit/ölçülendirme istemez ve yapmaz. Eski genel JSON yolu korunmuştur. Gerçek taslak4 denemesi previews/group4-script/NOTLAR.md altında; daha az tokena rağmen F yönündeki yanlış yorum devam etti. 80 sentetik tekrar yerelde aynı betikle doğrulandı;80 yeni ürün doğruluğu iddia edilmez. Yeni betik kitaplığı/onay/pafta bağlantısı sonraki karar konusudur.
+
+## Güncel API sözleşmesi: v8
+
+Yeni `analyze-fresh-cad-group` çağrıları, bağımsız sayısal ifadeler ve açık işlem alanları kullanan v8 JSON tarifini ister. Parametre/yardımcı hesap grafiğini modelin kurması gerekmez; tekrar serbesttir. [Sözleşme ve yürütücü sınırları](contracts/cad-v8.md). Betik deneyi varsayılan CAD yolu değildir. Kesit, detay ve ölçülendirme bu JSON yolunda kapsamda kalır.

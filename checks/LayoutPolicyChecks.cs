@@ -188,3 +188,22 @@ directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]
 Check(CadRecipeV7.Check(Doc(directionRecipe),new(){row}).Any(i=>i.Severity=="error"),"unknown selector direction type rejected");
 directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]["directionKind"]="tangent";directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]["direction"]=new JsonArray(0,0,0);
 Check(CadRecipeV7.Check(Doc(directionRecipe),new(){row}).Any(i=>i.Severity=="error"),"zero selector direction rejected");
+
+var v8=JsonDocument.Parse("""
+{"schemaVersion":8,"geometry":{"frames":[],"features":[{"id":"base","kind":"cylinder","args":{"diameter":{"column":"A"},"length":{"expr":"F + 2 * (3 - 1)"},"origin":[0,0,0],"direction":[0,0,1]}},{"id":"optional","kind":"hole","body":"base","presence":{"kind":"columnPresent","column":"B"},"args":{"diameter":{"column":"B"},"origin":[{"expr":"B / 2"},0,0],"direction":[0,0,1],"throughAll":true,"depth":null}}],"result":"optional"},"drawing":{"dimensions":[{"id":"a","type":"diameter","valueSource":{"kind":"column","column":"A"},"targets":[{"operation":"base","role":"outer"}],"axis":"radial","sourceColor":"black"},{"id":"fixed","type":"thickness","valueSource":{"kind":"constant","value":3,"unit":"mm"},"targets":[{"operation":"base","role":"wall"}],"axis":"Z","sourceColor":"green"}],"views":[],"sections":[],"details":[],"geometricTolerances":[]}}
+""").RootElement;
+var v8row=new Dictionary<string,string>(row){["B"]=""};
+Check(!CadRecipeV7.Check(v8,new(){v8row}).Any(i=>i.Severity=="error"),"v8 independent expressions and blank optional geometry accepted");
+var v8resolved=CadRecipeV7.Resolve(v8,v8row);
+Check(v8resolved.GetProperty("geometry").GetProperty("operations")[0].GetProperty("args").GetProperty("length").GetDouble()==9,"v8 local arithmetic precedence and parentheses");
+Check(v8resolved.GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("sourceMeasurement").GetProperty("tolerance").GetProperty("upperDeviationMm").GetDouble()==1,"v8 retains local source tolerance");
+Check(v8resolved.GetProperty("geometry").GetProperty("featureApplied").GetProperty("optional").GetBoolean()==false,"v8 skips absent feature without evaluating blank expression");
+Check(CadRecipeV8.Evaluate("-A / 2 + A",new Dictionary<string,double?>{{"A",10}})==5,"v8 repeated columns and unary signs");
+foreach(var invalid in new[]{"A / 0","A + unknown","A; print(1)","A / (2 - 2)"}){
+    bool rejected=false;try{CadRecipeV8.Evaluate(invalid,new Dictionary<string,double?>{{"A",10}});}catch{rejected=true;}Check(rejected,"v8 rejects unsafe or invalid expression: "+invalid);
+}
+var v8row2=new Dictionary<string,string>(v8row){["A"]="Ø300±2",["B"]="10",["F"]="7"};
+var v8resolved2=CadRecipeV7.Resolve(v8,v8row2);
+Check(v8resolved2.GetProperty("geometry").GetProperty("operations")[0].GetProperty("args").GetProperty("diameter").GetDouble()==300,"v8 shared recipe applies second row nominal rather than tolerance");
+Check(v8resolved2.GetProperty("geometry").GetProperty("featureApplied").GetProperty("optional").GetBoolean(),"v8 optional feature becomes present on a different row");
+Check(v8.GetProperty("schemaVersion").GetInt32()==8&&v8.GetProperty("geometry").GetProperty("features")[0].GetProperty("args").GetProperty("length").TryGetProperty("expr",out _),"v8 lowering preserves original model response");

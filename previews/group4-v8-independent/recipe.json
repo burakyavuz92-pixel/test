@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 8,
+  "geometry": {
+    "frames": [],
+    "features": [
+      {
+        "id": "cup_outer",
+        "kind": "cylinder",
+        "args": {
+          "diameter": {
+            "column": "A"
+          },
+          "length": 33,
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "cup_hollow",
+        "kind": "cylinder",
+        "args": {
+          "diameter": {
+            "expr": "A - 6"
+          },
+          "length": 30,
+          "origin": [
+            0,
+            0,
+            3
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "cup_base",
+        "kind": "cut",
+        "body": "cup_outer",
+        "tool": "cup_hollow",
+        "args": {}
+      },
+      {
+        "id": "cup_fillet_r8",
+        "kind": "fillet",
+        "body": "cup_base",
+        "args": {
+          "size": 8,
+          "selectors": [
+            {
+              "operation": "cup_outer",
+              "role": "startEdge",
+              "near": [
+                0,
+                {
+                  "expr": "A / 2"
+                },
+                0
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "cup_fillet_r5",
+        "kind": "fillet",
+        "body": "cup_fillet_r8",
+        "args": {
+          "size": 5,
+          "selectors": [
+            {
+              "operation": "cup_hollow",
+              "role": "startEdge",
+              "near": [
+                0,
+                {
+                  "expr": "A / 2 - 3"
+                },
+                3
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "cup_fillet_r1_5",
+        "kind": "fillet",
+        "body": "cup_fillet_r5",
+        "args": {
+          "size": 1.5,
+          "selectors": [
+            {
+              "operation": "cup_outer",
+              "role": "endEdge",
+              "near": [
+                0,
+                {
+                  "expr": "A / 2"
+                },
+                33
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "boss_shank",
+        "kind": "cylinder",
+        "args": {
+          "diameter": {
+            "expr": "J \u002B 4"
+          },
+          "length": {
+            "expr": "F \u002B 3"
+          },
+          "origin": [
+            {
+              "expr": "-B"
+            },
+            0,
+            {
+              "expr": "-F"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "boss_fillet_r2",
+        "kind": "fillet",
+        "body": "boss_shank",
+        "args": {
+          "size": 2,
+          "selectors": [
+            {
+              "operation": "boss_shank",
+              "role": "startEdge",
+              "near": [
+                {
+                  "expr": "-B"
+                },
+                {
+                  "expr": "J / 2 \u002B 2"
+                },
+                {
+                  "expr": "-F"
+                }
+              ],
+              "directionKind": "axis",
+              "direction": [
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "boss_flange",
+        "kind": "cylinder",
+        "args": {
+          "diameter": {
+            "column": "D"
+          },
+          "length": {
+            "column": "E"
+          },
+          "origin": [
+            {
+              "expr": "-B"
+            },
+            0,
+            3
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ]
+        }
+      },
+      {
+        "id": "body_with_boss",
+        "kind": "fuse",
+        "body": "cup_fillet_r1_5",
+        "additions": [
+          "boss_fillet_r2",
+          "boss_flange"
+        ],
+        "args": {}
+      },
+      {
+        "id": "body_with_hole_J",
+        "kind": "hole",
+        "body": "body_with_boss",
+        "args": {
+          "diameter": {
+            "column": "J"
+          },
+          "origin": [
+            {
+              "expr": "-B"
+            },
+            0,
+            {
+              "expr": "-F"
+            }
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": true,
+          "depth": null
+        }
+      },
+      {
+        "id": "hole_G",
+        "kind": "hole",
+        "body": "body_with_hole_J",
+        "args": {
+          "diameter": {
+            "column": "G"
+          },
+          "origin": [
+            0,
+            {
+              "expr": "C / 2"
+            },
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": false,
+          "depth": 3
+        }
+      },
+      {
+        "id": "hole_I",
+        "kind": "hole",
+        "body": "hole_G",
+        "args": {
+          "diameter": {
+            "column": "I"
+          },
+          "origin": [
+            0,
+            {
+              "expr": "-C / 2"
+            },
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "throughAll": false,
+          "depth": 3
+        }
+      }
+    ],
+    "result": "hole_I"
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dim_A",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_B",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "axis"
+          },
+          {
+            "operation": "boss_flange",
+            "role": "axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "black",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dim_C",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "hole_G",
+            "role": "axis"
+          },
+          {
+            "operation": "hole_I",
+            "role": "axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_D",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "boss_flange",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_E",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "boss_flange",
+            "role": "length"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_F",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "startFace"
+          },
+          {
+            "operation": "boss_shank",
+            "role": "startFace"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_G",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "hole_G",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_I",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "hole_I",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_J",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "body_with_hole_J",
+            "role": "diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dim_R8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup_fillet_r8",
+            "role": "radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dim_thickness_3",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "cylindricalFace"
+          },
+          {
+            "operation": "cup_hollow",
+            "role": "cylindricalFace"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dim_R1_5",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup_fillet_r1_5",
+            "role": "radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dim_length_33",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "length"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dim_R2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "boss_fillet_r2",
+            "role": "radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      }
+    ],
+    "views": [
+      {
+        "id": "front_view",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "section_A_A_view",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso_view",
+        "direction": [
+          -1,
+          1,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "section_A_A",
+        "view": "section_A_A_view",
+        "sourceView": "front_view",
+        "kind": "featureTrace",
+        "main": {
+          "feature": "cup_outer",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "hole_G",
+            "entity": "axis"
+          },
+          {
+            "feature": "boss_flange",
+            "entity": "axis"
+          },
+          {
+            "feature": "body_with_hole_J",
+            "entity": "axis"
+          },
+          {
+            "feature": "hole_I",
+            "entity": "axis"
+          }
+        ]
+      }
+    ],
+    "details": [
+      {
+        "id": "detail_B",
+        "label": "B",
+        "sourceView": "section_A_A_view",
+        "features": [
+          "boss_shank",
+          "boss_fillet_r2",
+          "boss_flange",
+          "body_with_hole_J"
+        ],
+        "sheetBox": [
+          0.3,
+          0.62,
+          0.12,
+          0.25
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
