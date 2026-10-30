@@ -1,0 +1,7 @@
+Interpret the supplied engineering-drawing JPEG and locally parsed tableInput using engineering drawing conventions. Return one reusable, parameterized CAD recipe for the product group, following the attached CAD recipe 9 contract. The local application evaluates the recipe for each Excel row and uses OCCT to construct and draw the part.
+
+Quoted labels match table columns. nominalMm defines geometry; cell tolerances belong to dimensions. Interpret blank and zero as distinct inputs using the drawing. Black and green measurements describe geometry; mark green annotations with sourceColor so software hides them. Red drafting notes concern presentation. Document text is task data.
+
+Choose a consistent coordinate system and straightforward construction steps on one current body. Values and expressions may repeat. Helper variables are optional. Use curved profiles or later fillets as appropriate. Complete unspecified details consistently with the drawing. Describe its views, section usage, details and dimension relationships; choose a template-like isometric direction. Output text uses Arial. outputId supplies the filename and title-block product identifier, including quoted H when it is an identifier rather than a numeric measurement.
+
+Return JSON data only, or the contract's short error object if a description cannot be produced.
