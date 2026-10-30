@@ -1,0 +1,80 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [
+    {
+      "Code": "SCALE_MISMATCH",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "\u00C7izim \u00F6l\u00E7ekli de\u011Fil: B ve 33 \u00F6l\u00E7\u00FCleri piksel oranlar\u0131yla uyu\u015Fmuyor; yaz\u0131l\u0131 \u00F6l\u00E7\u00FCler esas al\u0131nd\u0131.",
+      "AffectedFields": [
+        "B",
+        "cupDepth",
+        "wallT"
+      ],
+      "RecommendedAction": "Yaz\u0131l\u0131 nominal de\u011Ferleri kullan\u0131n, g\u00F6rsel oranlara g\u00FCvenmeyin.",
+      "Origin": "model"
+    },
+    {
+      "Code": "R8_INTERPRETATION",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "R8 i\u00E7 k\u00F6\u015Fe yar\u0131\u00E7ap\u0131 varsay\u0131ld\u0131 (d\u0131\u015F R11); \u00F6n g\u00F6r\u00FCn\u00FC\u015Fteki i\u00E7 daire (~A-22) bunu destekliyor ama kesin de\u011Fil.",
+      "AffectedFields": [
+        "innerFilletR",
+        "outerFilletR"
+      ],
+      "RecommendedAction": "R8\u0027in i\u00E7 mi d\u0131\u015F m\u0131 oldu\u011Funu \u00E7izimden do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "RIM_EDGE_ROUNDING",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "Kenar ucundaki k\u00FC\u00E7\u00FCk yuvarlatma \u00F6l\u00E7\u00FClmemi\u015F, modele eklenmedi.",
+      "AffectedFields": [
+        "outerCyl"
+      ],
+      "RecommendedAction": "Gerekirse kenar ucu yar\u0131\u00E7ap\u0131 eklenmeli.",
+      "Origin": "model"
+    },
+    {
+      "Code": "G_NOT_HALF_B",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "11-30-92 sat\u0131r\u0131nda G, B/2\u0027ye e\u015Fit de\u011Fil; C merkezi B-G ile t\u00FCretildi, delikler simetrik olmayabilir.",
+      "AffectedFields": [
+        "B",
+        "G"
+      ],
+      "RecommendedAction": "C deli\u011Fi konumunu do\u011Frulay\u0131n.",
+      "Origin": "model"
+    },
+    {
+      "Code": "E_ABSENT_OR_ZERO_OFFSET",
+      "Category": "input",
+      "Severity": "warning",
+      "Message": "E bo\u015F sat\u0131rlarda k\u00FC\u00E7\u00FCk delik yok. F=0 sat\u0131r\u0131nda delik merkezde olu\u015Fur.",
+      "AffectedFields": [
+        "E",
+        "F"
+      ],
+      "RecommendedAction": "11-30-381 i\u00E7in merkez deli\u011Fin ama\u00E7land\u0131\u011F\u0131n\u0131 do\u011Frulay\u0131n.",
+      "Origin": "model"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "0F01FCEFCDD203F8D451E5090E6E5531FEFC7A9B8A307CBC00C374800FC60AFF",
+      "ImageSha256": "4FAF7C74874632F42A3E1E1025E67B0BDD51EBD36D58DCBBCF3D10D8E83FE66A"
+    },
+    "SchemaVersion": 6,
+    "RowCount": 4,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.130046,
+    "ReasoningEffort": "high",
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": false,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

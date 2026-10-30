@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 6,
+  "outputId": "11-30-200",
+  "parameters": {
+    "A": 160,
+    "B": 89,
+    "C": 14,
+    "D": 14,
+    "E": null,
+    "F": null,
+    "G": 44.5,
+    "wallT": 3,
+    "cupDepth": 33,
+    "innerFilletR": 8,
+    "two": 2,
+    "minusOne": -1,
+    "twoT": 6,
+    "innerDia": 154,
+    "innerLen": 30,
+    "outerFilletR": 11,
+    "holeCy": 44.5,
+    "holeDy": -44.5,
+    "holeEx": null
+  },
+  "frames": [
+    {
+      "id": "main",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "xAxis": [
+        1,
+        0,
+        0
+      ],
+      "zAxis": [
+        0,
+        0,
+        1
+      ],
+      "evidence": "\u00D6n g\u00F6r\u00FCn\u00FC\u015F: kap merkezi, d\u0131\u015F taban y\u00FCz\u00FC z=0, \u002BZ a\u00E7\u0131k y\u00FCze do\u011Fru, Y yukar\u0131",
+      "basisNormalizationApplied": false
+    }
+  ],
+  "operations": [
+    {
+      "id": "outerCyl",
+      "op": "cylinder",
+      "frame": "main",
+      "target": null,
+      "tool": null,
+      "inputs": [],
+      "featureApplied": true,
+      "args": {
+        "diameter": 160,
+        "length": 33,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "innerCyl",
+      "op": "cylinder",
+      "frame": "main",
+      "target": null,
+      "tool": null,
+      "inputs": [],
+      "featureApplied": true,
+      "args": {
+        "diameter": 154,
+        "length": 30,
+        "origin": [
+          0,
+          0,
+          3
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "cupCut",
+      "op": "cut",
+      "frame": "main",
+      "target": "outerCyl",
+      "tool": "innerCyl",
+      "inputs": [],
+      "featureApplied": true,
+      "args": {}
+    },
+    {
+      "id": "innerFillet",
+      "op": "fillet",
+      "frame": "main",
+      "target": "cupCut",
+      "tool": null,
+      "inputs": [],
+      "featureApplied": true,
+      "args": {
+        "size": 8,
+        "selectors": [
+          {
+            "operation": "cupCut",
+            "role": "innerBaseCorner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "outerFillet",
+      "op": "fillet",
+      "frame": "main",
+      "target": "innerFillet",
+      "tool": null,
+      "inputs": [],
+      "featureApplied": true,
+      "args": {
+        "size": 11,
+        "selectors": [
+          {
+            "operation": "cupCut",
+            "role": "outerBaseCorner"
+          }
+        ]
+      }
+    },
+    {
+      "id": "holeC",
+      "op": "hole",
+      "frame": "main",
+      "target": "outerFillet",
+      "tool": null,
+      "inputs": [],
+      "featureApplied": true,
+      "args": {
+        "diameter": 14,
+        "origin": [
+          0,
+          44.5,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "throughAll": true,
+        "depth": null
+      }
+    },
+    {
+      "id": "holeD",
+      "op": "hole",
+      "frame": "main",
+      "target": "holeC",
+      "tool": null,
+      "inputs": [],
+      "featureApplied": true,
+      "args": {
+        "diameter": 14,
+        "origin": [
+          0,
+          -44.5,
+          0
+        ],
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "throughAll": true,
+        "depth": null
+      }
+    },
+    {
+      "id": "holeE",
+      "op": "passThrough",
+      "target": "holeD",
+      "featureApplied": false
+    }
+  ],
+  "result": "holeE",
+  "featureApplied": {
+    "outerCyl": true,
+    "innerCyl": true,
+    "cupCut": true,
+    "innerFillet": true,
+    "outerFillet": true,
+    "holeC": true,
+    "holeD": true,
+    "holeE": false
+  },
+  "views": [
+    {
+      "id": "frontView",
+      "direction": [
+        0,
+        0,
+        -1
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "A\u00E7\u0131k y\u00FCzden \u00F6n g\u00F6r\u00FCn\u00FC\u015F"
+    },
+    {
+      "id": "sectionViewAA",
+      "direction": [
+        1,
+        0,
+        0
+      ],
+      "up": [
+        0,
+        1,
+        0
+      ],
+      "projection": "orthographic",
+      "evidence": "Kesit A-A, taban solda, a\u00E7\u0131kl\u0131k sa\u011Fda"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "dimA",
+      "type": "diameter",
+      "parameter": "A",
+      "targets": [
+        {
+          "operation": "outerCyl",
+          "role": "outerRim"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D8\u0027A\u0027 kesit g\u00F6r\u00FCn\u00FC\u015F\u00FCnde",
+      "effectiveVisible": true,
+      "nominal": 160
+    },
+    {
+      "id": "dimWall",
+      "type": "thickness",
+      "parameter": "wallT",
+      "targets": [
+        {
+          "operation": "cupCut",
+          "role": "backFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Taban kal\u0131nl\u0131\u011F\u0131 3",
+      "effectiveVisible": false,
+      "nominal": 3
+    },
+    {
+      "id": "dimDepth",
+      "type": "distance",
+      "parameter": "cupDepth",
+      "targets": [
+        {
+          "operation": "outerCyl",
+          "role": "frontFace"
+        },
+        {
+          "operation": "outerCyl",
+          "role": "backFace"
+        }
+      ],
+      "axis": "Z",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "Derinlik 33,0",
+      "effectiveVisible": false,
+      "nominal": 33
+    },
+    {
+      "id": "dimInnerR",
+      "type": "radius",
+      "parameter": "innerFilletR",
+      "targets": [
+        {
+          "operation": "innerFillet",
+          "role": "innerBaseCorner"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "green",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "R8 k\u00F6\u015Fe",
+      "effectiveVisible": false,
+      "nominal": 8
+    },
+    {
+      "id": "dimB",
+      "type": "distance",
+      "parameter": "B",
+      "targets": [
+        {
+          "operation": "holeC",
+          "role": "holeAxis"
+        },
+        {
+          "operation": "holeD",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "Y",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u0027B\u0027 iki delik ekseni aras\u0131",
+      "effectiveVisible": true,
+      "nominal": 89
+    },
+    {
+      "id": "dimG",
+      "type": "distance",
+      "parameter": "G",
+      "targets": [
+        {
+          "operation": "holeD",
+          "role": "holeAxis"
+        },
+        {
+          "operation": "outerCyl",
+          "role": "centerAxis"
+        }
+      ],
+      "axis": "Y",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u0027G\u0027 merkezden alt deli\u011Fe",
+      "effectiveVisible": true,
+      "nominal": 44.5
+    },
+    {
+      "id": "dimC",
+      "type": "diameter",
+      "parameter": "C",
+      "targets": [
+        {
+          "operation": "holeC",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D8\u0027C\u0027 \u00FCst delik",
+      "effectiveVisible": true,
+      "nominal": 14
+    },
+    {
+      "id": "dimD",
+      "type": "diameter",
+      "parameter": "D",
+      "targets": [
+        {
+          "operation": "holeD",
+          "role": "holeAxis"
+        }
+      ],
+      "axis": "radial",
+      "quantity": 1,
+      "sourceColor": "black",
+      "visible": true,
+      "hideIf": {
+        "kind": "never"
+      },
+      "evidence": "\u00D8\u0027D\u0027 alt delik",
+      "effectiveVisible": true,
+      "nominal": 14
+    }
+  ],
+  "sections": [
+    {
+      "id": "sectionAA",
+      "view": "sectionViewAA",
+      "kind": "stepped",
+      "targets": [
+        "cupCut",
+        "outerFillet",
+        "holeC",
+        "holeD"
+      ],
+      "evidence": "A-A kesme \u00E7izgisi E deli\u011Fi hizas\u0131nda basamakl\u0131"
+    }
+  ],
+  "geometricTolerances": [],
+  "executionStatus": "recipe-resolved-not-rendered"
+}

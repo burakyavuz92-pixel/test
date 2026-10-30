@@ -1,0 +1,332 @@
+{
+  "rawRecipeUnmodified": true,
+  "rows": {
+    "11-30-212.resolved": {
+      "featureApplied": {
+        "outerCyl": true,
+        "innerCyl": true,
+        "cupCut": true,
+        "innerFillet": true,
+        "outerFillet": true,
+        "holeC": true,
+        "holeD": true,
+        "holeE": true
+      },
+      "result": "holeE",
+      "operations": [
+        {
+          "id": "outerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "innerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "cupCut",
+          "op": "cut",
+          "target": "outerCyl"
+        },
+        {
+          "id": "innerFillet",
+          "op": "fillet",
+          "target": "cupCut"
+        },
+        {
+          "id": "outerFillet",
+          "op": "fillet",
+          "target": "innerFillet"
+        },
+        {
+          "id": "holeC",
+          "op": "hole",
+          "target": "outerFillet"
+        },
+        {
+          "id": "holeD",
+          "op": "hole",
+          "target": "holeC"
+        },
+        {
+          "id": "holeE",
+          "op": "hole",
+          "target": "holeD"
+        }
+      ],
+      "parameters": {
+        "A": 160,
+        "B": 88.9,
+        "C": 10,
+        "D": 10,
+        "E": 5,
+        "F": 44.5,
+        "G": 44.45,
+        "wallT": 3,
+        "cupDepth": 33,
+        "innerFilletR": 8,
+        "two": 2,
+        "minusOne": -1,
+        "twoT": 6,
+        "innerDia": 154,
+        "innerLen": 30,
+        "outerFilletR": 11,
+        "holeCy": 44.45,
+        "holeDy": -44.45,
+        "holeEx": -44.5
+      }
+    },
+    "11-30-200.resolved": {
+      "featureApplied": {
+        "outerCyl": true,
+        "innerCyl": true,
+        "cupCut": true,
+        "innerFillet": true,
+        "outerFillet": true,
+        "holeC": true,
+        "holeD": true,
+        "holeE": false
+      },
+      "result": "holeE",
+      "operations": [
+        {
+          "id": "outerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "innerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "cupCut",
+          "op": "cut",
+          "target": "outerCyl"
+        },
+        {
+          "id": "innerFillet",
+          "op": "fillet",
+          "target": "cupCut"
+        },
+        {
+          "id": "outerFillet",
+          "op": "fillet",
+          "target": "innerFillet"
+        },
+        {
+          "id": "holeC",
+          "op": "hole",
+          "target": "outerFillet"
+        },
+        {
+          "id": "holeD",
+          "op": "hole",
+          "target": "holeC"
+        },
+        {
+          "id": "holeE",
+          "op": "passThrough",
+          "target": "holeD"
+        }
+      ],
+      "parameters": {
+        "A": 160,
+        "B": 89,
+        "C": 14,
+        "D": 14,
+        "E": null,
+        "F": null,
+        "G": 44.5,
+        "wallT": 3,
+        "cupDepth": 33,
+        "innerFilletR": 8,
+        "two": 2,
+        "minusOne": -1,
+        "twoT": 6,
+        "innerDia": 154,
+        "innerLen": 30,
+        "outerFilletR": 11,
+        "holeCy": 44.5,
+        "holeDy": -44.5,
+        "holeEx": null
+      }
+    },
+    "11-30-92.resolved": {
+      "featureApplied": {
+        "outerCyl": true,
+        "innerCyl": true,
+        "cupCut": true,
+        "innerFillet": true,
+        "outerFillet": true,
+        "holeC": true,
+        "holeD": true,
+        "holeE": false
+      },
+      "result": "holeE",
+      "operations": [
+        {
+          "id": "outerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "innerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "cupCut",
+          "op": "cut",
+          "target": "outerCyl"
+        },
+        {
+          "id": "innerFillet",
+          "op": "fillet",
+          "target": "cupCut"
+        },
+        {
+          "id": "outerFillet",
+          "op": "fillet",
+          "target": "innerFillet"
+        },
+        {
+          "id": "holeC",
+          "op": "hole",
+          "target": "outerFillet"
+        },
+        {
+          "id": "holeD",
+          "op": "hole",
+          "target": "holeC"
+        },
+        {
+          "id": "holeE",
+          "op": "passThrough",
+          "target": "holeD"
+        }
+      ],
+      "parameters": {
+        "A": 286,
+        "B": 165.4,
+        "C": 21,
+        "D": 12.6,
+        "E": null,
+        "F": null,
+        "G": 78.7,
+        "wallT": 3,
+        "cupDepth": 33,
+        "innerFilletR": 8,
+        "two": 2,
+        "minusOne": -1,
+        "twoT": 6,
+        "innerDia": 280,
+        "innerLen": 30,
+        "outerFilletR": 11,
+        "holeCy": 86.7,
+        "holeDy": -78.7,
+        "holeEx": null
+      }
+    },
+    "11-30-381.resolved": {
+      "featureApplied": {
+        "outerCyl": true,
+        "innerCyl": true,
+        "cupCut": true,
+        "innerFillet": true,
+        "outerFillet": true,
+        "holeC": true,
+        "holeD": true,
+        "holeE": true
+      },
+      "result": "holeE",
+      "operations": [
+        {
+          "id": "outerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "innerCyl",
+          "op": "cylinder",
+          "target": null
+        },
+        {
+          "id": "cupCut",
+          "op": "cut",
+          "target": "outerCyl"
+        },
+        {
+          "id": "innerFillet",
+          "op": "fillet",
+          "target": "cupCut"
+        },
+        {
+          "id": "outerFillet",
+          "op": "fillet",
+          "target": "innerFillet"
+        },
+        {
+          "id": "holeC",
+          "op": "hole",
+          "target": "outerFillet"
+        },
+        {
+          "id": "holeD",
+          "op": "hole",
+          "target": "holeC"
+        },
+        {
+          "id": "holeE",
+          "op": "hole",
+          "target": "holeD"
+        }
+      ],
+      "parameters": {
+        "A": 136,
+        "B": 70,
+        "C": 14,
+        "D": 14,
+        "E": 14,
+        "F": 0,
+        "G": 35,
+        "wallT": 3,
+        "cupDepth": 33,
+        "innerFilletR": 8,
+        "two": 2,
+        "minusOne": -1,
+        "twoT": 6,
+        "innerDia": 130,
+        "innerLen": 30,
+        "outerFilletR": 11,
+        "holeCy": 35,
+        "holeDy": -35,
+        "holeEx": 0
+      }
+    }
+  },
+  "usage": {
+    "prompt_tokens": 15798,
+    "completion_tokens": 9845,
+    "total_tokens": 25643,
+    "cost": 0.130046,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.130046,
+      "upstream_inference_prompt_cost": 0.031596,
+      "upstream_inference_completions_cost": 0.09845
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4691,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

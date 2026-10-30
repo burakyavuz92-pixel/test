@@ -7,7 +7,7 @@ public static class CadRecipe
     public static readonly HashSet<string> Operations=new(){"sketch","extrude","revolve","cylinder","cut","fuse","hole","circularPattern","linearPattern","fillet","chamfer"};
     public static JsonElement Resolve(JsonElement plan,Dictionary<string,string> row)
     {
-        if(plan.GetProperty("schemaVersion").GetInt32()!=5)throw new Exception("CAD recipe v5 gerekli; eski pleyt planı kabul edilmez.");
+        if(plan.GetProperty("schemaVersion").GetInt32()!=6)throw new Exception("CAD recipe v6 gerekli; önceki tarif sürümü otomatik dönüştürülmez.");
         var parameters=plan.GetProperty("parameters").EnumerateArray().ToDictionary(p=>p.GetProperty("id").GetString()!);
         var values=new Dictionary<string,double?>();var visiting=new HashSet<string>();
         double? Eval(string id)
@@ -68,7 +68,7 @@ public static class CadRecipe
             double nx=Math.Sqrt(x.Sum(v=>v*v));x=x.Select(v=>v/nx).ToArray();double dot=x.Zip(z).Sum(v=>v.First*v.Second);z=z.Select((v,i)=>v-dot*x[i]).ToArray();double nz=Math.Sqrt(z.Sum(v=>v*v));z=z.Select(v=>v/nz).ToArray();
             var normalized=JsonNode.Parse(bound.GetRawText())!;normalized["xAxis"]=JsonSerializer.SerializeToNode(x);normalized["zAxis"]=JsonSerializer.SerializeToNode(z);normalized["basisNormalizationApplied"]=Math.Abs(nx-1)>1e-12||Math.Abs(nz-1)>1e-12||Math.Abs(dot)>1e-12;resolvedFrames.Add(normalized);
         }
-        var ops=plan.GetProperty("operations").EnumerateArray().ToDictionary(o=>o.GetProperty("id").GetString()!);var done=new HashSet<string>();var stack=new HashSet<string>();var resolved=new JsonArray();var active=new Dictionary<string,bool>();
+        var ops=plan.GetProperty("operations").EnumerateArray().ToDictionary(o=>o.GetProperty("id").GetString()!);var done=new HashSet<string>();var stack=new HashSet<string>();var resolved=new JsonArray();var active=new Dictionary<string,bool>();var featureApplied=new Dictionary<string,bool>();
         void Visit(string id)
         {
             if(done.Contains(id))return;
@@ -78,16 +78,36 @@ public static class CadRecipe
             if(!Operations.Contains(name))throw new NotSupportedException("İşlem sözleşmede yok: "+name);
             if(!frames.ContainsKey(op.GetProperty("frame").GetString()!))throw new Exception("İşlem referans bazı bilinmiyor.");
             var condition=op.GetProperty("when");bool present=condition.GetProperty("kind").GetString() switch {"always"=>true,"columnPresent"=>row[condition.GetProperty("column").GetString()!].Length>0,"parameterPositive"=>Eval(condition.GetProperty("parameter").GetString()!) is double v&&v>1e-8,_=>throw new Exception("Geçersiz varlık koşulu.")};
-            var inputs=op.GetProperty("inputs").EnumerateArray().Select(i=>i.GetString()!).ToArray();foreach(var input in inputs)Visit(input);
+            bool modifies=name is "hole" or "fillet" or "chamfer" or "cut";
+            string? target=op.TryGetProperty("target",out var targetNode)&&targetNode.ValueKind==JsonValueKind.String?targetNode.GetString():null;
+            string? tool=op.TryGetProperty("tool",out var toolNode)&&toolNode.ValueKind==JsonValueKind.String?toolNode.GetString():null;
+            var inputs=op.GetProperty("inputs").EnumerateArray().Select(i=>i.GetString()!).ToArray();
             var optional=op.TryGetProperty("optionalInputs",out var optionalList)?optionalList.EnumerateArray().Select(x=>x.GetString()!).ToHashSet():new HashSet<string>();
-            if(optional.Any(id=>!inputs.Contains(id)))throw new Exception("Opsiyonel girdi bağımlılık listesinde yok.");
-            if(present&&inputs.Any(i=>!active[i]&&!optional.Contains(i)))throw new Exception("Aktif işlem olmayan girdiye bağlı: "+id);
-            int arity=inputs.Length;
-            if(name is "sketch" or "cylinder"?arity!=0:name is "cut"?arity!=2:name=="fuse"?arity<1:arity!=1)throw new Exception("Geçersiz işlem girdi sayısı: "+id);
-            if(name is "extrude" or "revolve"&&ops[inputs[0]].GetProperty("op").GetString()!="sketch")throw new Exception("Profil işlemi sketch girdisi bekler.");
+            if(modifies)
+            {
+                if(target is null||inputs.Length!=0||optional.Count!=0||(name=="cut"?tool is null:tool is not null))throw new Exception("Gövde değiştirme işlemi tek target kullanmalı; inputs/optionalInputs boş olmalı: "+id);
+                Visit(target);if(tool is not null)Visit(tool);
+                if(!active[target])throw new Exception("Hedef gövde mevcut değil: "+target);
+                if(present&&tool is not null&&!active[tool])throw new Exception("Aktif kesmenin aracı mevcut değil.");
+            }
+            else
+            {
+                if(target is not null||tool is not null)throw new Exception("Oluşturma/çoğaltma işlemi target/tool kullanamaz.");
+                if(optional.Count>0&&name!="fuse"||optional.Any(i=>!inputs.Contains(i)))throw new Exception("Opsiyonel inputs yalnız fuse için geçerli.");
+                foreach(var input in inputs)Visit(input);
+                if(present&&inputs.Any(i=>!active[i]&&!optional.Contains(i)))throw new Exception("Aktif işlem olmayan girdiye bağlı: "+id);
+                int arity=inputs.Length;
+                if(name is "sketch" or "cylinder"?arity!=0:name=="fuse"?arity<1:arity!=1)throw new Exception("Geçersiz işlem girdi sayısı: "+id);
+                if(name is "extrude" or "revolve"&&ops[inputs[0]].GetProperty("op").GetString()!="sketch")throw new Exception("Profil işlemi sketch girdisi bekler.");
+                if(present&&name=="fuse"&&!inputs.Any(i=>active[i]))throw new Exception("Birleştirme için aktif girdi yok.");
+            }
             string[] required=name switch {"sketch"=>["plane","loops"],"extrude"=>["length","direction"],"revolve"=>["axisOrigin","axisDirection","angleDeg"],"cylinder"=>["diameter","length","origin","direction"],"hole"=>["diameter","origin","direction","throughAll","depth"],"circularPattern"=>["count","pitchDiameter","startAngleDeg","totalAngleDeg","center","axis"],"linearPattern"=>["count","spacing","direction"],"fillet" or "chamfer"=>["size","selectors"],_=>[]};
             foreach(string field in required)if(!op.GetProperty("args").TryGetProperty(field,out _))throw new Exception(id+": işlem alanı eksik: "+field);
-            active[id]=present;if(present)resolved.Add(new JsonObject{["id"]=id,["op"]=name,["frame"]=op.GetProperty("frame").GetString(),["inputs"]=JsonSerializer.SerializeToNode(inputs.Where(i=>active[i]).ToArray()),["args"]=Bind(op.GetProperty("args"))});
+            active[id]=modifies||present;featureApplied[id]=present;
+            if(modifies&&!present)
+                resolved.Add(new JsonObject{["id"]=id,["op"]="passThrough",["target"]=target,["featureApplied"]=false});
+            else if(present)
+                resolved.Add(new JsonObject{["id"]=id,["op"]=name,["frame"]=op.GetProperty("frame").GetString(),["target"]=target,["tool"]=tool,["inputs"]=JsonSerializer.SerializeToNode(inputs.Where(i=>active[i]).ToArray()),["featureApplied"]=true,["args"]=Bind(op.GetProperty("args"))});
             done.Add(id);stack.Remove(id);
         }
         foreach(var id in ops.Keys)Visit(id);
@@ -99,7 +119,7 @@ public static class CadRecipe
             var param=d.GetProperty("parameter").GetString()!;if(!parameters.ContainsKey(param))throw new Exception("Ölçü parametresi bilinmiyor.");
             foreach(var t in d.GetProperty("targets").EnumerateArray())if(!ops.ContainsKey(t.GetProperty("operation").GetString()!))throw new Exception("Ölçü hedefi bilinmiyor.");
             string color=d.GetProperty("sourceColor").GetString()!;if(color is not ("black" or "green"))throw new Exception("Geçersiz ölçü kaynak rengi.");
-            var targets=d.GetProperty("targets").EnumerateArray().ToArray();if(targets.Any(t=>!active[t.GetProperty("operation").GetString()!]))continue;
+            var targets=d.GetProperty("targets").EnumerateArray().ToArray();if(targets.Any(t=>!featureApplied[t.GetProperty("operation").GetString()!]))continue;
             var copy=JsonNode.Parse(d.GetRawText())!;if(values[param] is null)throw new Exception("Aktif ölçü boş parametre kullanıyor.");
             var hide=d.GetProperty("hideIf");bool hidden=hide.GetProperty("kind").GetString() switch {"never"=>false,"zero"=>Math.Abs(values[param]!.Value)<1e-8,"equalsScaledParameter"=>values.TryGetValue(hide.GetProperty("parameter").GetString()!,out var other)&&other.HasValue?Math.Abs(values[param]!.Value-other.Value*hide.GetProperty("factor").GetDouble())<1e-8:throw new Exception("Gizleme parametresi yok/boş."),_=>throw new Exception("Geçersiz gizleme koşulu.")};
             copy["effectiveVisible"]=color!="green"&&d.GetProperty("visible").GetBoolean()&&!hidden;copy["nominal"]=values[param];dimensions.Add(copy);
@@ -107,7 +127,19 @@ public static class CadRecipe
         foreach(var column in ExcelModelInput.Build(new[]{row}).rows[0].cells.Where(c=>c.Value.state=="number").Select(c=>c.Key))
             if(!parameters.Values.Any(p=>p.GetProperty("source").GetProperty("kind").GetString()=="column"&&p.GetProperty("source").GetProperty("column").GetString()==column))throw new Exception("Excel ölçüsü parametreye bağlanmadı: "+column);
         foreach(var section in plan.GetProperty("sections").EnumerateArray())foreach(var target in section.GetProperty("targets").EnumerateArray())if(!ops.ContainsKey(target.GetString()!))throw new Exception("Kesit hedefi bilinmiyor.");
-        return JsonSerializer.SerializeToElement(new{schemaVersion=5,outputId=row["jpeg file name"],parameters=values,frames=resolvedFrames,operations=resolved,result=output,dimensions,views=plan.GetProperty("views"),sections=plan.GetProperty("sections"),geometricTolerances=Bind(plan.GetProperty("geometricTolerances")),executionStatus="recipe-resolved-not-rendered"});
+        var sections=new JsonArray();
+        foreach(var section in plan.GetProperty("sections").EnumerateArray())
+        {
+            var copy=JsonNode.Parse(section.GetRawText())!;copy["targets"]=JsonSerializer.SerializeToNode(section.GetProperty("targets").EnumerateArray().Select(t=>t.GetString()!).Where(id=>featureApplied[id]).ToArray());sections.Add(copy);
+        }
+        var tolerances=new JsonArray();
+        foreach(var tol in plan.GetProperty("geometricTolerances").EnumerateArray())
+        {
+            var ids=tol.GetProperty("targets").EnumerateArray().Select(t=>t.GetProperty("operation").GetString()!).ToArray();
+            if(ids.Any(id=>!ops.ContainsKey(id)))throw new Exception("Geometrik tolerans hedefi bilinmiyor.");
+            if(ids.All(id=>featureApplied[id]))tolerances.Add(Bind(tol));
+        }
+        return JsonSerializer.SerializeToElement(new{schemaVersion=6,outputId=row["jpeg file name"],parameters=values,frames=resolvedFrames,operations=resolved,result=output,featureApplied,views=plan.GetProperty("views"),dimensions,sections,geometricTolerances=tolerances,executionStatus="recipe-resolved-not-rendered"});
     }
     public static List<WorkflowIssue> Check(JsonElement plan,List<Dictionary<string,string>> rows)
     {

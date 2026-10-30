@@ -1,4 +1,4 @@
-# DrawingTool — genel CAD tarifi v5
+# DrawingTool — genel CAD tarifi v6
 
 Girdi JPEG + Excel. Model parçayı genel bir parametre/işlem tarifiyle tanımlar; ölçüler ve kesitler aynı işlem kimliklerine bağlıdır. Eski pleyt/Skia kökenli tarif ve v4 adaptörü aktif akıştan kaldırılmıştır; archive/legacy-v4 geri izleme içindir.
 
@@ -12,7 +12,7 @@ dotnet run --project src/DrawingTool.csproj -- analyze-cad-group input.xlsx temp
 
 Varsayılan sade teknik resim yorumu, high akıl yürütme, tek API çağrısı. max_tokens=20000 üst sınırdır, her çağrıda bu kadar harcanmaz. Otomatik yeniden değerlendirme yok. Eksik yanıt, eksik parametre, bilinmeyen işlem veya çelişki raporlanır. Kaynak SHA256 özetleri ve özgün yanıt saklanır. API anahtarı/Arial fontu repoya konmaz. Model analizi OpenRouter üzerinden, çözümleme yereldir.
 
-`run-cad-group` aynı v5 analizinden sonra genel native yürütücünün eksikliğini raporlar; sessizce eski pleyt motoruna dönmez. Eski run-cad/render-cad-plan/occt-demo komutları kaldırılmıştır. Tarihsel çıktılar previews altında korunmuştur.
+`run-cad-group` aynı güncel analizden sonra genel native yürütücünün eksikliğini raporlar; sessizce eski pleyt motoruna dönmez. Eski run-cad/render-cad-plan/occt-demo komutları kaldırılmıştır. Tarihsel çıktılar previews altında korunmuştur.
 
 ## Sözleşme
 
@@ -35,3 +35,9 @@ dotnet run --project checks/LayoutPolicyChecks.csproj
 ```
 
 Eski testler arşivdedir; güncel testler yeni tarif çözümleyicisine aittir. Başarılı testler native CAD çıktısı üretildiği anlamına gelmez.
+
+## v6: tek hedef ve koşullu gövde akışı
+
+Aktif tarif sürümü 6'dır. hole/fillet/chamfer tek `target`, cut tek `target` ve `tool` kullanır; bu işlemlerde inputs/optionalInputs boş olmalıdır. Koşul false ise etkin gövde sonucu target'ın aynısıdır, çözümlenmiş planda passThrough kaydı oluşturulur; boş özellik parametreleri bağlanmaz. `featureApplied=false` ayrı tutulur: gövdenin mevcut olması deliğin/özelliğin oluştuğu anlamına gelmez. Atlanan özelliğin ölçüleri ve kesit hedefleri çıkarılır. Oluşturma işlemlerinde false koşul hâlâ hiç şekil üretmemek demektir; fuse yalnız kendi optionalInputs kayıtlarını atlayabilir. Eski alternatif-gövde-listesi semantiği kabul edilmez. Sürüm 5 kayıtları otomatik dönüştürülmez. v6 da hâlâ tarif/çözümleme aşamasındadır; genel native yürütücü tamamlanmadı.
+
+26 tarif kontrolü geçti. Aynı notsuz taslak2guncel JPEG ve Excel'in v6 analizi previews/group2-v6-analysis/NOTLAR.md içinde. Koşullu zincir geçti, ancak modelin R8'i iç yarıçap kabul etmesi ayrıca incelenmeli; biçim doğrulamasının geçmesi bütün geometri yorumunun onayı değildir.

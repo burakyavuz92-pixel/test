@@ -45,6 +45,6 @@ public static class CadRecipeWorkflow
             if(execute){issues.Add(new("GENERAL_EXECUTOR_PENDING","software","error","Genel CAD tarifi çözüldü; yeni native geometri/pafta yürütücüsü henüz uygulanmadı.",[],"İşlem yürütücüsü ve genel ölçülendirme desteği tamamlanmalı; eski pleyt motoruna zorlanmaz."));state="blocked-with-report";}
         }
         catch(Exception ex){issues.Add(new("RECIPE_RUN_FAILURE","software","error",ex.Message,[],"Kayıtlar incelenmeli; kullanıcı cevabı beklenmez."));}
-        finally{WorkflowReports.Save(output,state,issues,new{Source=source,SchemaVersion=5,RowCount=count,ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort="high",ProducedImages=0,NativeExecutionImplemented=false,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);Console.WriteLine(state+"; "+Path.Combine(output,"RAPOR.md"));}
+        finally{WorkflowReports.Save(output,state,issues,new{Source=source,SchemaVersion=6,RowCount=count,ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort="high",ProducedImages=0,NativeExecutionImplemented=false,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);Console.WriteLine(state+"; "+Path.Combine(output,"RAPOR.md"));}
     }
 }
