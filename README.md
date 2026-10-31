@@ -26,7 +26,7 @@ Bu akışın model dosyaları:
 
 Sözleşme `schemaVersion:9`, `geometry` ve `drawing` içerir. Model tek gövdede parametrik ekleme/çıkarma, döndürme, ekstrüzyon ve radyus/pah işlemleri tarif eder. `drawing` yalnız ölçü ilişkileri ve geometrik toleransları ister. Kamera, kesit, pafta yerleşimi ve görünürlük tarifi istenmez. Renk `#000000` veya `#008000` olarak bildirilir; yeşil ölçüyü yazılım gizler. Yeşil nominal veriler geometride kullanılmaya devam eder.
 
-Üst yüzey merkezi orijindir; +X sağ, +Y yukarı, +Z üst yüzeyin dışıdır; gövde -Z yönüne uzanır. Yerel koordinat düzeninde hazırlanmış tarifler eski, modelin seçtiği koordinatlardaki tariflerden ayrı tutulur. Eski kaydı yeni düzende otomatik kullanmak yerine yeni analiz gerekir. Tarihsel Excel ve kayıtların inceleme yolu korunur; eski prompt/sözleşme dosyaları bu amaçla tutulur.
+Üst yüzey merkezi orijindir; +X sağ, +Y yukarı, +Z üst yüzeyin dışıdır; gövde -Z yönüne uzanır. Yerel koordinat düzeninde hazırlanmış tarifler eski, modelin seçtiği koordinatlardaki tariflerden ayrı tutulur. Eski kaydı yeni düzende otomatik kullanmak yerine yeni analiz gerekir. Kayıtlı tarihsel tariflerin yerel inceleme yolu korunur. Yeni API analizleri yerel ayar sütunlarını gerektirir; eski prompta otomatik dönüş yapılmaz. Eski prompt/sözleşme dosyaları yalnız tarihsel referanstır.
 
 ## Çalıştırma
 

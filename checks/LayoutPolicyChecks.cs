@@ -281,3 +281,9 @@ foreach(var invalid in new[]{activeSettings with{Model="anthropic/claude-sonnet-
 bool mixedRejected=false;try{CadRecipePrompt.ForRows(new[]{localRow,row});}catch(FormatException){mixedRejected=true;}
 Check(mixedRejected,"mixed coordinate conventions rejected before requesting a recipe");
 Check(localPrompt.Contains("\"dimensions\":[],\"geometricTolerances\":[]")&&localPrompt.Contains("valueSource")&&localPrompt.Contains("#008000"),"explicit local contract requests dimensions, tolerances and colors");
+
+bool missingLocalRejected=false;try{CadRecipePrompt.ForRows(new[]{row});}catch(FormatException){missingLocalRejected=true;}
+Check(missingLocalRejected,"new analyses cannot fall back to legacy camera/section prompts");
+foreach(var forbidden in new[]{"featureTrace","sourceView","sections", "views", "camera", "projection", "cuttingPlanes", "worldPath", "hideIf", "visible", "Arial", "title-block"})
+    Check(!localPrompt.Contains(forbidden,StringComparison.OrdinalIgnoreCase),"active model instructions omit local presentation field: "+forbidden);
+Check(CadRecipePrompt.ForRows(new[]{localRow})==CadRecipePrompt.Instructions,"active request uses exactly the inspected local prompt and contract");

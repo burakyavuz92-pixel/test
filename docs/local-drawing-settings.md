@@ -19,7 +19,7 @@ Ondalık nokta ve virgül kabul edilir. Kaçıklık 0 ise düz merkez kesiti kul
 
 ## Model ve yazılımın görevleri
 
-- Yeni sütunlu Excel kullanıldığında prompt/sözleşme kamera, kesit veya görünürlük kararı istemez. Eski Excel ve kayıtlı tariflerin yolu korunur.
+- Yeni sütunlu Excel kullanıldığında prompt/sözleşme kamera, kesit veya görünürlük kararı istemez. Kayıtlı eski tariflerin yerel incelemesi korunur. Yeni API analizi yerel ayar sütunlarını gerektirir; bu sütunlar yoksa eski prompta dönülmez.
 - Model ölçü anotasyonunun rengini `#000000` veya `#008000` olarak bildirir. Yazılım yeşili gizler; yeşil ölçü nominali geometriden çıkarılmaz. JPEG'deki renk sınıfını tanımak modelin görevi olmaya devam eder. Eski `black` / `green` yanıtları da okunur.
 - Toleranslar geometriye karıştırılmaz. Boş ile sıfır korunur. Model ölçü ve toleransı yeniden hesaplamaz; yerel ayrıştırıcı kaynak hücreyi tutar.
 - Yerel ayarlar `local-drawing-settings.json` dosyasına; native kesit çözümü `native-drawing.json` dosyasına kaydedilir. Ham model yanıtı değiştirilmez.
@@ -38,3 +38,5 @@ Genel v9 paftası hâlâ inceleme çıktısıdır: taslak anteti ve yerleşimi b
 ## Sonnet ile devam ayarları
 
 Etkin prompt ve sözleşme artık ayrı `local-prompt.txt` / `local-contract.txt` dosyalarından okunur; eski sözleşmeden metin parçaları silinerek türetilmez. Etkin model `config/openrouter.json` içinde Sonnet 5.5, high, 65536 token tavanı ve 600 saniye olarak kayıtlıdır. Anahtar ortamda kalır; eski model ortam değişkeni bu ayarı geçersiz kılamaz. Batch kodu kaldırıldı. Eski koordinat düzeninde hazırlanmış onaylı tarifler yeni yerel düzende sessizce yeniden kullanılmaz. Bu hazırlıkta API çağrısı yapılmadı; maliyet veya anlama başarısı henüz ölçülmedi.
+
+Etkin prompt yeniden sadeleştirildi: font, antet, dosya adı talimatları ve yerel sunum açıklamaları çıkarıldı. Kesit/kamera alanları etkin sözleşmede bulunmaz; eksik ayar sütunuyla eski prompta geçiş kapatıldı. Geometri içindeki direction, axisOrigin, Frame ve path alanları kamera/kesit değil, katıyı oluşturmak için kullanılan geometridir.
