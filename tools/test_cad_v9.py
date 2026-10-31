@@ -12,6 +12,9 @@ class V9Tests(unittest.TestCase):
    d=compile(r)['drawing']['dimensions'][0]
    self.assertEqual(d['effectiveVisible'],visible)
    self.assertEqual(d['canonicalSourceColor'],'#000000' if visible else '#008000')
+ def test_missing_color_does_not_hide_measurement(self):
+  r=recipe();r['drawing']['dimensions']=[dict(id='d',type='distance',valueSource=dict(kind='constant',value=20,unit='mm'),targets=[dict(operation='base',role='length')],axis='X')]
+  self.assertTrue(compile(r)['drawing']['dimensions'][0]['effectiveVisible'])
  def test_lazy(self):
   e=Expressions({'A':{'nominalMm':None}},{'x':'=if(isblank(A),3,A/0)'})
   self.assertEqual(e.value('=x'),3);self.assertEqual(e.value('=false and A/0>1'),False)

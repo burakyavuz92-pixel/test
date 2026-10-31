@@ -6,8 +6,8 @@ Girdi **bir taslak JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır;
 
 [config/openrouter.json](config/openrouter.json) etkin CAD akışının ayar kaynağıdır:
 
-- Model: `anthropic/claude-sonnet-5.5`
-- Reasoning: `low` (son karşılaştırma denemesi)
+- Model: `anthropic/claude-haiku-5.5`
+- Reasoning: `high` (renk takibi olmadan Haiku denemesi)
 - Completion token sınırı: `65536` (görünür çıktı ve reasoning toplamı için tavan)
 - HTTP zaman aşımı: `600` saniye
 
@@ -24,7 +24,7 @@ Bu akışın model dosyaları:
 - [local-prompt.txt](contracts/cad-v9-draft/local-prompt.txt)
 - [local-contract.txt](contracts/cad-v9-draft/local-contract.txt)
 
-Sözleşme `schemaVersion:9`, `geometry` ve `drawing` içerir. Model tek gövdede parametrik ekleme/çıkarma, döndürme, ekstrüzyon ve radyus/pah işlemleri tarif eder. `drawing` yalnız ölçü ilişkileri ve geometrik toleransları ister. Kamera, kesit, pafta yerleşimi ve görünürlük tarifi istenmez. Renk `#000000` veya `#008000` olarak bildirilir; yeşil ölçüyü yazılım gizler. Yeşil nominal veriler geometride kullanılmaya devam eder.
+Sözleşme `schemaVersion:9`, `geometry` ve `drawing` içerir. Model tek gövdede parametrik ekleme/çıkarma, döndürme, ekstrüzyon ve radyus/pah işlemleri tarif eder. `drawing` yalnız ölçü ilişkileri ve geometrik toleransları ister. Kamera, kesit, pafta yerleşimi ve görünürlük tarifi istenmez. Etkin sözleşmede renk alanı istenmez. Ölçüler renk ayrımı olmadan geometri için kullanılır. Görünürlük için Excel düzeni henüz eklenmediğinden renk alanı bulunmayan ölçüler gizlenmez; eski renkli yanıtların okunması korunur.
 
 Üst yüzey merkezi orijindir; +X sağ, +Y yukarı, +Z üst yüzeyin dışıdır; gövde -Z yönüne uzanır. Yerel koordinat düzeninde hazırlanmış tarifler eski, modelin seçtiği koordinatlardaki tariflerden ayrı tutulur. Eski kaydı yeni düzende otomatik kullanmak yerine yeni analiz gerekir. Kayıtlı tarihsel tariflerin yerel inceleme yolu korunur. Yeni API analizleri yerel ayar sütunlarını gerektirir; eski prompta otomatik dönüş yapılmaz. Eski prompt/sözleşme dosyaları yalnız tarihsel referanstır.
 

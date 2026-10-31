@@ -37,7 +37,7 @@ EdgeSelector={near:P3,directionKind:"axis"|"tangent",direction:P3,operation?:id}
 DRAWING
 Geometry uses nominal values. Dimension values/tolerances come from valueSource independently of construction expressions.
 
-dimensions: {id,type,valueSource,targets:[{operation:id,role:string,instance?:integer}],axis,sourceColor,when?,quantity?}.
-type=diameter|pitchDiameter|distance|angle|radius|thickness; axis=X|Y|Z|radial. valueSource={kind:"column",column:string} retains that cell's original tolerance, or {kind:"constant",value:number,unit:"mm"|"deg"}. role describes the measured entity/relation. sourceColor="#000000"|"#008000" records the annotation color in the JPEG. Defaults: when=true, quantity=1. A dimension's condition can follow the optional feature it refers to.
+dimensions: {id,type,valueSource,targets:[{operation:id,role:string,instance?:integer}],axis,when?,quantity?}.
+type=diameter|pitchDiameter|distance|angle|radius|thickness; axis=X|Y|Z|radial. valueSource={kind:"column",column:string} retains that cell's original tolerance, or {kind:"constant",value:number,unit:"mm"|"deg"}. role describes the measured entity/relation. Defaults: when=true, quantity=1. A dimension's condition can follow the optional feature it refers to.
 
 geometricTolerances: {kind,value:N,targets:[{operation:id,role:string,instance?:integer}]}.

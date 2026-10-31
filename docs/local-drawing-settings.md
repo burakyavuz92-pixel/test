@@ -48,3 +48,5 @@ Yeni yanıtta çokgen `polyline` yalnız sıralı köşeleri taşır; ilk köşe
 Eski açık başlangıçlı segment kayıtları okunur, ancak kopuk veya kapanmayan profil derleme sırasında açık hata verir; eksik kenar uydurulmaz. Dış çevrim ve iç boşluklar aynı kurala tabidir. Ekstrüzyon from/to değerleri profil orijininden u cross v yönündeki işaretli mesafelerdir. Tekrarlamada count toplam örnek sayısıdır, ek örnek sayısı değildir; ilk örnek indeks 0'dır.
 
 8 yeni profil testi, mevcut geometri testleri ve C# kontrolleri çalıştırıldı. Önceki model yanıtı değiştirilmedi. API çağrısı veya yeni ürün denemesi yapılmadı.
+
+Son Haiku denemesinde renk alanı etkin sözleşmeden kaldırıldı. Renk alanı olmayan ölçüler gizlenmez; sabit etiketsiz ölçüler de tabloda yer alabilir. Excel görünürlük düzeni henüz eklenmedi. Eski renkli yanıtların okunması korunur. Ayrıntı: previews/taslak43-haiku-no-colors/NOTLAR.md.

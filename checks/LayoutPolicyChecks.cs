@@ -263,16 +263,16 @@ if(args.Length>0)
 }
 
 var activeSettings=OpenRouterSettings.Load();
-Check(activeSettings.Model=="anthropic/claude-sonnet-5.5"&&activeSettings.ReasoningEffort=="low","active project model is Sonnet 5.5 low, without batch");
+Check(activeSettings.Model=="anthropic/claude-haiku-5.5"&&activeSettings.ReasoningEffort=="high","active project model is Haiku 5.5 high, without batch");
 Check(activeSettings.MaxCompletionTokens==65536&&activeSettings.TimeoutSeconds==600,"active completion limit and timeout persisted");
 var staleModel=Environment.GetEnvironmentVariable("OPENROUTER_MODEL");
 try
 {
     Environment.SetEnvironmentVariable("OPENROUTER_MODEL","anthropic/claude-sonnet-5.5:batch");
-    Check(OpenRouterSettings.Load().Model=="anthropic/claude-sonnet-5.5","stale environment batch selection cannot override project settings");
+    Check(OpenRouterSettings.Load().Model==activeSettings.Model,"stale environment batch selection cannot override project settings");
 }
 finally{Environment.SetEnvironmentVariable("OPENROUTER_MODEL",staleModel);}
-Check(OpenRouterSettings.Load(Path.Combine(Path.GetTempPath(),Guid.NewGuid()+".json")).Model==activeSettings.Model,"missing settings file defaults to Sonnet without batch");
+Check(OpenRouterSettings.Load(Path.Combine(Path.GetTempPath(),Guid.NewGuid()+".json")).Model=="anthropic/claude-sonnet-5.5","missing settings file defaults to Sonnet without batch");
 foreach(var invalid in new[]{activeSettings with{Model="anthropic/claude-sonnet-5.5:batch"},activeSettings with{MaxCompletionTokens=0},activeSettings with{ReasoningEffort="invalid"},activeSettings with{TimeoutSeconds=-1}})
 {
     bool rejected=false;try{invalid.Validated();}catch(FormatException){rejected=true;}
@@ -280,7 +280,7 @@ foreach(var invalid in new[]{activeSettings with{Model="anthropic/claude-sonnet-
 }
 bool mixedRejected=false;try{CadRecipePrompt.ForRows(new[]{localRow,row});}catch(FormatException){mixedRejected=true;}
 Check(mixedRejected,"mixed coordinate conventions rejected before requesting a recipe");
-Check(localPrompt.Contains("\"dimensions\":[],\"geometricTolerances\":[]")&&localPrompt.Contains("valueSource")&&localPrompt.Contains("#008000"),"explicit local contract requests dimensions, tolerances and colors");
+Check(localPrompt.Contains("\"dimensions\":[],\"geometricTolerances\":[]")&&localPrompt.Contains("valueSource")&&!localPrompt.Contains("sourceColor"),"local contract requests dimensions and tolerances without color tracking");
 
 bool missingLocalRejected=false;try{CadRecipePrompt.ForRows(new[]{row});}catch(FormatException){missingLocalRejected=true;}
 Check(missingLocalRejected,"new analyses cannot fall back to legacy camera/section prompts");

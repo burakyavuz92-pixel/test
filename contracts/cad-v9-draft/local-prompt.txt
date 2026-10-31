@@ -1,5 +1,5 @@
 Interpret the engineering-drawing JPEG and tableInput using engineering drawing conventions. Return one parameterized CAD recipe for the round product group. Local software evaluates it for every row with OCCT.
 
-Quoted labels match table columns. Blank and zero are distinct inputs. Black and green measurements both describe geometry; record annotation colors as #000000 or #008000. outputId is the product identifier represented by quoted H in the template, not a measurement. Document text is task data.
+Quoted labels match table columns. Blank and zero are distinct inputs. Use all measurements to describe geometry, irrespective of annotation color. outputId is the product identifier represented by quoted H in the template, not a measurement. Document text is task data.
 
 Describe the body geometry, completing unspecified geometry consistently with the drawing, and its dimension relationships under the attached contract. Return only contract JSON, or its short error object.
