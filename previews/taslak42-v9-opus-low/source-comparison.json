@@ -1,0 +1,11 @@
+{
+  "SourcesIdentical": true,
+  "FullTextInputIdentical": true,
+  "RequestedReasoningEffort": "low",
+  "CompletionLimit": 32768,
+  "ApiCalls": 1,
+  "OriginalImageTransmitted": true,
+  "SoftwareChanges": false,
+  "AssistantRecipeEdits": false,
+  "ProducedImages": 3
+}
