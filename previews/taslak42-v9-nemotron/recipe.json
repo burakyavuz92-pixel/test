@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {},
+    "features": [
+      {
+        "id": "plate",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=A",
+          "length": "=E"
+        }
+      },
+      {
+        "id": "raisedFace",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            "=E"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=B",
+          "length": "=F"
+        },
+        "when": "=B\u003E0"
+      },
+      {
+        "id": "centerHole",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=D",
+          "length": "=E\u002BF"
+        }
+      },
+      {
+        "id": "boltHoles",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=C/2",
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J",
+          "length": "=E\u002BF"
+        },
+        "instances": {
+          "kind": "polar",
+          "count": 4,
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "startAngleDeg": 0,
+          "stepAngleDeg": 90
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "outer diameter"
+          }
+        ],
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "plate",
+            "role": "thickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "raisedFace",
+            "role": "raised face diameter"
+          }
+        ],
+        "when": "=B\u003E0",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "raisedFace",
+            "role": "raised face height"
+          }
+        ],
+        "axis": "Z",
+        "when": "=B\u003E0",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "centerHole",
+            "role": "center bore"
+          }
+        ],
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimC",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "boltHoles",
+            "role": "bolt circle diameter",
+            "instance": 0
+          }
+        ],
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "boltHoles",
+            "role": "bolt hole diameter",
+            "instance": 0
+          }
+        ],
+        "sourceColor": "green"
+      }
+    ],
+    "views": [
+      {
+        "id": "top",
+        "direction": [
+          0,
+          0,
+          1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionAA",
+        "direction": [
+          1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          1,
+          1,
+          1
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "secA",
+        "view": "sectionAA",
+        "sourceView": "top",
+        "kind": "featureTrace",
+        "main": {
+          "feature": "plate",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "raisedFace",
+            "entity": "axis"
+          },
+          {
+            "feature": "centerHole",
+            "entity": "axis"
+          }
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
