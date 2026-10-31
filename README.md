@@ -121,3 +121,7 @@ GPT-6 Luna denemesinde sağlayıcı orijinal 7016×4961 JPEG'i 34.320 adet 32px 
 ### Reasoning ayarı
 
 `OPENROUTER_REASONING_EFFORT` ile `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max` seçilebilir; ortam değişkeni yoksa varsayılan `high`. Model/sağlayıcı desteği ayrıca gerekir. Gönderilen değer çalışma raporuna kaydedilir. Haiku medium denemesinde süreç için `medium` seçildi, global varsayılan değiştirilmedi. [Deneme kaydı](previews/taslak42-v9-haiku-medium/NOTLAR.md).
+
+### Güncel token ve süre sınırları
+
+Varsayılan reasoning `high`, toplam completion sınırı **65536** token (reasoning + görünür çıktı), API zaman aşımı **600 saniye**. `OPENROUTER_MAX_COMPLETION_TOKENS` ve `OPENROUTER_TIMEOUT_SECONDS` ile değiştirilebilir; pozitif tamsayı gerekir. Aynı değerler istekte ve çalışma raporunda kullanılır. Daha uzun süre, artırılmış token bütçesinin eski 300 saniyelik sınırla erken kesilmesini önlemek içindir. Seçilen Haiku 5.5 için katalogda 128000 completion kapasitesi ve high desteği doğrulandı; bütün modellerin bu sınırı desteklediği varsayılmaz. Bu ayar güncellemesinde API çıkarım çağrısı yapılmadı. Önceki deneme raporları kendi 32768 sınırlarını korur.
