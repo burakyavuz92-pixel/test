@@ -1,0 +1,339 @@
+{
+  "apiCalls": 0,
+  "source": "samples/taslak43-upload/taslak4.2.jpg",
+  "sourcePixels": [
+    7016,
+    4961
+  ],
+  "viewRegionsNormalized": {
+    "section": [
+      0.035,
+      0.055,
+      0.29,
+      0.78
+    ],
+    "front": [
+      0.35,
+      0.055,
+      0.81,
+      0.78
+    ],
+    "isometric": [
+      0.81,
+      0.055,
+      0.975,
+      0.34
+    ]
+  },
+  "candidates": [
+    {
+      "view": "front",
+      "text": "'B'",
+      "normalizedText": "'B'",
+      "kind": "parameter",
+      "confidence": 93.249031,
+      "preprocessing": "quote-bounded-glyph",
+      "ocrRotationDeg": 0,
+      "bboxPixels": [
+        3785.0,
+        332.0,
+        3857.0,
+        386.0
+      ],
+      "bboxNormalized": [
+        0.5394811858608894,
+        0.06692199153396493,
+        0.5497434435575826,
+        0.07780689377141706
+      ],
+      "status": "needs-review",
+      "suffixUnverified": true,
+      "id": 1
+    },
+    {
+      "view": "front",
+      "text": "'G'",
+      "normalizedText": "'G'",
+      "kind": "parameter",
+      "confidence": 91.375099,
+      "preprocessing": "quote-bounded-glyph",
+      "ocrRotationDeg": -45,
+      "bboxPixels": [
+        4493.056961930743,
+        881.4392872630403,
+        4591.344804515672,
+        979.7271298479707
+      ],
+      "bboxNormalized": [
+        0.6404015054063202,
+        0.1776737124094014,
+        0.6544106049765781,
+        0.1974858153291616
+      ],
+      "status": "needs-review",
+      "suffixUnverified": true,
+      "id": 2
+    },
+    {
+      "view": "front",
+      "text": "'C'",
+      "normalizedText": "'C'",
+      "kind": "parameter",
+      "confidence": 87.317192,
+      "preprocessing": "quote-bounded-glyph",
+      "ocrRotationDeg": 270,
+      "bboxPixels": [
+        4652.0,
+        1767.9999999999998,
+        4708.0,
+        1845.0
+      ],
+      "bboxNormalized": [
+        0.6630558722919042,
+        0.35637976214472883,
+        0.6710376282782212,
+        0.371900826446281
+      ],
+      "status": "needs-review",
+      "suffixUnverified": true,
+      "id": 3
+    },
+    {
+      "view": "section",
+      "text": "R8",
+      "normalizedText": "R8",
+      "kind": "fixed-measurement-candidate",
+      "confidence": 88.550873,
+      "preprocessing": "original",
+      "ocrRotationDeg": 45,
+      "bboxPixels": [
+        1023.1202743230331,
+        360.30158952855516,
+        1122.1152236891496,
+        459.2965388946717
+      ],
+      "bboxNormalized": [
+        0.14582672096964552,
+        0.07262680700031347,
+        0.15993660542889818,
+        0.09258144303460425
+      ],
+      "status": "needs-review",
+      "id": 4
+    },
+    {
+      "view": "section",
+      "text": "R1,5",
+      "normalizedText": "R1,5",
+      "kind": "fixed-measurement-candidate",
+      "confidence": 89.937546,
+      "preprocessing": "original",
+      "ocrRotationDeg": 45,
+      "bboxPixels": [
+        1824.2722574073914,
+        637.4874477536816,
+        1977.0073221436855,
+        790.222512489976
+      ],
+      "bboxNormalized": [
+        0.2600160002005974,
+        0.12849978789632768,
+        0.2817855362234443,
+        0.1592869406349478
+      ],
+      "status": "needs-review",
+      "id": 5
+    },
+    {
+      "view": "section",
+      "text": "'F'",
+      "normalizedText": "'F'",
+      "kind": "parameter",
+      "confidence": 71.765274,
+      "preprocessing": "line-cleaned",
+      "ocrRotationDeg": 0,
+      "bboxPixels": [
+        1007.0,
+        1504.0,
+        1075.0,
+        1558.0
+      ],
+      "bboxNormalized": [
+        0.1435290763968073,
+        0.30316468453940737,
+        0.1532212086659065,
+        0.3140495867768595
+      ],
+      "status": "needs-review",
+      "id": 6
+    },
+    {
+      "view": "section",
+      "text": "'J'",
+      "normalizedText": "'J'",
+      "kind": "parameter",
+      "confidence": 96.624222,
+      "preprocessing": "quote-bounded-glyph",
+      "ocrRotationDeg": 270,
+      "bboxPixels": [
+        1505.0,
+        1622.0,
+        1560.0,
+        1682.0
+      ],
+      "bboxNormalized": [
+        0.2145096921322691,
+        0.32695021165087684,
+        0.22234891676168758,
+        0.3390445474702681
+      ],
+      "status": "needs-review",
+      "suffixUnverified": true,
+      "id": 7
+    },
+    {
+      "view": "section",
+      "text": "'D'",
+      "normalizedText": "'D'",
+      "kind": "parameter",
+      "confidence": 90.65712,
+      "preprocessing": "original",
+      "ocrRotationDeg": 270,
+      "bboxPixels": [
+        717.0,
+        1872.0,
+        771.0,
+        1949.0
+      ],
+      "bboxNormalized": [
+        0.10219498289623717,
+        0.3773432775650071,
+        0.10989167616875713,
+        0.39286434186655916
+      ],
+      "status": "needs-review",
+      "id": 8
+    },
+    {
+      "view": "section",
+      "text": "R2",
+      "normalizedText": "R2",
+      "kind": "fixed-measurement-candidate",
+      "confidence": 91.305847,
+      "preprocessing": "line-cleaned",
+      "ocrRotationDeg": -45,
+      "bboxPixels": [
+        944.6314216113262,
+        1876.338528392513,
+        1057.7685066011738,
+        1989.4756133823605
+      ],
+      "bboxNormalized": [
+        0.13463959829123806,
+        0.378217804554024,
+        0.15076518053038396,
+        0.40102310287892773
+      ],
+      "status": "needs-review",
+      "id": 9
+    },
+    {
+      "view": "section",
+      "text": "\"J'",
+      "normalizedText": "'J'",
+      "kind": "parameter",
+      "confidence": 55.715298,
+      "preprocessing": "original",
+      "ocrRotationDeg": 270,
+      "bboxPixels": [
+        827.0,
+        1881.0,
+        882.0,
+        1940.0
+      ],
+      "bboxNormalized": [
+        0.11787343215507412,
+        0.37915742793791574,
+        0.1257126567844926,
+        0.3910501914936505
+      ],
+      "status": "needs-review",
+      "id": 10
+    },
+    {
+      "view": "section",
+      "text": "‘A!",
+      "normalizedText": "'A'",
+      "kind": "parameter",
+      "confidence": 29.136246,
+      "preprocessing": "original",
+      "ocrRotationDeg": 270,
+      "bboxPixels": [
+        497.0,
+        1897.0,
+        551.0,
+        1970.0000000000002
+      ],
+      "bboxNormalized": [
+        0.07083808437856329,
+        0.38238258415642007,
+        0.07853477765108324,
+        0.3970973594033462
+      ],
+      "status": "needs-review",
+      "id": 11
+    },
+    {
+      "view": "section",
+      "text": "\"E'",
+      "normalizedText": "'E'",
+      "kind": "parameter",
+      "confidence": 34.529739,
+      "preprocessing": "line-cleaned",
+      "ocrRotationDeg": 0,
+      "bboxPixels": [
+        1489.0,
+        2342.0,
+        1561.0,
+        2396.0
+      ],
+      "bboxNormalized": [
+        0.2122291904218928,
+        0.47208224148357186,
+        0.2224914481185861,
+        0.482967143721024
+      ],
+      "status": "needs-review",
+      "id": 12
+    },
+    {
+      "view": "section",
+      "text": "33",
+      "normalizedText": "33",
+      "kind": "fixed-measurement-candidate",
+      "confidence": 95.996597,
+      "preprocessing": "line-cleaned",
+      "ocrRotationDeg": 0,
+      "bboxPixels": [
+        1333.0,
+        3545.0,
+        1410.0,
+        3600.0
+      ],
+      "bboxNormalized": [
+        0.18999429874572407,
+        0.7145736746623664,
+        0.20096921322690992,
+        0.7256601491634751
+      ],
+      "status": "needs-review",
+      "id": 13
+    }
+  ],
+  "limits": [
+    "Candidate detection only; arrow/extension connections are not resolved",
+    "Numeric OCR tokens may be false positives; missing detections require review",
+    "Fixed view regions are for this template, not inferred from arbitrary drawings"
+  ],
+  "sourceSha256": "fc69befbded2c2a420662f9934abe832af6c0f9764e491b51033077a048d2e3d"
+}

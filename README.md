@@ -66,3 +66,5 @@ Python testleri için OCP/VTK/Pillow içeren ortam kullanılır. Bu kontroller A
 Sabit antet uygulaması ve örnekler: [A5 antet notları](previews/a5-titleblock-review/NOTLAR.md).
 
 Ölçülendirme kapsamı ve örnekler: [A5 ölçülendirme notları](previews/dimensioned-a5-review/NOTLAR.md).
+
+Yerel taslak OCR keşif aracı: [tespit notları](previews/template-local-detection/NOTLAR.md). Tesseract CLI ve tools/requirements-template-ocr.txt bağımlılıklarını kullanır; üretim yerleşimine henüz bağlanmamıştır.
