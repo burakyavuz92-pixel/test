@@ -1,0 +1,29 @@
+[
+  {
+    "outputId": "11-24-13",
+    "settings": {
+      "IsoPreset": "ON_SAG",
+      "SectionDirection": "V",
+      "OffsetMm": -73,
+      "SpanMm": 45
+    }
+  },
+  {
+    "outputId": "11-24-216",
+    "settings": {
+      "IsoPreset": "ON_SAG",
+      "SectionDirection": "V",
+      "OffsetMm": -44.5,
+      "SpanMm": 30
+    }
+  },
+  {
+    "outputId": "11-24-372",
+    "settings": {
+      "IsoPreset": "ON_SAG",
+      "SectionDirection": "V",
+      "OffsetMm": 0,
+      "SpanMm": 30
+    }
+  }
+]
