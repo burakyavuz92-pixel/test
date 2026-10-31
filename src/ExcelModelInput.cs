@@ -45,7 +45,7 @@ public static class ExcelModelInput
     }
 
     public static ExcelApiInput Build(IEnumerable<Dictionary<string, string>> rows) => new(1, "mm",
-        rows.Select(row => { LocalDrawingSettings.Read(row); return new ParsedExcelRow(row["jpeg file name"], row.Where(kv => kv.Key != "jpeg file name" && !LocalDrawingSettings.IsSetting(kv.Key) && kv.Value!=row["jpeg file name"])
+        rows.Select(row => { LocalDrawingSettings.Read(row); return new ParsedExcelRow(row["jpeg file name"], row.Where(kv => kv.Key != "jpeg file name" && !LocalDrawingSettings.IsSetting(kv.Key))
             .ToDictionary(kv => kv.Key, kv => {
                 try {
                     var cell=ParseCell(kv.Value);

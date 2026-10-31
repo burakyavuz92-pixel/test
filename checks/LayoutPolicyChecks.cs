@@ -155,9 +155,9 @@ try
  Check(RecipeLibrary.TryReuseApproved(excel,jpeg,Path.Combine(cacheRoot,"automatic")),"approved matching template automatically selects local recipe");
  using(var wb=new ClosedXML.Excel.XLWorkbook(excel))
  {
-  var ws=wb.Worksheet(1);var names=new[]{"izometrik aci","kesit dogrultu","kesit kacikligi","kacik kesitin genisligi"};
+  var ws=wb.Worksheet(1);ws.Cell(1,6).Value="A";ws.Cell(2,6).Value="Ø255±2";ws.Cell(1,7).Value="F";ws.Cell(2,7).Value="6";var names=new[]{"izometrik aci","kesit dogrultu","kesit kacikligi","kacik kesitin genisligi"};
   var values=new[]{"ON_SAG","V","0","30"};
-  for(int i=0;i<names.Length;i++){ws.Cell(1,4+i).Value=names[i];ws.Cell(2,4+i).Value=values[i];}
+  for(int i=0;i<names.Length;i++){ws.Cell(1,2+i).Value=names[i];ws.Cell(2,2+i).Value=values[i];}
   wb.Save();
  }
  Check(!RecipeLibrary.TryReuseApproved(excel,jpeg,Path.Combine(cacheRoot,"wrong-coordinate-mode")),"legacy cached coordinates never silently reused for local presentation");
@@ -287,3 +287,10 @@ Check(missingLocalRejected,"new analyses cannot fall back to legacy camera/secti
 foreach(var forbidden in new[]{"featureTrace","sourceView","sections", "views", "camera", "projection", "cuttingPlanes", "worldPath", "hideIf", "visible", "Arial", "title-block"})
     Check(!localPrompt.Contains(forbidden,StringComparison.OrdinalIgnoreCase),"active model instructions omit local presentation field: "+forbidden);
 Check(CadRecipePrompt.ForRows(new[]{localRow})==CadRecipePrompt.Instructions,"active request uses exactly the inspected local prompt and contract");
+
+foreach(int count in new[]{1,5,20})
+{
+    var variableRow=localRow.Where(kv=>LocalDrawingSettings.IsSetting(kv.Key)||kv.Key=="jpeg file name").ToDictionary(kv=>kv.Key,kv=>kv.Value);
+    for(int i=0;i<count;i++)variableRow["M"+i]="12,5±0,1";
+    Check(ExcelModelInput.Build(new[]{variableRow}).rows[0].cells.Count==count,"variable measurement column count: "+count);
+}
