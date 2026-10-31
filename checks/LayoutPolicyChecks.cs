@@ -217,3 +217,37 @@ var v9trace=JsonNode.Parse(v9plane.ToJsonString())!;
 v9trace["drawing"]!["views"]!.AsArray().Add(JsonNode.Parse("""{"id":"front","direction":[0,0,1],"up":[0,1,0],"projection":"orthographic"}"""));
 v9trace["drawing"]!["sections"]=JsonNode.Parse("""[{"id":"A","view":"section","sourceView":"front","kind":"featureTrace","main":{"feature":"body","entity":"axis"},"through":[]}]""");
 Check(CadRecipeV7.Resolve(Doc(v9trace),row).GetProperty("drawing").GetProperty("sections")[0].GetProperty("cuttingPlanes").GetArrayLength()==1,"v9 feature trace creates reserved section world frame");
+
+// Local presentation settings stay separate from model measurements.
+var localRow=new Dictionary<string,string>(row){["izometrik aci"]="ON_SAG",["kesit dogrultu"]="V",
+    ["kesit kacikligi"]="-44,5",["kacik kesitin genisligi"]="30"};
+var localTable=ExcelModelInput.Build(new[]{localRow});
+Check(localTable.rows[0].cells.Keys.Order().SequenceEqual(new[]{"A","F"}),"local metadata excluded from API measurements");
+var localSettings=LocalDrawingSettings.Read(localRow)!;
+Check(localSettings.OffsetMm==-44.5&&localSettings.SpanMm==30,"signed decimal-comma local settings parsed");
+var localRecipe=CadRecipeV9.Resolve(v9,localRow);
+var localSection=localRecipe.GetProperty("drawing").GetProperty("sections")[0];
+Check(localSection.GetProperty("kind").GetString()=="localCentered"&&localSection.GetProperty("offsetMm").GetDouble()==-44.5,"section metadata reaches native executor without model interpretation");
+Check(localRecipe.GetProperty("drawing").GetProperty("views")[0].GetProperty("direction")[2].GetInt32()==1,"fixed top view looks along positive Z");
+Check(v9.GetProperty("drawing").GetProperty("sections").GetArrayLength()==0,"local settings do not mutate saved API recipe");
+var localPrompt=CadRecipePrompt.ForRows(new[]{localRow});
+Check(!localPrompt.Contains("featureTrace")&&!localPrompt.Contains("sections:")&&!localPrompt.Contains("views:"),"local prompt and contract omit camera/section choices");
+Check(!localPrompt.Contains("Software hides green")&&!localPrompt.Contains("hideIf"),"local model reports colors without visibility rules");
+Check(!localPrompt.Contains("-44,5")&&!localPrompt.Contains("ON_SAG"),"per-row presentation settings absent from prompt");
+foreach(var change in new[]{("kesit dogrultu","D"),("kesit kacikligi",""),("kesit kacikligi","NaN"),("kacik kesitin genisligi","0"),("izometrik aci","UNKNOWN")})
+{
+    var bad=new Dictionary<string,string>(localRow){[change.Item1]=change.Item2};bool rejected=false;
+    try{ExcelModelInput.Build(new[]{bad});}catch(FormatException){rejected=true;}
+    Check(rejected,"invalid local setting blocked before API: "+change.Item1+"="+change.Item2);
+}
+var horizontalRow=new Dictionary<string,string>(localRow){["kesit dogrultu"]="H",["kesit kacikligi"]="0"};
+Check(CadRecipeV9.Resolve(v9,horizontalRow).GetProperty("drawing").GetProperty("views")[1].GetProperty("direction")[1].GetInt32()==1,"horizontal section has matching local camera");
+if(args.Length>0)
+{
+    var workbookRows=WorkflowReports.ReadRows(args[0]);
+    var apiTable=ExcelModelInput.Build(workbookRows);
+    Check(workbookRows.Count==3&&apiTable.rows.All(r=>r.cells.Count==9),"revised uploaded workbook yields three rows with nine measurements each");
+    Check(workbookRows.Select(r=>LocalDrawingSettings.Read(r)!.OffsetMm).SequenceEqual(new[]{-73d,-44.5d,0d}),"actual workbook offsets are -73, -44.5 and zero");
+    foreach(var r in workbookRows)CadRecipeV9.Resolve(v9,r);
+    Console.WriteLine("PASS actual workbook resolves locally, no API call");
+}

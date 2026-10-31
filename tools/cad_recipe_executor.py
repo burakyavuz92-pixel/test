@@ -1,4 +1,5 @@
 """Local resolved-v7 OCCT executor. No API calls or product-family geometry rules."""
+from local_drawing import resolve_local_sections
 import json,math,sys,pathlib,os,traceback
 import numpy as np
 from PIL import Image,ImageDraw,ImageFont
@@ -279,6 +280,8 @@ def run(folder,source):
    if w.Write(str(out/(recipe['outputId']+'.step')))!=IFSelect_RetDone:raise RuntimeError('STEP write failed')
    reread=STEPControl_Reader();reread.ReadFile(str(out/(recipe['outputId']+'.step')));reread.TransferRoots();restored=reread.OneShape()
    if not BRepCheck_Analyzer(restored).IsValid() or not math.isclose(vol(restored),vol(shape),rel_tol=1e-6):raise RuntimeError('STEP roundtrip mismatch')
+   recipe['drawing']=resolve_local_sections(recipe['drawing'],box(shape))
+   (out/'native-drawing.json').write_text(json.dumps(recipe['drawing'],indent=2))
    drafting=sheet(recipe,shape,shapes,out,source)
    results.append({'outputId':recipe['outputId'],'status':'preview-produced','checks':checks,'volumeMm3':vol(shape),'stepRoundtrip':True,'drafting':drafting})
   except Exception as ex:results.append({'outputId':recipe['outputId'],'status':'failed','error':str(ex)});traceback.print_exc()

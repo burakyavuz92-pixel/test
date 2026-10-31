@@ -35,10 +35,13 @@ public static class CadRecipeWorkflow
             if(timeoutSetting is not null&&(!int.TryParse(timeoutSetting,out timeoutSeconds)||timeoutSeconds<=0))throw new Exception("Geçersiz API zaman aşımı.");
             var rows=WorkflowReports.ReadRows(excel);count=rows.Count;
             foreach(var row in rows)if(!System.Text.RegularExpressions.Regex.IsMatch(row["jpeg file name"],@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
-            var all=ExcelModelInput.Build(rows);File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(all,WorkflowReports.Json));
-            var sample=rows.Count<=8?rows:rows.GroupBy(r=>string.Join('|',r.Values.Select(v=>v.Length==0?"blank":v=="0"?"zero":"value"))).Select(g=>g.First()).Concat(rows.TakeLast(1)).Distinct().Take(8).ToList();
+            var all=ExcelModelInput.Build(rows);
+            var local=rows.Select(r=>new{outputId=r["jpeg file name"],settings=LocalDrawingSettings.Read(r)}).ToArray();
+            if(local.Any(r=>r.settings is not null))File.WriteAllText(Path.Combine(output,"local-drawing-settings.json"),JsonSerializer.Serialize(local,WorkflowReports.Json));
+            File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(all,WorkflowReports.Json));
+            var sample=rows.Count<=8?rows:rows.GroupBy(r=>string.Join('|',r.Where(kv=>!LocalDrawingSettings.IsSetting(kv.Key)).Select(kv=>kv.Value.Length==0?"blank":kv.Value=="0"?"zero":"value"))).Select(g=>g.First()).Concat(rows.TakeLast(1)).Distinct().Take(8).ToList();
             var input=ExcelModelInput.Build(sample);
-            var prompt=CadRecipePrompt.Instructions+"\ntableInput: "+JsonSerializer.Serialize(input);
+            var prompt=CadRecipePrompt.ForRows(rows)+"\ntableInput: "+JsonSerializer.Serialize(input);
             File.WriteAllText(Path.Combine(output,"request-prompt.txt"),prompt);File.WriteAllText(Path.Combine(output,"model-input.json"),JsonSerializer.Serialize(input,WorkflowReports.Json));
             var model=Environment.GetEnvironmentVariable("OPENROUTER_MODEL")??throw new Exception("Model yok.");var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");
             using var client=new HttpClient{Timeout=TimeSpan.FromSeconds(timeoutSeconds)};client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",key);

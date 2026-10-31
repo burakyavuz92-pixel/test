@@ -163,7 +163,10 @@ def compile_recipe(recipe,cells,output_id):
   if any(not applied[t['operation']] for t in dim['targets']):continue
   dim.update(nominal=value,parameter=col or dim['id'],unit=src.get('unit','mm'),quantity=dim.get('quantity',1))
   if col:dim['sourceMeasurement']=cells[col]
-  dim['effectiveVisible']=dim.get('visible',True) and dim['sourceColor']=='black' and not(dim.get('hideIf',{}).get('kind')=='zero' and value==0)
+  color={'black':'#000000','green':'#008000','#000000':'#000000','#008000':'#008000'}.get(dim['sourceColor'].lower())
+  if color is None:raise ValueError('Unsupported annotation source color')
+  dim['canonicalSourceColor']=color
+  dim['effectiveVisible']=dim.get('visible',True) and color=='#000000' and not(dim.get('hideIf',{}).get('kind')=='zero' and value==0)
   dimensions.append(dim)
  d['dimensions']=dimensions
  def ref(r):

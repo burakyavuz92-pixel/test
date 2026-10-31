@@ -1,0 +1,36 @@
+# Yerel çizim ayarları — revize Excel
+
+Bu düzen yuvarlak parça grupları için kullanıcı tarafından verilen kesit ve kamera ayarlarını API'den ayırır. Model geometrinin ne olduğunu anlamaya ve ölçü ilişkilerini tarif etmeye devam eder. Yeni API çağrısı henüz yapılmadığından anlama başarısı, token veya maliyet değişimi ölçülmedi.
+
+## Excel sütunları
+
+| Başlık | Biçim | Yerel anlamı |
+|---|---|---|
+| jpeg file name | Metin | Çıktı adı ve antette ürün kimliği |
+| izometrik aci | ON_SAG | Ön, sağ ve üst yüzleri gösteren sabit ortografik kamera; derece değildir |
+| kesit dogrultu | V / H | Üst görünüşte dikey / yatay kesit izi |
+| kesit kacikligi | İşaretli mm | V: artı sağ, eksi sol. H: artı yukarı, eksi aşağı |
+| kacik kesitin genisligi | Toleranssız mm | Merkezdeki kademenin toplam boyu; 30 → merkezden ±15 |
+| A, B, C, … | Ölçü ve tolerans | API'ye ayrıştırılmış ölçü tablosu olarak gider |
+
+Ondalık nokta ve virgül kabul edilir. Kaçıklık 0 ise düz merkez kesiti kullanılır; kademe boyu etkisizdir. Kaçıklık sıfır değilse kademe boyu pozitif olmalıdır. Yerel ayar sütunlarından biri mevcutsa dördü de doldurulmalıdır; geçersiz veri API çağrısından önce durdurulur. Türkçe harfli başlıklar da desteklenir.
+
+Üst yüzeyin merkezi dünya orijinidir: +X sağ, +Y yukarı, +Z üst yüzeyin dışına doğru; gövde -Z yönüne uzanır. Bu konvansiyon modele iletilir. Yerel sütunların satır değerleri modele gönderilmez. Kesit izinin uçları etiket A veya delik sayısı varsayımıyla değil, oluşturulan gerçek OCCT gövdesinin sınırlarından belirlenir.
+
+## Model ve yazılımın görevleri
+
+- Yeni sütunlu Excel kullanıldığında prompt/sözleşme kamera, kesit veya görünürlük kararı istemez. Eski Excel ve kayıtlı tariflerin yolu korunur.
+- Model ölçü anotasyonunun rengini `#000000` veya `#008000` olarak bildirir. Yazılım yeşili gizler; yeşil ölçü nominali geometriden çıkarılmaz. JPEG'deki renk sınıfını tanımak modelin görevi olmaya devam eder. Eski `black` / `green` yanıtları da okunur.
+- Toleranslar geometriye karıştırılmaz. Boş ile sıfır korunur. Model ölçü ve toleransı yeniden hesaplamaz; yerel ayrıştırıcı kaynak hücreyi tutar.
+- Yerel ayarlar `local-drawing-settings.json` dosyasına; native kesit çözümü `native-drawing.json` dosyasına kaydedilir. Ham model yanıtı değiştirilmez.
+- JPEG çıkışı mevcut sabit 1754×1240 boyutunda ve kaynak DPI metadata'sı ile kalır. Bu tek başına fiziksel A4 veya gerçek baskı ölçeği garantisi değildir.
+
+## Revize dosyanın kontrolü
+
+`taslak4.2rev.xlsx`: 3 satır, her satırda 9 ölçü sütunu. Kaçıklıklar -73 / -44,5 / 0; kademe boyları 30 mm. İlk satırdaki Ø34 deliğin tamamı 30 mm kademe aralığına sığmaz. Yazılım kullanıcının 30 değerini değiştirmez; tüm deliğin o bantta görünmesi isteniyorsa giriş genişletilmelidir.
+
+Derleme, gerçek Excel'in ayrıştırılması, promptta kamera/kesit ve görünürlük talebi bulunmaması, V/H ve işaret yönleri, sıfırda düz kesit, ±15 kademe uçları, renk gizleme ve gerçek OCCT üzerinde kesit üretimi test edildi. Bu kontrolde API çağrısı ve yeni ürün JPEG'i üretilmedi.
+
+## Mevcut sınır
+
+Genel v9 paftası hâlâ inceleme çıktısıdır: taslak anteti ve yerleşimi birebir kurulmaz; ölçüler tablo olarak gösterilir. Bu değişiklikler o eksikleri giderdiğini iddia etmez. Sonraki adım revize Excel + eşleşen taslak4.2 JPEG ile tek bir yeni API denemesinde geometri, kesit ve kullanım maliyetini değerlendirmektir.

@@ -6,6 +6,12 @@ def recipe():
  return {'schemaVersion':9,'geometry':{'features':[{'id':'base','op':'add','shape':{'kind':'box','size':[20,20,5]}}]},'drawing':{}}
 def compile(r,cells=None):return compile_recipe(r,cells or {},'test')
 class V9Tests(unittest.TestCase):
+ def test_local_color_palette(self):
+  for color,visible in [('#008000',False),('#000000',True),('green',False),('black',True)]:
+   r=recipe();r['drawing']['dimensions']=[dict(id='d',type='distance',valueSource=dict(kind='constant',value=20,unit='mm'),targets=[dict(operation='base',role='length')],axis='X',sourceColor=color)]
+   d=compile(r)['drawing']['dimensions'][0]
+   self.assertEqual(d['effectiveVisible'],visible)
+   self.assertEqual(d['canonicalSourceColor'],'#000000' if visible else '#008000')
  def test_lazy(self):
   e=Expressions({'A':{'nominalMm':None}},{'x':'=if(isblank(A),3,A/0)'})
   self.assertEqual(e.value('=x'),3);self.assertEqual(e.value('=false and A/0>1'),False)
