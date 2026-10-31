@@ -7,11 +7,11 @@ Girdi **bir taslak JPEG + bir Excel**. Yazılım Excel'i yerelde ayrıştırır;
 [config/openrouter.json](config/openrouter.json) etkin CAD akışının ayar kaynağıdır:
 
 - Model: `anthropic/claude-sonnet-5.5`
-- Reasoning: `high`
+- Reasoning: `low` (son karşılaştırma denemesi)
 - Completion token sınırı: `65536` (görünür çıktı ve reasoning toplamı için tavan)
 - HTTP zaman aşımı: `600` saniye
 
-Dosyada API anahtarı bulunmaz. Anahtar yalnız `OPENROUTER_API_KEY` ortam değişkeninden okunur. Eski `OPENROUTER_MODEL`, `OPENROUTER_REASONING_EFFORT`, `OPENROUTER_MAX_COMPLETION_TOKENS` ve `OPENROUTER_TIMEOUT_SECONDS` ortam seçimleri etkin CAD akışını değiştirmez; model/ayar değişikliği bu JSON dosyasından yapılır. Dosya yoksa yukarıdaki değerler kullanılır.
+Dosyada API anahtarı bulunmaz. Anahtar yalnız `OPENROUTER_API_KEY` ortam değişkeninden okunur. Eski `OPENROUTER_MODEL`, `OPENROUTER_REASONING_EFFORT`, `OPENROUTER_MAX_COMPLETION_TOKENS` ve `OPENROUTER_TIMEOUT_SECONDS` ortam seçimleri etkin CAD akışını değiştirmez; model/ayar değişikliği bu JSON dosyasından yapılır. Dosya yoksa kod varsayılanları kullanılır; reasoning varsayılanı high kalır.
 
 Batch gönderme ve sorgulama yolu kaldırıldı. `:batch` model kodu yerelde reddedilir. Tek normal istek yapılır; hata veya zaman aşımında otomatik yeniden değerlendirme/tekrar gönderim yoktur. Başarı yalnız veri, model hatası kısa cümle olarak alınır. Yazılım kullanıcıdan cevap beklemek yerine rapor kaydeder.
 

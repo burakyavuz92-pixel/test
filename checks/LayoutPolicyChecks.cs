@@ -263,7 +263,7 @@ if(args.Length>0)
 }
 
 var activeSettings=OpenRouterSettings.Load();
-Check(activeSettings.Model=="anthropic/claude-sonnet-5.5"&&activeSettings.ReasoningEffort=="high","active project model is Sonnet 5.5 high, without batch");
+Check(activeSettings.Model=="anthropic/claude-sonnet-5.5"&&activeSettings.ReasoningEffort=="low","active project model is Sonnet 5.5 low, without batch");
 Check(activeSettings.MaxCompletionTokens==65536&&activeSettings.TimeoutSeconds==600,"active completion limit and timeout persisted");
 var staleModel=Environment.GetEnvironmentVariable("OPENROUTER_MODEL");
 try

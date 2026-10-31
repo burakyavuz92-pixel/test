@@ -1,0 +1,24 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "FECFA2E4A1B64093A94CE4EF9B8C803C38E276AB988549B5A5DE133018DD8E2E",
+      "ImageSha256": "FC69BEFBDED2C2A420662F9934ABE832AF6C0F9764E491B51033077A048D2E3D"
+    },
+    "SchemaVersion": 9,
+    "RequestedModel": "anthropic/claude-sonnet-5.5",
+    "RowCount": 3,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.040326,
+    "ReasoningEffort": "low",
+    "MaxCompletionTokens": 65536,
+    "ApiTimeoutSeconds": 600,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": true,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

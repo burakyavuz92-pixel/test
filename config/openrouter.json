@@ -1,6 +1,6 @@
 {
   "model": "anthropic/claude-sonnet-5.5",
-  "reasoningEffort": "high",
+  "reasoningEffort": "low",
   "maxCompletionTokens": 65536,
   "timeoutSeconds": 600
 }
