@@ -1,0 +1,17 @@
+{
+  "RequestedModel": "xiaomi/mimo-v2.6-pro",
+  "ActualProvider": null,
+  "RequestedReasoningEffort": "high",
+  "MaxCompletionTokens": 32768,
+  "ApiCalls": 1,
+  "CompletedModelResponse": false,
+  "TimeoutSeconds": 300,
+  "ReasoningTokens": null,
+  "ReportedCostUsd": null,
+  "ProducedImages": 0,
+  "SoftwareChanges": false,
+  "OriginalImageTransmitted": true,
+  "SourcesIdentical": true,
+  "FullTextInputIdentical": true,
+  "CatalogImageSupport": true
+}
