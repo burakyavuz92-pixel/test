@@ -1,0 +1,442 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "Ro": "=A/2",
+      "Rh": "=(J+6)/2"
+    },
+    "features": [
+      {
+        "id": "body",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            -33
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=A",
+          "length": 33
+        }
+      },
+      {
+        "id": "cavity",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            -34
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=A-6",
+          "length": 31
+        }
+      },
+      {
+        "id": "filletTop",
+        "op": "fillet",
+        "size": 8,
+        "selectors": [
+          {
+            "near": [
+              "=Ro",
+              0,
+              0
+            ],
+            "directionKind": "axis",
+            "direction": [
+              0,
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "id": "filletRim",
+        "op": "fillet",
+        "size": 1.5,
+        "selectors": [
+          {
+            "near": [
+              "=Ro",
+              0,
+              -33
+            ],
+            "directionKind": "axis",
+            "direction": [
+              0,
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "id": "hub",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=0-B",
+            0,
+            "=0-E"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J+6",
+          "length": "=E"
+        }
+      },
+      {
+        "id": "recess",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=0-B",
+            0,
+            "=0-F"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=D",
+          "length": "=F+1"
+        }
+      },
+      {
+        "id": "bore",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=0-B",
+            0,
+            -34
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J",
+          "length": 36
+        }
+      },
+      {
+        "id": "holeG",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            -4
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=G",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeI",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=0-C/2",
+            -4
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=I",
+          "length": 5
+        }
+      },
+      {
+        "id": "correctedR2",
+        "op": "fillet",
+        "size": 2,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "offset": "=-F"
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  "=-B",
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=J/2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "outer cylindrical face"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimHeight",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "body",
+            "role": "overall axial height from top face to open rim"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimWall",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cavity",
+            "role": "rim wall radial thickness"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "hub",
+            "role": "hub axis offset from part axis"
+          }
+        ],
+        "axis": "X"
+      },
+      {
+        "id": "dimC",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole center pitch"
+          },
+          {
+            "operation": "holeI",
+            "role": "hole center pitch"
+          }
+        ],
+        "axis": "Y"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "recess",
+            "role": "hub counterbore diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "hub",
+            "role": "hub tip distance from top face"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "recess",
+            "role": "hub counterbore depth"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimG",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimI",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "holeI",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "bore",
+            "role": "hub bore diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "filletTop",
+            "role": "outer top edge round"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR15",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "filletRim",
+            "role": "outer rim edge round"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "correctedR2",
+            "role": "hub to web fillet"
+          }
+        ],
+        "axis": "radial"
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
