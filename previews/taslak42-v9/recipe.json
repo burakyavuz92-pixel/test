@@ -1,0 +1,591 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "R": "=A/2"
+    },
+    "features": [
+      {
+        "id": "cup",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    0
+                  ],
+                  "end": [
+                    "=R-8",
+                    0
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=R-8",
+                    0
+                  ],
+                  "mid": [
+                    "=R-8\u002B5.656854",
+                    "=8-5.656854"
+                  ],
+                  "end": [
+                    "=R",
+                    8
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R",
+                    8
+                  ],
+                  "end": [
+                    "=R",
+                    31.5
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=R",
+                    31.5
+                  ],
+                  "mid": [
+                    "=R-1.5",
+                    33
+                  ],
+                  "end": [
+                    "=R-3",
+                    31.5
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R-3",
+                    31.5
+                  ],
+                  "end": [
+                    "=R-3",
+                    8
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=R-3",
+                    8
+                  ],
+                  "mid": [
+                    "=R-8\u002B3.535534",
+                    "=8-3.535534"
+                  ],
+                  "end": [
+                    "=R-8",
+                    3
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=R-8",
+                    3
+                  ],
+                  "end": [
+                    0,
+                    3
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    0,
+                    3
+                  ],
+                  "end": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "hubFlange",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=B",
+            0,
+            "=-F"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=D",
+          "length": "=F\u002B3"
+        }
+      },
+      {
+        "id": "hubCollar",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=B",
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J\u002B6",
+          "length": "=E"
+        }
+      },
+      {
+        "id": "hubBore",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=B",
+            0,
+            "=-F-1"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J",
+          "length": "=E\u002BF\u002B2"
+        }
+      },
+      {
+        "id": "holeG",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=G",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeI",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=-C/2",
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=I",
+          "length": 5
+        }
+      },
+      {
+        "id": "collarFillet",
+        "op": "fillet",
+        "size": 2,
+        "selectors": [
+          {
+            "near": [
+              "=B\u002B(J\u002B6)/2",
+              0,
+              3
+            ],
+            "directionKind": "axis",
+            "direction": [
+              0,
+              0,
+              1
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer cylindrical wall diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "axis of revolution"
+          },
+          {
+            "operation": "hubCollar",
+            "role": "axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "green",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole axis"
+          },
+          {
+            "operation": "holeI",
+            "role": "hole axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "hubFlange",
+            "role": "hub flange diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer bottom face"
+          },
+          {
+            "operation": "hubCollar",
+            "role": "collar end face"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer bottom face"
+          },
+          {
+            "operation": "hubFlange",
+            "role": "protruding outer face"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimG",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimI",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "holeI",
+            "role": "hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "hubBore",
+            "role": "bore diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimHeight",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer bottom face"
+          },
+          {
+            "operation": "cup",
+            "role": "open rim end"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimThickness",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "sheet thickness"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimR8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer bottom corner radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimR15",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "rim end radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimR2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "collarFillet",
+            "role": "collar base fillet radius"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      }
+    ],
+    "views": [
+      {
+        "id": "front",
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionView",
+        "direction": [
+          -1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          1,
+          1,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "A-A",
+        "view": "sectionView",
+        "sourceView": "front",
+        "kind": "featureTrace",
+        "main": {
+          "feature": "holeG",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "hubCollar",
+            "entity": "axis"
+          },
+          {
+            "feature": "holeI",
+            "entity": "axis"
+          }
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
