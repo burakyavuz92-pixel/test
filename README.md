@@ -109,3 +109,7 @@ Yeni `analyze-fresh-cad-group` çağrıları, bağımsız sayısal ifadeler ve a
 ## V9 sıralı gövde yürütücüsü
 
 Aktif prompt ve sözleşme [burada](contracts/cad-v9-draft/README.md). Model ara gövde grafiği yazmaz; yerel derleyici sıralı add/cut işlemlerini indirger. `run-fresh-cad-group <xlsx> <jpeg> <empty-output>` tek yeni API yanıtı alıp bütün satırlar için native STEP/JPEG inceleme önizlemesi üretir; otomatik onarım çağrısı yoktur. Python yolu OCCT_PYTHON ile seçilir (bulutta /workspace/occt-venv/bin/python). [Kapak testi ve müdahale kaydı](previews/kapak-v9/NOTLAR.md). Sonuçlar üretim anteti ve gerçek ölçü okları tamamlanmış pafta değildir.
+
+### Detay görünüşü kapsam dışı
+
+Güncel v9 prompt/sözleşmesinden ve yerel çizimden detay görünüşü çıkarıldı. Ana görünüşler, kesit ve geometri kapsamı korunur. Eski test paketleri tarihsel çıktılardır; içlerindeki detaylar yeni davranışı temsil etmez. Değişiklik API çağrısı olmadan yerel testlerle kontrol edildi.

@@ -1,7 +1,7 @@
 CAD recipe 9 — JSON data contract
 
 Root:
-{"schemaVersion":9,"geometry":{"variables":{},"features":[]},"drawing":{"dimensions":[],"views":[],"sections":[],"details":[],"geometricTolerances":[]}}
+{"schemaVersion":9,"geometry":{"variables":{},"features":[]},"drawing":{"dimensions":[],"views":[],"sections":[],"geometricTolerances":[]}}
 variables is optional. Drawing arrays may be empty. Failure is {"error":"one short Turkish sentence"}.
 
 VALUES
@@ -46,7 +46,6 @@ sections describe the trace in the template:
 {id,view,sourceView,kind:"featureTrace",main:Reference,through:[Reference,...]}.
 Reference={feature:id,entity:"axis"|"frameOrigin",instance?:integer}. The feature denotes its own construction shape/axis, not the accumulated body's origin. Circular extrusions, cylinders and revolves support axis. frameOrigin is the feature's profile/shape origin. main locates the main trace; through lists additional crossed features. Software constructs the trace and omits absent features. Alternatively a straight section is {id,view,kind:"planar",point:P3,normal:P3}; point/normal are world coordinates. Section IDs refer to separately declared views. The section describes a view, not a geometry cut operation.
 
-details: {id,label,sourceView,features:[id,...],sheetBox:[x,y,width,height]}. Magnify the existing geometry in that view/section; do not construct separate detail geometry. sheetBox is normalized 0..1 from the original JPEG page's top-left.
 
 geometricTolerances: {kind,value:N,targets:[{operation:id,role:string,instance?:integer}]}.
 Output filename and title-block product identifier use the current row's outputId. Document presentation follows the template; this version adds no cell-by-cell title-block description.

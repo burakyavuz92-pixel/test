@@ -35,6 +35,11 @@ class V9Tests(unittest.TestCase):
   tol=dict(kind='symmetric',upperDeviationMm=1,lowerDeviationMm=-1)
   d=compile(r,{'A':dict(nominalMm=20,tolerance=tol)})['drawing']['dimensions'][0]
   self.assertEqual(d['nominal'],20);self.assertEqual(d['sourceMeasurement']['tolerance'],tol)
+ def test_detail_request_rejected(self):
+  r=recipe();r['drawing']['details']=[{'id':'B'}]
+  with self.assertRaisesRegex(ValueError,'Detail views are not supported'):compile(r)
+ def test_no_detail_field(self):
+  self.assertNotIn('details',compile(recipe())['drawing'])
  def test_source_untouched(self):
   r=recipe();before=copy.deepcopy(r);compile(r);self.assertEqual(r,before)
 if __name__=='__main__':unittest.main()

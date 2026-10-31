@@ -149,7 +149,8 @@ def compile_recipe(recipe,cells,output_id):
   else:raise ValueError('Unknown feature op '+op)
  if current is None:raise ValueError('No active body')
  d=copy.deepcopy(recipe['drawing'])
- for key in ('dimensions','views','sections','details','geometricTolerances'):d.setdefault(key,[])
+ if d.pop('details',[]):raise ValueError('Detail views are not supported in the current contract')
+ for key in ('dimensions','views','sections','geometricTolerances'):d.setdefault(key,[])
  dimensions=[];parameters={k:c.get('nominalMm') for k,c in cells.items()}
  for dim in d['dimensions']:
   if not e.value(dim.pop('when',True)):continue
@@ -184,15 +185,6 @@ def compile_recipe(recipe,cells,output_id):
  if len(view_ids)!=len(set(view_ids)):raise ValueError('Duplicate view ID')
  for sec in d['sections']:
   if sec['view'] not in view_ids or ('sourceView' in sec and sec['sourceView'] not in view_ids):raise ValueError('Unknown section view')
- details=[]
- for detail in d['details']:
-  if detail['sourceView'] not in view_ids:raise ValueError('Unknown detail view')
-  b=detail['sheetBox']
-  if len(b)!=4 or min(b)<0 or b[2]<=0 or b[3]<=0 or b[0]+b[2]>1 or b[1]+b[3]>1:raise ValueError('Invalid detail box')
-  if any(id not in applied for id in detail['features']):raise ValueError('Unknown detail feature')
-  detail['features']=[id for id in detail['features'] if applied[id]]
-  if detail['features']:details.append(detail)
- d['details']=details
  d['sections']=e.bind(d['sections']);d['geometricTolerances']=e.bind(d['geometricTolerances'])
  return dict(schemaVersion=7,outputId=output_id,geometry=dict(parameters=parameters,frames=frames,operations=ops,result=current,featureApplied=applied),drawing=d,executionStatus='recipe-resolved-not-rendered')
 

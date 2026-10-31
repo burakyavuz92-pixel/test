@@ -1,5 +1,5 @@
 import unittest,math,copy
-from cad_recipe_executor import build,vol,clipped_lines,detail_region,sheet
+from cad_recipe_executor import build,vol,sheet
 class NativeRecipeTests(unittest.TestCase):
  def recipe(self):
   return {'geometry':{'frames':[{'id':'world','origin':[0,0,0],'xAxis':[1,0,0],'zAxis':[0,0,1]}],'operations':[
@@ -28,26 +28,17 @@ class SelectorTests(unittest.TestCase):
   with self.assertRaises((ValueError,Standard_Failure)):build(self.filleted('tangent',[0,0,1]))
  def test_rotated_frame_axis(self):
   r=self.filleted('axis',[0,0,1]);r['geometry']['frames'][0]['xAxis']=[0,1,0];r['geometry']['frames'][0]['zAxis']=[1,0,0];s,_,_=build(r);self.assertGreater(vol(s),0)
-class DetailTests(unittest.TestCase):
- def test_line_crossing_crop_keeps_visible_segment(self):
-  self.assertEqual(clipped_lines([[(-2.,0.),(2.,0.)]],[-1.,-1.,1.,1.]),[[(-1.,0.),(1.,0.)]])
- def test_line_outside_crop_is_removed(self):
-  self.assertEqual(clipped_lines([[(2.,2.),(3.,3.)]],[-1.,-1.,1.,1.]),[])
- def test_detail_reuses_focus_solid_not_whole_modified_body(self):
-  r=NativeRecipeTests().recipe();_,shapes,_=build(r)
-  r['geometry']['operations'].insert(1,{'id':'boss','op':'cylinder','frame':'world','args':{'origin':[0,0,0],'direction':[0,0,1],'diameter':4,'length':2}})
-  _,shapes,_=build(r)
-  roi=detail_region(r,shapes,{'features':['boss','hole']},{'direction':[0,0,1],'up':[0,1,0]})
-  self.assertLess(roi[2]-roi[0],6)
- def test_detail_preview_is_rendered_from_existing_shape(self):
+class PresentationTests(unittest.TestCase):
+ def test_legacy_detail_metadata_does_not_request_extra_view(self):
   import tempfile,pathlib
   from PIL import Image
-  r=NativeRecipeTests().recipe();r['outputId']='detail-test';shape,shapes,_=build(r)
-  r['drawing']={'dimensions':[],'views':[{'id':'front','direction':[0,0,1],'up':[0,1,0],'projection':'orthographic'},{'id':'cut','direction':[1,0,0],'up':[0,1,0],'projection':'orthographic'},{'id':'iso','direction':[1,-1,1],'up':[0,0,1],'projection':'orthographic'}],
-   'sections':[{'id':'AA','view':'cut','kind':'planar','cuttingPlanes':[{'point':[0,0,0],'normal':[1,0,0]}]}],
-   'details':[{'id':'B','label':'B','sourceView':'cut','features':['base'],'sheetBox':[.3,.64,.12,.16]}]}
-  with tempfile.TemporaryDirectory() as temp:
-   folder=pathlib.Path(temp);source=folder/'source.jpg';Image.new('RGB',(20,20),'white').save(source)
+  r=NativeRecipeTests().recipe();r['outputId']='no-detail';shape,shapes,_=build(r)
+  r['drawing']={'views':[{'id':'front','direction':[0,0,1],'up':[0,1,0]},{'id':'cut','direction':[1,0,0],'up':[0,1,0]},{'id':'iso','direction':[1,1,1],'up':[0,1,0]}],
+   'sections':[{'id':'A','view':'cut','kind':'planar','cuttingPlanes':[{'point':[0,0,0],'normal':[1,0,0]}]}],
+   'dimensions':[], 'details':[{'id':'B','sourceView':'missing','features':['missing']}]}
+  for view in r['drawing']['views']:view['projection']='orthographic'
+  with tempfile.TemporaryDirectory() as t:
+   folder=pathlib.Path(t);source=folder/'input.jpg';Image.new('RGB',(20,20),'white').save(source)
    report=sheet(r,shape,shapes,folder,source)
-   self.assertEqual(report['details'][0]['sourceView'],'cut');self.assertTrue((folder/'detail-test.jpeg').exists())
+   self.assertNotIn('details',report);self.assertTrue((folder/'no-detail.jpeg').exists())
 if __name__=='__main__':unittest.main()

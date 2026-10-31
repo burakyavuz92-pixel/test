@@ -175,13 +175,9 @@ Check(CadRecipeV7.Resolve(Doc(anchoredTrace),ftBlank).GetProperty("drawing").Get
 Check(CadRecipeV7.Resolve(Doc(anchoredTrace),ftZero).GetProperty("drawing").GetProperty("sections")[0].GetProperty("kind").GetString()=="planar","main-anchor fix preserves zero-offset planar section");
 Check(!FeatureSectionTrace.CoversProjectedPoint(new[]{new[]{0.0,10},new[]{0.0,-10}},new[]{0.0,40}),"infinite-plane membership does not count as finite trace coverage");
 Check(!FeatureSectionTrace.CoversProjectedPoint(new[]{new[]{0.0,100},new[]{44.5,100},new[]{44.5,-20},new[]{0.0,-20},new[]{0.0,-100}},new[]{0.0,40}),"previous early-jog shape fails main-reference coverage check");
-var detailRecipe=newSection.DeepClone();detailRecipe["drawing"]["sections"]=new JsonArray();
-detailRecipe["drawing"]["details"]=JsonNode.Parse("""[{"id":"B","label":"B","sourceView":"front","features":["base"],"sheetBox":[0.25,0.65,0.2,0.18]}]""");
-Check(CadRecipeV7.Resolve(Doc(detailRecipe),row).GetProperty("drawing").GetProperty("details")[0].GetProperty("features")[0].GetString()=="base","detail references existing solid geometry without new dimensions");
-detailRecipe["drawing"]["details"][0]["sheetBox"]=new JsonArray(0.9,0.9,0.2,0.2);
-Check(CadRecipeV7.Check(Doc(detailRecipe),new(){row}).Any(i=>i.Severity=="error"),"detail outside page rejected");
-detailRecipe["drawing"]["details"][0]["sheetBox"]=new JsonArray(0.2,0.6,0.2,0.2);detailRecipe["drawing"]["details"][0]["features"]=new JsonArray("missing");
-Check(CadRecipeV7.Check(Doc(detailRecipe),new(){row}).Any(i=>i.Severity=="error"),"detail cannot silently invent unknown geometry");
+var legacyDetail=newSection.DeepClone();legacyDetail["drawing"]["sections"]=new JsonArray();legacyDetail["drawing"]["details"]=JsonNode.Parse("""[{"id":"B","sourceView":"missing","features":["missing"]}]""");
+Check(!CadRecipeV7.Resolve(Doc(legacyDetail),row).GetProperty("drawing").TryGetProperty("details",out _),"legacy detail metadata is excluded from resolved drawings");
+
 var directionRecipe=v7.DeepClone();directionRecipe["geometry"]["features"].AsArray().Add(JsonNode.Parse("""{"id":"edgeRound","kind":"fillet","frame":"main","uses":["base"],"args":{"size":1,"selectors":[{"operation":"base","role":"rim","near":[118,0,0],"directionKind":"axis","direction":[0,0,1]}]}}"""));directionRecipe["geometry"]["result"]="edgeRound";
 Check(CadRecipeV7.Check(Doc(directionRecipe),new(){row}).All(i=>i.Severity!="error"),"explicit selector axis type accepted");
 directionRecipe["geometry"]["features"].AsArray().Last()["args"]["selectors"][0]["directionKind"]="guess";

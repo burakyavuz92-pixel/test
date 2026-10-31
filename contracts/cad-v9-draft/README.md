@@ -24,3 +24,9 @@ V9 ifade dili, isteğe bağlı değişkenler, koşullar ve tek gövde işlem sı
 API çağrısı ve native inceleme için: `dotnet run --project src/DrawingTool.csproj -- run-fresh-cad-group <xlsx> <jpeg> <empty-output>`. Kayıtlı yanıtı API çağrısı yapmadan tekrar yürütmek için `render-saved-group <xlsx> <jpeg> <saved-run> <empty-output>` kullanılır. Eski v7/v8 kayıtları desteklenir. Ayrı C++ köprü yazılmadı; mevcut yerel Python/OCP katmanı kullanılır. Taslak3/4 vb. için özel geometrik ipuçları isteme eklenmedi.
 
 Kenar seçimi native yürütücüde near/direction ile yapılır; operation köken kapsamını bütün Boolean değişimlerinde kesin takip etme desteği tamamlanmış değildir. Kesit featureTrace algoritmasının önceki sınırlamaları sürer. Modelin kapak yanıtında fillet veya featureTrace yoktur; bu test o yolların başarısını kanıtlamaz.
+
+## Güncel kapsam: detay görünüşü kaldırıldı
+
+Aktif prompt ve sözleşme artık detay görünüşü istemez. V9 `drawing.details` alanı boşsa eski boş alan normalize edilerek kaldırılır; doluysa desteklenmeyen görünüş raporu verilir, otomatik onarım çağrısı yapılmaz. Native detay odaklama/kırpma/çizim ve sayfada detay için yer ayırma kodları kaldırıldı. Eski v7/v8 kayıtlarındaki detay meta verisi yeni çözülmüş çizime taşınmaz; doğrudan native yürütülen tarihsel çözülmüş dosyalarda da detay görünüşü üretilmez. Tarihsel ham yanıtlar ve örnekler değiştirilmedi.
+
+Bu kapsam değişikliği parça geometrisindeki radyusları, boşaltmaları veya ana kesitleri kaldırmaz. Kullanıcının gerekli biçim ve ölçüleri ana görünüş/kesitte göstermesi beklenir; yazılım girdi JPEG'ini silme/kırpma işlemiyle değiştirmez. Bu değişiklikte model çağrısı yapılmadı. Yerel kontroller: 91 C#, 11 v9 Python ve 9 native Python kontrolü geçti; native kontrol geçici klasörde detay meta verisine rağmen yalnız ana görünüş/kesit/izometrik üretimini sınar.
