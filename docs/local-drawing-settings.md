@@ -34,3 +34,7 @@ Derleme, gerçek Excel'in ayrıştırılması, promptta kamera/kesit ve görün�
 ## Mevcut sınır
 
 Genel v9 paftası hâlâ inceleme çıktısıdır: taslak anteti ve yerleşimi birebir kurulmaz; ölçüler tablo olarak gösterilir. Bu değişiklikler o eksikleri giderdiğini iddia etmez. Sonraki adım revize Excel + eşleşen taslak4.2 JPEG ile tek bir yeni API denemesinde geometri, kesit ve kullanım maliyetini değerlendirmektir.
+
+## Sonnet ile devam ayarları
+
+Etkin prompt ve sözleşme artık ayrı `local-prompt.txt` / `local-contract.txt` dosyalarından okunur; eski sözleşmeden metin parçaları silinerek türetilmez. Etkin model `config/openrouter.json` içinde Sonnet 5.5, high, 65536 token tavanı ve 600 saniye olarak kayıtlıdır. Anahtar ortamda kalır; eski model ortam değişkeni bu ayarı geçersiz kılamaz. Batch kodu kaldırıldı. Eski koordinat düzeninde hazırlanmış onaylı tarifler yeni yerel düzende sessizce yeniden kullanılmaz. Bu hazırlıkta API çağrısı yapılmadı; maliyet veya anlama başarısı henüz ölçülmedi.

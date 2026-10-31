@@ -9,13 +9,16 @@ public static class RecipeLibrary
     static string Pattern(Dictionary<string,string> row)=>string.Join("|",ExcelModelInput.Build(new[]{row}).rows[0].cells.OrderBy(c=>c.Key,StringComparer.Ordinal).Select(c=>c.Key+":"+(c.Value.state=="blank"?"blank":c.Value.isZero==true?"zero":"value")));
     public static void SaveCandidate(string output,string image,List<Dictionary<string,string>> rows)
     {
-        var record=new{Contract,ImageSha256=Hash(image),RecipeSha256=Hash(Path.Combine(output,"recipe.json")),Columns=Columns(rows),Patterns=rows.Select(Pattern).Distinct().ToArray(),HumanApproved=false};
+        var record=new{Contract,PresentationMode=CadRecipePrompt.PresentationMode(rows),ImageSha256=Hash(image),RecipeSha256=Hash(Path.Combine(output,"recipe.json")),Columns=Columns(rows),Patterns=rows.Select(Pattern).Distinct().ToArray(),HumanApproved=false};
         File.WriteAllText(Path.Combine(output,"recipe-cache.json"),JsonSerializer.Serialize(record,WorkflowReports.Json));
     }
     static string LibraryRoot=>Environment.GetEnvironmentVariable("CAD_RECIPE_LIBRARY")??Path.Combine(Directory.GetCurrentDirectory(),".recipe-library");
     public static bool TryReuseApproved(string excel,string image,string output,bool execute=false)
     {
         string saved=Path.Combine(LibraryRoot,Hash(image));if(!File.Exists(Path.Combine(saved,"recipe-cache.json")))return false;
+        using var manifest=JsonDocument.Parse(File.ReadAllText(Path.Combine(saved,"recipe-cache.json")));
+        var mode=manifest.RootElement.TryGetProperty("PresentationMode",out var value)?value.GetString():"model-views-legacy";
+        if(mode!=CadRecipePrompt.PresentationMode(WorkflowReports.ReadRows(excel)))return false;
         Reuse(excel,image,saved,output,execute);return true;
     }
     public static void Approve(string saved)
@@ -39,6 +42,8 @@ public static class RecipeLibrary
             using var manifest=JsonDocument.Parse(File.ReadAllText(Path.Combine(saved,"recipe-cache.json")));var m=manifest.RootElement;
             if(m.GetProperty("Contract").GetString()!=Contract||m.GetProperty("ImageSha256").GetString()!=Hash(image)||m.GetProperty("RecipeSha256").GetString()!=Hash(Path.Combine(saved,"recipe.json")))throw new Exception("Kayıtlı tarif/sözleşme/JPEG eşleşmiyor; yeni grup analizi gerekli.");
             var rows=WorkflowReports.ReadRows(excel);
+            var mode=m.TryGetProperty("PresentationMode",out var value)?value.GetString():"model-views-legacy";
+            if(mode!=CadRecipePrompt.PresentationMode(rows))throw new Exception("Kayıtlı tarifin koordinat/sunum düzeni farklı; yeni grup analizi gerekli.");
             if(!Columns(rows).SequenceEqual(m.GetProperty("Columns").EnumerateArray().Select(x=>x.GetString()!)))throw new Exception("Excel sütunları kayıtlı grupla eşleşmiyor.");
             var patterns=m.GetProperty("Patterns").EnumerateArray().Select(x=>x.GetString()!).ToHashSet();
             if(rows.Any(r=>!patterns.Contains(Pattern(r))))throw new Exception("Yeni boş/sıfır/değer örüntüsü var; kayıtlı tarifin kapsamı dışında.");

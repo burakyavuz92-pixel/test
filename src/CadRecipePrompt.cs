@@ -1,22 +1,16 @@
 public static class CadRecipePrompt
 {
-    public static string Instructions => File.ReadAllText("contracts/cad-v9-draft/prompt.txt") + "\n\n" + File.ReadAllText("contracts/cad-v9-draft/contract.txt");
-    public static string ForRows(IEnumerable<Dictionary<string,string>> rows)
+    // Historical workbooks keep their original interpretation path.
+    public static string Instructions => Read("prompt.txt", "contract.txt");
+    static string Read(string prompt,string contract) =>
+        File.ReadAllText(Path.Combine("contracts/cad-v9-draft",prompt))+"\n\n"+
+        File.ReadAllText(Path.Combine("contracts/cad-v9-draft",contract));
+    public static string PresentationMode(IEnumerable<Dictionary<string,string>> rows)
     {
-        if(!rows.Any(row=>LocalDrawingSettings.Read(row) is not null))return Instructions;
-        var contract=File.ReadAllText("contracts/cad-v9-draft/contract.txt");
-        contract=contract.Replace(",\"views\":[],\"sections\":[]", "");
-        int start=contract.IndexOf("views: {",StringComparison.Ordinal);
-        int end=contract.IndexOf("geometricTolerances:",start,StringComparison.Ordinal);
-        contract=contract.Remove(start,end-start);
-        contract=contract.Replace("Choose model coordinates consistently across the description.",
-            "The round part's top-face center is [0,0,0]; +X is page-right, +Y page-up, +Z outward from that face. The body extends towards -Z.");
-        contract=contract.Replace("sourceColor=black|green. Software hides green dimensions.",
-            "sourceColor=\"#000000\"|\"#008000\" records the annotation color in the JPEG.");
-        contract=contract.Replace(",visible?,hideIf?", "");
-        int defaults=contract.IndexOf("Defaults: when=true",StringComparison.Ordinal);
-        int next=contract.IndexOf("A dimension's condition",defaults,StringComparison.Ordinal);
-        contract=contract.Remove(defaults,next-defaults).Insert(defaults,"Defaults: when=true, quantity=1. ");
-        return File.ReadAllText("contracts/cad-v9-draft/local-prompt.txt")+"\n\n"+contract;
+        var local=rows.Select(r=>LocalDrawingSettings.Read(r) is not null).Distinct().ToArray();
+        if(local.Length>1)throw new FormatException("Aynı grupta yerel ayarlı ve eski düzende satırlar karıştırılamaz.");
+        return local.FirstOrDefault()?"local-round-v1":"model-views-legacy";
     }
+    public static string ForRows(IEnumerable<Dictionary<string,string>> rows) =>
+        PresentationMode(rows)=="local-round-v1"?Read("local-prompt.txt","local-contract.txt"):Instructions;
 }

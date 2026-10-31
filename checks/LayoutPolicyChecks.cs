@@ -153,6 +153,17 @@ try
  RecipeLibrary.Approve(saved);Workbook("Ø255±2","6");var approved=Path.Combine(cacheRoot,"approved");RecipeLibrary.Reuse(excel,jpeg,saved,approved);
  using(var report=JsonDocument.Parse(File.ReadAllText(Path.Combine(approved,"run-report.json"))))Check(report.RootElement.GetProperty("Run").GetProperty("RecipeHumanApproved").GetBoolean(),"explicit approval stored separately from candidate verification");
  Check(RecipeLibrary.TryReuseApproved(excel,jpeg,Path.Combine(cacheRoot,"automatic")),"approved matching template automatically selects local recipe");
+ using(var wb=new ClosedXML.Excel.XLWorkbook(excel))
+ {
+  var ws=wb.Worksheet(1);var names=new[]{"izometrik aci","kesit dogrultu","kesit kacikligi","kacik kesitin genisligi"};
+  var values=new[]{"ON_SAG","V","0","30"};
+  for(int i=0;i<names.Length;i++){ws.Cell(1,4+i).Value=names[i];ws.Cell(2,4+i).Value=values[i];}
+  wb.Save();
+ }
+ Check(!RecipeLibrary.TryReuseApproved(excel,jpeg,Path.Combine(cacheRoot,"wrong-coordinate-mode")),"legacy cached coordinates never silently reused for local presentation");
+ var incompatible=Path.Combine(cacheRoot,"incompatible");RecipeLibrary.Reuse(excel,jpeg,saved,incompatible);
+ Check(!File.Exists(Path.Combine(incompatible,"new-part.resolved.json")),"explicit reuse rejects coordinate-mode mismatch");
+ Workbook("Ø255±2","6");
  File.WriteAllText(jpeg,"different");var wrong=Path.Combine(cacheRoot,"wrong");RecipeLibrary.Reuse(excel,jpeg,saved,wrong);Check(!File.Exists(Path.Combine(wrong,"new-part.resolved.json")),"different template does not silently reuse recipe");
 }
 finally{Environment.SetEnvironmentVariable("CAD_RECIPE_LIBRARY",oldLibrary);Directory.Delete(cacheRoot,true);Environment.ExitCode=0;}
@@ -217,7 +228,6 @@ var v9trace=JsonNode.Parse(v9plane.ToJsonString())!;
 v9trace["drawing"]!["views"]!.AsArray().Add(JsonNode.Parse("""{"id":"front","direction":[0,0,1],"up":[0,1,0],"projection":"orthographic"}"""));
 v9trace["drawing"]!["sections"]=JsonNode.Parse("""[{"id":"A","view":"section","sourceView":"front","kind":"featureTrace","main":{"feature":"body","entity":"axis"},"through":[]}]""");
 Check(CadRecipeV7.Resolve(Doc(v9trace),row).GetProperty("drawing").GetProperty("sections")[0].GetProperty("cuttingPlanes").GetArrayLength()==1,"v9 feature trace creates reserved section world frame");
-
 // Local presentation settings stay separate from model measurements.
 var localRow=new Dictionary<string,string>(row){["izometrik aci"]="ON_SAG",["kesit dogrultu"]="V",
     ["kesit kacikligi"]="-44,5",["kacik kesitin genisligi"]="30"};
@@ -251,3 +261,23 @@ if(args.Length>0)
     foreach(var r in workbookRows)CadRecipeV9.Resolve(v9,r);
     Console.WriteLine("PASS actual workbook resolves locally, no API call");
 }
+
+var activeSettings=OpenRouterSettings.Load();
+Check(activeSettings.Model=="anthropic/claude-sonnet-5.5"&&activeSettings.ReasoningEffort=="high","active project model is Sonnet 5.5 high, without batch");
+Check(activeSettings.MaxCompletionTokens==65536&&activeSettings.TimeoutSeconds==600,"active completion limit and timeout persisted");
+var staleModel=Environment.GetEnvironmentVariable("OPENROUTER_MODEL");
+try
+{
+    Environment.SetEnvironmentVariable("OPENROUTER_MODEL","anthropic/claude-sonnet-5.5:batch");
+    Check(OpenRouterSettings.Load().Model=="anthropic/claude-sonnet-5.5","stale environment batch selection cannot override project settings");
+}
+finally{Environment.SetEnvironmentVariable("OPENROUTER_MODEL",staleModel);}
+Check(OpenRouterSettings.Load(Path.Combine(Path.GetTempPath(),Guid.NewGuid()+".json")).Model==activeSettings.Model,"missing settings file defaults to Sonnet without batch");
+foreach(var invalid in new[]{activeSettings with{Model="anthropic/claude-sonnet-5.5:batch"},activeSettings with{MaxCompletionTokens=0},activeSettings with{ReasoningEffort="invalid"},activeSettings with{TimeoutSeconds=-1}})
+{
+    bool rejected=false;try{invalid.Validated();}catch(FormatException){rejected=true;}
+    Check(rejected,"invalid API settings rejected locally before HTTP");
+}
+bool mixedRejected=false;try{CadRecipePrompt.ForRows(new[]{localRow,row});}catch(FormatException){mixedRejected=true;}
+Check(mixedRejected,"mixed coordinate conventions rejected before requesting a recipe");
+Check(localPrompt.Contains("\"dimensions\":[],\"geometricTolerances\":[]")&&localPrompt.Contains("valueSource")&&localPrompt.Contains("#008000"),"explicit local contract requests dimensions, tolerances and colors");

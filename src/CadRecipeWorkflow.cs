@@ -24,15 +24,10 @@ public static class CadRecipeWorkflow
         if(useLibrary&&RecipeLibrary.TryReuseApproved(excel,image,output,false))return;
         Directory.CreateDirectory(output);var issues=new List<WorkflowIssue>();string state="failed-with-report";int calls=0,count=0;double? cost=null;
         var source=new{ExcelSha256=Hash(excel),ImageSha256=Hash(image)};
-        string reasoningEffort=Environment.GetEnvironmentVariable("OPENROUTER_REASONING_EFFORT")??"high";
-        int maxCompletionTokens=65536,timeoutSeconds=600;
+        OpenRouterSettings? settings=null;
         try
         {
-            if(reasoningEffort is not ("none" or "minimal" or "low" or "medium" or "high" or "xhigh" or "max"))throw new Exception("Geçersiz reasoning ayarı.");
-            string? tokenSetting=Environment.GetEnvironmentVariable("OPENROUTER_MAX_COMPLETION_TOKENS");
-            if(tokenSetting is not null&&(!int.TryParse(tokenSetting,out maxCompletionTokens)||maxCompletionTokens<=0))throw new Exception("Geçersiz completion token sınırı.");
-            string? timeoutSetting=Environment.GetEnvironmentVariable("OPENROUTER_TIMEOUT_SECONDS");
-            if(timeoutSetting is not null&&(!int.TryParse(timeoutSetting,out timeoutSeconds)||timeoutSeconds<=0))throw new Exception("Geçersiz API zaman aşımı.");
+            settings=OpenRouterSettings.Load();
             var rows=WorkflowReports.ReadRows(excel);count=rows.Count;
             foreach(var row in rows)if(!System.Text.RegularExpressions.Regex.IsMatch(row["jpeg file name"],@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
             var all=ExcelModelInput.Build(rows);
@@ -43,20 +38,26 @@ public static class CadRecipeWorkflow
             var input=ExcelModelInput.Build(sample);
             var prompt=CadRecipePrompt.ForRows(rows)+"\ntableInput: "+JsonSerializer.Serialize(input);
             File.WriteAllText(Path.Combine(output,"request-prompt.txt"),prompt);File.WriteAllText(Path.Combine(output,"model-input.json"),JsonSerializer.Serialize(input,WorkflowReports.Json));
-            var model=Environment.GetEnvironmentVariable("OPENROUTER_MODEL")??throw new Exception("Model yok.");var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");
-            using var client=new HttpClient{Timeout=TimeSpan.FromSeconds(timeoutSeconds)};client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",key);
+            var model=settings.Model;var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");
+            using var client=new HttpClient{Timeout=TimeSpan.FromSeconds(settings.TimeoutSeconds)};client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",key);
             var apiImage=ApiImageTransport.Prepare(image,output,model);
-            var body=new{model,max_tokens=maxCompletionTokens,reasoning=new{effort=reasoningEffort},response_format=new{type="json_object"},messages=new[]{new{role="user",content=new object[]{new{type="text",text=prompt},new{type="image_url",image_url=new{url="data:image/jpeg;base64,"+Convert.ToBase64String(File.ReadAllBytes(apiImage))}}}}}};
+            var body=new{model,max_tokens=settings.MaxCompletionTokens,reasoning=new{effort=settings.ReasoningEffort},response_format=new{type="json_object"},messages=new[]{new{role="user",content=new object[]{new{type="text",text=prompt},new{type="image_url",image_url=new{url="data:image/jpeg;base64,"+Convert.ToBase64String(File.ReadAllBytes(apiImage))}}}}}};
             calls++;using var response=await client.PostAsync("https://openrouter.ai/api/v1/chat/completions",new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json"));var raw=await response.Content.ReadAsStringAsync();if(!response.IsSuccessStatusCode){File.WriteAllText(Path.Combine(output,"api-error-response.json"),raw);throw new HttpRequestException("HTTP "+(int)response.StatusCode+"; sunucu açıklaması api-error-response.json içinde.",null,response.StatusCode);}File.WriteAllText(Path.Combine(output,"api-response.json"),raw);
             using var rd=JsonDocument.Parse(raw);if(rd.RootElement.TryGetProperty("usage",out var usage)&&usage.TryGetProperty("cost",out var value))cost=value.GetDouble();var choice=rd.RootElement.GetProperty("choices")[0];if(choice.GetProperty("finish_reason").GetString()!="stop")throw new Exception("Model yanıtı tamamlanmadı; finish_reason="+choice.GetProperty("finish_reason").GetString()+". Eksik JSON kabul edilmedi; kullanım api-response.json içinde.");
             using var pd=JsonDocument.Parse(GroupWorkflow.ExtractJson(choice.GetProperty("message").GetProperty("content").GetString()!));var plan=pd.RootElement;
-            File.WriteAllText(Path.Combine(output,"recipe.json"),JsonSerializer.Serialize(plan,WorkflowReports.Json));issues.AddRange(CadRecipeV7.Check(plan,rows));
+            File.WriteAllText(Path.Combine(output,"recipe.json"),JsonSerializer.Serialize(plan,WorkflowReports.Json));
+            if(plan.TryGetProperty("error",out var modelError))
+            {
+                issues.Add(new("MODEL_DESCRIPTION_ERROR","model","error",modelError.GetString()??"Model tarif oluşturamadı.",[],"Girdi incelenmeli; otomatik tekrar çağrısı yapılmaz.","model"));
+                state="blocked-with-report";return;
+            }
+            issues.AddRange(CadRecipeV7.Check(plan,rows));
             if(issues.Any(i=>i.Severity=="error")){state="blocked-with-report";return;}
             foreach(var row in rows)File.WriteAllText(Path.Combine(output,row["jpeg file name"]+".resolved.json"),JsonSerializer.Serialize(CadRecipeV7.Resolve(plan,row),WorkflowReports.Json));
             RecipeLibrary.SaveCandidate(output,image,rows);
             state="recipe-analysis-only";
         }
         catch(Exception ex){issues.Add(new("RECIPE_RUN_FAILURE","software","error",ex.Message,[],"Kayıtlar incelenmeli; kullanıcı cevabı beklenmez."));}
-        finally{WorkflowReports.Save(output,state,issues,new{Source=source,SchemaVersion=9,RowCount=count,ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort=reasoningEffort,MaxCompletionTokens=maxCompletionTokens,ApiTimeoutSeconds=timeoutSeconds,ProducedImages=0,NativeExecutionImplemented=true,ImageCount=1,TableCount=1,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);Console.WriteLine(state+"; "+Path.Combine(output,"RAPOR.md"));}
+        finally{WorkflowReports.Save(output,state,issues,new{Source=source,SchemaVersion=9,RequestedModel=settings?.Model,RowCount=count,ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort=settings?.ReasoningEffort,MaxCompletionTokens=settings?.MaxCompletionTokens,ApiTimeoutSeconds=settings?.TimeoutSeconds,ProducedImages=0,NativeExecutionImplemented=true,ImageCount=1,TableCount=1,AssistantAnswersUsed=false});Environment.ExitCode=WorkflowReports.ExitCode(state);Console.WriteLine(state+"; "+Path.Combine(output,"RAPOR.md"));}
     }
 }
