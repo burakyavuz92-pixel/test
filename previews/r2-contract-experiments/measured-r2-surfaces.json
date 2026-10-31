@@ -1,0 +1,47 @@
+[
+  {
+    "run": "taslak43-haiku-facepair-a",
+    "outputId": "11-24-13",
+    "r2Surfaces": [
+      {
+        "center": [
+          -73.0,
+          0.0,
+          -5.0
+        ],
+        "majorRadiusMm": 15.25,
+        "minorRadiusMm": 2.0
+      }
+    ]
+  },
+  {
+    "run": "taslak43-haiku-facepair-b",
+    "outputId": "11-24-13",
+    "r2Surfaces": [
+      {
+        "center": [
+          -73.0,
+          0.0,
+          -5.0
+        ],
+        "majorRadiusMm": 15.25,
+        "minorRadiusMm": 2.0
+      }
+    ]
+  },
+  {
+    "run": "taslak43-haiku-profile-c",
+    "outputId": "11-24-13",
+    "r2Surfaces": [
+      {
+        "center": [
+          -73.0,
+          0.0,
+          -5.000000000000004
+        ],
+        "majorRadiusMm": 15.250000000000007,
+        "minorRadiusMm": 2.0000000000000058
+      }
+    ]
+  }
+]

@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "outerR": "=A/2",
+      "wall": "=3",
+      "cornerR": "=8",
+      "innerCornerR": "=cornerR-wall",
+      "cx": "=outerR-cornerR",
+      "innerR": "=outerR-wall",
+      "depth": "=33",
+      "rimR": "=1.5",
+      "hubX": "=-B",
+      "hubOuterR": "=(J\u002B6)/2",
+      "hubEnd": "=-E"
+    },
+    "features": [
+      {
+        "id": "cup",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "start": [
+                0,
+                0
+              ],
+              "segments": [
+                {
+                  "kind": "line",
+                  "end": [
+                    "=cx",
+                    0
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "mid": [
+                    "=cx\u002BcornerR*cos(45)",
+                    "=cornerR*sin(45)-cornerR"
+                  ],
+                  "end": [
+                    "=outerR",
+                    "=-cornerR"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    "=outerR",
+                    "=rimR-depth"
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "mid": [
+                    "=outerR-rimR\u002BrimR*cos(45)",
+                    "=rimR-depth-rimR*sin(45)"
+                  ],
+                  "end": [
+                    "=outerR-rimR",
+                    "=-depth"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    "=innerR",
+                    "=-depth"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    "=innerR",
+                    "=-cornerR"
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "mid": [
+                    "=cx\u002BinnerCornerR*cos(45)",
+                    "=-cornerR\u002BinnerCornerR*sin(45)"
+                  ],
+                  "end": [
+                    "=cx",
+                    "=-wall"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    0,
+                    "=-wall"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "hub",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                "=hubX",
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "start": [
+                0,
+                -1
+              ],
+              "segments": [
+                {
+                  "kind": "line",
+                  "end": [
+                    "=hubOuterR\u002B2",
+                    -1
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    "=hubOuterR\u002B2",
+                    "=-wall"
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "mid": [
+                    "=hubOuterR\u002B2-2*cos(45)",
+                    "=-5\u002B2*sin(45)"
+                  ],
+                  "end": [
+                    "=hubOuterR",
+                    -5
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    "=hubOuterR",
+                    "=hubEnd"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    0,
+                    "=hubEnd"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "end": [
+                    0,
+                    -1
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            "=hubX",
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "recess",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=hubX",
+            0,
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=D",
+          "length": "=1\u002BF"
+        }
+      },
+      {
+        "id": "bore",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=hubX",
+            0,
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=J",
+          "length": "=2-hubEnd"
+        }
+      },
+      {
+        "id": "holeG",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=G",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeI",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=-C/2",
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=I",
+          "length": 5
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer cylindrical wall diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "hub",
+            "role": "hub axis offset from centre (zero means hub on axis)"
+          }
+        ],
+        "axis": "X"
+      },
+      {
+        "id": "dimC",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "hole centre spacing, upper hole"
+          },
+          {
+            "operation": "holeI",
+            "role": "hole centre spacing, lower hole"
+          }
+        ],
+        "axis": "Y"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "recess",
+            "role": "top face recess diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "hub",
+            "role": "top face to hub end face"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimF",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "recess",
+            "role": "recess depth"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimG",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "upper hole diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimI",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "holeI",
+            "role": "lower hole diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "bore",
+            "role": "hub bore diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimJ6",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "hub",
+            "role": "hub outer diameter drawn as J\u002B6"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer plate-to-wall corner radius"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR1_5",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer rim corner radius"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "hub",
+            "role": "hub-to-plate underside fillet"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimWall",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "wall and plate thickness"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimDepth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "overall axial depth, drawn 33 \u002B-0.5"
+          }
+        ],
+        "axis": "Z"
+      }
+    ],
+    "geometricTolerances": []
+  }
+}

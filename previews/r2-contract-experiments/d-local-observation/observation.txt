@@ -1,0 +1,12 @@
+```json
+{
+  "arrowTarget": "Filled arrowhead at approx. (330, 408) touches the rounded corner where the hatched hub's inner bore surface (horizontal, y≈418) meets the plate's bore face (vertical, x≈325); the R2 callout text sits separately at upper left.",
+  "sheetFaces": "Left: the plate's left face (x≈308) is a flat hatched face, interrupted between y≈355 and y≈690 where the through-opening leaves no plate material at that edge. Right: the plate's right face (x≈360) rises above and below the hub and turns into the hub's outer cylindrical surface (y≈380 top, y≈665 bottom) at a small corner near (360, 380).",
+  "adjoiningBoundaries": [
+    "Plate bore face: the vertical cut edge at x≈325 inside the plate thickness, running from the plate opening toward the hub.",
+    "Hub inner bore surface: the horizontal hatched wall boundary at y≈418 (upper) and y≈628 (lower) running along the hub's through-bore."
+  ],
+  "relationToJandJplus6": "The green Ø J+6 dimension (right, between y≈380 and y≈665) locates the hub outside diameter, while the black J dimension (left, arrows at y≈355–690) locates the plate-side bore reference. The R2 corner is a bore-side junction, so it is referenced to J, not to the outer J+6 diameter.",
+  "uncertainty": "The arc is drawn in the hatched material near the bore junction, but the pixel positions of J and J+6 do not clearly reconcile, so the exact reference diameter is not fully certain."
+}
+```

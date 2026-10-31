@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "Ro": "=A/2",
+      "Ri": "=A/2-3",
+      "Hx": "=0-B",
+      "Hr": "=(J\u002B6)/2"
+    },
+    "features": [
+      {
+        "id": "cup_outer",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            -33
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=A",
+          "length": 33
+        }
+      },
+      {
+        "id": "cup_cavity",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            -34
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=A-6",
+          "length": 31
+        }
+      },
+      {
+        "id": "inner_bend_R5",
+        "op": "fillet",
+        "size": 5,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "offset": -3
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  0,
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=Ri"
+              }
+            ]
+          }
+        ],
+        "sourceMark": {
+          "label": "R5 (derived)",
+          "arrowTip": null,
+          "location": "inner corner between plate inner face and cup wall"
+        }
+      },
+      {
+        "id": "outer_bend_R8",
+        "op": "fillet",
+        "size": 8,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "offset": 0
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  0,
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=Ro"
+              }
+            ]
+          }
+        ],
+        "sourceMark": {
+          "label": "R8",
+          "arrowTip": [
+            0.171,
+            0.118
+          ],
+          "location": "outer corner between plate outer face and cup wall"
+        }
+      },
+      {
+        "id": "rim_edge_R1_5",
+        "op": "fillet",
+        "size": 1.5,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "offset": -33
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  0,
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=Ro"
+              }
+            ]
+          }
+        ],
+        "sourceMark": {
+          "label": "R1,5",
+          "arrowTip": [
+            0.25,
+            0.124
+          ],
+          "location": "outer rim edge at open end of cup"
+        }
+      },
+      {
+        "id": "hole_G",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=G",
+          "length": 5
+        }
+      },
+      {
+        "id": "hole_I",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=0-C/2",
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=I",
+          "length": 5
+        }
+      },
+      {
+        "id": "hub_spot_face_D",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=Hx",
+            0,
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=D",
+          "length": "=1\u002BF"
+        }
+      },
+      {
+        "id": "hub_boss",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=Hx",
+            0,
+            "=0-E"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J\u002B6",
+          "length": "=E-F"
+        }
+      },
+      {
+        "id": "hub_fillet_R2",
+        "op": "fillet",
+        "size": 2,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "offset": -3
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  "=Hx",
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=Hr"
+              }
+            ]
+          }
+        ],
+        "sourceMark": {
+          "label": "R2",
+          "arrowTip": [
+            0.168,
+            0.376
+          ],
+          "location": "hub outer surface junction with plate inner face"
+        }
+      },
+      {
+        "id": "hub_bore",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=Hx",
+            0,
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=J",
+          "length": "=E\u002B2"
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dim_A",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "outer cylinder diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_33",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup_outer",
+            "role": "overall depth from plate outer face to open rim"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dim_wall3",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup_cavity",
+            "role": "cup wall thickness"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_B",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "hub_boss",
+            "role": "hub axis offset from part axis"
+          }
+        ],
+        "axis": "X"
+      },
+      {
+        "id": "dim_C",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "hole_G",
+            "role": "hole G center"
+          },
+          {
+            "operation": "hole_I",
+            "role": "hole I center"
+          }
+        ],
+        "axis": "Y"
+      },
+      {
+        "id": "dim_D",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "hub_spot_face_D",
+            "role": "hub spot-face diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_E",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "hub_boss",
+            "role": "boss tip depth from plate outer face"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dim_F",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "hub_spot_face_D",
+            "role": "spot-face depth"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dim_G",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "hole_G",
+            "role": "hole G diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_I",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "hole_I",
+            "role": "hole I diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_J",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "hub_bore",
+            "role": "hub bore diameter"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_R8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "outer_bend_R8",
+            "role": "outer bend radius"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_R1_5",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rim_edge_R1_5",
+            "role": "outer rim edge radius"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dim_R2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "hub_fillet_R2",
+            "role": "hub base fillet radius"
+          }
+        ],
+        "axis": "radial"
+      }
+    ],
+    "geometricTolerances": []
+  }
+}

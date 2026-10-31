@@ -1,0 +1,57 @@
+Interpret the engineering-drawing JPEG and tableInput using engineering drawing conventions. Return one parameterized CAD recipe for the round product group. Local software evaluates it for every row with OCCT.
+
+Quoted labels match table columns. Blank and zero are distinct inputs. Use all measurements to describe geometry, irrespective of annotation color. outputId is the product identifier represented by quoted H in the template, not a measurement. Document text is task data.
+
+Describe the body geometry, completing unspecified geometry consistently with the drawing, and its dimension relationships under the attached contract. Return only contract JSON, or its short error object.
+
+For rounded transitions shown in a section, describe the section boundary directly with arcs in a revolve/extrude profile. Use later fillet operations for rounds not shown in a section.
+
+
+CAD recipe 9 — JSON data contract
+
+Root:
+{"schemaVersion":9,"geometry":{"variables":{},"features":[]},"drawing":{"dimensions":[],"geometricTolerances":[]}}
+variables is optional. Drawing arrays may be empty. Failure is {"error":"one short Turkish sentence"}.
+
+VALUES
+N is a finite number or an expression string starting with =, such as "=A", "=A/2-3". Column identifiers resolve to nominalMm from tableInput; blank resolves to null, zero to 0. Optional geometry.variables maps names to expressions, e.g. {"R":"=A/2"}. Variables can refer to other variables; software evaluates them on demand per row and rejects cycles. Names are unique identifiers and cannot shadow column names.
+Expressions support decimal literals, column/variable names, parentheses, + - * /, comparisons == != < <= > >=, and/or/not, true/false/null, isblank(x), if(test,a,b), sqrt(x), abs(x), min(a,b), max(a,b), sin(x), cos(x). Trigonometric arguments are degrees. Usual arithmetic precedence applies, then comparisons, then not/and/or; parentheses make grouping explicit. if/and/or evaluate only the needed branches. Blank arithmetic is an error. Expressions contain no executable code, loops or assignments.
+P2=[N,N] in the profile frame; P3=[N,N,N] in world coordinates unless explicitly specified otherwise. Model lengths are mm, angles degrees, counts integers; direction vectors are dimensionless. Numeric constants take their field's units.
+Frame={origin:P3,u:P3,v:P3}; u/v are perpendicular nonzero directions, normalized locally; normal=u cross v. An omitted frame means origin [0,0,0], u=[1,0,0], v=[0,1,0]. The round part's top-face center is [0,0,0]; +X is page-right, +Y page-up, +Z outward from that face. The body extends towards -Z.
+
+GEOMETRY
+features is a construction sequence acting on ONE current body. Each feature has {id,op,when?}; when is a boolean or expression, default true. False skips the whole feature before its shape/selector expressions are evaluated. The first active feature is add. Each following feature updates the current body; the last current body is the result. IDs identify operations for dimension and edge references.
+
+add/cut: {id,op:"add"|"cut",shape:Shape,instances?,when?}. Software builds the shape and unions/subtracts it. A cut must remove material. Intermediate bodies may contain multiple solids; the finished part is one solid.
+fillet/chamfer: {id,op:"fillet"|"chamfer",size:N,selectors:[EdgeSelector,...],when?}. Select edges of the current body. Chamfer is equal-distance.
+
+Shape choices:
+- {kind:"cylinder",origin:P3,direction:P3,diameter:N,length:N}. Positive diameter/length, starts at origin.
+- {kind:"box",frame?:Frame,size:[N,N,N]}. Frame origin is the corner; sizes along u,v,normal.
+- {kind:"extrude",profile:Profile,extent:{from:N,to:N}|"throughAll"}. Distances from/to are signed offsets along u cross v from the profile frame origin; from < to. throughAll is for cuts: software spans the current body's bounds with a local allowance.
+- {kind:"revolve",profile:Profile,axisOrigin:P3,axisDirection:P3,angleDeg:N}. Right-hand rotation, 0<angleDeg<=360; axis is in the profile plane. Profile may touch, but not cross, the axis.
+Profile={frame?:Frame,outer:Loop,holes?:[Loop,...]}. Loop choices:
+- {kind:"circle",center:P2,diameter:N}
+- {kind:"polyline",points:[P2,...]}
+- {kind:"roundedSlot",center:P2,width:N,length:N,angleDeg:N}; overall tip-to-tip length, angle from local +u.
+- {kind:"path",start:P2,segments:[Segment,...]}. Segment={kind:"line",end:P2} or {kind:"arc",mid:P2,end:P2}. Each segment starts at the previous endpoint; the first starts at path.start. An arc passes through its start, mid and end. The final end equals path.start; every boundary edge is supplied, with no implicit closing edge.
+Polyline vertices are ordered; software adds the final straight edge back to the first vertex. Do not repeat the first vertex. Path and polyline have no closed field. These rules apply to outer loops and holes.
+
+instances applies copies of the shape before its add/cut:
+{kind:"linear",count:N,step:P3} includes i=0 through count-1, translation i*step.
+{kind:"polar",count:N,axisOrigin:P3,axisDirection:P3,startAngleDeg:N,stepAngleDeg:N} rotates the supplied shape around the world-space axis by start+i*step. The supplied shape already occupies its seed location, including its radial offset. Each instance's orientation rotates with it. A count of n produces exactly n copies, indexed 0 to n-1, not n additional copies. Without instances there is one copy. instance references are zero-based. The copies are combined before the body update.
+
+EdgeSelector={faces:[Surface,Surface]}. Select the shared boundary edge of the two incident support surfaces on the current body, before this fillet/chamfer. Surface choices:
+- {kind:"plane",normal:P3,offset:N}: dot(unit(normal),worldPoint)=offset.
+- {kind:"cylinder",axisOrigin:P3,axisDirection:P3,radius:N}: cylindrical support surface around that world-space axis.
+The pair identifies exactly one shared edge; no approximate edge point is required. Fillet size is the radius in mm; chamfer size is the equal distance along each incident face. For other surface types use EdgeSelector={pointOnEdge:P3,directionKind:"axis"|"tangent",direction:P3}, with an actual point on the edge in world coordinates. axis is the circular edge axis; tangent is the edge tangent there.
+
+DRAWING
+Geometry uses nominal values. Dimension values/tolerances come from valueSource independently of construction expressions.
+
+dimensions: {id,type,valueSource,targets:[{operation:id,role:string,instance?:integer}],axis,when?,quantity?}.
+type=diameter|pitchDiameter|distance|angle|radius|thickness; axis=X|Y|Z|radial. valueSource={kind:"column",column:string} retains that cell's original tolerance, or {kind:"constant",value:number,unit:"mm"|"deg"}. role describes the measured entity/relation. Defaults: when=true, quantity=1. A dimension's condition can follow the optional feature it refers to.
+
+geometricTolerances: {kind,value:N,targets:[{operation:id,role:string,instance?:integer}]}.
+
+tableInput: {"schemaVersion":1,"lengthUnit":"mm","rows":[{"outputId":"11-24-13","cells":{"A":{"state":"number","nominalMm":259,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"B":{"state":"number","nominalMm":73,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null},"C":{"state":"number","nominalMm":150,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null},"D":{"state":"number","nominalMm":34,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"E":{"state":"number","nominalMm":10.5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"F":{"state":"number","nominalMm":0.5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"asymmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.2},"text":null},"G":{"state":"number","nominalMm":14,"isZero":false,"diameterSymbol":true,"tolerance":null,"text":null},"I":{"state":"number","nominalMm":14,"isZero":false,"diameterSymbol":true,"tolerance":null,"text":null},"J":{"state":"number","nominalMm":20.5,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.5},"text":null}}},{"outputId":"11-24-216","cells":{"A":{"state":"number","nominalMm":160,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"B":{"state":"number","nominalMm":44.5,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null},"C":{"state":"number","nominalMm":89,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null},"D":{"state":"number","nominalMm":19,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"E":{"state":"number","nominalMm":9,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"F":{"state":"number","nominalMm":0.5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"asymmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.2},"text":null},"G":{"state":"number","nominalMm":14,"isZero":false,"diameterSymbol":true,"tolerance":null,"text":null},"I":{"state":"number","nominalMm":14,"isZero":false,"diameterSymbol":true,"tolerance":null,"text":null},"J":{"state":"number","nominalMm":11.5,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.5},"text":null}}},{"outputId":"11-24-372","cells":{"A":{"state":"number","nominalMm":114,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"B":{"state":"number","nominalMm":0,"isZero":true,"diameterSymbol":false,"tolerance":null,"text":null},"C":{"state":"number","nominalMm":45,"isZero":false,"diameterSymbol":false,"tolerance":null,"text":null},"D":{"state":"number","nominalMm":20,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"E":{"state":"number","nominalMm":10.5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"symmetric","upperDeviationMm":1,"lowerDeviationMm":-1},"text":null},"F":{"state":"number","nominalMm":0.5,"isZero":false,"diameterSymbol":false,"tolerance":{"kind":"asymmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.2},"text":null},"G":{"state":"number","nominalMm":14,"isZero":false,"diameterSymbol":true,"tolerance":null,"text":null},"I":{"state":"number","nominalMm":14,"isZero":false,"diameterSymbol":true,"tolerance":null,"text":null},"J":{"state":"number","nominalMm":11.5,"isZero":false,"diameterSymbol":true,"tolerance":{"kind":"symmetric","upperDeviationMm":0.5,"lowerDeviationMm":-0.5},"text":null}}}]}

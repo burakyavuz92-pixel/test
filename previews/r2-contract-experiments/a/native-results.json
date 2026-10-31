@@ -1,0 +1,464 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "11-24-13",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1738614.7085625196
+        },
+        {
+          "id": "__v9_2",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1558449.0822681251
+        },
+        {
+          "id": "cavity",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 230438.17733530173
+        },
+        {
+          "id": "bendOuter",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 219416.98515189593
+        },
+        {
+          "id": "bendInner",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223643.5985321989
+        },
+        {
+          "id": "rimRound",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223251.72990575287
+        },
+        {
+          "id": "__v9_7",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1361.8804153311753
+        },
+        {
+          "id": "collarRecess",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 222797.769767309
+        },
+        {
+          "id": "__v9_9",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 5791.231532581511
+        },
+        {
+          "id": "collar",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 227210.13664927598
+        },
+        {
+          "id": "__v9_11",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 4125.794727097221
+        },
+        {
+          "id": "collarHole",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223744.46907851435
+        },
+        {
+          "id": "collarBend",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223818.34286760938
+        },
+        {
+          "id": "__v9_14",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294992
+        },
+        {
+          "id": "holeG",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223356.52874753135
+        },
+        {
+          "id": "__v9_16",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294992
+        },
+        {
+          "id": "holeI",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 222894.71462745417
+        }
+      ],
+      "volumeMm3": 222894.71462745417,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimHeight",
+          "dimWall",
+          "dimR8",
+          "dimR1_5",
+          "dimR2",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimG",
+          "dimI",
+          "dimJ",
+          "dimJ6"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-216",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 663504.3684381644
+        },
+        {
+          "id": "__v9_2",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 577421.5881371503
+        },
+        {
+          "id": "cavity",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 104709.28314414766
+        },
+        {
+          "id": "bendOuter",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 97959.76864256141
+        },
+        {
+          "id": "bendInner",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100517.75792840394
+        },
+        {
+          "id": "rimRound",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100276.06547045925
+        },
+        {
+          "id": "__v9_7",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 425.29310547971824
+        },
+        {
+          "id": "collarRecess",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100134.30110196602
+        },
+        {
+          "id": "__v9_9",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2164.753687864217
+        },
+        {
+          "id": "collar",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 101697.73432097881
+        },
+        {
+          "id": "__v9_11",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1142.5579782024379
+        },
+        {
+          "id": "collarHole",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100762.91415699523
+        },
+        {
+          "id": "collarBend",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100812.51705017095
+        },
+        {
+          "id": "__v9_14",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeG",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100350.70293009316
+        },
+        {
+          "id": "__v9_16",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeI",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 99888.8888100156
+        }
+      ],
+      "volumeMm3": 99888.8888100156,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimHeight",
+          "dimWall",
+          "dimR8",
+          "dimR1_5",
+          "dimR2",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimG",
+          "dimI",
+          "dimJ",
+          "dimJ6"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-372",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 336832.13953993696
+        },
+        {
+          "id": "__v9_2",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 283987.40951390297
+        },
+        {
+          "id": "cavity",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 62005.614203901816
+        },
+        {
+          "id": "bendOuter",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 57240.91963528204
+        },
+        {
+          "id": "bendInner",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59023.588634809406
+        },
+        {
+          "id": "rimRound",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 58851.67500263304
+        },
+        {
+          "id": "__v9_7",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 471.2388980384689
+        },
+        {
+          "id": "collarRecess",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 58694.59536995356
+        },
+        {
+          "id": "__v9_9",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 2525.5459691749193
+        },
+        {
+          "id": "collar",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 60618.82087027727
+        },
+        {
+          "id": "__v9_11",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1298.3613388664066
+        },
+        {
+          "id": "collarHole",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59528.19734562952
+        },
+        {
+          "id": "collarBend",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59577.800238805256
+        },
+        {
+          "id": "__v9_14",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeG",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59115.98611872757
+        },
+        {
+          "id": "__v9_16",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeI",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 58654.17199864988
+        }
+      ],
+      "volumeMm3": 58654.17199864988,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimHeight",
+          "dimWall",
+          "dimR8",
+          "dimR1_5",
+          "dimR2",
+          "dimB",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimG",
+          "dimI",
+          "dimJ",
+          "dimJ6"
+        ]
+      }
+    }
+  ]
+}

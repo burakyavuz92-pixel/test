@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "t": "=3",
+      "rOut": "=A/2",
+      "rIn": "=A/2-t",
+      "rCollarOut": "=J/2\u002Bt"
+    },
+    "features": [
+      {
+        "id": "cup",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=A",
+          "length": 33
+        }
+      },
+      {
+        "id": "cavity",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            0,
+            "=0-t"
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=A-2*t",
+          "length": 31
+        }
+      },
+      {
+        "id": "bendOuter",
+        "op": "fillet",
+        "size": 8,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  1
+                ],
+                "offset": 0
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  0,
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=rOut"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bendInner",
+        "op": "fillet",
+        "size": 5,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  -1
+                ],
+                "offset": "=t"
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  0,
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=rIn"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rimRound",
+        "op": "fillet",
+        "size": 1.5,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  -1
+                ],
+                "offset": 33
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  0,
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=rOut"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collarRecess",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=0-B",
+            0,
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=D",
+          "length": "=F\u002B1"
+        }
+      },
+      {
+        "id": "collar",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=0-B",
+            0,
+            0
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=J\u002B2*t",
+          "length": "=E"
+        }
+      },
+      {
+        "id": "collarHole",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=0-B",
+            0,
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=J",
+          "length": "=E\u002B2"
+        }
+      },
+      {
+        "id": "collarBend",
+        "op": "fillet",
+        "size": 2,
+        "selectors": [
+          {
+            "faces": [
+              {
+                "kind": "plane",
+                "normal": [
+                  0,
+                  0,
+                  -1
+                ],
+                "offset": "=t"
+              },
+              {
+                "kind": "cylinder",
+                "axisOrigin": [
+                  "=0-B",
+                  0,
+                  0
+                ],
+                "axisDirection": [
+                  0,
+                  0,
+                  1
+                ],
+                "radius": "=rCollarOut"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "holeG",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=G",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeI",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=0-C/2",
+            1
+          ],
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "diameter": "=I",
+          "length": 5
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "outer cylindrical wall"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimHeight",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cup",
+            "role": "axial length from top face to rim"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimWall",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "cavity",
+            "role": "wall thickness"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "bendOuter",
+            "role": "outer bend at top face"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR1_5",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rimRound",
+            "role": "outer rim edge"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimR2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "collarBend",
+            "role": "collar to web inside bend"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "collar axis offset from part axis"
+          }
+        ],
+        "axis": "X"
+      },
+      {
+        "id": "dimC",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "upper hole center"
+          },
+          {
+            "operation": "holeI",
+            "role": "lower hole center"
+          }
+        ],
+        "axis": "Y"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "collarRecess",
+            "role": "shallow recess around collar"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "collar tip depth from top face"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "collarRecess",
+            "role": "recess depth"
+          }
+        ],
+        "axis": "Z"
+      },
+      {
+        "id": "dimG",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeG",
+            "role": "upper through hole"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimI",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "holeI",
+            "role": "lower through hole"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "collarHole",
+            "role": "collar bore"
+          }
+        ],
+        "axis": "radial"
+      },
+      {
+        "id": "dimJ6",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "collar",
+            "role": "collar outer diameter J\u002B6"
+          }
+        ],
+        "axis": "radial"
+      }
+    ],
+    "geometricTolerances": []
+  }
+}

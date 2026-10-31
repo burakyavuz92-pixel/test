@@ -145,6 +145,7 @@ def compile_recipe(recipe,cells,output_id):
    if current is None:raise ValueError('Edge operation needs body')
    selectors=e.bind(f['selectors'])
    for sel in selectors:
+    if 'pointOnEdge' in sel:sel['near']=sel.pop('pointOnEdge')
     sel.setdefault('operation',current);sel.setdefault('role','edge')
    emit(op,dict(size=e.value(f['size']),selectors=selectors),target=current,id=id);current=id
   else:raise ValueError('Unknown feature op '+op)

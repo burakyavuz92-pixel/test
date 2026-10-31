@@ -1,5 +1,6 @@
 """Local resolved-v7 OCCT executor. No API calls or product-family geometry rules."""
 from local_drawing import resolve_local_sections
+from face_edge_selector import select_edge
 import json,math,sys,pathlib,os,traceback
 import numpy as np
 from PIL import Image,ImageDraw,ImageFont
@@ -139,6 +140,8 @@ def build(recipe):
   elif name in ('fillet','chamfer'):
    target=shapes[op['target']];builder=(BRepFilletAPI_MakeFillet if name=='fillet' else BRepFilletAPI_MakeChamfer)(target)
    for sel in a['selectors']:
+    if 'faces' in sel:
+     builder.Add(a['size'],select_edge(target,sel['faces']));continue
     near=pt(sel['near']);wanted=direction(sel['direction']);vertex=BRepBuilderAPI_MakeVertex(gp_Pnt(*near)).Vertex();candidates=[];ex=TopExp_Explorer(target,TopAbs_EDGE)
     while ex.More():
      edge=TopoDS.Edge_s(ex.Current());dist=BRepExtrema_DistShapeShape(vertex,edge);dist.Perform();curve=BRepAdaptor_Curve(edge)
