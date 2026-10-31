@@ -1,0 +1,14 @@
+{
+  "SourcesIdentical": true,
+  "FullTextInputIdentical": true,
+  "RequestedEffortBefore": "high",
+  "RequestedEffortAfter": "high",
+  "MaxCompletionTokensBefore": 32768,
+  "MaxCompletionTokensAfter": 65536,
+  "ApiTimeoutSeconds": 600,
+  "ApiCalls": 1,
+  "OriginalImageTransmitted": true,
+  "SoftwareChangesThisRun": false,
+  "AssistantRecipeEdits": false,
+  "ProducedImages": 3
+}

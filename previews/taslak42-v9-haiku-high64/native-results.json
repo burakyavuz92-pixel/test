@@ -1,0 +1,272 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "11-24-13",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_1",
+          "op": "revolve",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223996.53007593003
+        },
+        {
+          "id": "__v9_3",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1361.8804153311753
+        },
+        {
+          "id": "boss",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 224450.4902143736
+        },
+        {
+          "id": "__v9_5",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 1650.3178908388882
+        },
+        {
+          "id": "boreL",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 223295.26769078634
+        },
+        {
+          "id": "__v9_7",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294992
+        },
+        {
+          "id": "holeTop",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 222833.45357070887
+        },
+        {
+          "id": "__v9_9",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294992
+        },
+        {
+          "id": "holeBot",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 222371.63945063157
+        }
+      ],
+      "volumeMm3": 222371.63945063157,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimJ",
+          "dimR2"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-216",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_1",
+          "op": "revolve",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100834.01732489398
+        },
+        {
+          "id": "__v9_3",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 425.29310547971824
+        },
+        {
+          "id": "boss",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100975.7816933873
+        },
+        {
+          "id": "__v9_5",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 519.3445355465627
+        },
+        {
+          "id": "boreL",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100612.24051850464
+        },
+        {
+          "id": "__v9_7",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeTop",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 100150.42639842682
+        },
+        {
+          "id": "__v9_9",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeBot",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 99688.61227834923
+        }
+      ],
+      "volumeMm3": 99688.61227834923,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimJ",
+          "dimR2"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-372",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_1",
+          "op": "revolve",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59614.61577771458
+        },
+        {
+          "id": "__v9_3",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 471.2388980384689
+        },
+        {
+          "id": "boss",
+          "op": "join",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59875.56431750331
+        },
+        {
+          "id": "__v9_5",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 519.3445355465627
+        },
+        {
+          "id": "boreL",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59719.76095683934
+        },
+        {
+          "id": "__v9_7",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeTop",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 59257.946836761665
+        },
+        {
+          "id": "__v9_9",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 769.6902001294995
+        },
+        {
+          "id": "holeBot",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 58796.13271668392
+        }
+      ],
+      "volumeMm3": 58796.13271668392,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "dimA",
+          "dimC",
+          "dimD",
+          "dimE",
+          "dimF",
+          "dimJ",
+          "dimR2"
+        ]
+      }
+    }
+  ]
+}

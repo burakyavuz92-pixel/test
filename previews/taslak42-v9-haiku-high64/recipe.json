@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 9,
+  "geometry": {
+    "variables": {
+      "Ro": "=A/2",
+      "Rh": "=(J\u002B6)/2",
+      "Rb": "=J/2"
+    },
+    "features": [
+      {
+        "id": "rev",
+        "op": "add",
+        "shape": {
+          "kind": "revolve",
+          "profile": {
+            "frame": {
+              "origin": [
+                0,
+                0,
+                0
+              ],
+              "u": [
+                1,
+                0,
+                0
+              ],
+              "v": [
+                0,
+                0,
+                1
+              ]
+            },
+            "outer": {
+              "kind": "path",
+              "closed": true,
+              "segments": [
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Rb",
+                    0
+                  ],
+                  "end": [
+                    "=Ro-8",
+                    0
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Ro-8",
+                    0
+                  ],
+                  "mid": [
+                    "=Ro-8\u002B8*cos(45)",
+                    "=8-8*sin(45)"
+                  ],
+                  "end": [
+                    "=Ro",
+                    8
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro",
+                    8
+                  ],
+                  "end": [
+                    "=Ro",
+                    31.5
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Ro",
+                    31.5
+                  ],
+                  "mid": [
+                    "=Ro-1.5\u002B1.5*cos(45)",
+                    "=31.5\u002B1.5*sin(45)"
+                  ],
+                  "end": [
+                    "=Ro-1.5",
+                    33
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro-1.5",
+                    33
+                  ],
+                  "end": [
+                    "=Ro-3",
+                    33
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro-3",
+                    33
+                  ],
+                  "end": [
+                    "=Ro-3",
+                    8
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Ro-3",
+                    8
+                  ],
+                  "mid": [
+                    "=Ro-8\u002B5*cos(45)",
+                    "=8-5*sin(45)"
+                  ],
+                  "end": [
+                    "=Ro-8",
+                    3
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Ro-8",
+                    3
+                  ],
+                  "end": [
+                    "=Rh\u002B2",
+                    3
+                  ]
+                },
+                {
+                  "kind": "arc",
+                  "start": [
+                    "=Rh\u002B2",
+                    3
+                  ],
+                  "mid": [
+                    "=Rh\u002B2-2*cos(45)",
+                    "=5-2*sin(45)"
+                  ],
+                  "end": [
+                    "=Rh",
+                    5
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Rh",
+                    5
+                  ],
+                  "end": [
+                    "=Rh",
+                    "=E"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Rh",
+                    "=E"
+                  ],
+                  "end": [
+                    "=Rb",
+                    "=E"
+                  ]
+                },
+                {
+                  "kind": "line",
+                  "start": [
+                    "=Rb",
+                    "=E"
+                  ],
+                  "end": [
+                    "=Rb",
+                    0
+                  ]
+                }
+              ]
+            }
+          },
+          "axisOrigin": [
+            0,
+            0,
+            0
+          ],
+          "axisDirection": [
+            0,
+            0,
+            1
+          ],
+          "angleDeg": 360
+        }
+      },
+      {
+        "id": "boss",
+        "op": "add",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=B",
+            0,
+            "=0-F"
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=D",
+          "length": "=F\u002B1"
+        }
+      },
+      {
+        "id": "boreL",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            "=B",
+            0,
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=J",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeTop",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=C/2",
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=G",
+          "length": 5
+        }
+      },
+      {
+        "id": "holeBot",
+        "op": "cut",
+        "shape": {
+          "kind": "cylinder",
+          "origin": [
+            0,
+            "=0-C/2",
+            -1
+          ],
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "diameter": "=I",
+          "length": 5
+        }
+      }
+    ]
+  },
+  "drawing": {
+    "dimensions": [
+      {
+        "id": "dimA",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "A"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "outer cylinder diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimB",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "B"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "disk axis"
+          },
+          {
+            "operation": "boss",
+            "role": "left boss axis"
+          }
+        ],
+        "axis": "X",
+        "sourceColor": "green",
+        "hideIf": {
+          "kind": "zero"
+        }
+      },
+      {
+        "id": "dimC",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "C"
+        },
+        "targets": [
+          {
+            "operation": "holeTop",
+            "role": "top hole axis"
+          },
+          {
+            "operation": "holeBot",
+            "role": "bottom hole axis"
+          }
+        ],
+        "axis": "Y",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimD",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "D"
+        },
+        "targets": [
+          {
+            "operation": "boss",
+            "role": "left boss outer diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimE",
+        "type": "distance",
+        "valueSource": {
+          "kind": "column",
+          "column": "E"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "hub end face to outer bottom face"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimF",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "column",
+          "column": "F"
+        },
+        "targets": [
+          {
+            "operation": "boss",
+            "role": "outer boss height"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimG",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "G"
+        },
+        "targets": [
+          {
+            "operation": "holeTop",
+            "role": "top hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimI",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "I"
+        },
+        "targets": [
+          {
+            "operation": "holeBot",
+            "role": "bottom hole diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimJ",
+        "type": "diameter",
+        "valueSource": {
+          "kind": "column",
+          "column": "J"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "central bore diameter"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      },
+      {
+        "id": "dimDepth",
+        "type": "distance",
+        "valueSource": {
+          "kind": "constant",
+          "value": 33,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "overall cup depth"
+          }
+        ],
+        "axis": "Z",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimWall",
+        "type": "thickness",
+        "valueSource": {
+          "kind": "constant",
+          "value": 3,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "wall thickness"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimR8",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 8,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "outer bottom corner round"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimR1_5",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 1.5,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "rim outer edge round"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "green"
+      },
+      {
+        "id": "dimR2",
+        "type": "radius",
+        "valueSource": {
+          "kind": "constant",
+          "value": 2,
+          "unit": "mm"
+        },
+        "targets": [
+          {
+            "operation": "rev",
+            "role": "hub to bottom plate fillet"
+          }
+        ],
+        "axis": "radial",
+        "sourceColor": "black"
+      }
+    ],
+    "views": [
+      {
+        "id": "top",
+        "direction": [
+          0,
+          0,
+          -1
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "sectionView",
+        "direction": [
+          -1,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "projection": "orthographic"
+      },
+      {
+        "id": "iso",
+        "direction": [
+          1,
+          -1,
+          -1
+        ],
+        "up": [
+          0,
+          0,
+          1
+        ],
+        "projection": "orthographic"
+      }
+    ],
+    "sections": [
+      {
+        "id": "A-A",
+        "view": "sectionView",
+        "sourceView": "top",
+        "kind": "featureTrace",
+        "main": {
+          "feature": "rev",
+          "entity": "axis"
+        },
+        "through": [
+          {
+            "feature": "holeTop",
+            "entity": "axis"
+          },
+          {
+            "feature": "holeBot",
+            "entity": "axis"
+          }
+        ]
+      }
+    ],
+    "geometricTolerances": []
+  }
+}
