@@ -1,5 +1,6 @@
 """Local resolved-v7 OCCT executor. No API calls or product-family geometry rules."""
 from local_drawing import resolve_local_sections
+from fixed_template import background,fill_fields
 from drafting_style import PAPER_MM,PIXELS,DPI,PX_PER_MM,choose_scale,scale_label,patterned_line
 from face_edge_selector import select_edge
 import json,math,sys,pathlib,os,traceback
@@ -222,9 +223,12 @@ def text_value(d):
 
 def sheet(recipe,shape,shapes,out,source):
  S=2;im=Image.new('RGB',(PIXELS[0]*S,PIXELS[1]*S),'white');draw=ImageDraw.Draw(im);fontpath=os.getenv('ARIAL_FONT', '/workspace/fonts/arial/arial.ttf');font=lambda n:ImageFont.truetype(fontpath,int(n*S))
+ template=background(source,im.size)
+ if template is not None:im=template;draw=ImageDraw.Draw(im)
  def txt(x,y,s,size=16):draw.text((x*S,y*S),s,font=font(size),fill='black')
- draw.rectangle((20*S,20*S,1734*S,1220*S),outline='black',width=S)
- txt(45,35,recipe['outputId'],24);txt(1000,40,'OCCT — inceleme önizlemesi',17)
+ if template is None:
+  draw.rectangle((20*S,20*S,1734*S,1220*S),outline='black',width=S)
+  txt(45,35,recipe['outputId'],24)
  views=recipe['drawing']['views'];sections=recipe['drawing']['sections'];sectionids={s['view'] for s in sections};front=next(v for v in views if v['id'] not in sectionids);iso=next((v for v in views if 'iso' in v['id'].lower()),views[-1]);sv=next(v for v in views if v['id']==sections[0]['view'])
  def panel(lines,rect,loops=None,trace=None,fixed_k=None,centers=None):
   x,y,w,h=rect;points=[p for line in lines for p in line];xx=[p[0] for p in points];yy=[p[1] for p in points];cx=(min(xx)+max(xx))/2;cy=(min(yy)+max(yy))/2;k=min(w/(max(xx)-min(xx)+1e-5),h/(max(yy)-min(yy)+1e-5))
@@ -256,7 +260,7 @@ def sheet(recipe,shape,shapes,out,source):
  sec=sections[0]
  if sec.get('worldPath'):trace=[(np.dot(p,right),np.dot(p,up)) for p in sec['worldPath']]
  front_lines=hlr(shape,front);sl,loops=section_lines(shape,sec,sv)
- panels=[(330,140,890,710),(55,140,240,710)]
+ panels=[(330,120,850,690),(55,120,240,690)]
  def extent(lines):
   pts=[p for line in lines for p in line]
   return max(p[0] for p in pts)-min(p[0] for p in pts),max(p[1] for p in pts)-min(p[1] for p in pts)
@@ -271,29 +275,29 @@ def sheet(recipe,shape,shapes,out,source):
     centers[key]=max(centers.get(key,0),circle.Radius())
   ex.Next()
  pix=panel(front_lines,panels[0],trace=trace,fixed_k=fixed_k,centers=list(centers.items()))
- txt(650,875,'Ana görünüş',16)
- panel(sl,panels[1],loops,fixed_k=fixed_k);txt(65,875,'Kesit '+sec['id'],16)
- txt(1000,70,'A5 • Ana görünüş/kesit: '+scale_label(scale),16)
+ txt(650,835,'Ana görünüş',14)
+ panel(sl,panels[1],loops,fixed_k=fixed_k);txt(65,835,'KESİT '+sec['id'],14)
+ if template is not None:fill_fields(im,{'scale':scale_label(scale),'product':recipe['outputId'],'format':'A5'},fontpath)
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
  with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
  image.thumbnail((450*S,360*S));im.paste(image,(int(1260*S+(450*S-image.width)/2),int(150*S+(360*S-image.height)/2)))
  txt(1300,530,'İzometrik: ölçek dışı',14)
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  visible=[d for d in recipe['drawing']['dimensions'] if d['effectiveVisible']]
- y=980;txt(45,y,'Ölçüler / toleranslar (mm)',16)
+ y=900;txt(45,y,'Ölçüler / toleranslar (mm)',13)
  tight=y>1030
  if tight:y=min(y,1108)
  columns=max(4,math.ceil(len(visible)/2)) if tight else 4
  if columns>6:raise ValueError('Too many dimensions for preview table')
- rowHeight=28 if tight else 40
+ rowHeight=28 if tight else 32
  for i,d in enumerate(visible):
-  col=i%columns;row=i//columns;label=d.get('valueSource',{}).get('column',d['id']);txt(45+col*(1664/columns),y+28+row*rowHeight,label+': '+text_value(d),15 if tight else 17)
- for i,tol in enumerate(recipe['drawing'].get('geometricTolerances',[])):txt(45+i*400,1125,tol['kind']+': '+f"{tol['value']:g}".replace('.',','),16)
- txt(45,1200 if tight else 1170,'Model verisinden üretildi • Görsel kontrol gerektirir',12 if tight else 15)
+  col=i%columns;row=i//columns;label=d.get('valueSource',{}).get('column',d['id']);txt(45+col*(1140/columns),y+28+row*rowHeight,label+': '+text_value(d),12 if tight else 13)
+ for i,tol in enumerate(recipe['drawing'].get('geometricTolerances',[])):txt(45+i*300,1065,tol['kind']+': '+f"{tol['value']:g}".replace('.',','),16)
+ txt(45,1080,'İnceleme çıktısı • Geometri ve ölçüler kontrol edilmelidir',11)
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=(DPI,DPI))
  # A5 PDF provides an exact physical page independently of JPEG viewer DPI rounding.
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
- return {'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'resolved-dimension-table','limits':['Template title block/layout not reconstructed','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
+ return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'resolved-dimension-table','limits':['Dimension leader placement pending','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
 
 def run(folder,source):
  folder=pathlib.Path(folder);results=[]

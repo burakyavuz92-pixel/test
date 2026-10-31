@@ -17,7 +17,7 @@ public static class NativeRecipeExecutor
         File.WriteAllText(Path.Combine(output,"native-stdout.log"),await stdout);File.WriteAllText(Path.Combine(output,"native-stderr.log"),await stderr);
         using var results=JsonDocument.Parse(File.ReadAllText(Path.Combine(output,"native-results.json")));
         int count=results.RootElement.GetProperty("results").EnumerateArray().Count(r=>r.GetProperty("status").GetString()=="preview-produced");
-        File.WriteAllText(Path.Combine(output,"render-report.json"),JsonSerializer.Serialize(new{Status=process.ExitCode==0?"review-previews-produced":"partial-native-failure",ApiCalls=0,ProducedImages=count,HumanApproved=false,Limits=new[]{"Önizleme paftası; taslak anteti ve ölçü oku yerleşimi henüz uygulanmadı.","Ölçü/toleranslar tabloda; üretim onayı değildir."}},WorkflowReports.Json));
+        File.WriteAllText(Path.Combine(output,"render-report.json"),JsonSerializer.Serialize(new{Status=process.ExitCode==0?"review-previews-produced":"partial-native-failure",ApiCalls=0,ProducedImages=count,HumanApproved=false,Limits=new[]{"İnceleme paftası; ölçü oku yerleşimi henüz uygulanmadı.","Ölçü/toleranslar tabloda; üretim onayı değildir."}},WorkflowReports.Json));
         Console.WriteLine($"{count} JPEG önizleme; API çağrısı 0; {output}");Environment.ExitCode=process.ExitCode;
     }
 }

@@ -47,7 +47,7 @@ dotnet run --project src/DrawingTool.csproj -- render-saved-group input.xlsx tem
 
 ## Mevcut çıktı sınırı
 
-Genel v9 çıktısı **inceleme paftasıdır**. OCCT geometrisi, kesit ve izometrik görüntü üretilir; fakat taslaktaki antet/yerleşim birebir yeniden kurulmaz, ölçüler oklar üzerinde değil tabloda gösterilir. Tam teknik resim yerleşimi ve eksen çizgileri tamamlanmış sayılmaz. A5 yatay çıkış 1754×1236 pikseldir; DPI yaklaşık 212 olarak ayarlanır. Ana görünüş ve kesit ortak, sayısal ölçek kullanır; izometrik ölçek dışıdır. PDF de oluşturulur. Baskıda gerçek boyut/%100 kullanılmalıdır; görüntüleyicinin sayfaya sığdırması ölçeği değiştirir. Modelin görsel yorumu insan kontrolü gerektirir.
+Genel v9 çıktısı **inceleme paftasıdır**. OCCT geometrisi, kesit ve izometrik görüntü üretilir; sabit taslağın çerçeve ve anteti kaynak JPEG üzerinden korunur; ürün kimliği, ölçek ve A5 formatı yerelde güncellenir. Ölçüler oklar üzerinde değil tabloda gösterilir. Eksen/merkez çizgileri eklenmiştir; tam teknik resim ölçü oku yerleşimi tamamlanmış sayılmaz. A5 yatay çıkış 1754×1236 pikseldir; DPI yaklaşık 212 olarak ayarlanır. Ana görünüş ve kesit ortak, sayısal ölçek kullanır; izometrik ölçek dışıdır. PDF de oluşturulur. Baskıda gerçek boyut/%100 kullanılmalıdır; görüntüleyicinin sayfaya sığdırması ölçeği değiştirir. Modelin görsel yorumu insan kontrolü gerektirir.
 
 ## Kontroller ve kayıtlar
 
@@ -62,3 +62,5 @@ python -m unittest discover -s tools -p 'test_cad_recipe_executor.py'
 Python testleri için OCP/VTK/Pillow içeren ortam kullanılır. Bu kontroller API çağırmaz. Derleme ve yerel testlerin geçmesi, yeni promptla model yorumunun doğrulandığı anlamına gelmez.
 
 `request-prompt.txt`, `model-input.json`, `normalized-excel.json` istek içeriğini; `local-drawing-settings.json` yerel ayarları; `run-report.json` kullanım ve hata durumunu; `native-drawing.json` native kesit çözümünü kaydeder. Modelin özel akıl yürütmesini içerebilen ham `api-response.json` yayımlanmaz.
+
+Sabit antet uygulaması ve örnekler: [A5 antet notları](previews/a5-titleblock-review/NOTLAR.md).
