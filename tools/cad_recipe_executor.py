@@ -1,5 +1,6 @@
 """Local resolved-v7 OCCT executor. No API calls or product-family geometry rules."""
 from local_drawing import resolve_local_sections
+from drafting_style import PAPER_MM,PIXELS,DPI,PX_PER_MM,choose_scale,scale_label,patterned_line
 from face_edge_selector import select_edge
 import json,math,sys,pathlib,os,traceback
 import numpy as np
@@ -220,13 +221,14 @@ def text_value(d):
  return prefix+v
 
 def sheet(recipe,shape,shapes,out,source):
- S=2;im=Image.new('RGB',(1754*S,1240*S),'white');draw=ImageDraw.Draw(im);fontpath=os.getenv('ARIAL_FONT', '/workspace/fonts/arial/arial.ttf');font=lambda n:ImageFont.truetype(fontpath,int(n*S))
+ S=2;im=Image.new('RGB',(PIXELS[0]*S,PIXELS[1]*S),'white');draw=ImageDraw.Draw(im);fontpath=os.getenv('ARIAL_FONT', '/workspace/fonts/arial/arial.ttf');font=lambda n:ImageFont.truetype(fontpath,int(n*S))
  def txt(x,y,s,size=16):draw.text((x*S,y*S),s,font=font(size),fill='black')
  draw.rectangle((20*S,20*S,1734*S,1220*S),outline='black',width=S)
  txt(45,35,recipe['outputId'],24);txt(1000,40,'OCCT — inceleme önizlemesi',17)
  views=recipe['drawing']['views'];sections=recipe['drawing']['sections'];sectionids={s['view'] for s in sections};front=next(v for v in views if v['id'] not in sectionids);iso=next((v for v in views if 'iso' in v['id'].lower()),views[-1]);sv=next(v for v in views if v['id']==sections[0]['view'])
- def panel(lines,rect,loops=None,trace=None):
+ def panel(lines,rect,loops=None,trace=None,fixed_k=None,centers=None):
   x,y,w,h=rect;points=[p for line in lines for p in line];xx=[p[0] for p in points];yy=[p[1] for p in points];cx=(min(xx)+max(xx))/2;cy=(min(yy)+max(yy))/2;k=min(w/(max(xx)-min(xx)+1e-5),h/(max(yy)-min(yy)+1e-5))
+  if fixed_k is not None:k=fixed_k
   def pix(p):return ((x+w/2+(p[0]-cx)*k)*S,(y+h/2-(p[1]-cy)*k)*S)
   if loops:
    mask=Image.new('1',im.size);md=ImageDraw.Draw(mask)
@@ -235,29 +237,47 @@ def sheet(recipe,shape,shapes,out,source):
    for loop in loops:
     layer=Image.new('1',im.size);ImageDraw.Draw(layer).polygon([pix(p) for p in loop],fill=1);mask=ImageChops.logical_xor(mask,layer)
    hatch=Image.new('RGB',im.size,'white');hd=ImageDraw.Draw(hatch)
-   for offset in range(-im.height,im.width,12*S):hd.line((offset,im.height,offset+im.height,0),fill='#777777',width=1)
+   for offset in range(-im.height,im.width,max(1,round(2*PX_PER_MM))*S):hd.line((offset,im.height,offset+im.height,0),fill='black',width=max(1,round(.13*PX_PER_MM*S)))
    region=Image.new('1',im.size);ImageDraw.Draw(region).rectangle((int(x*S),int(y*S),int((x+w)*S),int((y+h)*S)),fill=1)
    mask=ImageChops.logical_and(mask,region);im.paste(hatch,(0,0),mask)
   for line in lines:
-   if len(line)>1:draw.line([pix(p) for p in line],fill='black',width=2,joint='curve')
+   if len(line)>1:draw.line([pix(p) for p in line],fill='black',width=max(1,round(.25*PX_PER_MM*S)),joint='curve')
+  if centers:
+   for center,radius in centers:
+    reach=radius+2.5*PX_PER_MM/k
+    for delta in [(reach,0),(0,reach)]:
+     a=pix((center[0]-delta[0],center[1]-delta[1]));b=pix((center[0]+delta[0],center[1]+delta[1]))
+     patterned_line(draw,a,b,max(1,round(.13*PX_PER_MM*S)),[10*S,3*S,1*S,3*S])
   if trace:
-   from PIL import ImageChops
-   overlay=Image.new('RGB',im.size,'white');od=ImageDraw.Draw(overlay)
-   for a,b in zip(trace,trace[1:]):od.line((pix(a),pix(b)),fill='#444444',width=S)
-   bounds=(int((x-20)*S),int((y-20)*S),int((x+w+20)*S),int((y+h+20)*S))
-   im.paste(ImageChops.darker(im.crop(bounds),overlay.crop(bounds)),bounds[:2])
+   for a,b in zip(trace,trace[1:]):patterned_line(draw,pix(a),pix(b),max(1,round(.35*PX_PER_MM*S)),[16*S,4*S,2*S,4*S])
   return pix
  right,up,n=basis(front)
  trace=None
  sec=sections[0]
  if sec.get('worldPath'):trace=[(np.dot(p,right),np.dot(p,up)) for p in sec['worldPath']]
- frontHeight=720
- pix=panel(hlr(shape,front),(100,130,880,max(frontHeight,120)),trace=trace)
- txt(370,150+max(frontHeight,120),'Ana görünüş',16)
- sl,loops=section_lines(shape,sec,sv);panel(sl,(1110,140,470,380),loops);txt(1220,540,'Kesit '+sec['id'],16)
+ front_lines=hlr(shape,front);sl,loops=section_lines(shape,sec,sv)
+ panels=[(330,140,890,710),(55,140,240,710)]
+ def extent(lines):
+  pts=[p for line in lines for p in line]
+  return max(p[0] for p in pts)-min(p[0] for p in pts),max(p[1] for p in pts)-min(p[1] for p in pts)
+ scale=choose_scale([extent(front_lines),extent(sl)],panels);fixed_k=scale*PX_PER_MM
+ centers={};ex=TopExp_Explorer(shape,TopAbs_EDGE)
+ while ex.More():
+  curve=BRepAdaptor_Curve(TopoDS.Edge_s(ex.Current()))
+  if curve.GetType()==GeomAbs_Circle:
+   circle=curve.Circle();axis=circle.Axis().Direction()
+   if abs(np.dot([axis.X(),axis.Y(),axis.Z()],n))>.999999:
+    p=circle.Location();xyz=[p.X(),p.Y(),p.Z()];xy=(float(np.dot(xyz,right)),float(np.dot(xyz,up)));key=tuple(round(v,5) for v in xy)
+    centers[key]=max(centers.get(key,0),circle.Radius())
+  ex.Next()
+ pix=panel(front_lines,panels[0],trace=trace,fixed_k=fixed_k,centers=list(centers.items()))
+ txt(650,875,'Ana görünüş',16)
+ panel(sl,panels[1],loops,fixed_k=fixed_k);txt(65,875,'Kesit '+sec['id'],16)
+ txt(1000,70,'A5 • Ana görünüş/kesit: '+scale_label(scale),16)
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
  with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
- image.thumbnail((570*S,340*S));im.paste(image,(int(1100*S+(570*S-image.width)/2),int(590*S+(340*S-image.height)/2)))
+ image.thumbnail((450*S,360*S));im.paste(image,(int(1260*S+(450*S-image.width)/2),int(150*S+(360*S-image.height)/2)))
+ txt(1300,530,'İzometrik: ölçek dışı',14)
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  visible=[d for d in recipe['drawing']['dimensions'] if d['effectiveVisible']]
  y=980;txt(45,y,'Ölçüler / toleranslar (mm)',16)
@@ -270,9 +290,10 @@ def sheet(recipe,shape,shapes,out,source):
   col=i%columns;row=i//columns;label=d.get('valueSource',{}).get('column',d['id']);txt(45+col*(1664/columns),y+28+row*rowHeight,label+': '+text_value(d),15 if tight else 17)
  for i,tol in enumerate(recipe['drawing'].get('geometricTolerances',[])):txt(45+i*400,1125,tol['kind']+': '+f"{tol['value']:g}".replace('.',','),16)
  txt(45,1200 if tight else 1170,'Model verisinden üretildi • Görsel kontrol gerektirir',12 if tight else 15)
- with Image.open(source) as inputImage:dpi=inputImage.info.get('dpi',(300,300))
- im.resize((1754,1240),Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=dpi)
- return {'annotationMode':'resolved-dimension-table','limits':['Template title block/layout not reconstructed','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
+ im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=(DPI,DPI))
+ # A5 PDF provides an exact physical page independently of JPEG viewer DPI rounding.
+ im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
+ return {'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'resolved-dimension-table','limits':['Template title block/layout not reconstructed','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
 
 def run(folder,source):
  folder=pathlib.Path(folder);results=[]
