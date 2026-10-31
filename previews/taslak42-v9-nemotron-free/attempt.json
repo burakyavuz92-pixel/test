@@ -1,0 +1,14 @@
+{
+  "RequestedModel": "nvidia/nemotron-3.5-super-vl:free",
+  "PreviousRequestedModel": "nvidia/nemotron-3.5-super-vl",
+  "PreviousProvider": "Venice",
+  "ActualProvider": null,
+  "ApiCalls": 1,
+  "CompletedModelResponse": false,
+  "TimeoutSeconds": 300,
+  "ReasoningTokens": null,
+  "ReportedCostUsd": null,
+  "ProducedImages": 0,
+  "SoftwareChanges": false,
+  "FullTextInputIdentical": true
+}
