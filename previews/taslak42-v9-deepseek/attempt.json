@@ -1,0 +1,21 @@
+{
+  "RequestedModel": "deepseek/deepseek-v4.1-flash-1017",
+  "ActualProvider": "Relace",
+  "RequestedReasoningEffort": "high",
+  "MaxCompletionTokens": 32768,
+  "ApiCalls": 1,
+  "FinishReason": "length",
+  "VisibleRecipeReceived": false,
+  "SourcesIdentical": true,
+  "FullTextInputIdentical": true,
+  "OriginalImageTransmitted": true,
+  "SoftwareChanges": false,
+  "AssistantRecipeEdits": false,
+  "ProducedImages": 0,
+  "CatalogSupportedEfforts": [
+    "max",
+    "high",
+    "low",
+    "none"
+  ]
+}
