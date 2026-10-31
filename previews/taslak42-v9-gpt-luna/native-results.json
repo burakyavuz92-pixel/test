@@ -1,0 +1,258 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "11-24-13",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 553195.5890880744
+        },
+        {
+          "id": "edgeRound",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 553108.3565783087
+        },
+        {
+          "id": "__v9_4",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 7998.337837927577
+        },
+        {
+          "id": "__v9_6",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 7998.337837927586
+        },
+        {
+          "id": "__v9_8",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 7998.337837927578
+        },
+        {
+          "id": "__v9_9",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 3,
+          "volumeMm3": 23995.013513782746
+        },
+        {
+          "id": "mountSlots",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 539439.3083174927
+        },
+        {
+          "id": "__v9_12",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 370.03178908388884
+        },
+        {
+          "id": "__v9_14",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 370.03178908388907
+        },
+        {
+          "id": "__v9_16",
+          "op": "extrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 370.0317890838888
+        },
+        {
+          "id": "__v9_17",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 3,
+          "volumeMm3": 1110.0953672516669
+        },
+        {
+          "id": "slotSpotfaces",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 538980.1200102804
+        }
+      ],
+      "volumeMm3": 538980.1200102804,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "B",
+          "D",
+          "E",
+          "F",
+          "I"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-216",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 180955.7368467721
+        },
+        {
+          "id": "edgeRound",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 180901.87681889554
+        },
+        {
+          "id": "__v9_4",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3113.109208516522
+        },
+        {
+          "id": "__v9_6",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3113.109208516523
+        },
+        {
+          "id": "__v9_8",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3113.1092085165224
+        },
+        {
+          "id": "__v9_9",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 3,
+          "volumeMm3": 9339.327625549566
+        },
+        {
+          "id": "mountSlots",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 174855.54973819622
+        }
+      ],
+      "volumeMm3": 174855.54973819622,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "B",
+          "D",
+          "E",
+          "F",
+          "I"
+        ]
+      }
+    },
+    {
+      "outputId": "11-24-372",
+      "status": "preview-produced",
+      "checks": [
+        {
+          "id": "__v9_0",
+          "op": "cylinder",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 107173.862580889
+        },
+        {
+          "id": "edgeRound",
+          "op": "fillet",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 107135.50895873879
+        },
+        {
+          "id": "__v9_4",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3330.2724905985624
+        },
+        {
+          "id": "__v9_6",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3330.272490598565
+        },
+        {
+          "id": "__v9_8",
+          "op": "throughExtrude",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 3330.272490598564
+        },
+        {
+          "id": "__v9_9",
+          "op": "fuse",
+          "validBrep": true,
+          "solidCount": 3,
+          "volumeMm3": 9990.81747179569
+        },
+        {
+          "id": "mountSlots",
+          "op": "cut",
+          "validBrep": true,
+          "solidCount": 1,
+          "volumeMm3": 99640.46069792294
+        }
+      ],
+      "volumeMm3": 99640.46069792294,
+      "stepRoundtrip": true,
+      "drafting": {
+        "annotationMode": "resolved-dimension-table",
+        "limits": [
+          "Template title block/layout not reconstructed",
+          "Dimensions shown in table, not yet associated leader placement",
+          "Section connectors omitted; band outlines may retain seam edges",
+          "Geometric tolerance leader placement and section rear-edge visibility pending"
+        ],
+        "visibleDimensions": [
+          "D",
+          "E",
+          "F",
+          "I"
+        ]
+      }
+    }
+  ]
+}

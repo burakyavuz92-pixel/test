@@ -1,0 +1,32 @@
+{
+  "Status": "failed-with-report",
+  "Issues": [
+    {
+      "Code": "RECIPE_RUN_FAILURE",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "HTTP 400; sunucu a\u00E7\u0131klamas\u0131 api-error-response.json i\u00E7inde.",
+      "AffectedFields": [],
+      "RecommendedAction": "Kay\u0131tlar incelenmeli; kullan\u0131c\u0131 cevab\u0131 beklenmez.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "542437FB7575F75BBD77E8F5CE9B19F3BD330CACD7F271DED87698B90DEB092A",
+      "ImageSha256": "FC69BEFBDED2C2A420662F9934ABE832AF6C0F9764E491B51033077A048D2E3D"
+    },
+    "SchemaVersion": 9,
+    "RowCount": 3,
+    "ApiCalls": 1,
+    "ReportedCostUsd": null,
+    "ReasoningEffort": "high",
+    "MaxCompletionTokens": 32768,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": true,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

@@ -113,3 +113,7 @@ Aktif prompt ve sözleşme [burada](contracts/cad-v9-draft/README.md). Model ara
 ### Detay görünüşü kapsam dışı
 
 Güncel v9 prompt/sözleşmesinden ve yerel çizimden detay görünüşü çıkarıldı. Ana görünüşler, kesit ve geometri kapsamı korunur. Eski test paketleri tarihsel çıktılardır; içlerindeki detaylar yeni davranışı temsil etmez. Değişiklik API çağrısı olmadan yerel testlerle kontrol edildi.
+
+### Model görüntü taşıma sınırı
+
+GPT-6 Luna denemesinde sağlayıcı orijinal 7016×4961 JPEG'i 34.320 adet 32px patch gerektirdiği için reddetti (sınır 30.000). `ApiImageTransport` bu modelde kaynağı değiştirmeden ayrı JPEG taşıma kopyası hazırlar; en uzun kenar 6400 ve patch bütçesi 30000 uygulanır. `OPENROUTER_IMAGE_MAX_EDGE` ile kenar limiti değiştirilebilir, 0 ile bu hazırlık kapatılabilir. Diğer modellerde varsayılan taşıma değişmez. Modele yine yalnız bir JPEG gönderilir. `image-transport.json` kaynağın/gönderimin boyutlarını kaydeder. Sağlayıcının HTTP hata gövdesi artık özel output klasöründe `api-error-response.json` olarak korunur. [Luna denemesi ve sınırları](previews/taslak42-v9-gpt-luna/NOTLAR.md).

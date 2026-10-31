@@ -1,0 +1,14 @@
+{
+  "SourceHashesMatch": true,
+  "FullTextInputIdentical": true,
+  "Source": {
+    "ExcelSha256": "542437FB7575F75BBD77E8F5CE9B19F3BD330CACD7F271DED87698B90DEB092A",
+    "ImageSha256": "FC69BEFBDED2C2A420662F9934ABE832AF6C0F9764E491B51033077A048D2E3D"
+  },
+  "TransmittedImageModifiedByResizeOnly": true,
+  "OriginalJpegModified": false,
+  "HttpGenerationRequests": 3,
+  "CompletedRecipeResponses": 1,
+  "AssistantRecipeEdits": false,
+  "GeometryExecutorChanges": false
+}
