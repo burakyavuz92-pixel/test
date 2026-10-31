@@ -1,0 +1,24 @@
+{
+  "placed": [
+    "dimA",
+    "dimHeight",
+    "dimWall",
+    "dimC",
+    "dimD",
+    "dimE",
+    "dimF",
+    "dimG",
+    "dimI",
+    "dimJ",
+    "dimR8",
+    "dimR15",
+    "dimR2"
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "dimB",
+      "reason": "zero dimension"
+    }
+  ]
+}

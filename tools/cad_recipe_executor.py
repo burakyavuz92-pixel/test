@@ -1,6 +1,7 @@
 """Local resolved-v7 OCCT executor. No API calls or product-family geometry rules."""
 from local_drawing import resolve_local_sections
 from fixed_template import background,fill_fields
+from dimension_annotations import resolve_anchors,render_dimensions
 from drafting_style import PAPER_MM,PIXELS,DPI,PX_PER_MM,choose_scale,scale_label,patterned_line
 from face_edge_selector import select_edge
 import json,math,sys,pathlib,os,traceback
@@ -276,15 +277,21 @@ def sheet(recipe,shape,shapes,out,source):
   ex.Next()
  pix=panel(front_lines,panels[0],trace=trace,fixed_k=fixed_k,centers=list(centers.items()))
  txt(650,835,'Ana görünüş',14)
- panel(sl,panels[1],loops,fixed_k=fixed_k);txt(65,835,'KESİT '+sec['id'],14)
+ section_pix=panel(sl,panels[1],loops,fixed_k=fixed_k);txt(65,835,'KESİT '+sec['id'],14)
  if template is not None:fill_fields(im,{'scale':scale_label(scale),'product':recipe['outputId'],'format':'A5'},fontpath)
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
  with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
  image.thumbnail((450*S,360*S));im.paste(image,(int(1260*S+(450*S-image.width)/2),int(150*S+(360*S-image.height)/2)))
  txt(1300,530,'İzometrik: ölçek dışı',14)
  # Values are taken from the resolved drawing layer, never from geometry deviations.
- visible=[d for d in recipe['drawing']['dimensions'] if d['effectiveVisible']]
- y=900;txt(45,y,'Ölçüler / toleranslar (mm)',13)
+ annotation_bounds=Bnd_Box();BRepBndLib.AddOptimal_s(shape,annotation_bounds,False,False)
+ anchors,unresolved,omitted=resolve_anchors(recipe,shape,basis(front),basis(sv),annotation_bounds.Get())
+ placement=render_dimensions(im,font,S,anchors,pix,section_pix,text_value)
+ unresolved+=placement['failed']
+ visible=[u['dimension'] for u in unresolved]
+ (out/'dimension-placement.json').write_text(json.dumps({'placed':placement['placed'],'unresolved':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'omitted':omitted},indent=2))
+ y=900
+ if visible:txt(45,y,'Bağlantısı çözülemeyen ölçüler (mm) — kontrol gerekli',13)
  tight=y>1030
  if tight:y=min(y,1108)
  columns=max(4,math.ceil(len(visible)/2)) if tight else 4
@@ -297,7 +304,7 @@ def sheet(recipe,shape,shapes,out,source):
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=(DPI,DPI))
  # A5 PDF provides an exact physical page independently of JPEG viewer DPI rounding.
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
- return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'resolved-dimension-table','limits':['Dimension leader placement pending','Dimensions shown in table, not yet associated leader placement','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in visible]}
+ return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
 
 def run(folder,source):
  folder=pathlib.Path(folder);results=[]
