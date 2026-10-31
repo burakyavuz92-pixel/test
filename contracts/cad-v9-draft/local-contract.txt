@@ -19,17 +19,18 @@ fillet/chamfer: {id,op:"fillet"|"chamfer",size:N,selectors:[EdgeSelector,...],wh
 Shape choices:
 - {kind:"cylinder",origin:P3,direction:P3,diameter:N,length:N}. Positive diameter/length, starts at origin.
 - {kind:"box",frame?:Frame,size:[N,N,N]}. Frame origin is the corner; sizes along u,v,normal.
-- {kind:"extrude",profile:Profile,extent:{from:N,to:N}|"throughAll"}. Along profile normal. throughAll is for cuts: software spans the current body's bounds with a local allowance.
+- {kind:"extrude",profile:Profile,extent:{from:N,to:N}|"throughAll"}. Distances from/to are signed offsets along u cross v from the profile frame origin; from < to. throughAll is for cuts: software spans the current body's bounds with a local allowance.
 - {kind:"revolve",profile:Profile,axisOrigin:P3,axisDirection:P3,angleDeg:N}. Right-hand rotation, 0<angleDeg<=360; axis is in the profile plane. Profile may touch, but not cross, the axis.
 Profile={frame?:Frame,outer:Loop,holes?:[Loop,...]}. Loop choices:
 - {kind:"circle",center:P2,diameter:N}
-- {kind:"polyline",points:[P2,...],closed:true}
+- {kind:"polyline",points:[P2,...]}
 - {kind:"roundedSlot",center:P2,width:N,length:N,angleDeg:N}; overall tip-to-tip length, angle from local +u.
-- {kind:"path",segments:[Segment,...],closed:true}. Segment={kind:"line",start:P2,end:P2} or {kind:"arc",start:P2,mid:P2,end:P2}. Arc passes through the three points. Segments join end-to-start and close.
+- {kind:"path",start:P2,segments:[Segment,...]}. Segment={kind:"line",end:P2} or {kind:"arc",mid:P2,end:P2}. Each segment starts at the previous endpoint; the first starts at path.start. An arc passes through its start, mid and end. The final end equals path.start; every boundary edge is supplied, with no implicit closing edge.
+Polyline vertices are ordered; software adds the final straight edge back to the first vertex. Do not repeat the first vertex. Path and polyline have no closed field. These rules apply to outer loops and holes.
 
 instances applies copies of the shape before its add/cut:
 {kind:"linear",count:N,step:P3} includes i=0 through count-1, translation i*step.
-{kind:"polar",count:N,axisOrigin:P3,axisDirection:P3,startAngleDeg:N,stepAngleDeg:N} rotates the supplied shape around the world-space axis by start+i*step. The supplied shape already occupies its seed location, including its radial offset. Each instance's orientation rotates with it. Without instances there is one copy. instance references are zero-based. The copies are combined before the body update.
+{kind:"polar",count:N,axisOrigin:P3,axisDirection:P3,startAngleDeg:N,stepAngleDeg:N} rotates the supplied shape around the world-space axis by start+i*step. The supplied shape already occupies its seed location, including its radial offset. Each instance's orientation rotates with it. A count of n produces exactly n copies, indexed 0 to n-1, not n additional copies. Without instances there is one copy. instance references are zero-based. The copies are combined before the body update.
 
 EdgeSelector={near:P3,directionKind:"axis"|"tangent",direction:P3,operation?:id}. near locates an edge on the current body; operation optionally narrows its construction origin. axis is a circular/elliptic edge's rotation axis; tangent is edge tangent at near. A selector identifies one edge; list multiple selectors for multiple edges.
 

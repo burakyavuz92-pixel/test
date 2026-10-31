@@ -1,4 +1,5 @@
 """Data-only v9 lowering. No model code or Python eval is executed."""
+from profile_contract import normalize_loop
 import ast,json,math,re,sys,copy
 
 class Expressions:
@@ -108,7 +109,7 @@ def compile_recipe(recipe,cells,output_id):
    if extent['to']<=extent['from']:raise ValueError('Extrusion extent must increase')
    origin=add(origin,mul(z,extent['from']))
   frame='__v9_frame_'+str(len(frames));frames.append(dict(id=frame,origin=origin,xAxis=u,zAxis=z))
-  profile=emit('sketch',dict(plane='XY',loops=[p['outer']]+p.get('holes',[]),profileHoles=True),frame)
+  profile=emit('sketch',dict(plane='XY',loops=[normalize_loop(loop) for loop in [p['outer']]+p.get('holes',[])],profileHoles=True),frame)
   if kind=='extrude':
    if extent=='throughAll':
     if current is None:raise ValueError('throughAll requires current body')

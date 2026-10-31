@@ -40,3 +40,11 @@ Genel v9 paftası hâlâ inceleme çıktısıdır: taslak anteti ve yerleşimi b
 Etkin prompt ve sözleşme artık ayrı `local-prompt.txt` / `local-contract.txt` dosyalarından okunur; eski sözleşmeden metin parçaları silinerek türetilmez. Etkin model `config/openrouter.json` içinde Sonnet 5.5, high, 65536 token tavanı ve 600 saniye olarak kayıtlıdır. Anahtar ortamda kalır; eski model ortam değişkeni bu ayarı geçersiz kılamaz. Batch kodu kaldırıldı. Eski koordinat düzeninde hazırlanmış onaylı tarifler yeni yerel düzende sessizce yeniden kullanılmaz. Bu hazırlıkta API çağrısı yapılmadı; maliyet veya anlama başarısı henüz ölçülmedi.
 
 Etkin prompt yeniden sadeleştirildi: font, antet, dosya adı talimatları ve yerel sunum açıklamaları çıkarıldı. Kesit/kamera alanları etkin sözleşmede bulunmaz; eksik ayar sütunuyla eski prompta geçiş kapatıldı. Geometri içindeki direction, axisOrigin, Frame ve path alanları kamera/kesit değil, katıyı oluşturmak için kullanılan geometridir.
+
+## Profil sözleşmesi netleştirmesi
+
+Yeni yanıtta çokgen `polyline` yalnız sıralı köşeleri taşır; ilk köşe tekrarlanmaz, yazılım son düz kenarı oluşturur. Doğru/yay zinciri `path` bir başlangıç ve sıralı segmentlerden oluşur. Segment yalnız `end`, yay ayrıca `mid` taşır; başlangıcı önceki segmentten devralınır. Son `end` profil başlangıcına eşit olmalıdır; otomatik kapanış yoktur. Yeni sözleşmede `closed` alanı istenmez.
+
+Eski açık başlangıçlı segment kayıtları okunur, ancak kopuk veya kapanmayan profil derleme sırasında açık hata verir; eksik kenar uydurulmaz. Dış çevrim ve iç boşluklar aynı kurala tabidir. Ekstrüzyon from/to değerleri profil orijininden u cross v yönündeki işaretli mesafelerdir. Tekrarlamada count toplam örnek sayısıdır, ek örnek sayısı değildir; ilk örnek indeks 0'dır.
+
+8 yeni profil testi, mevcut geometri testleri ve C# kontrolleri çalıştırıldı. Önceki model yanıtı değiştirilmedi. API çağrısı veya yeni ürün denemesi yapılmadı.
