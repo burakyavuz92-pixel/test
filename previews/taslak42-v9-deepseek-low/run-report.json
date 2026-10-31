@@ -1,0 +1,50 @@
+{
+  "Status": "blocked-with-report",
+  "Issues": [
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "11-24-13: Kesit ve kaynak g\u00F6r\u00FCn\u00FC\u015F y\u00F6nleri dik olmal\u0131.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "11-24-216: Kesit ve kaynak g\u00F6r\u00FCn\u00FC\u015F y\u00F6nleri dik olmal\u0131.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    },
+    {
+      "Code": "RECIPE_V9_RESOLUTION",
+      "Category": "software",
+      "Severity": "error",
+      "Message": "11-24-372: Kesit ve kaynak g\u00F6r\u00FCn\u00FC\u015F y\u00F6nleri dik olmal\u0131.",
+      "AffectedFields": [],
+      "RecommendedAction": "",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "542437FB7575F75BBD77E8F5CE9B19F3BD330CACD7F271DED87698B90DEB092A",
+      "ImageSha256": "FC69BEFBDED2C2A420662F9934ABE832AF6C0F9764E491B51033077A048D2E3D"
+    },
+    "SchemaVersion": 9,
+    "RowCount": 3,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.012888685,
+    "ReasoningEffort": "low",
+    "MaxCompletionTokens": 32768,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": true,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}
