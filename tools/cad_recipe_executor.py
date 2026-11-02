@@ -1,7 +1,8 @@
 """Local resolved-v7 OCCT executor. No API calls or product-family geometry rules."""
 from local_drawing import resolve_local_sections
 from fixed_template import background,fill_fields
-from dimension_annotations import resolve_anchors,render_dimensions
+from dimension_annotations import resolve_anchors,render_dimensions,render_template_dimensions
+from template_layout import prepare as prepare_layout,bind_dimensions
 from drafting_style import PAPER_MM,PIXELS,DPI,PX_PER_MM,choose_scale,scale_label,patterned_line
 from face_edge_selector import select_edge
 import json,math,sys,pathlib,os,traceback
@@ -263,7 +264,7 @@ def sheet(recipe,shape,shapes,out,source):
  sec=sections[0]
  if sec.get('worldPath'):trace=[(np.dot(p,right),np.dot(p,up)) for p in sec['worldPath']]
  front_lines=hlr(shape,front);sl,loops=section_lines(shape,sec,sv)
- panels=[(330,120,850,690),(55,120,240,690)]
+ panels=[(330,120,850,690),(130 if recipe['drawing'].get('templateLayout') else 55,120,240,690)]
  def extent(lines):
   pts=[p for line in lines for p in line]
   return max(p[0] for p in pts)-min(p[0] for p in pts),max(p[1] for p in pts)-min(p[1] for p in pts)
@@ -287,11 +288,21 @@ def sheet(recipe,shape,shapes,out,source):
  txt(1300,530,'İzometrik: ölçek dışı',14)
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  annotation_bounds=Bnd_Box();BRepBndLib.AddOptimal_s(shape,annotation_bounds,False,False)
- anchors,unresolved,omitted=resolve_anchors(recipe,shape,basis(front),basis(sv),annotation_bounds.Get())
- placement=render_dimensions(im,font,S,anchors,pix,section_pix,text_value)
+ layout=recipe['drawing'].get('templateLayout')
+ if layout:
+  bindings,excluded,binding_errors=bind_dimensions(recipe['drawing']['dimensions'],layout)
+  subset=json.loads(json.dumps(recipe));subset['drawing']['dimensions']=[b['dimension'] for b in bindings]
+  anchors,unresolved,omitted=resolve_anchors(subset,shape,basis(front),basis(sv),annotation_bounds.Get(),bindings)
+  def bounds2(lines):
+   pts=[p for line in lines for p in line];return [min(p[0] for p in pts),min(p[1] for p in pts),max(p[0] for p in pts),max(p[1] for p in pts)]
+  placement=render_template_dimensions(im,font,S,anchors,pix,section_pix,layout,{'front':bounds2(front_lines),'section':bounds2(sl)},text_value)
+  unresolved+=binding_errors;omitted+=excluded
+ else:
+  anchors,unresolved,omitted=resolve_anchors(recipe,shape,basis(front),basis(sv),annotation_bounds.Get())
+  placement=render_dimensions(im,font,S,anchors,pix,section_pix,text_value)
  unresolved+=placement['failed']
  visible=[u['dimension'] for u in unresolved]
- (out/'dimension-placement.json').write_text(json.dumps({'placed':placement['placed'],'unresolved':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'omitted':omitted},indent=2))
+ (out/'dimension-placement.json').write_text(json.dumps({'placed':placement['placed'],'templatePlacements':placement.get('templatePlacements',[]),'unresolved':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'omitted':omitted},indent=2))
  y=900
  if visible:txt(45,y,'Bağlantısı çözülemeyen ölçüler (mm) — kontrol gerekli',13)
  tight=y>1030
@@ -308,10 +319,13 @@ def sheet(recipe,shape,shapes,out,source):
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
  return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
 
-def run(folder,source):
+def run(folder,source,excel=None):
  folder=pathlib.Path(folder);results=[]
+ layout=prepare_layout(source,excel,folder) if excel else None
  for file in sorted(folder.glob('*.resolved.json')):
-  recipe=json.loads(file.read_text());out=folder/recipe['outputId'];out.mkdir(exist_ok=True)
+  recipe=json.loads(file.read_text())
+  if layout is not None:recipe['drawing']['templateLayout']=layout
+  out=folder/recipe['outputId'];out.mkdir(exist_ok=True)
   try:
    shape,shapes,checks=build(recipe);w=STEPControl_Writer();w.Transfer(shape,STEPControl_AsIs)
    if w.Write(str(out/(recipe['outputId']+'.step')))!=IFSelect_RetDone:raise RuntimeError('STEP write failed')
@@ -323,4 +337,4 @@ def run(folder,source):
    results.append({'outputId':recipe['outputId'],'status':'preview-produced','checks':checks,'volumeMm3':vol(shape),'stepRoundtrip':True,'drafting':drafting})
   except Exception as ex:results.append({'outputId':recipe['outputId'],'status':'failed','error':str(ex)});traceback.print_exc()
  (folder/'native-results.json').write_text(json.dumps({'apiCalls':0,'results':results},indent=2));print(json.dumps(results,indent=2));return all(r['status']=='preview-produced' for r in results)
-if __name__=='__main__':sys.exit(0 if run(sys.argv[1],sys.argv[2]) else 1)
+if __name__=='__main__':sys.exit(0 if run(sys.argv[1],sys.argv[2],sys.argv[3] if len(sys.argv)>3 else None) else 1)

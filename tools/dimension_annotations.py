@@ -2,10 +2,10 @@
 import math
 import numpy as np
 from OCP.TopExp import TopExp_Explorer
-from OCP.TopAbs import TopAbs_FACE
+from OCP.TopAbs import TopAbs_FACE,TopAbs_EDGE
 from OCP.TopoDS import TopoDS
-from OCP.BRepAdaptor import BRepAdaptor_Surface
-from OCP.GeomAbs import GeomAbs_Torus,GeomAbs_Cylinder
+from OCP.BRepAdaptor import BRepAdaptor_Surface,BRepAdaptor_Curve
+from OCP.GeomAbs import GeomAbs_Torus,GeomAbs_Cylinder,GeomAbs_Circle
 from OCP.Bnd import Bnd_Box
 from OCP.BRepBndLib import BRepBndLib
 from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
@@ -14,7 +14,8 @@ from OCP.gp import gp_Pnt
 from PIL import Image,ImageDraw
 
 
-def resolve_anchors(recipe,shape,front,section,bounds):
+def resolve_anchors(recipe,shape,front,section,bounds,bindings=None):
+    by_id={b["dimension"]["id"]:b for b in (bindings or [])}
     ops={o['id']:o for o in recipe['geometry']['operations']}
     frames={f['id']:f for f in recipe['geometry']['frames']}
     def primitive(id,seen=None):
@@ -36,30 +37,52 @@ def resolve_anchors(recipe,shape,front,section,bounds):
         try:
             value=dim['nominal'];targets=dim['targets'];kind=dim['type'];axis=dim['axis']
             if value==0:omitted.append({'id':dim['id'],'reason':'zero dimension'});continue
+            binding=by_id.get(dim['id']);dest_view=binding['view'] if binding else None;dest=front if dest_view=='front' else section
             item={'id':dim['id'],'dimension':dim}
+            if binding:item['templateBinding']=binding
             if kind=='radius':
                 op=ops[targets[0]['operation']]
                 if op['op']!='fillet':raise ValueError('Radius needs an explicit supported fillet reference')
-                candidates=[];ex=TopExp_Explorer(shape,TopAbs_FACE)
+                candidates=[];face_count=0;ex=TopExp_Explorer(shape,TopAbs_FACE)
                 while ex.More():
                     face=TopoDS.Face_s(ex.Current());surface=BRepAdaptor_Surface(face)
                     if surface.GetType()==GeomAbs_Torus:
                         t=surface.Torus()
                         if abs(t.MinorRadius()-value)<1e-5:
+                            face_count+=1
                             p=t.Location();center=np.array([p.X(),p.Y(),p.Z()]);direction=t.Axis().Direction();normal=np.array([direction.X(),direction.Y(),direction.Z()]);radial=su-normal*np.dot(su,normal)
                             if np.linalg.norm(radial)>1e-7:
                                 radial/=np.linalg.norm(radial)
                                 for degree in (45,135,225,315):
                                     angle=math.radians(degree);point=center+radial*(t.MajorRadius()+value*math.cos(angle))+normal*value*math.sin(angle)
                                     dist=BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(gp_Pnt(*point)).Vertex(),face);dist.Perform()
-                                    if dist.Value()<1e-5:candidates.append(point);break
+                                    if dist.Value()<1e-5:
+                                        candidates.append(point)
+                                        opposite=center-radial*(t.MajorRadius()+value*math.cos(angle))+normal*value*math.sin(angle)
+                                        other=BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(gp_Pnt(*opposite)).Vertex(),face);other.Perform()
+                                        if other.Value()<1e-5:candidates.append(opposite)
+                                        break
                     ex.Next()
-                if len(candidates)!=1:raise ValueError('Radius has no unique surviving toroidal face')
-                item.update(view='section',kind='leader',anchor=project(candidates[0],section).tolist())
+                if face_count!=1 or not candidates:raise ValueError('Radius has no unique surviving toroidal face')
+                item.update(view=dest_view or 'section',kind='leader',anchor=project(candidates[0],dest).tolist(),anchorOptions=[project(p,dest).tolist() for p in candidates])
             else:
                 ps=[primitive(t['operation']) for t in targets]
                 p=ps[0]
                 if kind in ('diameter','pitchDiameter'):
+                    if binding and dest_view=='section':
+                        centers=[];ex=TopExp_Explorer(shape,TopAbs_EDGE)
+                        while ex.More():
+                            curve=BRepAdaptor_Curve(TopoDS.Edge_s(ex.Current()))
+                            if curve.GetType()==GeomAbs_Circle:
+                                c=curve.Circle();loc=c.Location();point=np.array([loc.X(),loc.Y(),loc.Z()]);d=c.Axis().Direction();direction=np.array([d.X(),d.Y(),d.Z()])
+                                if abs(c.Radius()*2-value)<1e-5 and abs(abs(np.dot(direction,p['axis']))-1)<1e-6 and np.linalg.norm(np.cross(point-p['center'],p['axis']))<1e-5:centers.append(project(point,section).tolist())
+                            ex.Next()
+                        if not centers:raise ValueError('No surviving diameter edge in section')
+                        radial=project(p['axis'],section);perp=np.array([-radial[1],radial[0]])
+                        if np.linalg.norm(perp)<1e-7:raise ValueError('Cylinder not edge-on in section')
+                        perp/=np.linalg.norm(perp)
+                        item.update(view='section',kind='sectionDiameter',centerOptions=centers,radius=value/2,radialDirection=perp.tolist())
+                        annotations.append(item);continue
                     if kind=='pitchDiameter' or len(ps)!=1 or abs(abs(np.dot(p['axis'],fn))-1)>1e-6:raise ValueError('No supported face-on diameter')
                     if abs(p['radius']*2-value)>1e-5:raise ValueError('Dimension value differs from referenced diameter')
                     item.update(view='front',kind='circle',center=project(p['center'],front).tolist(),radius=p['radius'])
@@ -67,7 +90,10 @@ def resolve_anchors(recipe,shape,front,section,bounds):
                     direction=np.eye(3)[0 if axis=='X' else 1]
                     a=ps[0]['center'];b=ps[1]['center'] if len(ps)==2 else np.zeros(3)
                     if len(ps)>2 or abs(abs(np.dot(a-b,direction))-value)>1e-5:raise ValueError('Distance has no matching center pair')
-                    item.update(view='front',kind='linear',points=[project(a,front).tolist(),project(b,front).tolist()],axis=axis)
+                    destination=front if not binding or dest_view=='front' else section
+                    projected=project(direction,destination)
+                    if np.linalg.norm(projected)<1e-7:raise ValueError('Measurement axis is hidden in selected view')
+                    item.update(view=dest_view or 'front',kind='linear',points=[project(a,destination).tolist(),project(b,destination).tolist()],axis='X' if abs(projected[0])>abs(projected[1]) else 'Y')
                 elif axis=='radial' and kind=='thickness' and len(ps)==1:
                     if abs(abs(p['axis'][2])-1)>1e-6:raise ValueError('Radial wall relation requires axial cylinders')
                     faces=[];ex=TopExp_Explorer(shape,TopAbs_FACE)
@@ -88,6 +114,7 @@ def resolve_anchors(recipe,shape,front,section,bounds):
                     lo=max(min(p['center'][2],p['end'][2]),bounds[2]);hi=min(max(p['center'][2],p['end'][2]),bounds[5])
                     if abs(hi-lo-value)>1e-5:raise ValueError(f'Axial extent {lo:g}..{hi:g} does not match {value:g}')
                     a=p['center'].copy();b=a.copy();a[2]=lo;b[2]=hi
+                    if binding and dest_view!='section':raise ValueError('Axial measurement requires section view')
                     item.update(view='section',kind='linear',points=[project(a,section).tolist(),project(b,section).tolist()],axis='X')
                 else:raise ValueError('Explicit anchor relation required for this measurement')
             annotations.append(item)
@@ -96,21 +123,23 @@ def resolve_anchors(recipe,shape,front,section,bounds):
 
 
 class Annotations:
-    def __init__(self,image,font,scale):
-        self.image=image;self.draw=ImageDraw.Draw(image);self.font=font;self.S=scale;self.boxes=[];self.placed=[];self.labels=[]
+    def __init__(self,image,font,scale,check_geometry=False):
+        self.image=image;self.draw=ImageDraw.Draw(image);self.font=font;self.S=scale;self.boxes=[];self.placed=[];self.labels=[];self.geometry=(np.asarray(image.convert('L'))<100) if check_geometry else None
     def line(self,a,b):self.draw.line((tuple(a),tuple(b)),fill='black',width=max(1,self.S))
     def arrow(self,tip,toward):
         tip=np.array(tip,dtype=float);v=np.array(toward,dtype=float)-tip;n=np.linalg.norm(v)
         if n<1e-7:return
         v/=n;side=np.array([-v[1],v[0]]);base=tip+v*8*self.S
         self.draw.polygon([tuple(tip),tuple(base+side*2*self.S),tuple(base-side*2*self.S)],fill='black')
-    def label(self,text,center,vertical=False):
+    def label(self,text,center,vertical=False,angle=None):
         f=self.font(18);b=self.draw.textbbox((0,0),text,font=f);layer=Image.new('RGB',(b[2]-b[0]+10*self.S,b[3]-b[1]+6*self.S),'white')
         ImageDraw.Draw(layer).text((5*self.S-b[0],3*self.S-b[1]),text,font=f,fill='black')
-        if vertical:layer=layer.rotate(90,expand=True)
+        if angle is not None:layer=layer.rotate(-angle,expand=True,resample=Image.Resampling.BICUBIC,fillcolor='white')
+        elif vertical:layer=layer.rotate(90,expand=True)
         x=int(center[0]-layer.width/2);y=int(center[1]-layer.height/2);box=(x,y,x+layer.width,y+layer.height)
         if any(box[0]<r[2]+4*self.S and box[2]>r[0]-4*self.S and box[1]<r[3]+4*self.S and box[3]>r[1]-4*self.S for r in self.boxes):raise ValueError('Annotation labels collide')
         if x<25*self.S or y<50*self.S or box[2]>1720*self.S or box[3]>875*self.S:raise ValueError('Annotation outside drawing region')
+        if self.geometry is not None and np.count_nonzero(self.geometry[y:box[3],x:box[2]])>10*self.S*self.S:raise ValueError('Annotation text intersects drawing geometry')
         self.image.paste(layer,(x,y));self.labels.append((layer,(x,y)));self.boxes.append(box);return box
     def leader(self,tip,label,text):
         label=np.array(label);tip=np.array(tip);direction=1 if label[0]<tip[0] else -1
@@ -164,3 +193,67 @@ def render_dimensions(image,font,S,items,pix_front,pix_section,value_text):
             failures.append({'id':item['id'],'reason':str(ex),'dimension':dim})
     for layer,position in painter.labels:image.paste(layer,position)
     return {'placed':drawn,'failed':failures}
+
+
+def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text):
+    from template_layout import map_label,map_source_point,estimated_leader_target
+    painter=Annotations(image,font,S,check_geometry=True);drawn=[];failures=[];records=[]
+    page_scale=image.width/layout['sourcePixels'][0]
+    for item in items:
+        binding=item['templateBinding'];view=binding['view'];pix=pix_front if view=='front' else pix_section
+        desired=map_label(binding,view_boxes[view],pix,page_scale)
+        dim=item['dimension'];text=value_text(dim);kind=item['kind']
+        width=painter.draw.textbbox((0,0),text,font=font(18))[2]
+        points=None;tip=None;horizontal=None
+        if kind=='circle':
+            center=np.array(item['center']);cp=np.array(pix(center));direction=desired-cp
+            if np.linalg.norm(direction)<1e-7:failures.append({'id':item['id'],'reason':'Template label is at circle center','dimension':dim});continue
+            # Convert pixel direction back to the view plane without changing the view.
+            direction=np.array([direction[0],-direction[1]]);direction/=np.linalg.norm(direction)
+            tip=np.array(pix(center+direction*item['radius']))
+        elif kind=='sectionDiameter':
+            center=min(item['centerOptions'],key=lambda c:np.linalg.norm(np.array(pix(c))-desired))
+            radial=np.array(item['radialDirection']);points=[np.array(pix(np.array(center)+radial*item['radius'])),np.array(pix(np.array(center)-radial*item['radius']))]
+            horizontal=abs(points[1][0]-points[0][0])>abs(points[1][1]-points[0][1])
+        elif kind=='linear':
+            points=[np.array(pix(p)) for p in item['points']];horizontal=item['axis']=='X'
+        else:
+            expected=map_source_point(binding,view_boxes[view],pix,estimated_leader_target(binding))
+            tip=min((np.array(pix(p)) for p in item.get('anchorOptions',[item['anchor']])),key=lambda p:np.linalg.norm(p-expected))
+        base=desired.copy()
+        if points is not None:
+            a,b=points;span=abs((b-a)[0 if horizontal else 1]);mid=(a+b)/2
+            if span<width+12*S:
+                if horizontal:base[0]=(min(a[0],b[0])-width/2-12*S) if desired[0]<mid[0] else (max(a[0],b[0])+width/2+12*S)
+                else:base[1]=(min(a[1],b[1])-width/2-12*S) if desired[1]<=mid[1] else (max(a[1],b[1])+width/2+12*S)
+        placed=False;reason='No collision-free template-local placement'
+        # Candidate shifts are relative to the detected template position, never a new view.
+        shifts=[(0,0)]
+        if points is not None:
+            for distance in (20,40,60,80,100,120):
+                shifts.extend([(0,-distance),(0,distance)] if horizontal else [(-distance,0),(distance,0)])
+        else:
+            shifts += [(dx,dy) for distance in (20,40,60,80) for dx,dy in [(0,-distance),(0,distance),(-distance,0),(distance,0)]]
+        for dx,dy in shifts:
+            candidate=base+np.array([dx,dy])*S
+            backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels)
+            try:
+                if points is not None:
+                    a,b=points
+                    # Text above a horizontal line / left of a vertical line.
+                    coordinate=candidate[1]+13*S if horizontal else candidate[0]+13*S
+                    p=np.array([a[0],coordinate]) if horizontal else np.array([coordinate,a[1]])
+                    q=np.array([b[0],coordinate]) if horizontal else np.array([coordinate,b[1]])
+                    painter.line(a,p);painter.line(b,q);painter.line(p,q)
+                    length=np.linalg.norm(p-q);painter.arrow(p,q if length>30*S else p-(q-p));painter.arrow(q,p if length>30*S else q+(q-p))
+                    painter.label(text,candidate,vertical=not horizontal)
+                else:
+                    painter.line(tip,candidate);painter.arrow(tip,candidate)
+                    direction=tip-candidate;angle=math.degrees(math.atan2(direction[1],direction[0]));angle=(angle+90)%180-90
+                    painter.label(text,candidate,angle=angle)
+                drawn.append(item['id']);records.append({'id':item['id'],'sourceLabel':binding['marker']['label'],'view':view,'templateLabelPixels':(desired/S).tolist(),'placedLabelPixels':(candidate/S).tolist()});placed=True;break
+            except ValueError as ex:
+                reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels
+        if not placed:failures.append({'id':item['id'],'reason':reason,'dimension':dim})
+    for layer,position in painter.labels:image.paste(layer,position)
+    return {'placed':drawn,'failed':failures,'templatePlacements':records}

@@ -1,0 +1,175 @@
+{
+  "placed": [
+    "dimA",
+    "dimWall",
+    "dimB",
+    "dimC",
+    "dimD",
+    "dimE",
+    "dimF",
+    "dimG",
+    "dimI",
+    "dimJ",
+    "dimR2"
+  ],
+  "templatePlacements": [
+    {
+      "id": "dimA",
+      "sourceLabel": "A",
+      "view": "section",
+      "templateLabelPixels": [
+        86.17142857142858,
+        468.1988367507886
+      ],
+      "placedLabelPixels": [
+        86.17142857142858,
+        468.1988367507886
+      ]
+    },
+    {
+      "id": "dimWall",
+      "sourceLabel": "3",
+      "view": "section",
+      "templateLabelPixels": [
+        254.59089467005074,
+        247.58572883806517
+      ],
+      "placedLabelPixels": [
+        254.59089467005074,
+        217.85595238095237
+      ]
+    },
+    {
+      "id": "dimB",
+      "sourceLabel": "B",
+      "view": "front",
+      "templateLabelPixels": [
+        678.8647784706209,
+        157.37927176396994
+      ],
+      "placedLabelPixels": [
+        678.8647784706209,
+        157.37927176396994
+      ]
+    },
+    {
+      "id": "dimC",
+      "sourceLabel": "C",
+      "view": "front",
+      "templateLabelPixels": [
+        871.8761195668698,
+        432.92799365323503
+      ],
+      "placedLabelPixels": [
+        871.8761195668698,
+        432.92799365323503
+      ]
+    },
+    {
+      "id": "dimD",
+      "sourceLabel": "D",
+      "view": "section",
+      "templateLabelPixels": [
+        139.42142857142858,
+        468.1988367507886
+      ],
+      "placedLabelPixels": [
+        139.42142857142858,
+        547.9976190476191
+      ]
+    },
+    {
+      "id": "dimE",
+      "sourceLabel": "E",
+      "view": "section",
+      "templateLabelPixels": [
+        252.27358593183467,
+        548.4896391955835
+      ],
+      "placedLabelPixels": [
+        285.47142857142853,
+        548.4896391955835
+      ]
+    },
+    {
+      "id": "dimF",
+      "sourceLabel": "F",
+      "view": "section",
+      "templateLabelPixels": [
+        174.92142857142858,
+        375.9657104363827
+      ],
+      "placedLabelPixels": [
+        146.79642857142858,
+        375.9657104363827
+      ]
+    },
+    {
+      "id": "dimG",
+      "sourceLabel": "G",
+      "view": "front",
+      "templateLabelPixels": [
+        829.6432694359328,
+        349.12718332491414
+      ],
+      "placedLabelPixels": [
+        829.6432694359328,
+        349.12718332491414
+      ]
+    },
+    {
+      "id": "dimI",
+      "sourceLabel": "L",
+      "view": "front",
+      "templateLabelPixels": [
+        647.6407831243025,
+        580.7800030729584
+      ],
+      "placedLabelPixels": [
+        647.6407831243025,
+        580.7800030729584
+      ]
+    },
+    {
+      "id": "dimJ",
+      "sourceLabel": "J",
+      "view": "section",
+      "templateLabelPixels": [
+        249.1692666787527,
+        468.09220885909565
+      ],
+      "placedLabelPixels": [
+        189.1692666787527,
+        548.9029761904762
+      ]
+    },
+    {
+      "id": "dimR2",
+      "sourceLabel": "R2",
+      "view": "section",
+      "templateLabelPixels": [
+        187.40618693540387,
+        455.06661176540734
+      ],
+      "placedLabelPixels": [
+        187.40618693540387,
+        455.06661176540734
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "dimHeight",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimR8",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimR15",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

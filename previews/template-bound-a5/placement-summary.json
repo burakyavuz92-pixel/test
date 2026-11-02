@@ -1,0 +1,124 @@
+[
+  {
+    "id": "11-24-13",
+    "placed": 11,
+    "unresolved": [],
+    "omitted": [
+      {
+        "id": "dimHeight",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR8",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR15",
+        "reason": "No bracketed template marker"
+      }
+    ]
+  },
+  {
+    "id": "11-24-216",
+    "placed": 11,
+    "unresolved": [],
+    "omitted": [
+      {
+        "id": "dimHeight",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR8",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR15",
+        "reason": "No bracketed template marker"
+      }
+    ]
+  },
+  {
+    "id": "11-24-372",
+    "placed": 10,
+    "unresolved": [],
+    "omitted": [
+      {
+        "id": "dimB",
+        "reason": "zero dimension"
+      },
+      {
+        "id": "dimHeight",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR8",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR15",
+        "reason": "No bracketed template marker"
+      }
+    ]
+  },
+  {
+    "id": "11-80-13",
+    "placed": 11,
+    "unresolved": [],
+    "omitted": [
+      {
+        "id": "dimHeight",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR8",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR15",
+        "reason": "No bracketed template marker"
+      }
+    ]
+  },
+  {
+    "id": "11-80-216",
+    "placed": 11,
+    "unresolved": [],
+    "omitted": [
+      {
+        "id": "dimHeight",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR8",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR15",
+        "reason": "No bracketed template marker"
+      }
+    ]
+  },
+  {
+    "id": "11-80-372",
+    "placed": 10,
+    "unresolved": [],
+    "omitted": [
+      {
+        "id": "dimB",
+        "reason": "zero dimension"
+      },
+      {
+        "id": "dimHeight",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR8",
+        "reason": "No bracketed template marker"
+      },
+      {
+        "id": "dimR15",
+        "reason": "No bracketed template marker"
+      }
+    ]
+  }
+]

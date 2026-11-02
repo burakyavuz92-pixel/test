@@ -6,3 +6,5 @@ output/
 **/__pycache__/
 
 .recipe-library/
+
+.template-layout-cache/

@@ -1,0 +1,504 @@
+{
+  "apiCalls": 0,
+  "sourceSha256": "e8df5c57fcb2c46660ab0d2be21664879c3f186ce33b332114c20d6b2570fdd1",
+  "sourcePixels": [
+    7016,
+    4961
+  ],
+  "excelColumns": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "L",
+    "J",
+    "K"
+  ],
+  "missingExcelLabels": [
+    "K"
+  ],
+  "viewRegionsNormalized": {
+    "section": [
+      0.035,
+      0.055,
+      0.29,
+      0.78
+    ],
+    "front": [
+      0.35,
+      0.055,
+      0.81,
+      0.78
+    ],
+    "isometric": [
+      0.81,
+      0.055,
+      0.975,
+      0.34
+    ]
+  },
+  "candidates": [
+    {
+      "label": "B",
+      "rawLabel": "B",
+      "normalization": null,
+      "sourceText": "[B]",
+      "view": "front",
+      "confidence": 82.51886,
+      "centerPixels": [
+        3266.0,
+        724.5
+      ],
+      "polygonPixels": [
+        [
+          3225.0,
+          690.0
+        ],
+        [
+          3307.0,
+          690.0
+        ],
+        [
+          3307.0,
+          759.0
+        ],
+        [
+          3225.0,
+          759.0
+        ]
+      ],
+      "centerNormalized": [
+        0.4655074116305587,
+        0.14603910501914938
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 1,
+      "ocrRotationDeg": 0,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "G",
+      "rawLabel": "G",
+      "normalization": null,
+      "sourceText": "[G]",
+      "view": "front",
+      "confidence": 40.060555,
+      "centerPixels": [
+        3971.0237945776266,
+        1596.065791128141
+      ],
+      "polygonPixels": [
+        [
+          3911.1484955351348,
+          1518.7728511881169
+        ],
+        [
+          4067.899093620118,
+          1609.2728511881169
+        ],
+        [
+          4030.899093620118,
+          1673.358731068165
+        ],
+        [
+          3874.1484955351348,
+          1582.858731068165
+        ]
+      ],
+      "centerNormalized": [
+        0.5659954097174497,
+        0.3217225944624352
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 2,
+      "ocrRotationDeg": 30,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "C",
+      "rawLabel": "C",
+      "normalization": null,
+      "sourceText": "[C]",
+      "view": "front",
+      "confidence": 82.488937,
+      "centerPixels": [
+        4168.5,
+        1988.0
+      ],
+      "polygonPixels": [
+        [
+          4132.0,
+          2031.0
+        ],
+        [
+          4132.0,
+          1945.0
+        ],
+        [
+          4205.0,
+          1945.0
+        ],
+        [
+          4205.0,
+          2031.0
+        ]
+      ],
+      "centerNormalized": [
+        0.5941419612314709,
+        0.4007256601491635
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 3,
+      "ocrRotationDeg": 270,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "L",
+      "rawLabel": "L",
+      "normalization": null,
+      "sourceText": "[L]",
+      "view": "front",
+      "confidence": 85.548004,
+      "centerPixels": [
+        3120.0,
+        2679.5
+      ],
+      "polygonPixels": [
+        [
+          3076.0,
+          2637.0
+        ],
+        [
+          3164.0,
+          2637.0
+        ],
+        [
+          3164.0,
+          2722.0
+        ],
+        [
+          3076.0,
+          2722.0
+        ]
+      ],
+      "centerNormalized": [
+        0.44469783352337516,
+        0.5401128804676476
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 4,
+      "ocrRotationDeg": 0,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "3",
+      "rawLabel": "3",
+      "normalization": null,
+      "sourceText": "[3]",
+      "view": "section",
+      "confidence": 86.015594,
+      "centerPixels": [
+        1494.4999999999998,
+        1120.5
+      ],
+      "polygonPixels": [
+        [
+          1459.9999999999998,
+          1157.0
+        ],
+        [
+          1459.9999999999998,
+          1084.0
+        ],
+        [
+          1528.9999999999998,
+          1084.0
+        ],
+        [
+          1528.9999999999998,
+          1157.0
+        ]
+      ],
+      "centerNormalized": [
+        0.21301311288483463,
+        0.22586172142713162
+      ],
+      "status": "needs-review",
+      "kind": "literal-dimension",
+      "id": 5,
+      "ocrRotationDeg": 270,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "F",
+      "rawLabel": "F",
+      "normalization": null,
+      "sourceText": "[F]",
+      "view": "section",
+      "confidence": 88.475525,
+      "centerPixels": [
+        885.5,
+        1722.5
+      ],
+      "polygonPixels": [
+        [
+          847.0,
+          1688.0
+        ],
+        [
+          924.0,
+          1688.0
+        ],
+        [
+          924.0,
+          1757.0
+        ],
+        [
+          847.0,
+          1757.0
+        ]
+      ],
+      "centerNormalized": [
+        0.1262115165336374,
+        0.34720822414835717
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 6,
+      "ocrRotationDeg": 0,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "R2",
+      "rawLabel": "R2",
+      "normalization": null,
+      "sourceText": "[R2]",
+      "view": "section",
+      "confidence": 92.242981,
+      "centerPixels": [
+        935.4390334559012,
+        2093.420310216783
+      ],
+      "polygonPixels": [
+        [
+          915.6400435826779,
+          2022.7096320981284
+        ],
+        [
+          1006.1497115745559,
+          2113.219300090006
+        ],
+        [
+          955.2380233291244,
+          2164.1309883354375
+        ],
+        [
+          864.7283553372465,
+          2073.6213203435595
+        ]
+      ],
+      "centerNormalized": [
+        0.13332939473430747,
+        0.4219754707149331
+      ],
+      "status": "needs-review",
+      "kind": "literal-radius",
+      "id": 7,
+      "ocrRotationDeg": 45,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "J",
+      "rawLabel": "J",
+      "normalization": null,
+      "sourceText": "[J]",
+      "view": "section",
+      "confidence": 89.585976,
+      "centerPixels": [
+        1432.5,
+        2154.5
+      ],
+      "polygonPixels": [
+        [
+          1398.0,
+          2189.0
+        ],
+        [
+          1398.0,
+          2120.0
+        ],
+        [
+          1467.0,
+          2120.0
+        ],
+        [
+          1467.0,
+          2189.0
+        ]
+      ],
+      "centerNormalized": [
+        0.20417616875712657,
+        0.4342874420479742
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 8,
+      "ocrRotationDeg": 270,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "A",
+      "rawLabel": "A",
+      "normalization": null,
+      "sourceText": "[A]",
+      "view": "section",
+      "confidence": 79.685196,
+      "centerPixels": [
+        530.5,
+        2155.0
+      ],
+      "polygonPixels": [
+        [
+          496.0,
+          2196.0
+        ],
+        [
+          496.0,
+          2114.0
+        ],
+        [
+          565.0,
+          2114.0
+        ],
+        [
+          565.0,
+          2196.0
+        ]
+      ],
+      "centerNormalized": [
+        0.07561288483466362,
+        0.43438822817980244
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 9,
+      "ocrRotationDeg": 270,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "D",
+      "rawLabel": "D",
+      "normalization": null,
+      "sourceText": "[D]",
+      "view": "section",
+      "confidence": 89.01107,
+      "centerPixels": [
+        743.5,
+        2155.0
+      ],
+      "polygonPixels": [
+        [
+          709.0,
+          2198.0
+        ],
+        [
+          709.0,
+          2112.0
+        ],
+        [
+          778.0,
+          2112.0
+        ],
+        [
+          778.0,
+          2198.0
+        ]
+      ],
+      "centerNormalized": [
+        0.1059720638540479,
+        0.43438822817980244
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 10,
+      "ocrRotationDeg": 270,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    },
+    {
+      "label": "E",
+      "rawLabel": "E",
+      "normalization": null,
+      "sourceText": "[E]",
+      "view": "section",
+      "confidence": 77.255058,
+      "centerPixels": [
+        1468.0,
+        2531.5
+      ],
+      "polygonPixels": [
+        [
+          1427.0,
+          2497.0
+        ],
+        [
+          1509.0,
+          2497.0
+        ],
+        [
+          1509.0,
+          2566.0
+        ],
+        [
+          1427.0,
+          2566.0
+        ]
+      ],
+      "centerNormalized": [
+        0.20923603192702395,
+        0.5102801854464826
+      ],
+      "status": "needs-review",
+      "kind": "excel-label",
+      "id": 11,
+      "ocrRotationDeg": 0,
+      "orientationStatus": "OCR search angle, not independently measured text orientation"
+    }
+  ],
+  "rejectedCandidates": [],
+  "limits": [
+    "Bracket labels only; unmarked text is intentionally excluded",
+    "Arrow connectivity not resolved",
+    "OCR angle search uses 15 degree steps; not a guaranteed arbitrary-angle detector",
+    "View regions are calibrated to this template"
+  ],
+  "sourceFrames": {
+    "front": {
+      "bboxPixels": [
+        2357.60009765625,
+        873.5999755859375,
+        4886.39990234375,
+        3402.39990234375
+      ],
+      "method": "ink-validated circular outline",
+      "confidence": 0.9972222222222222
+    },
+    "section": {
+      "bboxPixels": [
+        1048.0,
+        872.0,
+        1836.0,
+        3408.0
+      ],
+      "method": "long upright contours excluding labeled dimension lines",
+      "confidence": null
+    }
+  },
+  "layoutVersion": "bracket-layout-v1"
+}

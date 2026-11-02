@@ -8,7 +8,7 @@ public static class NativeRecipeExecutor
         CadRecipeWorkflow.Review(excel,image,saved,output);
         if(Environment.ExitCode!=0)return;
         var start=new ProcessStartInfo(Environment.GetEnvironmentVariable("OCCT_PYTHON")??"/workspace/occt-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};
-        foreach(var arg in new[]{Path.GetFullPath("tools/cad_recipe_executor.py"),Path.GetFullPath(output),Path.GetFullPath(image)})start.ArgumentList.Add(arg);
+        foreach(var arg in new[]{Path.GetFullPath("tools/cad_recipe_executor.py"),Path.GetFullPath(output),Path.GetFullPath(image),Path.GetFullPath(excel)})start.ArgumentList.Add(arg);
         start.Environment.Remove("OPENROUTER_API_KEY");start.Environment.Remove("OPENROUTER_MODEL");start.Environment["LIBGL_ALWAYS_SOFTWARE"]="1";
         using var process=Process.Start(start)??throw new Exception("Native yürütücü başlatılamadı.");
         var stdout=process.StandardOutput.ReadToEndAsync();var stderr=process.StandardError.ReadToEndAsync();
