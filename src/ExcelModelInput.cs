@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 // Parse once locally. The API receives one typed table; annotation retains source tolerance.
 public record ParsedTolerance(string kind, double upperDeviationMm, double lowerDeviationMm);
 public record ParsedExcelCell(string state, double? nominalMm = null, bool? isZero = null,
-    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null);
+    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null);
 public record ParsedExcelRow(string outputId, Dictionary<string, ParsedExcelCell> cells);
 public record ExcelApiInput(int schemaVersion, string lengthUnit, ParsedExcelRow[] rows);
 
@@ -24,6 +24,20 @@ public static class ExcelModelInput
         if (value.Length == 0) return new("blank");
         // Preserve product identifiers as text, even when they start with digits.
         if (Regex.IsMatch(value, @"^\d+(?:-\d+){2,}$")) return new("text", text: value);
+        var threaded=Regex.Match(value,@"^(?<base>.+)\((?<thread>[^()]+)\)$");
+        if(threaded.Success)
+        {
+            var callout=threaded.Groups["thread"].Value.Trim();
+            bool isThread=Regex.IsMatch(callout,@"^M\d+(?:[.,]\d+)?(?:[xX×]\d+(?:[.,]\d+)?)?(?:-[0-9A-Za-z]+)?$",RegexOptions.IgnoreCase)
+                ||Regex.IsMatch(callout,@"^(?:G|R|Rc|Rp)\s*\d+(?:/\d+)?$",RegexOptions.IgnoreCase)
+                ||Regex.IsMatch(callout,@"^\d+(?:/\d+)?[""″]?\s*-\s*\d+\s*NPT$",RegexOptions.IgnoreCase);
+            if(isThread)
+            {
+                var geometry=ParseCell(threaded.Groups["base"].Value);
+                if(geometry.state!="number")throw new FormatException("Diş tanımı öncesinde sayısal geometri ölçüsü gerekli.");
+                return geometry with{threadCallout=callout};
+            }
+        }
         var m = Measurement.Match(value);
         if (m.Success)
         {
@@ -55,4 +69,11 @@ public static class ExcelModelInput
                 catch (FormatException ex) { throw new FormatException($"{row["jpeg file name"]} / {kv.Key}: {ex.Message}"); }
             })); }).ToArray());
 
+    // Only geometric cell data enters the model request; presentation remains local.
+    public static object ForModel(IEnumerable<Dictionary<string,string>> rows)
+    {
+        var parsed=Build(rows);
+        return new{parsed.schemaVersion,parsed.lengthUnit,rows=parsed.rows.Select(r=>new{r.outputId,
+            cells=r.cells.ToDictionary(kv=>kv.Key,kv=>new{kv.Value.state,kv.Value.nominalMm,kv.Value.isZero,kv.Value.diameterSymbol})}).ToArray()};
+    }
 }

@@ -215,6 +215,8 @@ def section_lines(shape,spec,view):
  return lines,loops
 
 def text_value(d):
+ callout=d.get('sourceMeasurement',{}).get('threadCallout')
+ if callout:return (f"{d.get('quantity',1):g}×" if d.get('quantity',1)>1 else '')+callout
  v=f"{d['nominal']:g}".replace('.',',');m=d.get('sourceMeasurement',{});tol=m.get('tolerance');prefix='Ø' if d['type'] in ('diameter','pitchDiameter') else 'R' if d['type']=='radius' else ''
  if d.get('quantity',1)>1:prefix=f"{d['quantity']:g}×"+prefix
  if tol:

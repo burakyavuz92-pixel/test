@@ -35,7 +35,7 @@ public static class CadRecipeWorkflow
             if(local.Any(r=>r.settings is not null))File.WriteAllText(Path.Combine(output,"local-drawing-settings.json"),JsonSerializer.Serialize(local,WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(all,WorkflowReports.Json));
             var sample=rows.Count<=8?rows:rows.GroupBy(r=>string.Join('|',r.Where(kv=>!LocalDrawingSettings.IsSetting(kv.Key)).Select(kv=>kv.Value.Length==0?"blank":kv.Value=="0"?"zero":"value"))).Select(g=>g.First()).Concat(rows.TakeLast(1)).Distinct().Take(8).ToList();
-            var input=ExcelModelInput.Build(sample);
+            var input=ExcelModelInput.ForModel(sample);
             var prompt=CadRecipePrompt.ForRows(rows)+"\ntableInput: "+JsonSerializer.Serialize(input);
             File.WriteAllText(Path.Combine(output,"request-prompt.txt"),prompt);File.WriteAllText(Path.Combine(output,"model-input.json"),JsonSerializer.Serialize(input,WorkflowReports.Json));
             var model=settings.Model;var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");
