@@ -93,7 +93,7 @@ def inspect(source,folder,excel=None):
                         b=[min(int(w['left']) for w in span),min(int(w['top']) for w in span),max(int(w['left'])+int(w['width']) for w in span),max(int(w['top'])+int(w['height']) for w in span)]
                         polygon=inverse_box(b,crop.size,rotated.size,rect,angle)
                         center=np.mean(polygon,axis=0);old=next((v for v in found if v['view']==view and np.linalg.norm(np.array(v['centerPixels'])-center)<max(40,(b[3]-b[1])*.7)),None)
-                        item={'label':label,'rawLabel':raw_label,'normalization':correction,'sourceText':text,'view':view,'confidence':conf,'centerPixels':center.tolist(),'polygonPixels':polygon,'centerNormalized':[center[0]/W,center[1]/H],'textAngleClockwiseDeg':angle,'status':'needs-review'}
+                        item={'label':label,'rawLabel':raw_label,'normalization':correction,'sourceText':text,'view':view,'confidence':conf,'centerPixels':center.tolist(),'polygonPixels':polygon,'centerNormalized':[center[0]/W,center[1]/H],'ocrRotationDeg':angle,'orientationStatus':'OCR search angle, not independently measured text orientation','status':'needs-review'}
                         if old:
                             if conf>old['confidence']:found.remove(old);found.append(item)
                         else:found.append(item)
@@ -105,6 +105,6 @@ def inspect(source,folder,excel=None):
     found.sort(key=lambda v:(v['view'],v['centerPixels'][1]))
     save_preview(image,found,folder)
     report={'apiCalls':0,'sourceSha256':hashlib.sha256(pathlib.Path(source).read_bytes()).hexdigest(),'sourcePixels':[W,H],'excelColumns':list(columns),'missingExcelLabels':sorted(set(columns)-{v['label'] for v in found}),'viewRegionsNormalized':REGIONS,'candidates':found,'rejectedCandidates':rejected,'limits':['Bracket labels only; unmarked text is intentionally excluded','Arrow connectivity not resolved','OCR angle search uses 15 degree steps; not a guaranteed arbitrary-angle detector','View regions are calibrated to this template']}
-    (folder/'detections.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps([(v['label'],v['view'],v['textAngleClockwiseDeg'],round(v['confidence'])) for v in found],ensure_ascii=False))
+    (folder/'detections.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps([(v['label'],v['view'],v['ocrRotationDeg'],round(v['confidence'])) for v in found],ensure_ascii=False))
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('source');p.add_argument('folder');p.add_argument('--excel');a=p.parse_args();inspect(a.source,a.folder,a.excel)
