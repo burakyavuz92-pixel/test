@@ -68,3 +68,5 @@ Sabit antet uygulaması ve örnekler: [A5 antet notları](previews/a5-titleblock
 Ölçülendirme kapsamı ve örnekler: [A5 ölçülendirme notları](previews/dimensioned-a5-review/NOTLAR.md).
 
 Yerel taslak OCR keşif aracı: [tespit notları](previews/template-local-detection/NOTLAR.md). Tesseract CLI ve tools/requirements-template-ocr.txt bağımlılıklarını kullanır; üretim yerleşimine henüz bağlanmamıştır.
+
+Köşeli parantezli taslak4.4 konum denemesi: [notlar](previews/taslak44-bracket-detection/NOTLAR.md). `inspect_bracket_layout.py` yalnız konum önizlemesi üretir; API çağırmaz.
