@@ -1,5 +1,5 @@
 """Resolve dimension anchors from construction references, not Excel label names."""
-import math
+import math,re
 import numpy as np
 from OCP.TopExp import TopExp_Explorer
 from OCP.TopAbs import TopAbs_FACE,TopAbs_EDGE
@@ -11,7 +11,7 @@ from OCP.BRepBndLib import BRepBndLib
 from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
 from OCP.BRepExtrema import BRepExtrema_DistShapeShape
 from OCP.gp import gp_Pnt
-from PIL import Image,ImageDraw
+from PIL import Image,ImageDraw,ImageChops,ImageFilter
 
 
 def resolve_anchors(recipe,shape,front,section,bounds,bindings=None):
@@ -131,16 +131,44 @@ class Annotations:
         if n<1e-7:return
         v/=n;side=np.array([-v[1],v[0]]);base=tip+v*8*self.S
         self.draw.polygon([tuple(tip),tuple(base+side*2*self.S),tuple(base-side*2*self.S)],fill='black')
+    def text_layer(self,text):
+        # Format asymmetric deviations locally; thread callouts do not match this suffix.
+        match=re.fullmatch(r'(.*?) \(([+-][0-9,]+)/([+-][0-9,]+)\)',text)
+        chunks=[(text,18,0,0)]
+        if match:
+            nominal,upper,lower=match.groups()
+            main=self.font(18);small=self.font(12)
+            probe=ImageDraw.Draw(Image.new('L',(1,1)))
+            w=probe.textbbox((0,0),nominal,font=main)[2]
+            tw=max(probe.textbbox((0,0),v,font=small)[2] for v in (upper,lower))
+            chunks=[(nominal,18,0,4*self.S),('(',24,w+2*self.S,0),(upper,12,w+10*self.S,0),(lower,12,w+10*self.S,13*self.S),(')',24,w+12*self.S+tw,0)]
+        layer=Image.new('RGB',(max(1,len(text)*24*self.S),40*self.S),'white');draw=ImageDraw.Draw(layer)
+        for value,size,x,y in chunks:
+            f=self.font(size);bb=draw.textbbox((0,0),value,font=f)
+            draw.text((x-bb[0],y-bb[1]),value,font=f,fill='black')
+        ink=ImageChops.invert(layer.convert('L'));bounds=ink.getbbox()
+        return layer.crop(bounds) if bounds else layer.crop((0,0,1,1))
+    def text_mask(self,layer):
+        # One output pixel of clearance around actual glyphs, including rotated text.
+        return ImageChops.invert(layer.convert('L')).point(lambda v:255 if v>20 else 0).filter(ImageFilter.MaxFilter(2*self.S+1))
+    def paste_label(self,layer,position):
+        self.image.paste(layer,position,self.text_mask(layer))
     def label(self,text,center,vertical=False,angle=None):
-        f=self.font(18);b=self.draw.textbbox((0,0),text,font=f);layer=Image.new('RGB',(b[2]-b[0]+10*self.S,b[3]-b[1]+6*self.S),'white')
-        ImageDraw.Draw(layer).text((5*self.S-b[0],3*self.S-b[1]),text,font=f,fill='black')
+        layer=self.text_layer(text)
+        # Padding accommodates the glyph mask's narrow clearance halo.
+        padded=Image.new('RGB',(layer.width+2*self.S,layer.height+2*self.S),'white');padded.paste(layer,(self.S,self.S));layer=padded
         if angle is not None:layer=layer.rotate(-angle,expand=True,resample=Image.Resampling.BICUBIC,fillcolor='white')
         elif vertical:layer=layer.rotate(90,expand=True)
         x=int(center[0]-layer.width/2);y=int(center[1]-layer.height/2);box=(x,y,x+layer.width,y+layer.height)
-        if any(box[0]<r[2]+4*self.S and box[2]>r[0]-4*self.S and box[1]<r[3]+4*self.S and box[3]>r[1]-4*self.S for r in self.boxes):raise ValueError('Annotation labels collide')
         if x<25*self.S or y<50*self.S or box[2]>1720*self.S or box[3]>875*self.S:raise ValueError('Annotation outside drawing region')
-        if self.geometry is not None and np.count_nonzero(self.geometry[y:box[3],x:box[2]])>10*self.S*self.S:raise ValueError('Annotation text intersects drawing geometry')
-        self.image.paste(layer,(x,y));self.labels.append((layer,(x,y)));self.boxes.append(box);return box
+        mask=self.text_mask(layer);active=np.asarray(mask)>0
+        for prior,position in self.labels:
+            px,py=position;left=max(x,px);top=max(y,py);right=min(box[2],px+prior.width);bottom=min(box[3],py+prior.height)
+            if left<right and top<bottom:
+                previous=np.asarray(self.text_mask(prior))>0
+                if np.any(active[top-y:bottom-y,left-x:right-x]&previous[top-py:bottom-py,left-px:right-px]):raise ValueError('Annotation labels collide')
+        if self.geometry is not None and np.count_nonzero(self.geometry[y:box[3],x:box[2]]&active)>10*self.S*self.S:raise ValueError('Annotation text intersects drawing geometry')
+        self.paste_label(layer,(x,y));self.labels.append((layer,(x,y)));self.boxes.append(box);return box
     def leader(self,tip,label,text):
         label=np.array(label);tip=np.array(tip);direction=1 if label[0]<tip[0] else -1
         elbow=label+np.array([direction*25*self.S,0]);self.line(tip,elbow);self.arrow(tip,elbow);self.line(elbow,label);self.label(text,label)
@@ -191,7 +219,7 @@ def render_dimensions(image,font,S,items,pix_front,pix_section,value_text):
         except ValueError as ex:
             image.paste(backup,(0,0));painter.boxes=saved_boxes;painter.labels=saved_labels
             failures.append({'id':item['id'],'reason':str(ex),'dimension':dim})
-    for layer,position in painter.labels:image.paste(layer,position)
+    for layer,position in painter.labels:painter.paste_label(layer,position)
     return {'placed':drawn,'failed':failures}
 
 
@@ -203,7 +231,7 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
         binding=item['templateBinding'];view=binding['view'];pix=pix_front if view=='front' else pix_section
         desired=map_label(binding,view_boxes[view],pix,page_scale)
         dim=item['dimension'];text=value_text(dim);kind=item['kind']
-        width=painter.draw.textbbox((0,0),text,font=font(18))[2]
+        width=painter.text_layer(text).width
         points=None;tip=None;horizontal=None
         if kind=='circle':
             center=np.array(item['center']);cp=np.array(pix(center));direction=desired-cp
@@ -230,10 +258,10 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
         # Candidate shifts are relative to the detected template position, never a new view.
         shifts=[(0,0)]
         if points is not None:
-            for distance in (20,40,60,80,100,120):
+            for distance in (4,8,12,16,24,32,48,64,80,100,120):
                 shifts.extend([(0,-distance),(0,distance)] if horizontal else [(-distance,0),(distance,0)])
         else:
-            shifts += [(dx,dy) for distance in (20,40,60,80) for dx,dy in [(0,-distance),(0,distance),(-distance,0),(distance,0)]]
+            shifts += [(dx,dy) for distance in (4,8,12,16,24,32,48,64,80) for dx,dy in [(0,-distance),(0,distance),(-distance,0),(distance,0)]]
         for dx,dy in shifts:
             candidate=base+np.array([dx,dy])*S
             backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels)
@@ -255,5 +283,5 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
             except ValueError as ex:
                 reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels
         if not placed:failures.append({'id':item['id'],'reason':reason,'dimension':dim})
-    for layer,position in painter.labels:image.paste(layer,position)
+    for layer,position in painter.labels:painter.paste_label(layer,position)
     return {'placed':drawn,'failed':failures,'templatePlacements':records}
