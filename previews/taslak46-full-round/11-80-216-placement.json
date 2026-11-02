@@ -1,0 +1,144 @@
+{
+  "placed": [
+    "dimB",
+    "dimC",
+    "dimG",
+    "dimL",
+    "dimD",
+    "dimJ",
+    "dimR2"
+  ],
+  "templatePlacements": [
+    {
+      "id": "dimB",
+      "sourceLabel": "B",
+      "view": "front",
+      "templateLabelPixels": [
+        679.7606928402893,
+        160.4737482289599
+      ],
+      "placedLabelPixels": [
+        679.7606928402893,
+        160.4737482289599
+      ]
+    },
+    {
+      "id": "dimC",
+      "sourceLabel": "C",
+      "view": "front",
+      "templateLabelPixels": [
+        870.5007903448927,
+        433.2951016050861
+      ],
+      "placedLabelPixels": [
+        870.5007903448927,
+        433.2951016050861
+      ]
+    },
+    {
+      "id": "dimG",
+      "sourceLabel": "G",
+      "view": "front",
+      "templateLabelPixels": [
+        828.7649114782971,
+        350.4535060982662
+      ],
+      "placedLabelPixels": [
+        828.7649114782971,
+        350.4535060982662
+      ]
+    },
+    {
+      "id": "dimL",
+      "sourceLabel": "L",
+      "view": "front",
+      "templateLabelPixels": [
+        648.9041230500709,
+        579.4547426781493
+      ],
+      "placedLabelPixels": [
+        648.9041230500709,
+        579.4547426781493
+      ]
+    },
+    {
+      "id": "dimD",
+      "sourceLabel": "D",
+      "view": "section",
+      "templateLabelPixels": [
+        91.01938095238091,
+        468.1617845876521
+      ],
+      "placedLabelPixels": [
+        91.01938095238091,
+        468.1617845876521
+      ]
+    },
+    {
+      "id": "dimJ",
+      "sourceLabel": "J",
+      "view": "section",
+      "templateLabelPixels": [
+        248.0022122310853,
+        468.05639176806375
+      ],
+      "placedLabelPixels": [
+        148.0022122310853,
+        468.05639176806375
+      ]
+    },
+    {
+      "id": "dimR2",
+      "sourceLabel": "R2",
+      "view": "section",
+      "templateLabelPixels": [
+        139.0041393163562,
+        455.1816703163873
+      ],
+      "placedLabelPixels": [
+        127.0041393163562,
+        455.1816703163873
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "dimA",
+      "reason": "No unique cylindrical construction reference"
+    },
+    {
+      "id": "dimE",
+      "reason": "Axial extent -16..-6 does not match 9"
+    },
+    {
+      "id": "dimRimWall",
+      "reason": "No unique cylindrical construction reference"
+    }
+  ],
+  "omitted": [
+    {
+      "id": "dimK",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimF",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimPlate",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimR8",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimR5",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "dimR15",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

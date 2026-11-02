@@ -1,0 +1,162 @@
+{
+  "newApiCalls": 0,
+  "recipeSha256": "e6775a33c9796967995c5dbde4fde0aefdec891a70ddfbe22e4f7fd9404bf113",
+  "rows": [
+    {
+      "id": "11-24-13",
+      "stepRoundtrip": true,
+      "solidCount": 1,
+      "nativeMethods": [
+        {
+          "id": "r_lip",
+          "method": "exact-annular-full-round"
+        }
+      ],
+      "unresolvedDimensions": [
+        {
+          "id": "dimA",
+          "reason": "No unique cylindrical construction reference"
+        },
+        {
+          "id": "dimE",
+          "reason": "Axial extent -17.5..-6 does not match 10.5"
+        },
+        {
+          "id": "dimRimWall",
+          "reason": "No unique cylindrical construction reference"
+        }
+      ],
+      "placedDimensions": 7
+    },
+    {
+      "id": "11-24-216",
+      "stepRoundtrip": true,
+      "solidCount": 1,
+      "nativeMethods": [
+        {
+          "id": "r_lip",
+          "method": "exact-annular-full-round"
+        }
+      ],
+      "unresolvedDimensions": [
+        {
+          "id": "dimA",
+          "reason": "No unique cylindrical construction reference"
+        },
+        {
+          "id": "dimE",
+          "reason": "Axial extent -16..-6 does not match 9"
+        },
+        {
+          "id": "dimRimWall",
+          "reason": "No unique cylindrical construction reference"
+        }
+      ],
+      "placedDimensions": 7
+    },
+    {
+      "id": "11-24-372",
+      "stepRoundtrip": true,
+      "solidCount": 1,
+      "nativeMethods": [
+        {
+          "id": "r_lip",
+          "method": "exact-annular-full-round"
+        }
+      ],
+      "unresolvedDimensions": [
+        {
+          "id": "dimA",
+          "reason": "No unique cylindrical construction reference"
+        },
+        {
+          "id": "dimE",
+          "reason": "Axial extent -17.5..-6 does not match 10.5"
+        },
+        {
+          "id": "dimRimWall",
+          "reason": "No unique cylindrical construction reference"
+        }
+      ],
+      "placedDimensions": 6
+    },
+    {
+      "id": "11-80-13",
+      "stepRoundtrip": true,
+      "solidCount": 1,
+      "nativeMethods": [
+        {
+          "id": "r_lip",
+          "method": "exact-annular-full-round"
+        }
+      ],
+      "unresolvedDimensions": [
+        {
+          "id": "dimA",
+          "reason": "No unique cylindrical construction reference"
+        },
+        {
+          "id": "dimE",
+          "reason": "Axial extent -17.5..-6 does not match 10.5"
+        },
+        {
+          "id": "dimRimWall",
+          "reason": "No unique cylindrical construction reference"
+        }
+      ],
+      "placedDimensions": 7
+    },
+    {
+      "id": "11-80-216",
+      "stepRoundtrip": true,
+      "solidCount": 1,
+      "nativeMethods": [
+        {
+          "id": "r_lip",
+          "method": "exact-annular-full-round"
+        }
+      ],
+      "unresolvedDimensions": [
+        {
+          "id": "dimA",
+          "reason": "No unique cylindrical construction reference"
+        },
+        {
+          "id": "dimE",
+          "reason": "Axial extent -16..-6 does not match 9"
+        },
+        {
+          "id": "dimRimWall",
+          "reason": "No unique cylindrical construction reference"
+        }
+      ],
+      "placedDimensions": 7
+    },
+    {
+      "id": "11-80-372",
+      "stepRoundtrip": true,
+      "solidCount": 1,
+      "nativeMethods": [
+        {
+          "id": "r_lip",
+          "method": "exact-annular-full-round"
+        }
+      ],
+      "unresolvedDimensions": [
+        {
+          "id": "dimA",
+          "reason": "No unique cylindrical construction reference"
+        },
+        {
+          "id": "dimE",
+          "reason": "Axial extent -17.5..-6 does not match 10.5"
+        },
+        {
+          "id": "dimRimWall",
+          "reason": "No unique cylindrical construction reference"
+        }
+      ],
+      "placedDimensions": 6
+    }
+  ]
+}

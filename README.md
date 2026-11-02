@@ -70,3 +70,5 @@ Sabit antet uygulaması ve örnekler: [A5 antet notları](previews/a5-titleblock
 Yerel taslak OCR keşif aracı: [tespit notları](previews/template-local-detection/NOTLAR.md). Tesseract CLI ve tools/requirements-template-ocr.txt bağımlılıklarını kullanır; üretim yerleşimine bağlanmıştır. Excel sütunu → köşeli parantezli etiket → taslaktaki görünüş ve göreli konum eşleştirmesi yerelde yapılır; parantezsiz bilgi geometride kullanılabilir, yerel ölçü yerleşimi oluşturmaz. İlk kullanımda OCR çalışır, aynı taslak ve sütun düzeninde yerel önbellek kullanılır. [Bağlı yerleşim denemesi ve sınırlar](previews/template-bound-a5/NOTLAR.md).
 
 Köşeli parantezli taslak4.4 konum denemesi: [notlar](previews/taslak44-bracket-detection/NOTLAR.md). `inspect_bracket_layout.py` yalnız konum önizlemesi üretir; API çağırmaz.
+
+OCCT’de normal fillet başarısızsa, uygun iki tam dairesel kenarda kalınlık=2×R koşulu doğrulanarak nominal radyusu değiştirmeyen tam yuvarlak uç oluşturulur. [Kapsam, test ve taslak4.6 çıktıları](previews/taslak46-full-round/NOTLAR.md).

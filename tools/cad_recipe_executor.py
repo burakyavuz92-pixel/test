@@ -5,6 +5,7 @@ from dimension_annotations import resolve_anchors,render_dimensions,render_templ
 from template_layout import prepare as prepare_layout,bind_dimensions
 from drafting_style import PAPER_MM,PIXELS,DPI,PX_PER_MM,choose_scale,scale_label,patterned_line
 from face_edge_selector import select_edge
+from full_round import annular_full_round
 import json,math,sys,pathlib,os,traceback
 import numpy as np
 from PIL import Image,ImageDraw,ImageFont
@@ -63,7 +64,7 @@ def fuse(shapes):
 def build(recipe):
  g=recipe['geometry'];frames={f['id']:f for f in g['frames']};shapes={};records={};checks=[]
  for op in g['operations']:
-  name=op['op'];id=op['id'];a=op.get('args',{});records[id]=op
+  name=op['op'];id=op['id'];a=op.get('args',{});records[id]=op;native_method=None
   if name=='alias':shapes[id]=shapes[op['inputs'][0]];continue
   if name=='passThrough':shapes[id]=shapes[op['target']];continue
   f=frames[op['frame']];x=np.array(f['xAxis']);z=np.array(f['zAxis']);basis=np.column_stack((x,np.cross(z,x),z));origin=np.array(f['origin'])
@@ -142,10 +143,10 @@ def build(recipe):
     copies.append(BRepBuilderAPI_Transform(seed,tr,True).Shape())
    s=fuse(copies)
   elif name in ('fillet','chamfer'):
-   target=shapes[op['target']];builder=(BRepFilletAPI_MakeFillet if name=='fillet' else BRepFilletAPI_MakeChamfer)(target)
+   target=shapes[op['target']];selected_edges=[];builder=(BRepFilletAPI_MakeFillet if name=='fillet' else BRepFilletAPI_MakeChamfer)(target)
    for sel in a['selectors']:
     if 'faces' in sel:
-     builder.Add(a['size'],select_edge(target,sel['faces']));continue
+     edge=select_edge(target,sel['faces']);selected_edges.append(edge);builder.Add(a['size'],edge);continue
     near=pt(sel['near']);wanted=direction(sel['direction']);vertex=BRepBuilderAPI_MakeVertex(gp_Pnt(*near)).Vertex();candidates=[];ex=TopExp_Explorer(target,TopAbs_EDGE)
     while ex.More():
      edge=TopoDS.Edge_s(ex.Current());dist=BRepExtrema_DistShapeShape(vertex,edge);dist.Perform();curve=BRepAdaptor_Curve(edge)
@@ -170,13 +171,16 @@ def build(recipe):
     candidates.sort(key=lambda t:t[0])
     if not candidates or candidates[0][0]>1e-3:raise ValueError('No edge matches geometric selector '+id)
     if len(candidates)>1 and abs(candidates[1][0]-candidates[0][0])<1e-7:raise ValueError('Ambiguous edge selector '+id)
-    builder.Add(a['size'],candidates[0][1])
+    selected_edges.append(candidates[0][1]);builder.Add(a['size'],candidates[0][1])
    builder.Build()
-   if not builder.IsDone():raise RuntimeError('Native edge modification failed '+id)
-   s=builder.Shape()
+   if builder.IsDone():s=builder.Shape()
+   elif name=='fillet':
+    try:s=annular_full_round(target,selected_edges,a['size']);native_method='exact-annular-full-round'
+    except ValueError as ex:raise RuntimeError('Native edge modification failed '+id+'; full-round fallback: '+str(ex)) from ex
+   else:raise RuntimeError('Native edge modification failed '+id)
   else:raise ValueError('Unsupported native operation '+name)
   if s.IsNull() or not BRepCheck_Analyzer(s).IsValid():raise RuntimeError('Invalid BRep '+id)
-  shapes[id]=s;checks.append({'id':id,'op':name,'validBrep':True,'solidCount':count_solids(s),'volumeMm3':vol(s)})
+  shapes[id]=s;checks.append({'id':id,'op':name,'validBrep':True,'solidCount':count_solids(s),'volumeMm3':vol(s),**({'nativeMethod':native_method} if native_method else {})})
  final=shapes[g['result']]
  if count_solids(final)!=1 or vol(final)<=0:raise RuntimeError('Final shape must be one positive-volume solid')
  return final,shapes,checks
