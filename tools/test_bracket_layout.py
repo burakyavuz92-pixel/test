@@ -2,9 +2,9 @@ import unittest
 from inspect_bracket_layout import parse_token,normalize_label,inverse_box
 class BracketLayout(unittest.TestCase):
  def test_supported_marker_forms(self):
-  for text,label in [('[A]','A'),('[ Ø G ]','G'),('[R2]','R2'),('[3]','3')]:self.assertEqual(parse_token(text),label)
+  for text,label in [('[A]','A'),('[ Ø G ]','G'),('Ø[G]','G'),('Ø [J]','J'),('[R2]','R2'),('[3]','3')]:self.assertEqual(parse_token(text),label)
  def test_no_brackets_means_no_automatic_marker(self):
-  for text in ['R5','R8','A',"'A'",'[A','A]','(A)']:self.assertIsNone(parse_token(text))
+  for text in ['R5','R8','A','ØK',"'A'",'[A','A]','(A)']:self.assertIsNone(parse_token(text))
  def test_excel_type_disambiguates_diameter_symbol(self):
   self.assertEqual(normalize_label('DA',{'A':True})[0],'A')
   self.assertEqual(normalize_label('PD',{'D':True})[0],'D')

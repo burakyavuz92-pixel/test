@@ -4,7 +4,7 @@ import cv2,numpy as np
 from PIL import Image,ImageDraw,ImageFont
 from inspect_template_dimensions import REGIONS
 
-TOKEN=re.compile(r'\[(?:[Øø⌀Oo])?([A-Z][A-Z0-9]*|\d+(?:[.,]\d+)?)\]')
+TOKEN=re.compile(r'(?:[Øø⌀])?\[(?:[Øø⌀Oo])?([A-Z][A-Z0-9]*|\d+(?:[.,]\d+)?)\]')
 def parse_token(text):
     text=re.sub(r'\s+','',text)
     found=TOKEN.fullmatch(text)
