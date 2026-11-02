@@ -1,0 +1,24 @@
+{
+  "Status": "recipe-analysis-only",
+  "Issues": [],
+  "Run": {
+    "Source": {
+      "ExcelSha256": "9FC4421FDEFF10B14FFCB5B1544EBE1392EECA551CAC8FE09AF4F163C6B1CBBE",
+      "ImageSha256": "E8DF5C57FCB2C46660AB0D2BE21664879C3F186CE33B332114C20D6B2570FDD1"
+    },
+    "SchemaVersion": 9,
+    "RequestedModel": "anthropic/claude-haiku-5.5",
+    "RowCount": 6,
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.0180894,
+    "ReasoningEffort": "high",
+    "MaxCompletionTokens": 65536,
+    "ApiTimeoutSeconds": 600,
+    "ProducedImages": 0,
+    "NativeExecutionImplemented": true,
+    "ImageCount": 1,
+    "TableCount": 1,
+    "AssistantAnswersUsed": false
+  },
+  "HumanApproved": false
+}

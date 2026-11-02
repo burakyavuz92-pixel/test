@@ -11,7 +11,7 @@ from PIL import Image,ImageDraw,ImageFont
 from OCP.gp import gp_Pnt,gp_Vec,gp_Dir,gp_Ax1,gp_Ax2,gp_Trsf,gp_Pln
 from OCP.GC import GC_MakeArcOfCircle
 from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeEdge,BRepBuilderAPI_MakeWire,BRepBuilderAPI_MakeFace,BRepBuilderAPI_Transform,BRepBuilderAPI_MakeVertex
-from OCP.BRepPrimAPI import BRepPrimAPI_MakeCylinder,BRepPrimAPI_MakePrism,BRepPrimAPI_MakeRevol,BRepPrimAPI_MakeBox
+from OCP.BRepPrimAPI import BRepPrimAPI_MakeCylinder,BRepPrimAPI_MakePrism,BRepPrimAPI_MakeRevol,BRepPrimAPI_MakeBox,BRepPrimAPI_MakeHalfSpace
 from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut,BRepAlgoAPI_Fuse,BRepAlgoAPI_Common,BRepAlgoAPI_Section
 from OCP.BRepFilletAPI import BRepFilletAPI_MakeFillet,BRepFilletAPI_MakeChamfer
 from OCP.BRepExtrema import BRepExtrema_DistShapeShape
@@ -184,9 +184,11 @@ def build(recipe):
 def basis(view):
  n=unit(view['direction']);up=unit(np.array(view['up'])-n*np.dot(view['up'],n));return unit(np.cross(up,n)),up,n
 
-def hlr(shape,view):
+def hlr(shape,view,include_outlines=False):
  right,up,n=basis(view);a=HLRBRep_Algo();a.Add(shape);a.Projector(HLRAlgo_Projector(gp_Ax2(gp_Pnt(),gp_Dir(*n),gp_Dir(*right))));a.Update();a.Hide();c=HLRBRep_HLRToShape(a)
- return [[(p.X(),p.Y()) for p in line] for shape in [c.VCompound(),c.Rg1LineVCompound()] for line in curves(shape)]
+ compounds=[c.VCompound(),c.Rg1LineVCompound()]
+ if include_outlines:compounds.append(c.OutLineVCompound())
+ return [[(p.X(),p.Y()) for p in line] for shape in compounds for line in curves(shape)]
 
 def section_lines(shape,spec,view):
  right,up,n=basis(view);lines=[];loops=[];b=box(shape);reach=np.linalg.norm(np.array(b[3:])-np.array(b[:3]))*3+10
@@ -209,6 +211,14 @@ def section_lines(shape,spec,view):
   op=BRepAlgoAPI_Section(part,gp_Pln(gp_Pnt(*plane['point']),gp_Dir(*plane['normal'])),False);op.Build()
   if not op.IsDone():raise RuntimeError('Section failed')
   for line in curves(op.Shape()):lines.append([(np.dot([p.X(),p.Y(),p.Z()],right),np.dot([p.X(),p.Y(),p.Z()],up)) for p in line])
+  # Retain the material behind the cutting plane and project its visible edges.
+  # This supplies real hole-wall boundaries across the material thickness.
+  plane_point=np.array(plane['point'],dtype=float)
+  face=BRepBuilderAPI_MakeFace(gp_Pln(gp_Pnt(*plane_point),gp_Dir(*plane['normal']))).Face()
+  behind=plane_point-n*reach
+  halfspace=BRepPrimAPI_MakeHalfSpace(face,gp_Pnt(*behind)).Solid()
+  retained=boolean(BRepAlgoAPI_Common,part,halfspace)
+  if not retained.IsNull():lines.extend(hlr(retained,view,include_outlines=True))
   try:
    for _,line in closed_wires(op.Shape()):loops.append([(np.dot([p.X(),p.Y(),p.Z()],right),np.dot([p.X(),p.Y(),p.Z()],up)) for p in line])
   except RuntimeError:pass
@@ -317,7 +327,7 @@ def sheet(recipe,shape,shapes,out,source):
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=(DPI,DPI))
  # A5 PDF provides an exact physical page independently of JPEG viewer DPI rounding.
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
- return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section connectors omitted; band outlines may retain seam edges','Geometric tolerance leader placement and section rear-edge visibility pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
+ return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges','Geometric tolerance leader placement pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
 
 def run(folder,source,excel=None):
  folder=pathlib.Path(folder);results=[]

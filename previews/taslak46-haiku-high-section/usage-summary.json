@@ -1,0 +1,62 @@
+{
+  "requestedModel": "anthropic/claude-haiku-5.5",
+  "responseModel": "anthropic/claude-haiku-5.5",
+  "reasoningEffort": "high",
+  "apiCalls": 1,
+  "usage": {
+    "prompt_tokens": 9579,
+    "completion_tokens": 34263,
+    "total_tokens": 43842,
+    "cost": 0.0180894,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0180894,
+      "upstream_inference_prompt_cost": 0.0009579,
+      "upstream_inference_completions_cost": 0.0171315
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 32072,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "assistantGeometryEdits": false,
+  "rows": [
+    {
+      "id": "11-24-13",
+      "status": "failed",
+      "error": "Native edge modification failed r_lip"
+    },
+    {
+      "id": "11-24-216",
+      "status": "failed",
+      "error": "Native edge modification failed r_lip"
+    },
+    {
+      "id": "11-24-372",
+      "status": "failed",
+      "error": "Native edge modification failed r_lip"
+    },
+    {
+      "id": "11-80-13",
+      "status": "failed",
+      "error": "Native edge modification failed r_lip"
+    },
+    {
+      "id": "11-80-216",
+      "status": "failed",
+      "error": "Native edge modification failed r_lip"
+    },
+    {
+      "id": "11-80-372",
+      "status": "failed",
+      "error": "Native edge modification failed r_lip"
+    }
+  ]
+}
