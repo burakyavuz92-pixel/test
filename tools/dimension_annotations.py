@@ -231,7 +231,7 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
         binding=item['templateBinding'];view=binding['view'];pix=pix_front if view=='front' else pix_section
         desired=map_label(binding,view_boxes[view],pix,page_scale)
         dim=item['dimension'];text=value_text(dim);kind=item['kind']
-        width=painter.text_layer(text).width
+        text_height=painter.text_layer(text).height
         points=None;tip=None;horizontal=None
         if kind=='circle':
             center=np.array(item['center']);cp=np.array(pix(center));direction=desired-cp
@@ -249,11 +249,6 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
             expected=map_source_point(binding,view_boxes[view],pix,estimated_leader_target(binding))
             tip=min((np.array(pix(p)) for p in item.get('anchorOptions',[item['anchor']])),key=lambda p:np.linalg.norm(p-expected))
         base=desired.copy()
-        if points is not None:
-            a,b=points;span=abs((b-a)[0 if horizontal else 1]);mid=(a+b)/2
-            if span<width+12*S:
-                if horizontal:base[0]=(min(a[0],b[0])-width/2-12*S) if desired[0]<mid[0] else (max(a[0],b[0])+width/2+12*S)
-                else:base[1]=(min(a[1],b[1])-width/2-12*S) if desired[1]<=mid[1] else (max(a[1],b[1])+width/2+12*S)
         placed=False;reason='No collision-free template-local placement'
         # Candidate shifts are relative to the detected template position, never a new view.
         shifts=[(0,0)]
@@ -269,7 +264,8 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
                 if points is not None:
                     a,b=points
                     # Text above a horizontal line / left of a vertical line.
-                    coordinate=candidate[1]+13*S if horizontal else candidate[0]+13*S
+                    clearance=text_height/2+2*S
+                    coordinate=candidate[1]+clearance if horizontal else candidate[0]+clearance
                     p=np.array([a[0],coordinate]) if horizontal else np.array([coordinate,a[1]])
                     q=np.array([b[0],coordinate]) if horizontal else np.array([coordinate,b[1]])
                     painter.line(a,p);painter.line(b,q);painter.line(p,q)
