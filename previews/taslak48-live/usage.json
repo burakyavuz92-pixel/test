@@ -1,0 +1,14 @@
+{
+  "geometry": {
+    "input": 7597,
+    "visibleOutput": 1103,
+    "reasoning": 37303,
+    "costUsd": 0.0199627
+  },
+  "measurements": {
+    "input": 9072,
+    "visibleOutput": 3920,
+    "reasoning": 37919,
+    "costUsd": 0.0218267
+  }
+}

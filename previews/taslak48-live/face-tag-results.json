@@ -1,0 +1,56 @@
+{
+  "results": [
+    {
+      "outputId": "11-24-13",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 45475.142709334796,
+          "centroidMm": [
+            0.9534634698168675,
+            -1.0439906420085058e-14,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-80-13",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 45475.142709334796,
+          "centroidMm": [
+            0.9534634698168675,
+            -1.0439906420085058e-14,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-24-216",
+      "status": "failed",
+      "error": "Face tag must select exactly one trimmed face; found 0"
+    },
+    {
+      "outputId": "11-80-216",
+      "status": "failed",
+      "error": "Face tag must select exactly one trimmed face; found 0"
+    },
+    {
+      "outputId": "11-24-372",
+      "status": "failed",
+      "error": "Face tag must select exactly one trimmed face; found 0"
+    },
+    {
+      "outputId": "11-80-372",
+      "status": "failed",
+      "error": "Face tag must select exactly one trimmed face; found 0"
+    }
+  ]
+}
