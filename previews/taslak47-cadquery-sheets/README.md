@@ -12,3 +12,5 @@ Altı JPEG ve A5 PDF. Dört satırda bütün aktif ölçüler yerleşmiştir; 11
 - [11-80-372.pdf](11-80-372.pdf)
 
 Yerleşim güncellemesi: izometri küçültülerek sağ üst köşeye alınmış; ana görünüş ve kesit sağa kaydırılmıştır. 33 ve E gibi ölçülerin yerel yerleşimi için ek çalışma gerekmektedir.
+
+Güncelleme: yalnız taslakta köşeli parantezle işaretli ölçüler çizilir. Parantezsiz K, R8, R5, R1,5 ve R0,5 geometriden kaldırılmamış; yalnız pafta ölçülendirmesinden çıkarılmıştır.
