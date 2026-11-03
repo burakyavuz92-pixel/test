@@ -1,0 +1,44 @@
+[
+  {
+    "file": "11-24-13.stp",
+    "bytes": 44299,
+    "sha256": "19a26594e4ea2dac45577c3583b1d1471b23f6750e62174eebe0dbe911126f23",
+    "validBrep": true,
+    "volumePreserved": true
+  },
+  {
+    "file": "11-24-216.stp",
+    "bytes": 44254,
+    "sha256": "66525f422611c0a27bad09bd09c9f51b85629193ea0250ea59c0709aa9c9bffa",
+    "validBrep": true,
+    "volumePreserved": true
+  },
+  {
+    "file": "11-24-372.stp",
+    "bytes": 44203,
+    "sha256": "7143b70fa95fd8aa8a73e244bd2f55c119194583b72a887e92721081c05ee4b2",
+    "validBrep": true,
+    "volumePreserved": true
+  },
+  {
+    "file": "11-80-13.stp",
+    "bytes": 44299,
+    "sha256": "99509af7d3a8d44be12a0f9e0b6cdc1409eb5c01bd36f3bd7bfe5946193f4e37",
+    "validBrep": true,
+    "volumePreserved": true
+  },
+  {
+    "file": "11-80-216.stp",
+    "bytes": 44254,
+    "sha256": "7f6997a27f076af17c5d7f891f9e0542bfddc1273432451f2c9c470861548a07",
+    "validBrep": true,
+    "volumePreserved": true
+  },
+  {
+    "file": "11-80-372.stp",
+    "bytes": 44203,
+    "sha256": "fb020cceac08df842406ddf250b6178af43a1af85779bb077cf6980fbd45dacf",
+    "validBrep": true,
+    "volumePreserved": true
+  }
+]
