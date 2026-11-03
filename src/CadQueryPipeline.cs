@@ -1,0 +1,66 @@
+using System.Diagnostics;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+
+public static class CadQueryPipeline
+{
+    static string Hash(string path)=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path)));
+    public static async Task Run(string excel,string image,string output,string? replay=null)
+    {
+        if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
+        Directory.CreateDirectory(output);
+        var issues=new List<WorkflowIssue>();string state="failed",stage="input";int calls=0;double cost=0;
+        var settings=OpenRouterSettings.Load();var usages=new List<JsonElement>();
+        try
+        {
+            var raw=WorkflowReports.ReadRows(excel);var parsed=ExcelModelInput.Build(raw);
+            foreach(var r in raw)if(LocalDrawingSettings.Read(r) is null)throw new Exception("Yerel çizim ayarları gerekli.");
+            foreach(var r in parsed.rows)if(!System.Text.RegularExpressions.Regex.IsMatch(r.outputId,@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
+            File.WriteAllText(Path.Combine(output,"rows.json"),JsonSerializer.Serialize(parsed.rows.Select(r=>new{r.outputId,parameters=r.cells.ToDictionary(c=>c.Key,c=>c.Value.nominalMm)}),WorkflowReports.Json));
+            File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(parsed,WorkflowReports.Json));
+            File.WriteAllText(Path.Combine(output,"pipeline-source.json"),JsonSerializer.Serialize(new{excelSha256=Hash(excel),imageSha256=Hash(image)},WorkflowReports.Json));
+            var sample=raw.Count<=8?raw:raw.GroupBy(r=>string.Join('|',r.Where(kv=>!LocalDrawingSettings.IsSetting(kv.Key)&&kv.Key!="jpeg file name").Select(kv=>kv.Value.Length==0?"blank":kv.Value=="0"?"zero":"value"))).Select(g=>g.First()).Concat(raw.TakeLast(1)).Distinct().Take(8).ToList();
+            string table=JsonSerializer.Serialize(ExcelModelInput.ForModel(sample));
+            File.WriteAllText(Path.Combine(output,"model-input.json"),table);
+            async Task<JsonElement> Request(string name,string prompt)
+            {
+                File.WriteAllText(Path.Combine(output,name+"-prompt.txt"),prompt);
+                using var client=new HttpClient{Timeout=TimeSpan.FromSeconds(settings.TimeoutSeconds)};
+                client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok."));
+                var body=new{model=settings.Model,max_tokens=settings.MaxCompletionTokens,reasoning=new{effort=settings.ReasoningEffort},response_format=new{type="json_object"},messages=new[]{new{role="user",content=new object[]{new{type="text",text=prompt},new{type="image_url",image_url=new{url="data:image/jpeg;base64,"+Convert.ToBase64String(File.ReadAllBytes(image))}}}}}};
+                calls++;using var response=await client.PostAsync("https://openrouter.ai/api/v1/chat/completions",new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json"));string text=await response.Content.ReadAsStringAsync();
+                File.WriteAllText(Path.Combine(output,name+"-api-response.json"),text);response.EnsureSuccessStatusCode();using var doc=JsonDocument.Parse(text);
+                if(doc.RootElement.TryGetProperty("usage",out var usage)){usages.Add(usage.Clone());if(usage.TryGetProperty("cost",out var amount))cost+=amount.GetDouble();}
+                var choice=doc.RootElement.GetProperty("choices")[0];if(choice.GetProperty("finish_reason").GetString()!="stop")throw new Exception("Model yanıtı tamamlanmadı.");
+                using var answer=JsonDocument.Parse(GroupWorkflow.ExtractJson(choice.GetProperty("message").GetProperty("content").GetString()!));
+                if(answer.RootElement.TryGetProperty("error",out var error))throw new Exception(error.GetString());return answer.RootElement.Clone();
+            }
+            void SaveCode(string filename,string source){if(source.Length>120000)throw new Exception("Betik boyut sınırı.");File.WriteAllText(Path.Combine(output,filename),source);}
+            stage="geometry-model";
+            if(replay is null){var r=await Request("geometry",File.ReadAllText("contracts/cadquery/geometry.txt")+"\nTABLE:\n"+table);SaveCode("part.py",r.GetProperty("script").GetString()!);}
+            else File.Copy(Path.Combine(replay,"part.py"),Path.Combine(output,"part.py"));
+            stage="geometry-execution";if(await CadScriptWorkflow.Execute(output)!=0)throw new Exception("Geometri doğrulaması başarısız; script-results.json incelenmeli.");
+            stage="measurement-model";
+            if(replay is null){var r=await Request("measurements",File.ReadAllText("contracts/cadquery/measurements.txt")+"\nGEOMETRY:\n"+File.ReadAllText(Path.Combine(output,"part.py"))+"\nTABLE:\n"+table);SaveCode("measurements.py",r.GetProperty("script").GetString()!);File.WriteAllText(Path.Combine(output,"visual-markers.json"),r.GetProperty("markers").GetRawText());}
+            else {File.Copy(Path.Combine(replay,"measurements.py"),Path.Combine(output,"measurements.py"));File.Copy(Path.Combine(replay,"visual-markers.json"),Path.Combine(output,"visual-markers.json"));}
+            stage="measurement-execution";
+            var start=new ProcessStartInfo(Environment.GetEnvironmentVariable("CADQUERY_PYTHON")??"/workspace/cq-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};
+            start.ArgumentList.Add(Path.GetFullPath("tools/evaluate_script_measurements.py"));start.ArgumentList.Add(Path.GetFullPath(output));start.Environment.Remove("OPENROUTER_API_KEY");start.Environment.Remove("OPENROUTER_MODEL");
+            using(var process=Process.Start(start)??throw new Exception("Ölçü yürütücüsü başlamadı."))
+            {
+                var stdout=process.StandardOutput.ReadToEndAsync();var stderr=process.StandardError.ReadToEndAsync();using var timeout=new CancellationTokenSource(TimeSpan.FromMinutes(2));
+                try{await process.WaitForExitAsync(timeout.Token);}catch(OperationCanceledException){process.Kill(true);throw new Exception("Ölçü zaman aşımı.");}
+                File.WriteAllText(Path.Combine(output,"measurement-stdout.log"),await stdout);File.WriteAllText(Path.Combine(output,"measurement-stderr.log"),await stderr);
+                if(process.ExitCode!=0)throw new Exception("Ölçü fonksiyonu başarısız.");
+            }
+            stage="sheets";await CadScriptWorkflow.RenderSheets(excel,image,output);if(Environment.ExitCode!=0)throw new Exception("Pafta üretimi başarısız.");
+            using var sheets=JsonDocument.Parse(File.ReadAllText(Path.Combine(output,"script-sheet-results.json")));
+            bool incomplete=sheets.RootElement.GetProperty("results").EnumerateArray().Any(r=>r.GetProperty("drafting").GetProperty("unresolvedDimensions").GetArrayLength()>0);
+            state=incomplete?"sheets-produced-with-unresolved-measurements":"sheets-produced";Environment.ExitCode=incomplete?2:0;
+        }
+        catch(Exception ex){issues.Add(new("CADQUERY_PIPELINE",stage,"error",ex.Message,[],"Aşama kayıtları incelenmeli; otomatik API tekrarı yok."));Environment.ExitCode=1;}
+        finally{WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages});Console.WriteLine(state+"; "+output);}
+    }
+}

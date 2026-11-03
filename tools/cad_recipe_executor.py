@@ -183,6 +183,11 @@ def build(recipe):
   shapes[id]=s;checks.append({'id':id,'op':name,'validBrep':True,'solidCount':count_solids(s),'volumeMm3':vol(s),**({'nativeMethod':native_method} if native_method else {})})
  final=shapes[g['result']]
  if count_solids(final)!=1 or vol(final)<=0:raise RuntimeError('Final shape must be one positive-volume solid')
+ from measurement_contract import resolve
+ for dim in recipe.get('drawing',{}).get('dimensions',[]):
+  if 'relation' in dim:
+   measured=resolve(final,dim['relation'])
+   if abs(measured-dim['nominal'])>1e-5:raise ValueError('Measurement mismatch '+dim['id'])
  return final,shapes,checks
 
 def basis(view):
@@ -278,7 +283,7 @@ def sheet(recipe,shape,shapes,out,source):
  sec=sections[0]
  if sec.get('worldPath'):trace=[(np.dot(p,right),np.dot(p,up)) for p in sec['worldPath']]
  front_lines=hlr(shape,front);sl,loops=section_lines(shape,sec,sv)
- panels=[(330,120,850,690),(130 if recipe['drawing'].get('templateLayout') else 55,120,240,690)]
+ panels=[(450,120,850,690),(250 if recipe['drawing'].get('templateLayout') else 175,120,240,690)]
  def extent(lines):
   pts=[p for line in lines for p in line]
   return max(p[0] for p in pts)-min(p[0] for p in pts),max(p[1] for p in pts)-min(p[1] for p in pts)
@@ -293,13 +298,13 @@ def sheet(recipe,shape,shapes,out,source):
     centers[key]=max(centers.get(key,0),circle.Radius())
   ex.Next()
  pix=panel(front_lines,panels[0],trace=trace,fixed_k=fixed_k,centers=list(centers.items()))
- txt(650,835,'Ana görünüş',14)
- section_pix=panel(sl,panels[1],loops,fixed_k=fixed_k);txt(65,835,'KESİT '+sec['id'],14)
+ txt(770,835,'Ana görünüş',14)
+ section_pix=panel(sl,panels[1],loops,fixed_k=fixed_k);txt(185,835,'KESİT '+sec['id'],14)
  if template is not None:fill_fields(im,{'scale':scale_label(scale),'product':recipe['outputId'],'format':'A5'},fontpath)
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
  with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
- image.thumbnail((450*S,360*S));im.paste(image,(int(1260*S+(450*S-image.width)/2),int(150*S+(360*S-image.height)/2)))
- txt(1300,530,'İzometrik: ölçek dışı',14)
+ image.thumbnail((270*S,230*S));im.paste(image,(int(1450*S+(270*S-image.width)/2),int(65*S+(230*S-image.height)/2)))
+ txt(1450,315,'İzometrik: ölçek dışı',12)
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  annotation_bounds=Bnd_Box();BRepBndLib.AddOptimal_s(shape,annotation_bounds,False,False)
  layout=recipe['drawing'].get('templateLayout')
@@ -309,7 +314,8 @@ def sheet(recipe,shape,shapes,out,source):
   anchors,unresolved,omitted=resolve_anchors(subset,shape,basis(front),basis(sv),annotation_bounds.Get(),bindings)
   def bounds2(lines):
    pts=[p for line in lines for p in line];return [min(p[0] for p in pts),min(p[1] for p in pts),max(p[0] for p in pts),max(p[1] for p in pts)]
-  placement=render_template_dimensions(im,font,S,anchors,pix,section_pix,layout,{'front':bounds2(front_lines),'section':bounds2(sl)},text_value)
+  from dimension_lanes import render as render_lanes
+  placement=render_lanes(im,font,S,anchors,pix,section_pix,layout,{'front':bounds2(front_lines),'section':bounds2(sl)},text_value)
   unresolved+=binding_errors;omitted+=excluded
  else:
   anchors,unresolved,omitted=resolve_anchors(recipe,shape,basis(front),basis(sv),annotation_bounds.Get())

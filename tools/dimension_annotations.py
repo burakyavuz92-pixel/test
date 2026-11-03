@@ -21,6 +21,7 @@ def resolve_anchors(recipe,shape,front,section,bounds,bindings=None):
     def primitive(id,seen=None):
         seen=set() if seen is None else seen
         if id in seen:raise ValueError('Cyclic annotation reference')
+        if id=='unresolved':raise ValueError('CadQuery measurement requires an explicit geometric reference')
         seen.add(id);op=ops[id]
         if op['op']=='cylinder':
             a=op['args'];f=frames[op['frame']];x=np.array(f['xAxis']);z=np.array(f['zAxis']);basis=np.column_stack((x,np.cross(z,x),z))
@@ -40,12 +41,61 @@ def resolve_anchors(recipe,shape,front,section,bounds,bindings=None):
             binding=by_id.get(dim['id']);dest_view=binding['view'] if binding else None;dest=front if dest_view=='front' else section
             item={'id':dim['id'],'dimension':dim}
             if binding:item['templateBinding']=binding
+            if 'scriptReference' in dim:
+                from script_measurements import anchor
+                item.update(anchor(shape,dim['scriptReference'],value,front,section,dest_view));annotations.append(item);continue
+            if 'relation' in dim:
+                from measurement_contract import resolve
+                measured=resolve(shape,dim['relation'])
+                if abs(measured-value)>1e-5:raise ValueError(f'Final-body measurement {measured:g} differs from nominal {value:g}')
+                surfaces=dim['relation']['surfaces'];first=surfaces[0];relation=dim['relation']['kind']
+                if relation=='diameter':
+                    direction=np.array(first['axisDirection']);center=np.array(first['axisOrigin'])
+                    if dest_view=='section':
+                        centers=[];ex=TopExp_Explorer(shape,TopAbs_EDGE)
+                        while ex.More():
+                            curve=BRepAdaptor_Curve(TopoDS.Edge_s(ex.Current()))
+                            if curve.GetType()==GeomAbs_Circle:
+                                circle=curve.Circle();p=circle.Location();point=np.array([p.X(),p.Y(),p.Z()])
+                                if abs(circle.Radius()*2-value)<1e-5 and np.linalg.norm(np.cross(point-center,direction))<1e-5:centers.append(project(point,section).tolist())
+                            ex.Next()
+                        radial=project(direction,section);perp=np.array([-radial[1],radial[0]])
+                        if not centers or np.linalg.norm(perp)<1e-7:raise ValueError('No supported section diameter edge')
+                        item.update(view='section',kind='sectionDiameter',centerOptions=centers,radius=value/2,radialDirection=perp/np.linalg.norm(perp))
+                        annotations.append(item);continue
+                    if abs(abs(np.dot(direction,fn))-1)>1e-6:raise ValueError('Diameter requires face-on front view')
+                    item.update(view='front',kind='circle',center=project(center,front).tolist(),radius=value/2)
+                elif relation=='axisDistance':
+                    a=np.array(first['axisOrigin']);b=np.array(surfaces[1]['axisOrigin']);direction=np.array(dim['relation']['direction'],dtype=float);direction/=np.linalg.norm(direction)
+                    b=a+direction*np.dot(b-a,direction);pa,pb=project(a,front),project(b,front)
+                    if dest_view not in (None,'front') or abs(np.linalg.norm(pb-pa)-value)>1e-5:raise ValueError('Axis distance requires unobscured front view')
+                    item.update(view='front',kind='linear',points=[pa.tolist(),pb.tolist()],axis='X' if abs(pb[0]-pa[0])>abs(pb[1]-pa[1]) else 'Y')
+                elif relation in ('planeDistance','wallThickness'):
+                    if dest_view not in (None,'section'):raise ValueError('Surface distance requires section view')
+                    if relation=='planeDistance':
+                        normal=np.array(first['normal']);other=surfaces[1]
+                        a=normal*first['offset'];b=normal*np.dot(normal,other['normal'])*other['offset']
+                    else:
+                        normal=np.array(first['axisDirection'],dtype=float);radial=su-normal*np.dot(su,normal)
+                        radial/=np.linalg.norm(radial);center=np.array(first['axisOrigin'])
+                        a=center+radial*first['radius'];b=center+radial*surfaces[1]['radius']
+                    pa,pb=project(a,section),project(b,section)
+                    if abs(np.linalg.norm(pb-pa)-value)>1e-5:raise ValueError('Measurement hidden in section')
+                    item.update(view='section',kind='linear',points=[pa.tolist(),pb.tolist()],axis='X' if abs(pb[0]-pa[0])>abs(pb[1]-pa[1]) else 'Y')
+                else:
+                    # Existing radius anchor resolver below requires a unique toroidal face.
+                    pass
+                if relation!='radius':
+                    annotations.append(item);continue
             if kind=='radius':
                 op=ops[targets[0]['operation']]
                 if op['op']!='fillet':raise ValueError('Radius needs an explicit supported fillet reference')
                 candidates=[];face_count=0;ex=TopExp_Explorer(shape,TopAbs_FACE)
                 while ex.More():
                     face=TopoDS.Face_s(ex.Current());surface=BRepAdaptor_Surface(face)
+                    if 'relation' in dim:
+                        from measurement_contract import surface_matches
+                        if not surface_matches(face,dim['relation']['surfaces'][0]):ex.Next();continue
                     if surface.GetType()==GeomAbs_Torus:
                         t=surface.Torus()
                         if abs(t.MinorRadius()-value)<1e-5:
@@ -123,9 +173,11 @@ def resolve_anchors(recipe,shape,front,section,bounds,bindings=None):
 
 
 class Annotations:
-    def __init__(self,image,font,scale,check_geometry=False):
-        self.image=image;self.draw=ImageDraw.Draw(image);self.font=font;self.S=scale;self.boxes=[];self.placed=[];self.labels=[];self.geometry=(np.asarray(image.convert('L'))<100) if check_geometry else None
-    def line(self,a,b):self.draw.line((tuple(a),tuple(b)),fill='black',width=max(1,self.S))
+    def __init__(self,image,font,scale,check_geometry=False,avoid_lines=False):
+        self.avoid_lines=avoid_lines;self.line_segments=[];self.image=image;self.draw=ImageDraw.Draw(image);self.font=font;self.S=scale;self.boxes=[];self.placed=[];self.labels=[];self.geometry=(np.asarray(image.convert('L'))<100) if check_geometry else None
+    def line(self,a,b):
+        self.draw.line((tuple(a),tuple(b)),fill='black',width=max(1,self.S))
+        if self.avoid_lines:self.line_segments.append((np.array(a),np.array(b)))
     def arrow(self,tip,toward):
         tip=np.array(tip,dtype=float);v=np.array(toward,dtype=float)-tip;n=np.linalg.norm(v)
         if n<1e-7:return
@@ -168,6 +220,10 @@ class Annotations:
                 previous=np.asarray(self.text_mask(prior))>0
                 if np.any(active[top-y:bottom-y,left-x:right-x]&previous[top-py:bottom-py,left-px:right-px]):raise ValueError('Annotation labels collide')
         if self.geometry is not None and np.count_nonzero(self.geometry[y:box[3],x:box[2]]&active)>10*self.S*self.S:raise ValueError('Annotation text intersects drawing geometry')
+        if self.avoid_lines:
+            for a,b in self.line_segments:
+                samples=np.linspace(a,b,max(2,int(np.linalg.norm(b-a))+1));xx=np.rint(samples[:,0]-x).astype(int);yy=np.rint(samples[:,1]-y).astype(int);valid=(xx>=0)&(yy>=0)&(xx<active.shape[1])&(yy<active.shape[0])
+                if np.any(active[yy[valid],xx[valid]]):raise ValueError('Annotation intersects another dimension line')
         self.paste_label(layer,(x,y));self.labels.append((layer,(x,y)));self.boxes.append(box);return box
     def leader(self,tip,label,text):
         label=np.array(label);tip=np.array(tip);direction=1 if label[0]<tip[0] else -1
@@ -184,8 +240,8 @@ class Annotations:
         self.label(text,center,not horizontal)
 
 
-def render_dimensions(image,font,S,items,pix_front,pix_section,value_text):
-    painter=Annotations(image,font,S);failures=[];drawn=[];depth_lane=0;radius_lane=0;center_counts={}
+def render_dimensions(image,font,S,items,pix_front,pix_section,value_text,check_geometry=False):
+    painter=Annotations(image,font,S,check_geometry=check_geometry);failures=[];drawn=[];depth_lane=0;radius_lane=0;center_counts={}
     circles=[i for i in items if i['kind']=='circle'];largest=max(circles,key=lambda i:i['radius'],default=None)
     maincenter=np.array(pix_front(largest['center'])) if largest else np.array([750*S,460*S])
     mainradius=abs(pix_front([largest['center'][0]+largest['radius'],largest['center'][1]])[0]-maincenter[0]) if largest else 250*S
@@ -253,10 +309,11 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
         # Candidate shifts are relative to the detected template position, never a new view.
         shifts=[(0,0)]
         if points is not None:
-            for distance in (4,8,12,16,24,32,48,64,80,100,120):
+            for distance in (4,8,12,16,24,32):
                 shifts.extend([(0,-distance),(0,distance)] if horizontal else [(-distance,0),(distance,0)])
         else:
-            shifts += [(dx,dy) for distance in (4,8,12,16,24,32,48,64,80) for dx,dy in [(0,-distance),(0,distance),(-distance,0),(distance,0)]]
+            shifts += [(dx,dy) for distance in (4,8,12,16,24,32) for dx,dy in [(0,-distance),(0,distance),(-distance,0),(distance,0)]]
+        shifts += sorted([(dx,dy) for dx in (-64,-48,-32,-24,-16,0,16,24,32,48,64) for dy in (-64,-48,-32,-24,-16,0,16,24,32,48,64) if dx and dy],key=lambda d:d[0]*d[0]+d[1]*d[1])
         for dx,dy in shifts:
             candidate=base+np.array([dx,dy])*S
             backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels)
@@ -272,6 +329,7 @@ def render_template_dimensions(image,font,S,items,pix_front,pix_section,layout,v
                     length=np.linalg.norm(p-q);painter.arrow(p,q if length>30*S else p-(q-p));painter.arrow(q,p if length>30*S else q+(q-p))
                     painter.label(text,candidate,vertical=not horizontal)
                 else:
+                    if np.linalg.norm(tip-candidate)>120*S:raise ValueError('Leader exceeds local view placement limit')
                     painter.line(tip,candidate);painter.arrow(tip,candidate)
                     direction=tip-candidate;angle=math.degrees(math.atan2(direction[1],direction[0]));angle=(angle+90)%180-90
                     painter.label(text,candidate,angle=angle)

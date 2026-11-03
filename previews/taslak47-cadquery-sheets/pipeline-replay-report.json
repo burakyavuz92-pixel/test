@@ -1,0 +1,14 @@
+{
+  "Status": "sheets-produced",
+  "Issues": [],
+  "Run": {
+    "Stage": "sheets",
+    "ApiCalls": 0,
+    "ReportedCostUsd": 0,
+    "Model": "anthropic/claude-sonnet-5.5",
+    "Reasoning": "low",
+    "Replay": true,
+    "Usage": []
+  },
+  "HumanApproved": false
+}

@@ -8,7 +8,7 @@ ALLOWED_MODULES={'cadquery':cq,'math':math}
 SAFE_BUILTINS={n:getattr(builtins,n) for n in ['abs','min','max','sum','range','len','float','int','bool','dict','list','tuple','set','enumerate','zip','round','sorted','isinstance','ValueError','RuntimeError','Exception']}
 DENIED={'open','eval','exec','compile','getattr','setattr','delattr','globals','locals','vars','dir','help','input','breakpoint','type','object','super','os','sys','subprocess','socket','pathlib','requests','builtins','importlib','inspect','ctypes','exporters','importers'}
 
-def load_script(source):
+def load_script(source, entry="build_part"):
  tree=ast.parse(source)
  for statement in tree.body:
   if not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef)):raise ValueError('Only imports and function definitions are allowed at module level')
@@ -24,8 +24,8 @@ def load_script(source):
   if name not in ALLOWED_MODULES or level:raise ImportError('Only cadquery/math imports')
   return ALLOWED_MODULES[name]
  env={'__builtins__':dict(SAFE_BUILTINS,__import__=importer),'cq':cq,'math':math};exec(compile(tree,'generated_geometry.py','exec'),env)
- if not callable(env.get('build_part')):raise ValueError('build_part(p) missing')
- return env['build_part']
+ if not callable(env.get(entry)):raise ValueError(entry+'(p) missing')
+ return env[entry]
 
 # Defense in depth for Python IO during generated function execution; not a general OS sandbox.
 ACTIVE=False

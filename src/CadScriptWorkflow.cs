@@ -39,6 +39,33 @@ public static class CadScriptWorkflow
         catch(Exception ex){issues.Add(new("CAD_SCRIPT_FAILURE","software","error",ex.Message,[],"Kayıtlar incelenmeli; otomatik yeniden çağrı yok."));Environment.ExitCode=1;}
         finally{WorkflowReports.Save(output,state,issues,new{Source=new{ExcelSha256=Hash(excel),ImageSha256=Hash(image)},ApiCalls=calls,ReportedCostUsd=cost,ReasoningEffort="high",GeometryOnly=true,AssistantGeometryEdits=false});Console.WriteLine(state+"; "+output);}
     }
+    public static async Task RenderSheets(string excel,string image,string folder)
+    {
+        string manifest=Path.Combine(folder,"pipeline-source.json");
+        if(File.Exists(manifest))
+        {
+            using var source=JsonDocument.Parse(File.ReadAllText(manifest));
+            if(source.RootElement.GetProperty("excelSha256").GetString()!=Hash(excel)||source.RootElement.GetProperty("imageSha256").GetString()!=Hash(image))throw new Exception("Pafta girdileri kayıtlı JPEG/Excel ile uyuşmuyor.");
+        }
+        var raw=WorkflowReports.ReadRows(excel);var parsed=ExcelModelInput.Build(raw);
+        var records=new List<object>();
+        foreach(var row in parsed.rows)
+        {
+            var settings=LocalDrawingSettings.Read(raw.First(r=>r["jpeg file name"]==row.outputId))??throw new Exception("Yerel çizim ayarları gerekli.");
+            var root=System.Text.Json.Nodes.JsonNode.Parse("{\"drawing\":{}}")!;settings.Apply(root);
+            records.Add(new{row.outputId,row.cells,drawing=root["drawing"]});
+        }
+        File.WriteAllText(Path.Combine(folder,"sheet-input.json"),JsonSerializer.Serialize(records,WorkflowReports.Json));
+        var start=new ProcessStartInfo(Environment.GetEnvironmentVariable("OCCT_PYTHON")??"/workspace/occt-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};
+        foreach(var arg in new[]{Path.GetFullPath("tools/cad_script_sheet.py"),Path.GetFullPath(folder),Path.GetFullPath(image),Path.GetFullPath(excel)})start.ArgumentList.Add(arg);
+        start.Environment.Remove("OPENROUTER_API_KEY");start.Environment.Remove("OPENROUTER_MODEL");
+        using var process=Process.Start(start)??throw new Exception("Pafta işlemi başlatılamadı.");
+        var stdout=process.StandardOutput.ReadToEndAsync();var stderr=process.StandardError.ReadToEndAsync();
+        using var timeout=new CancellationTokenSource(TimeSpan.FromMinutes(10));
+        try{await process.WaitForExitAsync(timeout.Token);}catch(OperationCanceledException){process.Kill(true);throw new Exception("Pafta zaman aşımı.");}
+        File.WriteAllText(Path.Combine(folder,"sheet-stdout.log"),await stdout);File.WriteAllText(Path.Combine(folder,"sheet-stderr.log"),await stderr);Environment.ExitCode=process.ExitCode;
+        Console.WriteLine("CadQuery pafta sonucu: "+Path.Combine(folder,"script-sheet-results.json"));
+    }
     public static async Task<int> Execute(string output)
     {
         var start=new ProcessStartInfo(Environment.GetEnvironmentVariable("CADQUERY_PYTHON")??"/workspace/cq-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};

@@ -52,7 +52,10 @@ def bind_dimensions(dimensions,layout):
         if not dim['effectiveVisible']:continue
         source=dim.get('valueSource',{});matches=[]
         for candidate in layout['candidates']:
-            if source.get('kind')=='column':hit=candidate['label']==source['column']
+            if 'sourceLabel' in dim:
+                from visual_measurements import canonical
+                hit=canonical(candidate['label'])==canonical(dim['sourceLabel'])
+            elif source.get('kind')=='column':hit=candidate['label']==source['column']
             else:
                 literal=candidate['label'];expected='R' if dim['type']=='radius' else ''
                 try:hit=literal.startswith(expected) and abs(float(literal[len(expected):].replace(',','.'))-dim['nominal'])<1e-7
