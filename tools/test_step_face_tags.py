@@ -19,9 +19,13 @@ class Tags(unittest.TestCase):
   tag={'name':'same','surface':{'kind':'plane','normal':[0,0,1],'offset':0},'point':[1,1,0]}
   with tempfile.TemporaryDirectory() as d:
    with self.assertRaises(ValueError):write_named(BRepPrimAPI_MakeBox(20,30,5).Shape(),[tag,tag],Path(d)/'part.step')
- def test_point_in_hole_is_not_a_face(self):
+ def test_unique_surface_ignores_historical_point_in_hole(self):
   from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut
   from OCP.gp import gp_Ax2,gp_Pnt,gp_Dir
   body=BRepAlgoAPI_Cut(BRepPrimAPI_MakeBox(20,30,5).Shape(),BRepPrimAPI_MakeCylinder(gp_Ax2(gp_Pnt(10,15,-1),gp_Dir(0,0,1)),3,7).Shape()).Shape()
   with tempfile.TemporaryDirectory() as d:
-   with self.assertRaises(ValueError):write_named(body,[{'name':'hole_void','surface':{'kind':'plane','normal':[0,0,1],'offset':5},'point':[10,15,5]}],Path(d)/'part.step')
+   self.assertTrue(write_named(body,[{'name':'hole_void','surface':{'kind':'plane','normal':[0,0,1],'offset':5},'point':[10,15,5]}],Path(d)/'part.step'))
+
+ def test_pointless_plane_selection(self):
+  with tempfile.TemporaryDirectory() as d:
+   self.assertTrue(write_named(BRepPrimAPI_MakeBox(20,30,5).Shape(),[{'name':'mount','surface':{'kind':'plane','normal':[0,0,1],'offset':5}}],Path(d)/'part.step'))

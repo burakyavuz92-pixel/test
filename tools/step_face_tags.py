@@ -27,16 +27,22 @@ def props(shape,surface=False):
 
 def select(shape,tag):
  if tag.get('unresolved'):raise ValueError(tag['unresolved'])
- point=tag['point']
- if len(point)!=3 or not all(math.isfinite(v) for v in point):raise ValueError('Invalid face point')
  result=[];ex=TopExp_Explorer(shape,TopAbs_FACE)
  while ex.More():
   f=TopoDS.Face_s(ex.Current())
-  if matches(f,tag['surface']):
-   d=BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(gp_Pnt(*point)).Vertex(),f);d.Perform()
-   if d.IsDone() and d.Value()<1e-5:result.append(f)
+  if matches(f,tag['surface']):result.append(f)
   ex.Next()
- if len(result)!=1:raise ValueError('Face tag must select exactly one trimmed face; found '+str(len(result)))
+ if len(result)==1:return result[0]
+ # Historical optional point is only a tie-breaker, never required for a unique surface.
+ if len(result)>1 and 'point' in tag:
+  point=tag['point']
+  if len(point)!=3 or not all(math.isfinite(v) for v in point):raise ValueError('Invalid face point')
+  narrowed=[]
+  for f in result:
+   d=BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(gp_Pnt(*point)).Vertex(),f);d.Perform()
+   if d.IsDone() and d.Value()<1e-5:narrowed.append(f)
+  result=narrowed
+ if len(result)!=1:raise ValueError('Face surface must identify one face; found '+str(len(result)))
  return result[0]
 
 def read_tags(path,names):

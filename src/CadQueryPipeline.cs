@@ -39,12 +39,21 @@ public static class CadQueryPipeline
             }
             void SaveCode(string filename,string source){if(source.Length>120000)throw new Exception("Betik boyut sınırı.");File.WriteAllText(Path.Combine(output,filename),source);}
             stage="geometry-model";
-            if(replay is null){var r=await Request("geometry",File.ReadAllText("contracts/cadquery/geometry.txt")+"\nTABLE:\n"+table);SaveCode("part.py",r.GetProperty("script").GetString()!);}
-            else File.Copy(Path.Combine(replay,"part.py"),Path.Combine(output,"part.py"));
+            if(replay is null){var r=await Request("geometry",File.ReadAllText("contracts/cadquery/geometry.txt")+"\nTABLE:\n"+table);SaveCode("part.py",r.GetProperty("script").GetString()!);SaveCode("face-tags.py",r.GetProperty("face_tags_script").GetString()!);}
+            else {File.Copy(Path.Combine(replay,"part.py"),Path.Combine(output,"part.py"));if(File.Exists(Path.Combine(replay,"face-tags.py")))File.Copy(Path.Combine(replay,"face-tags.py"),Path.Combine(output,"face-tags.py"));}
             stage="geometry-execution";if(await CadScriptWorkflow.Execute(output)!=0)throw new Exception("Geometri doğrulaması başarısız; script-results.json incelenmeli.");
+            stage="face-tags";
+            if(File.Exists(Path.Combine(output,"face-tags.py")))
+            {
+                var tagStart=new ProcessStartInfo(Environment.GetEnvironmentVariable("CADQUERY_PYTHON")??"/workspace/cq-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};
+                tagStart.ArgumentList.Add(Path.GetFullPath("tools/tag_script_steps.py"));tagStart.ArgumentList.Add(Path.GetFullPath(output));tagStart.Environment.Remove("OPENROUTER_API_KEY");tagStart.Environment.Remove("OPENROUTER_MODEL");
+                using var tagProcess=Process.Start(tagStart)??throw new Exception("Yüz etiketi işlemi başlamadı.");var tagOut=tagProcess.StandardOutput.ReadToEndAsync();var tagErr=tagProcess.StandardError.ReadToEndAsync();using var tagTimeout=new CancellationTokenSource(TimeSpan.FromMinutes(3));
+                try{await tagProcess.WaitForExitAsync(tagTimeout.Token);}catch(OperationCanceledException){tagProcess.Kill(true);throw new Exception("Yüz etiketi zaman aşımı.");}
+                File.WriteAllText(Path.Combine(output,"face-tag-stdout.log"),await tagOut);File.WriteAllText(Path.Combine(output,"face-tag-stderr.log"),await tagErr);if(tagProcess.ExitCode!=0)throw new Exception("STEP yüz etiketi doğrulanamadı.");
+            }
             stage="measurement-model";
-            if(replay is null){var r=await Request("measurements",File.ReadAllText("contracts/cadquery/measurements.txt")+"\nGEOMETRY:\n"+File.ReadAllText(Path.Combine(output,"part.py"))+"\nTABLE:\n"+table);SaveCode("measurements.py",r.GetProperty("script").GetString()!);SaveCode("face-tags.py",r.GetProperty("face_tags_script").GetString()!);File.WriteAllText(Path.Combine(output,"visual-markers.json"),r.GetProperty("markers").GetRawText());}
-            else {File.Copy(Path.Combine(replay,"measurements.py"),Path.Combine(output,"measurements.py"));File.Copy(Path.Combine(replay,"visual-markers.json"),Path.Combine(output,"visual-markers.json"));if(File.Exists(Path.Combine(replay,"face-tags.py")))File.Copy(Path.Combine(replay,"face-tags.py"),Path.Combine(output,"face-tags.py"));}
+            if(replay is null){var r=await Request("measurements",File.ReadAllText("contracts/cadquery/measurements.txt")+"\nGEOMETRY:\n"+File.ReadAllText(Path.Combine(output,"part.py"))+"\nTABLE:\n"+table);SaveCode("measurements.py",r.GetProperty("script").GetString()!);File.WriteAllText(Path.Combine(output,"visual-markers.json"),r.GetProperty("markers").GetRawText());}
+            else {File.Copy(Path.Combine(replay,"measurements.py"),Path.Combine(output,"measurements.py"));File.Copy(Path.Combine(replay,"visual-markers.json"),Path.Combine(output,"visual-markers.json"));}
             stage="measurement-execution";
             var start=new ProcessStartInfo(Environment.GetEnvironmentVariable("CADQUERY_PYTHON")??"/workspace/cq-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};
             start.ArgumentList.Add(Path.GetFullPath("tools/evaluate_script_measurements.py"));start.ArgumentList.Add(Path.GetFullPath(output));start.Environment.Remove("OPENROUTER_API_KEY");start.Environment.Remove("OPENROUTER_MODEL");
@@ -54,15 +63,6 @@ public static class CadQueryPipeline
                 try{await process.WaitForExitAsync(timeout.Token);}catch(OperationCanceledException){process.Kill(true);throw new Exception("Ölçü zaman aşımı.");}
                 File.WriteAllText(Path.Combine(output,"measurement-stdout.log"),await stdout);File.WriteAllText(Path.Combine(output,"measurement-stderr.log"),await stderr);
                 if(process.ExitCode!=0)throw new Exception("Ölçü fonksiyonu başarısız.");
-            }
-            stage="face-tags";
-            if(File.Exists(Path.Combine(output,"face-tags.py")))
-            {
-                var tagStart=new ProcessStartInfo(Environment.GetEnvironmentVariable("CADQUERY_PYTHON")??"/workspace/cq-venv/bin/python"){UseShellExecute=false,RedirectStandardOutput=true,RedirectStandardError=true};
-                tagStart.ArgumentList.Add(Path.GetFullPath("tools/tag_script_steps.py"));tagStart.ArgumentList.Add(Path.GetFullPath(output));tagStart.Environment.Remove("OPENROUTER_API_KEY");tagStart.Environment.Remove("OPENROUTER_MODEL");
-                using var tagProcess=Process.Start(tagStart)??throw new Exception("Yüz etiketi işlemi başlamadı.");var tagOut=tagProcess.StandardOutput.ReadToEndAsync();var tagErr=tagProcess.StandardError.ReadToEndAsync();using var tagTimeout=new CancellationTokenSource(TimeSpan.FromMinutes(3));
-                try{await tagProcess.WaitForExitAsync(tagTimeout.Token);}catch(OperationCanceledException){tagProcess.Kill(true);throw new Exception("Yüz etiketi zaman aşımı.");}
-                File.WriteAllText(Path.Combine(output,"face-tag-stdout.log"),await tagOut);File.WriteAllText(Path.Combine(output,"face-tag-stderr.log"),await tagErr);if(tagProcess.ExitCode!=0)throw new Exception("STEP yüz etiketi doğrulanamadı.");
             }
             stage="sheets";await CadScriptWorkflow.RenderSheets(excel,image,output);if(Environment.ExitCode!=0)throw new Exception("Pafta üretimi başarısız.");
             using var sheets=JsonDocument.Parse(File.ReadAllText(Path.Combine(output,"script-sheet-results.json")));

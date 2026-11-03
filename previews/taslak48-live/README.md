@@ -11,3 +11,7 @@ JPEG ve Excel girişten verildi. İki canlı API çağrısı yapıldı. Üretile
 Paket yalnız STEP/JPEG ve kısa doğrulama raporları içerir; ham API yanıtı veya reasoning metni içermez.
 
 [Sonuç ZIP](taslak48-live-step-jpeg.zip)
+
+## Güncel yüz seçimi
+
+Tek bir yüzü belirleyen geometrik düzlem/silindir tanımı için nokta zorunluluğu kaldırıldı. Aynı kayıtlı model tanımlarıyla, geometri değiştirilmeden altı STEP'in tamamına montaj adı yazılıp geri okunarak doğrulandı. Bu yerel doğrulama düzeltmesidir; yeni API çağrısı yapılmadı. Eski run-report.json ilk canlı denemenin başarısız tarihsel kaydıdır. Güncel etiket sonucu face-tag-results.json içindedir.
