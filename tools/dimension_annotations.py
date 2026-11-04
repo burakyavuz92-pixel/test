@@ -181,22 +181,25 @@ class Annotations:
     def arrow(self,tip,toward):
         tip=np.array(tip,dtype=float);v=np.array(toward,dtype=float)-tip;n=np.linalg.norm(v)
         if n<1e-7:return
-        v/=n;side=np.array([-v[1],v[0]]);base=tip+v*10*self.S
-        self.draw.polygon([tuple(tip),tuple(base+side*3*self.S),tuple(base-side*3*self.S)],fill='black')
+        v/=n;side=np.array([-v[1],v[0]]);base=tip+v*12*self.S
+        self.draw.polygon([tuple(tip),tuple(base+side*3.6*self.S),tuple(base-side*3.6*self.S)],fill='black')
     def text_layer(self,text):
+        text_scale=20/18
+        T=self.S*text_scale
+        font=lambda size:self.font(round(size*text_scale))
         # Format asymmetric deviations locally; thread callouts do not match this suffix.
         match=re.fullmatch(r'(.*?) \(([+-][0-9]+(?:,[0-9]+)?(?:e[+-]?[0-9]+)?)/([+-][0-9]+(?:,[0-9]+)?(?:e[+-]?[0-9]+)?)\)',text)
         chunks=[(text,18,0,0)]
         if match:
             nominal,upper,lower=match.groups()
-            main=self.font(18);small=self.font(12)
+            main=font(18);small=font(12)
             probe=ImageDraw.Draw(Image.new('L',(1,1)))
             w=probe.textbbox((0,0),nominal,font=main)[2]
             tw=max(probe.textbbox((0,0),v,font=small)[2] for v in (upper,lower))
-            chunks=[(nominal,18,0,4*self.S),('(',24,w+2*self.S,0),(upper,12,w+10*self.S,0),(lower,12,w+10*self.S,13*self.S),(')',24,w+12*self.S+tw,0)]
-        layer=Image.new('RGB',(max(1,len(text)*24*self.S),40*self.S),'white');draw=ImageDraw.Draw(layer)
+            chunks=[(nominal,18,0,4*T),('(',24,w+2*T,0),(upper,12,w+10*T,0),(lower,12,w+10*T,13*T),(')',24,w+12*T+tw,0)]
+        layer=Image.new('RGB',(max(1,round(len(text)*24*T)),round(40*T)),'white');draw=ImageDraw.Draw(layer)
         for value,size,x,y in chunks:
-            f=self.font(size);bb=draw.textbbox((0,0),value,font=f)
+            f=font(size);bb=draw.textbbox((0,0),value,font=f)
             draw.text((x-bb[0],y-bb[1]),value,font=f,fill='black')
         ink=ImageChops.invert(layer.convert('L'));bounds=ink.getbbox()
         return layer.crop(bounds) if bounds else layer.crop((0,0,1,1))
