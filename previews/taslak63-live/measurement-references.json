@@ -1,0 +1,1034 @@
+{
+  "733001": [
+    {
+      "id": "R-A",
+      "markerId": "M-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -18.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "R-B",
+      "markerId": "M-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -28.9
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "R-C",
+      "markerId": "M-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 36.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -36.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-D",
+      "markerId": "M-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-E",
+      "markerId": "M-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -37.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "R-25",
+      "markerId": "M-25",
+      "source": "25 \u00b10,5",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -41.3
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "R-CH1",
+      "markerId": "M-CH1",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          7.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "markerId": "M-CH2",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          -43.8
+        ],
+        [
+          5.25,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "733001-02": [
+    {
+      "id": "R-A",
+      "markerId": "M-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -20.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "R-B",
+      "markerId": "M-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -30.9
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "R-C",
+      "markerId": "M-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 40.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -40.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-D",
+      "markerId": "M-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-E",
+      "markerId": "M-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -41.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "R-25",
+      "markerId": "M-25",
+      "source": "25 \u00b10,5",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -45.3
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "R-CH1",
+      "markerId": "M-CH1",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          7.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "markerId": "M-CH2",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          -47.8
+        ],
+        [
+          5.25,
+          0.0,
+          -46.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "733001-03": [
+    {
+      "id": "R-A",
+      "markerId": "M-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 19.0,
+      "center": [
+        0.0,
+        0.0,
+        -8.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 9.5
+    },
+    {
+      "id": "R-B",
+      "markerId": "M-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -19.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "R-C",
+      "markerId": "M-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 16.0,
+      "points": [
+        [
+          9.5,
+          0.0,
+          0.0
+        ],
+        [
+          9.5,
+          0.0,
+          -16.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-D",
+      "markerId": "M-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 16.0,
+      "points": [
+        [
+          6.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -16.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-E",
+      "markerId": "M-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -17.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "R-25",
+      "markerId": "M-25",
+      "source": "25 \u00b10,5",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -21.3
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "R-CH1",
+      "markerId": "M-CH1",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          7.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "markerId": "M-CH2",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          -23.8
+        ],
+        [
+          5.25,
+          0.0,
+          -22.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "733001-01": [
+    {
+      "id": "R-A",
+      "markerId": "M-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -18.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "R-B",
+      "markerId": "M-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -28.9
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "R-C",
+      "markerId": "M-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 36.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -36.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-D",
+      "markerId": "M-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-E",
+      "markerId": "M-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -37.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "R-25",
+      "markerId": "M-25",
+      "source": "25 \u00b10,5",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -41.3
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "R-CH1",
+      "markerId": "M-CH1",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          7.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "markerId": "M-CH2",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          -43.8
+        ],
+        [
+          5.25,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "733002": [
+    {
+      "id": "R-A",
+      "markerId": "M-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.25
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "R-B",
+      "markerId": "M-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -30.15
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "R-C",
+      "markerId": "M-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 38.5,
+      "points": [
+        [
+          10.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -38.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-D",
+      "markerId": "M-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-E",
+      "markerId": "M-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -39.9
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "R-25",
+      "markerId": "M-25",
+      "source": "25 \u00b10,5",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -43.8
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "R-CH1",
+      "markerId": "M-CH1",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          7.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "markerId": "M-CH2",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          -46.3
+        ],
+        [
+          5.25,
+          0.0,
+          -45.3
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ],
+  "733042": [
+    {
+      "id": "R-A",
+      "markerId": "M-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -18.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "R-B",
+      "markerId": "M-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -27.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "R-C",
+      "markerId": "M-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 36.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -36.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-D",
+      "markerId": "M-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 12.0,
+      "points": [
+        [
+          6.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -12.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-E",
+      "markerId": "M-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -37.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "R-25",
+      "markerId": "M-25",
+      "source": "25 \u00b10,5",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -41.3
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "R-CH1",
+      "markerId": "M-CH1",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          7.0,
+          0.0,
+          0.0
+        ],
+        [
+          6.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "markerId": "M-CH2",
+      "source": "1 X 45\u00b0",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "angleDeg": 45.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          -43.8
+        ],
+        [
+          5.25,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "geometry": {
+    "input": 6752,
+    "visibleOutput": 713,
+    "reasoning": 22222,
+    "completionTotal": 22935,
+    "costUsd": 0.0121427
+  },
+  "measurements": {
+    "input": 7613,
+    "visibleOutput": 2422,
+    "reasoning": 11591,
+    "completionTotal": 14013,
+    "costUsd": 0.0077678
+  }
+}

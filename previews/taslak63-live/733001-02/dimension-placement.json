@@ -1,0 +1,89 @@
+{
+  "placed": [
+    "column_B",
+    "column_A",
+    "column_E",
+    "column_C",
+    "R-CH1",
+    "R-CH2"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        341.4733333333314,
+        554.85
+      ],
+      "bandCoordinate": 352.9733333333314,
+      "narrow": true
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        314.4733333333314,
+        449.0
+      ],
+      "bandCoordinate": 325.9733333333314,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        804.7171428571447,
+        449.0
+      ],
+      "bandCoordinate": 788.2171428571447,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        538.0209523809542,
+        313.3452380952381
+      ],
+      "bandCoordinate": 326.5952380952381,
+      "narrow": false
+    },
+    {
+      "id": "R-CH1",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        375.14952380952565,
+        575.9047619047619
+      ]
+    },
+    {
+      "id": "R-CH2",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        809.4671428571447,
+        352.9738095238095
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_D",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "R-25",
+      "reason": "No matching cylinder or full circular edge at the specified reference"
+    }
+  ],
+  "omitted": []
+}
