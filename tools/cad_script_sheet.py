@@ -69,6 +69,9 @@ def run(folder,image,excel):
                     if any(any(symbol in c.get('sourceText','') for symbol in ('Ø','ø','⌀')) for c in approved):content['diameterSymbol']=True
                     existing={'id':m['id'],'sourceLabel':label,'valueSource':{'kind':'constant','value':literal,'unit':'mm'},'nominal':literal,'effectiveVisible':True,'targets':[],'axis':'Z','sourceMeasurement':content};drawing['dimensions'].append(existing)
                 existing['type']=m['kind'];existing['scriptReference']=dict(m)
+                angle=existing.get('sourceMeasurement',{}).get('chamferAngleDeg')
+                if angle is not None:
+                    existing['scriptReference'].update(kind='chamfer',angleDeg=angle)
                 if evidence:
                     from visual_measurements import canonical
                     marker_key=m.get('markerId',canonical(label))

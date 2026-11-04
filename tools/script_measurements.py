@@ -8,7 +8,7 @@ from OCP.TopExp import TopExp_Explorer
 from OCP.TopAbs import TopAbs_FACE,TopAbs_EDGE
 from OCP.TopoDS import TopoDS
 from OCP.BRepAdaptor import BRepAdaptor_Surface,BRepAdaptor_Curve
-from OCP.GeomAbs import GeomAbs_Cylinder,GeomAbs_Torus,GeomAbs_Circle
+from OCP.GeomAbs import GeomAbs_Cylinder,GeomAbs_Torus,GeomAbs_Circle,GeomAbs_Cone,GeomAbs_Plane
 
 def vector(x):
  a=np.asarray(x,dtype=float)
@@ -72,6 +72,48 @@ def anchor(shape,m,nominal,front,section,view=None):
  if view=='section':m=section_meridian(shape,m,section)
  kind=m['kind'];dest=section if view=='section' or kind in ('distance','thickness','radius') and view is None else front
  project=lambda p:np.array([np.dot(p,dest[0]),np.dot(p,dest[1])])
+ if kind=='chamfer':
+  a,b=map(vector,m['points']);direction=unit(m['direction']);delta=b-a
+  leg=abs(np.dot(delta,direction));other=np.linalg.norm(delta-direction*np.dot(delta,direction))
+  angle=float(m['angleDeg'])
+  if not 0<angle<90 or abs(leg-nominal)>1e-5 or abs(math.degrees(math.atan2(other,leg))-angle)>1e-4:raise ValueError('Chamfer leg or angle differs from specified value')
+  on_body(shape,a);on_body(shape,b)
+  support=False;cone=None;ex=TopExp_Explorer(shape,TopAbs_FACE)
+  while ex.More():
+   face=TopoDS.Face_s(ex.Current());surface=BRepAdaptor_Surface(face)
+   if surface.GetType() in (GeomAbs_Cone,GeomAbs_Plane):
+    try:
+     for t in (0,.25,.5,.75,1):on_body(face,a+t*delta)
+     # Both ends must terminate on boundaries of this same chamfer face.
+     for point in (a,b):
+      edges=TopExp_Explorer(face,TopAbs_EDGE);hit=False
+      while edges.More():
+       try:on_body(edges.Current(),point);hit=True;break
+       except ValueError:edges.Next()
+      if not hit:raise ValueError('Chamfer endpoint is not on supporting face boundary')
+     support=True
+     if surface.GetType()==GeomAbs_Cone:cone=surface.Cone()
+     break
+    except ValueError:pass
+   ex.Next()
+  if not support:raise ValueError('No single chamfer face supports the given endpoints')
+  evidence=m.get('visualEvidence')
+  if evidence is not None and not any(t is not None for t in evidence.get('arrowTipsNormalized',[])):raise ValueError('Chamfer leader requires a visual arrow')
+  if cone is not None and dest is section:
+   axis0=cone.Axis().Direction();axis0=np.array([axis0.X(),axis0.Y(),axis0.Z()]);origin=cone.Location();origin=np.array([origin.X(),origin.Y(),origin.Z()])
+   target=dest[1]-axis0*np.dot(dest[1],axis0)
+   if np.linalg.norm(target)<1e-7:raise ValueError('Chamfer section meridian unavailable')
+   target/=np.linalg.norm(target)
+   if evidence:
+    tips=[t for t in evidence.get('arrowTipsNormalized',[]) if t is not None];middle=evidence.get('viewCenterNormalized',[.5,.5]);source_axis=np.array(evidence.get('sectionAxisNormalized',[0,-1]),dtype=float);source_axis[1]*=-1
+    radial=np.array([-source_axis[1],source_axis[0]]);visual=np.array(tips[0])-middle;visual[1]*=-1
+    if np.dot(visual,radial)<0:target=-target
+   def meridian(point):
+    delta=point-origin;axial=origin+axis0*np.dot(delta,axis0);return axial+target*np.linalg.norm(point-axial)
+   a,b=meridian(a),meridian(b)
+   for point in (a,b,(a+b)/2):on_body(face,point)
+  tip=(a+b)/2
+  return dict(view='section' if dest is section else 'front',kind='leader',anchor=project(tip).tolist(),anchorOptions=[project(tip).tolist()])
  if kind in ('distance','thickness'):
   a,b=map(vector,m['points']);direction=unit(m['direction'])
   try:on_body(shape,a);on_body(shape,b)
@@ -130,7 +172,15 @@ def anchor(shape,m,nominal,front,section,view=None):
    c=s.Cylinder();o=c.Location();d=c.Axis().Direction()
    if abs(c.Radius()-radius)<1e-5 and abs(abs(np.dot(axis,[d.X(),d.Y(),d.Z()]))-1)<1e-6 and np.linalg.norm(np.cross(np.array([o.X(),o.Y(),o.Z()])-center,axis))<1e-5:found=True
   ex.Next()
- if not found:raise ValueError('No matching cylindrical support on final body')
+ if not found:
+  ex=TopExp_Explorer(shape,TopAbs_EDGE)
+  while ex.More():
+   curve=BRepAdaptor_Curve(TopoDS.Edge_s(ex.Current()))
+   if curve.GetType()==GeomAbs_Circle:
+    c=curve.Circle();o=c.Location();d=c.Axis().Direction()
+    if abs(c.Radius()-radius)<1e-5 and np.linalg.norm(center-[o.X(),o.Y(),o.Z()])<1e-5 and abs(abs(np.dot(axis,[d.X(),d.Y(),d.Z()]))-1)<1e-6 and abs(curve.LastParameter()-curve.FirstParameter()-2*math.pi)<1e-5:found=True;break
+   ex.Next()
+ if not found:raise ValueError('No matching cylinder or full circular edge at the specified reference')
  if abs(abs(np.dot(axis,dest[2]))-1)<1e-6:return dict(view='section' if dest is section else 'front',kind='circle',center=project(center).tolist(),radius=radius)
  radial=project(axis);perp=np.array([-radial[1],radial[0]])
  if np.linalg.norm(perp)<1e-7:raise ValueError('Unsupported projected diameter')

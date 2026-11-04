@@ -19,3 +19,11 @@ Tam pafta başarısı bu testlerden çıkarılamaz: sabit görünüş bölgeleri
 OCR bölgesi yalnız ilk arama bilgisidir. Her model ölçü işareti gerçek geometriyi çevreleyen `viewFrameNormalized` kutusu ve ok konumlarıyla gelirse, görünüş bu geometrik referanstan alınır; ilk OCR bölgesi `ocrRegionView` içinde korunur. Kutu değerleri ve aynı görünüş içindeki tutarlılık doğrulanır. Kutunun doğruluğu model yorumudur; yalnız bu sayı kontrolleri görüntüsel doğruluğunu kanıtlamaz. STEP üzerinde ölçü bağlantısı ayrıca sınanır. Çerçeve/ok verisi olmadan çelişki sessizce geçilmez.
 
 Yatay kesitlerde `sectionAxisNormalized`, +Z ekseninin kaynak görüntüdeki yönünü verir. Ölçü yönü kontrolü bu eksene dönüştürülür; sayfadaki yatay yön ile yazılımın çıktıdaki kesit yönü karıştırılmaz. Bu yön, çıktı paftasının yönünü değiştirmez.
+
+## Pah ve tam çember çapı desteği
+
+`chamfer` ölçüsü nominal, angleDeg, iki 3B sınır noktası ve boy yönüyle doğrulanır; tek görsel ok yeterlidir. Boy/açı eşleşmesi, noktaların ve ara örneklerin tek düzlemsel/konik yüzeyde olması, uçların o yüzeyin sınırlarında olması aranır. Konik pahlar kesit meridyenine dönüştürülüp aynı yüzey üzerinde tekrar sınanır. Taslak sabit pah metni, eski `distance` kayıtlarının pah anlamını açıkça sağlayabilir.
+
+Çap referansı tam dairesel kenara da bağlanabilir. Yalnız yarıçap değil merkez, eksen ve 2π yay açıklığı eşleşir. Bu, konik uç çapını destekler; keyfî yüzey/düzlem kesişimi bu sürümde otomatik çıkarılmaz. Yanlış referanslar aynı değerde başka bir kenarla değiştirilmez.
+
+Taslak6.2 kayıtlı yanıtlarıyla beş parçada 8/8, kısa satırda 5/8 ölçü yerleşmiştir. Bu sonuç geometrik bağlantı kontrolüdür; modelin kaynak oku doğru yorumladığına dair bağımsız bir doğrulama değildir.
