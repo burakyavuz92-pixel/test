@@ -1,0 +1,1 @@
+İzometrik görünüşün altındaki ölçek yazısı kaldırıldı. API çağrısı yapılmadan altı pafta yeniden üretildi. STEP geometrisi değiştirilmedi; bilinen 1 mm yorum hatası bu dosyalarda korunur. PDF mevcut piksel tabanlı çıktı yöntemidir.

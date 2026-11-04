@@ -304,7 +304,6 @@ def sheet(recipe,shape,shapes,out,source):
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
  with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
  image.thumbnail((270*S,230*S));im.paste(image,(int(1450*S+(270*S-image.width)/2),int(65*S+(230*S-image.height)/2)))
- txt(1450,315,'İzometrik: ölçek dışı',12)
  # Values are taken from the resolved drawing layer, never from geometry deviations.
  annotation_bounds=Bnd_Box();BRepBndLib.AddOptimal_s(shape,annotation_bounds,False,False)
  layout=recipe['drawing'].get('templateLayout')
