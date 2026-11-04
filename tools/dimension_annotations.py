@@ -181,8 +181,8 @@ class Annotations:
     def arrow(self,tip,toward):
         tip=np.array(tip,dtype=float);v=np.array(toward,dtype=float)-tip;n=np.linalg.norm(v)
         if n<1e-7:return
-        v/=n;side=np.array([-v[1],v[0]]);base=tip+v*8*self.S
-        self.draw.polygon([tuple(tip),tuple(base+side*2*self.S),tuple(base-side*2*self.S)],fill='black')
+        v/=n;side=np.array([-v[1],v[0]]);base=tip+v*10*self.S
+        self.draw.polygon([tuple(tip),tuple(base+side*3*self.S),tuple(base-side*3*self.S)],fill='black')
     def text_layer(self,text):
         # Format asymmetric deviations locally; thread callouts do not match this suffix.
         match=re.fullmatch(r'(.*?) \(([+-][0-9]+(?:,[0-9]+)?(?:e[+-]?[0-9]+)?)/([+-][0-9]+(?:,[0-9]+)?(?:e[+-]?[0-9]+)?)\)',text)

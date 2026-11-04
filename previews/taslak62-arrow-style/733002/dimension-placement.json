@@ -1,0 +1,104 @@
+{
+  "placed": [
+    "column_B",
+    "column_D",
+    "column_A",
+    "column_E",
+    "column_C",
+    "R-CH-L",
+    "R-CH-R",
+    "R-CONE"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        320.2376190476153,
+        560.85
+      ],
+      "bandCoordinate": 331.7376190476153,
+      "narrow": true
+    },
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        673.81,
+        587.654761904768
+      ],
+      "bandCoordinate": 571.404761904768,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        293.2376190476153,
+        449.0
+      ],
+      "bandCoordinate": 304.7376190476153,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        770.9528571428609,
+        449.0
+      ],
+      "bandCoordinate": 754.4528571428609,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        575.6695238095238,
+        313.34523809523205
+      ],
+      "bandCoordinate": 326.59523809523205,
+      "narrow": false
+    },
+    {
+      "id": "R-CH-L",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        692.2766666666666,
+        409.65238095238095
+      ]
+    },
+    {
+      "id": "R-CH-R",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        377.9138095238095,
+        575.904761904768
+      ]
+    },
+    {
+      "id": "R-CONE",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -52.608022466738426,
+      "placedLabelPixels": [
+        1099.7204708414,
+        315.49846493079866
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": []
+}

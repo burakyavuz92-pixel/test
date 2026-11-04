@@ -342,7 +342,9 @@ def sheet(recipe,shape,shapes,out,source):
   # Real glyph bounds must remain outside reserved title/table/iso areas.
   for r in placement.get('templatePlacements',[]):
    item=next(a for a in anchors if a['id']==r['id']);layer=probe.text_layer(text_value(item['dimension']));cx,cy=r['placedLabelPixels'];hw,hh=layer.width/S/2,layer.height/S/2
-   if r.get('side') in ('left','right'):hw,hh=hh,hw
+   if 'labelAngleDeg' in r:
+    angle=math.radians(r['labelAngleDeg']);hw,hh=abs(hw*math.cos(angle))+abs(hh*math.sin(angle)),abs(hw*math.sin(angle))+abs(hh*math.cos(angle))
+   elif r.get('side') in ('left','right'):hw,hh=hh,hw
    if cx-hw<25 or cx+hw>1730 or cy-hh<40 or cy+hh>865 or (cx+hw>1430 and cy-hh<345):reasons.append('Annotation exceeds reserved page area')
   for segment in placement.get('lineSegments',[]):
    for x,y in segment:

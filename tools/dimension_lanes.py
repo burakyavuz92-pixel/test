@@ -60,8 +60,22 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
   if item['kind']=='circle':
    c=np.asarray(item['center']);cp=np.asarray(pix(c));d=np.array([desired[0]-cp[0],cp[1]-desired[1]]);d/=max(np.linalg.norm(d),1e-9);tips=[np.asarray(pix(c+d*item['radius']))]
   else:tips=[np.asarray(pix(p)) for p in item.get('anchorOptions',[item['anchor']])]
+  if item['kind']=='circle':
+   import math
+   cp=np.asarray(pix(item['center']));tip=tips[0];v=(tip-cp)/max(np.linalg.norm(tip-cp),1e-9)
+   angle=math.degrees(math.atan2(v[1],v[0]));angle=(angle+90)%180-90
+   normal=np.array([-v[1],v[0]])
+   backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
+   try:
+    pos=tip+v*(layer.width/2+18*S)-normal*(layer.height/2+5*S)
+    painter.label(text,pos,angle=angle)
+    painter.line(2*cp-tip,tip+v*(layer.width+25*S));painter.arrow(tip,tip+v*18*S)
+    drawn.append(item['id']);records.append({'id':item['id'],'view':view,'mode':'inclined-diameter','labelAngleDeg':angle,'placedLabelPixels':(pos/S).tolist()});continue
+   except ValueError:
+    image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
   candidates=[]
   for tip in tips:
+
    # Four nearby exterior sides; each hole/radius remains independently labelled.
    for k in range(-3,4):
     delta=k*24*S

@@ -1,0 +1,81 @@
+{
+  "placed": [
+    "column_C",
+    "column_A",
+    "column_E",
+    "R-CH-L",
+    "R-CONE"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        503.8390476190476,
+        208.94047619046407
+      ],
+      "bandCoordinate": 222.19047619046407,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        208.403809523802,
+        449.0
+      ],
+      "bandCoordinate": 221.903809523802,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        671.9771428571504,
+        449.0
+      ],
+      "bandCoordinate": 655.4771428571504,
+      "narrow": false
+    },
+    {
+      "id": "R-CH-L",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        565.124761904762,
+        362.65714285714284
+      ]
+    },
+    {
+      "id": "R-CONE",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -49.1818886796767,
+      "placedLabelPixels": [
+        1169.720425816688,
+        241.8261836334657
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_B",
+      "reason": "bore reference unavailable for this depth"
+    },
+    {
+      "id": "column_D",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "R-CH-R",
+      "reason": "Measurement endpoint is not on final body"
+    }
+  ],
+  "omitted": []
+}
