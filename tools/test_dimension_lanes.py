@@ -37,3 +37,13 @@ class SeparateHoles(unittest.TestCase):
   p=lambda x:np.array(x,dtype=float)
   self.assertTrue(crossing(p([0,0]),p([10,10]),p([0,10]),p([10,0])))
   self.assertFalse(crossing(p([0,0]),p([10,10]),p([10,10]),p([20,10])))
+
+class ChamferClearance(unittest.TestCase):
+ def test_chamfer_text_stays_outside_view(self):
+  image=Image.new('RGB',(1754,1236),'white');bounds=[400,250,700,600]
+  ImageDraw.Draw(image).rectangle(bounds,outline='black')
+  item={'id':'pah','kind':'leader','view':'front','anchor':[410,400],'dimension':{'sourceMeasurement':{'chamferAngleDeg':35}},'templateBinding':{'view':'front','marker':{'centerPixels':[420,400]},'sourceFrame':{'bboxPixels':bounds}}}
+  font=lambda n:ImageFont.truetype('/workspace/fonts/arial/arial.ttf',n)
+  r=render(image,font,1,[item],lambda p:p,lambda p:p,{'sourcePixels':[1754,1236]},{'front':bounds},lambda d:'3x35°')
+  self.assertFalse(r['failed']);x,y=r['templatePlacements'][0]['placedLabelPixels']
+  self.assertTrue(x<bounds[0]-32 or x>bounds[2]+32 or y<bounds[1]-32 or y>bounds[3]+32)

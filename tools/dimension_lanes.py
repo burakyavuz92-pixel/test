@@ -73,15 +73,17 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
     drawn.append(item['id']);records.append({'id':item['id'],'view':view,'mode':'inclined-diameter','labelAngleDeg':angle,'placedLabelPixels':(pos/S).tolist()});continue
    except ValueError:
     image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
+  chamfer=dim.get('sourceMeasurement',{}).get('chamferAngleDeg') is not None or dim.get('scriptReference',{}).get('kind')=='chamfer'
+  gap=32*S if chamfer else 16*S
   candidates=[]
   for tip in tips:
 
    # Four nearby exterior sides; each hole/radius remains independently labelled.
    for k in range(-3,4):
     delta=k*24*S
-    for pos in ([bounds[0]-layer.width/2-16*S,tip[1]+delta],[bounds[2]+layer.width/2+16*S,tip[1]+delta],[tip[0]+delta,bounds[1]-layer.height/2-16*S],[tip[0]+delta,bounds[3]+layer.height/2+16*S]):
+    for pos in ([bounds[0]-layer.width/2-gap,tip[1]+delta],[bounds[2]+layer.width/2+gap,tip[1]+delta],[tip[0]+delta,bounds[1]-layer.height/2-gap],[tip[0]+delta,bounds[3]+layer.height/2+gap]):
      pos=np.asarray(pos);cost=np.linalg.norm(pos-tip)+.35*np.linalg.norm(pos-desired);candidates.append((cost,tip,pos))
-  for tip in tips:
+  for tip in ([] if chamfer else tips):
    for distance in (24,40,64,96):
     for dx,dy in ((1,1),(1,-1),(-1,1),(-1,-1),(1,0),(-1,0),(0,1),(0,-1)):
      pos=tip+np.array([dx,dy])*distance*S
