@@ -1,0 +1,100 @@
+{
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.8794976406477625e-15,
+            -5.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733001-02",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.8794976406477625e-15,
+            -5.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733001-03",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.8794976406477625e-15,
+            -5.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733001-01",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.8794976406477625e-15,
+            -5.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733002",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.8794976406477625e-15,
+            -5.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733042",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.8794976406477625e-15,
+            -5.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    }
+  ]
+}

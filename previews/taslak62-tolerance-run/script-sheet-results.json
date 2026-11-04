@@ -1,0 +1,362 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleLabel": "1:2",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_B",
+          "column_D",
+          "column_A",
+          "column_C"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "R-CH-L",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CH-R",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CONE",
+            "reason": "No matching cylindrical support on final body"
+          },
+          {
+            "id": "column_E",
+            "reason": "Annotation labels collide"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "R-CH-L",
+          "R-CH-R",
+          "R-CONE"
+        ]
+      }
+    },
+    {
+      "outputId": "733001-02",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleLabel": "1:2",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_B",
+          "column_D",
+          "column_A",
+          "column_C"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "R-CH-L",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CH-R",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CONE",
+            "reason": "No matching cylindrical support on final body"
+          },
+          {
+            "id": "column_E",
+            "reason": "Annotation labels collide"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "R-CH-L",
+          "R-CH-R",
+          "R-CONE"
+        ]
+      }
+    },
+    {
+      "outputId": "733001-03",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 1.0,
+        "scaleLabel": "1:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_C",
+          "column_A",
+          "column_E"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_B",
+            "reason": "bore reference unavailable for this depth"
+          },
+          {
+            "id": "column_D",
+            "reason": "Measurement endpoint is not on final body"
+          },
+          {
+            "id": "R-CH-L",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CH-R",
+            "reason": "Measurement endpoint is not on final body"
+          },
+          {
+            "id": "R-CONE",
+            "reason": "No matching cylindrical support on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "R-CH-L",
+          "R-CH-R",
+          "R-CONE"
+        ]
+      }
+    },
+    {
+      "outputId": "733001-01",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleLabel": "1:2",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_B",
+          "column_D",
+          "column_A",
+          "column_C"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "R-CH-L",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CH-R",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CONE",
+            "reason": "No matching cylindrical support on final body"
+          },
+          {
+            "id": "column_E",
+            "reason": "Annotation labels collide"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "R-CH-L",
+          "R-CH-R",
+          "R-CONE"
+        ]
+      }
+    },
+    {
+      "outputId": "733002",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleLabel": "1:2",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_B",
+          "column_D",
+          "column_A",
+          "column_C"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "R-CH-L",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CH-R",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CONE",
+            "reason": "No matching cylindrical support on final body"
+          },
+          {
+            "id": "column_E",
+            "reason": "Annotation labels collide"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "R-CH-L",
+          "R-CH-R",
+          "R-CONE"
+        ]
+      }
+    },
+    {
+      "outputId": "733042",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleLabel": "1:2",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_B",
+          "column_D",
+          "column_A",
+          "column_C"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "R-CH-L",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CH-R",
+            "reason": "Missing visual endpoints for linear measurement"
+          },
+          {
+            "id": "R-CONE",
+            "reason": "No matching cylindrical support on final body"
+          },
+          {
+            "id": "column_E",
+            "reason": "Annotation labels collide"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "R-CH-L",
+          "R-CH-R",
+          "R-CONE"
+        ]
+      }
+    }
+  ]
+}

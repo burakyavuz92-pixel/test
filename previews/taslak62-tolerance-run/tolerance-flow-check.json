@@ -1,0 +1,137 @@
+{
+  "newApiCalls": 0,
+  "jpegCount": 6,
+  "fullyResolved": false,
+  "rows": {
+    "733001": {
+      "placed": 4,
+      "unresolved": [
+        {
+          "id": "R-CH-L",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CH-R",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CONE",
+          "reason": "No matching cylindrical support on final body"
+        },
+        {
+          "id": "column_E",
+          "reason": "Annotation labels collide"
+        }
+      ]
+    },
+    "733001-02": {
+      "placed": 4,
+      "unresolved": [
+        {
+          "id": "R-CH-L",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CH-R",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CONE",
+          "reason": "No matching cylindrical support on final body"
+        },
+        {
+          "id": "column_E",
+          "reason": "Annotation labels collide"
+        }
+      ]
+    },
+    "733001-03": {
+      "placed": 3,
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "bore reference unavailable for this depth"
+        },
+        {
+          "id": "column_D",
+          "reason": "Measurement endpoint is not on final body"
+        },
+        {
+          "id": "R-CH-L",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CH-R",
+          "reason": "Measurement endpoint is not on final body"
+        },
+        {
+          "id": "R-CONE",
+          "reason": "No matching cylindrical support on final body"
+        }
+      ]
+    },
+    "733001-01": {
+      "placed": 4,
+      "unresolved": [
+        {
+          "id": "R-CH-L",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CH-R",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CONE",
+          "reason": "No matching cylindrical support on final body"
+        },
+        {
+          "id": "column_E",
+          "reason": "Annotation labels collide"
+        }
+      ]
+    },
+    "733002": {
+      "placed": 4,
+      "unresolved": [
+        {
+          "id": "R-CH-L",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CH-R",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CONE",
+          "reason": "No matching cylindrical support on final body"
+        },
+        {
+          "id": "column_E",
+          "reason": "Annotation labels collide"
+        }
+      ]
+    },
+    "733042": {
+      "placed": 4,
+      "unresolved": [
+        {
+          "id": "R-CH-L",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CH-R",
+          "reason": "Missing visual endpoints for linear measurement"
+        },
+        {
+          "id": "R-CONE",
+          "reason": "No matching cylindrical support on final body"
+        },
+        {
+          "id": "column_E",
+          "reason": "Annotation labels collide"
+        }
+      ]
+    }
+  }
+}
