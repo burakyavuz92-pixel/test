@@ -13,4 +13,11 @@ class ScriptTests(unittest.TestCase):
   with self.assertRaises(ValueError):r.load_script('import cadquery as cq\ndef build_part(p): return cq.exporters.export(None,"x")')
  def test_no_toplevel_build(self):
   with self.assertRaises(ValueError):r.load_script('import cadquery as cq\nx=cq.Workplane("XY").box(1,1,1)\ndef build_part(p): return x')
+
+ def test_numeric_module_constants(self):
+  f=r.load_script('R=5.0\ndef build_part(p): return R')
+  self.assertEqual(f({}),5)
+  for expr in ('float(5)','[1,2]','True'):
+   with self.assertRaises(ValueError):r.load_script('R='+expr+'\ndef build_part(p): return R')
+
 if __name__=='__main__':unittest.main()

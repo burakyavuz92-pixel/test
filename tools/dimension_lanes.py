@@ -83,4 +83,4 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
    except ValueError as ex:reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
   if not placed:failed.append({'id':item['id'],'dimension':dim,'reason':reason})
  for layer,pos in painter.labels:painter.paste_label(layer,pos)
- return {'placed':drawn,'failed':failed,'templatePlacements':records}
+ return {'placed':drawn,'failed':failed,'templatePlacements':records,'annotationLineLengthPixels':sum(float(np.linalg.norm(b-a)) for a,b in painter.line_segments)/S,'lineSegments':[[list(a/S),list(b/S)] for a,b in painter.line_segments]}

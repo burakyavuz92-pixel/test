@@ -1,0 +1,86 @@
+{
+  "placed": [
+    "column_B",
+    "column_D",
+    "column_A",
+    "column_E",
+    "column_C"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        347.7376190476153,
+        560.85
+      ],
+      "bandCoordinate": 359.2376190476153,
+      "narrow": true
+    },
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        701.31,
+        587.654761904768
+      ],
+      "bandCoordinate": 571.404761904768,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        320.7376190476153,
+        449.0
+      ],
+      "bandCoordinate": 332.2376190476153,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        798.4528571428609,
+        449.0
+      ],
+      "bandCoordinate": 781.9528571428609,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        603.1695238095238,
+        313.34523809523205
+      ],
+      "bandCoordinate": 326.59523809523205,
+      "narrow": false
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "R-CH-L",
+      "reason": "Missing visual endpoints for linear measurement"
+    },
+    {
+      "id": "R-CH-R",
+      "reason": "Missing visual endpoints for linear measurement"
+    },
+    {
+      "id": "R-CONE",
+      "reason": "No matching cylindrical support on final body"
+    }
+  ],
+  "omitted": []
+}

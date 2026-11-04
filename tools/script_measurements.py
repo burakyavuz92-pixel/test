@@ -66,6 +66,7 @@ def section_meridian(shape,m,section):
  return m
 
 def anchor(shape,m,nominal,front,section,view=None):
+ if 'points' not in m and 'p1' in m and 'p2' in m:m=dict(m,points=[m['p1'],m['p2']])
  if m.get('unresolved'):raise ValueError(m['unresolved'])
  if not math.isfinite(m['nominal']) or abs(m['nominal']-nominal)>1e-5:raise ValueError('Measurement source/nominal mismatch')
  if view=='section':m=section_meridian(shape,m,section)
@@ -83,6 +84,11 @@ def anchor(shape,m,nominal,front,section,view=None):
    if not tips or len(tips)!=2 or any(t is None for t in tips):raise ValueError('Missing visual endpoints for linear measurement')
    visual=np.array(tips[1],dtype=float)-np.array(tips[0],dtype=float);visual[1]*=-1
    predicted=np.array([np.dot(direction,dest[0]),np.dot(direction,dest[1])])
+   if view=='section' and evidence.get('sectionAxisNormalized') is not None:
+    axial=np.array(evidence['sectionAxisNormalized'],dtype=float);axial[1]*=-1
+    axial/=np.linalg.norm(axial)
+    radial=np.array([-axial[1],axial[0]])
+    predicted=np.dot(direction,[0,0,1])*axial+np.dot(direction,dest[1])*radial
    if np.linalg.norm(visual)<1e-6 or np.linalg.norm(predicted)<1e-6:raise ValueError('Degenerate visual measurement direction')
    # Orthogonal image axes are checked categorically; do not measure mm from schematic pixels.
    if abs(np.dot(visual/np.linalg.norm(visual),predicted/np.linalg.norm(predicted)))<0.9:raise ValueError('Visual arrow direction conflicts with geometric measurement direction')

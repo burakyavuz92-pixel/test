@@ -294,18 +294,18 @@ foreach(int count in new[]{1,5,20})
     for(int i=0;i<count;i++)variableRow["M"+i]="12,5±0,1";
     Check(ExcelModelInput.Build(new[]{variableRow}).rows[0].cells.Count==count,"variable measurement column count: "+count);
 }
-foreach(var pair in new[]{("Ø20,5(M22x1,5-6H)",20.5,"M22x1,5-6H"),("Ø11,5(1/4\"-18 NPT)",11.5,"1/4\"-18 NPT"),("Ø11,5(G1/4)",11.5,"G1/4")})
+foreach(var pair in new[]{("Ø20,5(M22x1,5-6H)",20.5,"M22x1,5-6H"),("Ø11,5(1/4\"-18 NPT)",11.5,"1/4\"-18 NPT"),("Ø11,5(G1/4)",11.5,"G1/4"),("Ø10,5(1/4''-18 NPT)",10.5,"1/4''-18 NPT")})
 {
  var cell=ExcelModelInput.ParseCell(pair.Item1);
- Check(cell.nominalMm==pair.Item2&&cell.threadCallout==pair.Item3,"thread cell preserves numeric geometry and local callout: "+pair.Item3);
+ Check(cell.nominalMm==pair.Item2&&cell.displayText==pair.Item3,"thread cell preserves numeric geometry and local callout: "+pair.Item3);
  var inputRow=new Dictionary<string,string>{{"jpeg file name","thread-test"},{"J",pair.Item1},{"A","Ø25±1"}};
  var sent=JsonSerializer.Serialize(ExcelModelInput.ForModel(new[]{inputRow}));
  Check(!sent.Contains("threadCallout")&&!sent.Contains("M22")&&!sent.Contains("NPT")&&!sent.Contains("G1/4")&&!sent.Contains("tolerance"),"model request excludes thread and tolerance presentation");
  var threadRecipe=JsonDocument.Parse("""{"schemaVersion":9,"geometry":{"features":[{"id":"body","op":"add","shape":{"kind":"cylinder","origin":[0,0,0],"direction":[0,0,1],"diameter":"=J","length":5}}]},"drawing":{"dimensions":[{"id":"J","type":"diameter","valueSource":{"kind":"column","column":"J"},"targets":[{"operation":"body","role":"diameter"}],"axis":"radial"}]}}""").RootElement;
  var bound=CadRecipeV9.Resolve(threadRecipe,inputRow);
  Check(bound.GetProperty("geometry").GetProperty("operations")[0].GetProperty("args").GetProperty("diameter").GetDouble()==pair.Item2,"thread callout does not alter solid diameter");
- Check(bound.GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("sourceMeasurement").GetProperty("threadCallout").GetString()==pair.Item3,"local callout survives native annotation binding");
+ Check(bound.GetProperty("drawing").GetProperty("dimensions")[0].GetProperty("sourceMeasurement").GetProperty("displayText").GetString()==pair.Item3,"local callout survives native annotation binding");
 }
 var threadWorkbookRows=WorkflowReports.ReadRows("samples/taslak46-upload/taslak4.6.xlsx");
 var parsedThreadWorkbook=ExcelModelInput.Build(threadWorkbookRows);
-Check(parsedThreadWorkbook.rows.Length==6&&parsedThreadWorkbook.rows.Count(r=>r.cells["J"].threadCallout is not null)==3,"actual taslak4.6 workbook parses six rows including three threaded cells");
+Check(parsedThreadWorkbook.rows.Length==6&&parsedThreadWorkbook.rows.Count(r=>r.cells["J"].displayText is not null)==3,"actual taslak4.6 workbook parses six rows including three threaded cells");

@@ -1,0 +1,10 @@
+using System.Text.Json;
+int count=0;
+foreach(var text in new[]{"1/4''-18 NPT","1/4''-18 NPTF","1/4\"-18 NPT","M12x1.5-6H","G1/4","3/4''-16 UNF","1/4\"-19 PT"})
+{
+ var cell=ExcelModelInput.ParseCell("Ø10,5("+text+")");if(cell.nominalMm!=10.5||cell.displayText!=text || cell.threadCallout is not null||cell.diameterSymbol!=true)throw new Exception("Parse mismatch "+text);
+ var sent=JsonSerializer.Serialize(ExcelModelInput.ForModel(new[]{new Dictionary<string,string>{{"jpeg file name","part"},{"B","Ø10,5("+text+")"}}}));
+ if(sent.Contains("displayText")||sent.Contains("threadCallout")||sent.Contains(text))throw new Exception("Thread leaked into nominal table");count++;
+}
+if(ExcelModelInput.ParseCell("Ø10,5(not-a-thread)").displayText!="not-a-thread")throw new Exception("Opaque text was interpreted");count++;
+Console.WriteLine(count+" thread parsing checks passed");

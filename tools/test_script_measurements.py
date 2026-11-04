@@ -7,6 +7,9 @@ class References(unittest.TestCase):
   self.shape=BRepPrimAPI_MakeCylinder(10,5).Shape();self.front=tuple(np.array(x) for x in ([1,0,0],[0,1,0],[0,0,1]));self.section=tuple(np.array(x) for x in ([0,0,1],[0,1,0],[1,0,0]))
  def test_arbitrary_diameter_label(self):
   m={'kind':'diameter','nominal':20,'center':[0,0,2],'axis':[0,0,1],'radius':10};self.assertEqual(anchor(self.shape,m,20,self.front,self.section)['kind'],'circle')
+ def test_explicit_endpoint_aliases(self):
+  m={'kind':'distance','nominal':5,'p1':[0,0,0],'p2':[0,0,5],'direction':[0,0,1]}
+  self.assertEqual(anchor(self.shape,m,5,self.front,self.section)['kind'],'linear')
  def test_distance_boundaries(self):
   m={'kind':'distance','nominal':5,'points':[[0,0,0],[0,0,5]],'direction':[0,0,1]};self.assertEqual(anchor(self.shape,m,5,self.front,self.section)['kind'],'linear')
  def test_wrong_body_endpoint_rejected(self):

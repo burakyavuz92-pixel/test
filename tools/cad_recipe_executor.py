@@ -237,18 +237,24 @@ def section_lines(shape,spec,view):
 def text_value(d):
  callout=d.get('sourceMeasurement',{}).get('threadCallout')
  if callout:return (f"{d.get('quantity',1):g}×" if d.get('quantity',1)>1 else '')+callout
- v=f"{d['nominal']:g}".replace('.',',');m=d.get('sourceMeasurement',{});tol=m.get('tolerance');prefix='Ø' if d['type'] in ('diameter','pitchDiameter') else 'R' if d['type']=='radius' else ''
+ m=d.get('sourceMeasurement',{});custom=m.get('displayText');v=custom if custom is not None else f"{d['nominal']:g}".replace('.',',');tol=m.get('tolerance');prefix='Ø' if m.get('diameterSymbol') else 'R' if d['type']=='radius' else ''
+ if custom is not None:prefix=''
  if d.get('quantity',1)>1:prefix=f"{d['quantity']:g}×"+prefix
  if tol:
   u=tol['upperDeviationMm'];lo=tol['lowerDeviationMm'];fmt=lambda v:f'{v:g}'.replace('.',',')
-  v+=f' (±{fmt(u)})' if abs(u+lo)<1e-9 else f' ({u:+g}/{lo:+g})'.replace('.',',')
+  v+=f' (±{fmt(u)})' if math.isclose(u,-lo,rel_tol=1e-12,abs_tol=0) else f' ({u:+g}/{lo:+g})'.replace('.',',')
  return prefix+v
 
 def sheet(recipe,shape,shapes,out,source):
  S=2;im=Image.new('RGB',(PIXELS[0]*S,PIXELS[1]*S),'white');draw=ImageDraw.Draw(im);fontpath=os.getenv('ARIAL_FONT', '/workspace/fonts/arial/arial.ttf');font=lambda n:ImageFont.truetype(fontpath,int(n*S))
  template=background(source,im.size)
  if template is not None:im=template;draw=ImageDraw.Draw(im)
- def txt(x,y,s,size=16):draw.text((x*S,y*S),s,font=font(size),fill='black')
+ def txt(x,y,s,size=16):
+  import re
+  if re.fullmatch(r'.* \([+-][0-9,eE.+-]+/[+-][0-9,eE.+-]+\)',s):
+   from dimension_annotations import Annotations
+   layer=Annotations(im,lambda n:font(n*size/18),S).text_layer(s);im.paste(layer,(round(x*S),round(y*S)))
+  else:draw.text((x*S,y*S),s,font=font(size),fill='black')
  if template is None:
   draw.rectangle((20*S,20*S,1734*S,1220*S),outline='black',width=S)
   txt(45,35,recipe['outputId'],24)
@@ -283,11 +289,9 @@ def sheet(recipe,shape,shapes,out,source):
  sec=sections[0]
  if sec.get('worldPath'):trace=[(np.dot(p,right),np.dot(p,up)) for p in sec['worldPath']]
  front_lines=hlr(shape,front);sl,loops=section_lines(shape,sec,sv)
- panels=[(450,120,850,690),(250 if recipe['drawing'].get('templateLayout') else 175,120,240,690)]
  def extent(lines):
   pts=[p for line in lines for p in line]
   return max(p[0] for p in pts)-min(p[0] for p in pts),max(p[1] for p in pts)-min(p[1] for p in pts)
- scale=choose_scale([extent(front_lines),extent(sl)],panels);fixed_k=scale*PX_PER_MM
  centers={};ex=TopExp_Explorer(shape,TopAbs_EDGE)
  while ex.More():
   curve=BRepAdaptor_Curve(TopoDS.Edge_s(ex.Current()))
@@ -297,10 +301,6 @@ def sheet(recipe,shape,shapes,out,source):
     p=circle.Location();xyz=[p.X(),p.Y(),p.Z()];xy=(float(np.dot(xyz,right)),float(np.dot(xyz,up)));key=tuple(round(v,5) for v in xy)
     centers[key]=max(centers.get(key,0),circle.Radius())
   ex.Next()
- pix=panel(front_lines,panels[0],trace=trace,fixed_k=fixed_k,centers=list(centers.items()))
- txt(770,835,'Ana görünüş',14)
- section_pix=panel(sl,panels[1],loops,fixed_k=fixed_k);txt(185,835,'KESİT '+sec['id'],14)
- if template is not None:fill_fields(im,{'scale':scale_label(scale),'product':recipe['outputId'],'format':'A5'},fontpath)
  temp=out/'mesh.stl';BRepMesh_IncrementalMesh(shape,.08,False,.3,True).Perform();writer=StlAPI_Writer();writer.Write(shape,str(temp));render_mesh(temp,out,{'camera':iso})
  with Image.open(out/'occt-preview.png') as sourceImage:image=sourceImage.convert('RGB')
  image.thumbnail((270*S,230*S));im.paste(image,(int(1450*S+(270*S-image.width)/2),int(65*S+(230*S-image.height)/2)))
@@ -315,11 +315,44 @@ def sheet(recipe,shape,shapes,out,source):
   def bounds2(lines):
    pts=[p for line in lines for p in line];return [min(p[0] for p in pts),min(p[1] for p in pts),max(p[0] for p in pts),max(p[1] for p in pts)]
   from dimension_lanes import render as render_lanes
-  placement=render_lanes(im,font,S,anchors,pix,section_pix,layout,{'front':bounds2(front_lines),'section':bounds2(sl)},text_value)
   unresolved+=binding_errors;omitted+=excluded
  else:
   anchors,unresolved,omitted=resolve_anchors(recipe,shape,basis(front),basis(sv),annotation_bounds.Get())
-  placement=render_dimensions(im,font,S,anchors,pix,section_pix,text_value)
+  def bounds2(lines):
+   pts=[p for line in lines for p in line];return [min(p[0] for p in pts),min(p[1] for p in pts),max(p[0] for p in pts),max(p[1] for p in pts)]
+ from adaptive_scale import select
+ from dimension_annotations import Annotations
+ probe=Annotations(im,font,S)
+ padding=[]
+ for view in ('front','section'):
+  labels=[probe.text_layer(text_value(a['dimension'])) for a in anchors if a.get('templateBinding',{}).get('view',a.get('view'))==view]
+  padding.append((max([layer.width/S/2+22 for layer in labels]+[30]),max([layer.height/S+28 for layer in labels]+[35])))
+ base=im.copy();selected={}
+ regions=[(45,100,1360,730),(45,360,1660,470)]
+ def trial(candidate,rects,packages):
+  nonlocal im,draw
+  im=base.copy();draw=ImageDraw.Draw(im);k=candidate*PX_PER_MM
+  pix=panel(front_lines,rects[0],trace=trace,fixed_k=k,centers=list(centers.items()))
+  section_pix=panel(sl,rects[1],loops,fixed_k=k)
+  for name,(x,y,w,h) in zip(('Ana görünüş','KESİT '+sec['id']),packages):txt(x,y+h-24,name,14)
+  if layout:
+   placement=render_lanes(im,font,S,anchors,pix,section_pix,layout,{'front':bounds2(front_lines),'section':bounds2(sl)},text_value)
+  else:placement=render_dimensions(im,font,S,anchors,pix,section_pix,text_value)
+  reasons=[p['reason'] for p in placement['failed']]
+  # Real glyph bounds must remain outside reserved title/table/iso areas.
+  for r in placement.get('templatePlacements',[]):
+   item=next(a for a in anchors if a['id']==r['id']);layer=probe.text_layer(text_value(item['dimension']));cx,cy=r['placedLabelPixels'];hw,hh=layer.width/S/2,layer.height/S/2
+   if r.get('side') in ('left','right'):hw,hh=hh,hw
+   if cx-hw<25 or cx+hw>1730 or cy-hh<40 or cy+hh>865 or (cx+hw>1430 and cy-hh<345):reasons.append('Annotation exceeds reserved page area')
+  for segment in placement.get('lineSegments',[]):
+   for x,y in segment:
+    if x<25 or x>1730 or y<40 or y>865 or (x>1430 and y<345):reasons.append('Dimension line exceeds reserved page area')
+  selected.update(placement=placement)
+  return {'reasons':reasons,'score':placement.get('annotationLineLengthPixels',0)}
+ scale,panels,packages,scale_attempts=select([extent(front_lines),extent(sl)],padding,regions,trial)
+ placement=selected['placement']
+ if template is not None:fill_fields(im,{'scale':scale_label(scale),'product':recipe['outputId'],'format':'A5'},fontpath)
+ (out/'scale-selection.json').write_text(json.dumps({'scale':scale,'attempts':scale_attempts,'panels':panels,'packages':packages,'unresolvedReferenceCount':len(unresolved)},indent=2))
  unresolved+=placement['failed']
  visible=[u['dimension'] for u in unresolved]
  (out/'dimension-placement.json').write_text(json.dumps({'placed':placement['placed'],'templatePlacements':placement.get('templatePlacements',[]),'unresolved':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'omitted':omitted},indent=2))
@@ -337,7 +370,7 @@ def sheet(recipe,shape,shapes,out,source):
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=(DPI,DPI))
  # A5 PDF provides an exact physical page independently of JPEG viewer DPI rounding.
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
- return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges','Geometric tolerance leader placement pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
+ return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleSelection':{'attempts':scale_attempts,'packages':packages},'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges','Geometric tolerance leader placement pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
 
 def run(folder,source,excel=None):
  folder=pathlib.Path(folder);results=[]

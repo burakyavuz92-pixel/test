@@ -1,0 +1,32 @@
+using System.Text.Json;
+int count=0;
+void Check(bool valid,string message){if(!valid)throw new Exception(message);count++;}
+void Reject(Dictionary<string,string> row){try{ExcelModelInput.Build(new[]{row});}catch(FormatException){count++;return;}throw new Exception("Invalid row accepted");}
+var raw=WorkflowReports.ReadRows(args.Length>0?args[0]:"samples/taslak61/taslak6.1.xlsx");
+var parsed=ExcelModelInput.Build(raw);
+Check(parsed.rows.Length==6,"six rows");
+var values=new[]{new[]{20d,10.5,36,15,20.9},new[]{20d,10.5,40,15,20.9},new[]{19d,10.5,16,23.8,20.9},new[]{20d,10.5,36,15,20.9},new[]{20d,10.5,38.5,15,20.9},new[]{20d,10.5,36,12,20.9}};
+var labels=new[]{"A","B","C","D","E"};
+for(int i=0;i<6;i++) {
+ var r=parsed.rows[i];Check(r.cells.Keys.SequenceEqual(labels),"only geometric columns");
+ for(int j=0;j<5;j++)Check(r.cells[labels[j]].nominalMm==values[i][j],"nominal preserved");
+ Check(r.cells["B"].displayText==raw[i]["B_METIN"],"opaque B text preserved");
+ Check(r.cells["C"].tolerance==new ParsedTolerance("symmetric",.5,-.5),"C tolerance");
+ Check(r.cells["E"].tolerance==new ParsedTolerance("asymmetric",0,-.1),"E tolerance");
+ Check(r.cells.Values.All(c=>c.threadCallout is null),"no thread classification");
+}
+Check(parsed.rows[2].cells["A"].displayText is null,"blank display uses nominal");
+var model=JsonSerializer.Serialize(ExcelModelInput.ForModel(raw));
+foreach(var token in new[]{"METIN","TOLUST","displayText","threadCallout","tolerance","NPT","M20"})Check(!model.Contains(token),"presentation not sent to model: "+token);
+var arbitrary=new Dictionary<string,string>{{"jpeg file name","probe"},{"A","Ø10,5"},{"A_METIN","bir metin (tür bilinmiyor) 1/4"},{"A_TOLUST","0"},{"A_TOLALT","-0,1"}};
+var a=ExcelModelInput.Build(new[]{arbitrary}).rows[0].cells["A"];
+Check(a.nominalMm==10.5&&a.displayText==arbitrary["A_METIN"]&&a.tolerance!.lowerDeviationMm==-.1,"generic text and signed lower");
+Reject(new(){{"jpeg file name","bad"},{"A","10"},{"B_METIN","orphan"}});
+Reject(new(){{"jpeg file name","bad"},{"A",""},{"A_METIN","text"}});
+Reject(new(){{"jpeg file name","bad"},{"A","10"},{"A_TOLUST","abc"}});
+Reject(new(){{"jpeg file name","bad"},{"A","10±0,2"},{"A_TOLUST","0.1"}});
+Reject(new(){{"jpeg file name","bad"},{"A","10"},{"A_TOLUST","0.1"},{"A_TOL_UST","0.1"}});
+Check(ExcelModelInput.ParseCell("Ø10,5(herhangi bir metin)").displayText=="herhangi bir metin","legacy opaque suffix");
+Check(ExcelModelInput.ParseCell("12(+0,5|-0)").tolerance!.upperDeviationMm==.5,"legacy tolerance retained");
+if(args.Length>1){Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(args[1]))!);File.WriteAllText(args[1],JsonSerializer.Serialize(parsed,WorkflowReports.Json));}
+Console.WriteLine(count+" Excel presentation checks passed (actual workbook)");

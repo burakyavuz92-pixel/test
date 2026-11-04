@@ -185,7 +185,7 @@ class Annotations:
         self.draw.polygon([tuple(tip),tuple(base+side*2*self.S),tuple(base-side*2*self.S)],fill='black')
     def text_layer(self,text):
         # Format asymmetric deviations locally; thread callouts do not match this suffix.
-        match=re.fullmatch(r'(.*?) \(([+-][0-9,]+)/([+-][0-9,]+)\)',text)
+        match=re.fullmatch(r'(.*?) \(([+-][0-9]+(?:,[0-9]+)?(?:e[+-]?[0-9]+)?)/([+-][0-9]+(?:,[0-9]+)?(?:e[+-]?[0-9]+)?)\)',text)
         chunks=[(text,18,0,0)]
         if match:
             nominal,upper,lower=match.groups()

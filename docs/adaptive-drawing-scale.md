@@ -1,6 +1,6 @@
 # Uyarlanabilir çizim ölçeği ve görünüş yerleşimi
 
-Durum: uygulanacak algoritma tasarımı. Mevcut ölçek kodu bu belgeyle değişmez.
+Durum: temel uygulama tools/adaptive_scale.py üzerinden çizim akışına bağlandı. Yazı rezervleriyle paketler oluşturulur; iki deterministik sayfa bölgesinde gerçek ölçü yerleşimi sınanır. Aynı ölçekte toplam açıklama çizgisi uzunluğu düşük yerleşim seçilir. Tasarımın genel keyfî engel paketleme araması yerine şu an antet/izometrik için iki geçerli çalışma bölgesi kullanılıyor. Görünüş başlıkları, glif ve çizgi taşmaları denetlenir.
 
 ## Amaç ve sabitler
 

@@ -58,16 +58,22 @@ def run(folder,image,excel):
             records=references.get(row['outputId'],[]);seen=set()
             for m in records:
                 label=m['source']
-                if label in seen:raise ValueError('Duplicate measurement source: '+label)
-                seen.add(label)
-                existing=next((d for d in drawing['dimensions'] if d['sourceLabel']==label),None)
+                if m['id'] in seen:raise ValueError('Duplicate measurement id: '+m['id'])
+                seen.add(m['id'])
+                existing=next((d for d in drawing['dimensions'] if d['sourceLabel']==label and 'scriptReference' not in d),None)
                 if existing is None:
-                    literal=float(label.removeprefix('R').replace(',','.'))
-                    existing={'id':m['id'],'sourceLabel':label,'valueSource':{'kind':'constant','value':literal,'unit':'mm'},'nominal':literal,'effectiveVisible':True,'targets':[],'axis':'Z'};drawing['dimensions'].append(existing)
+                    from bracket_content import literal as parse_literal
+                    content=parse_literal(label);literal=content.pop('nominal')
+                    from visual_measurements import canonical
+                    approved=[c for c in layout['candidates'] if canonical(c['label'])==canonical(label)]
+                    if any(any(symbol in c.get('sourceText','') for symbol in ('Ø','ø','⌀')) for c in approved):content['diameterSymbol']=True
+                    existing={'id':m['id'],'sourceLabel':label,'valueSource':{'kind':'constant','value':literal,'unit':'mm'},'nominal':literal,'effectiveVisible':True,'targets':[],'axis':'Z','sourceMeasurement':content};drawing['dimensions'].append(existing)
                 existing['type']=m['kind'];existing['scriptReference']=dict(m)
                 if evidence:
                     from visual_measurements import canonical
-                    marker=evidence.get(canonical(label))
+                    marker_key=m.get('markerId',canonical(label))
+                    marker=evidence.get(marker_key)
+                    if marker is not None:existing['sourceOccurrenceId']=marker_key
                     if marker is None:existing['scriptReference']['unresolved']='Visual evidence missing'
                     else:
                         marker=dict(marker);frame=layout.get('sourceFrames',{}).get(marker['view'],{}).get('bboxPixels')

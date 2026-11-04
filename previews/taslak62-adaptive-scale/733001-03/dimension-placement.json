@@ -1,0 +1,68 @@
+{
+  "placed": [
+    "column_C",
+    "column_A",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        531.3390476190476,
+        208.94047619046407
+      ],
+      "bandCoordinate": 222.19047619046407,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        235.903809523802,
+        449.0
+      ],
+      "bandCoordinate": 249.403809523802,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        699.4771428571504,
+        449.0
+      ],
+      "bandCoordinate": 682.9771428571504,
+      "narrow": false
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_B",
+      "reason": "bore reference unavailable for this depth"
+    },
+    {
+      "id": "column_D",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "R-CH-L",
+      "reason": "Missing visual endpoints for linear measurement"
+    },
+    {
+      "id": "R-CH-R",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "R-CONE",
+      "reason": "No matching cylindrical support on final body"
+    }
+  ],
+  "omitted": []
+}

@@ -4,11 +4,37 @@ import cv2,numpy as np
 from PIL import Image,ImageDraw,ImageFont
 from inspect_template_dimensions import REGIONS
 
-TOKEN=re.compile(r'(?:[Øø⌀])?\[(?:[Øø⌀Oo])?([A-Z][A-Z0-9]*|\d+(?:[.,]\d+)?)\]')
+TOKEN=re.compile(r'(?:[Øø⌀])?\[(.+)\]')
 def parse_token(text):
-    text=re.sub(r'\s+','',text)
-    found=TOKEN.fullmatch(text)
-    return found.group(1) if found else None
+    from bracket_content import compact
+    text=compact(text);found=TOKEN.fullmatch(text)
+    if not found or '[' in found[1] or ']' in found[1]:return None
+    content=found[1]
+    if re.fullmatch(r'[Øø⌀Oo][A-Z][A-Z0-9]*',content):content=content[1:]
+    return content
+
+def candidate_rank(label,confidence,columns):
+    return (label in columns,confidence)
+
+def recover_closing_bracket(text,columns):
+    confused=re.fullmatch(r'\[([A-Z][A-Z0-9]*)l',text)
+    return confused[1] if confused and confused[1] in columns else None
+
+def visible_plus_minus(image,word):
+    # Validate the extra minus stroke in pixels, not from the nominal value.
+    x,y,bw,bh=(int(word[k]) for k in ('left','top','width','height'))
+    cw=min(bw,max(8,round(bh*.44)))
+    ink=np.asarray(image.convert('L'))[y:y+bh,x:x+cw]<180
+    if ink.size==0:return False
+    rows=np.flatnonzero((ink.sum(axis=1)>cw*.45)&(ink.sum(axis=1)<cw*.95))
+    groups=[]
+    for row in rows:
+        if not groups or row>groups[-1][-1]+1:groups.append([int(row)])
+        else:groups[-1].append(int(row))
+    groups=[g for g in groups if len(g)>=max(2,bh*.025)]
+    if len(groups)<2:return False
+    a,b=groups[:2]
+    return bh*.10 < b[0]-a[-1] < bh*.45 and b[-1]<bh*.9
 
 def inverse_box(box,size,rotated_size,offset,angle):
     c,s=math.cos(math.radians(angle)),math.sin(math.radians(angle));pts=[]
@@ -26,7 +52,7 @@ def read_columns(path):
             text=cell.findtext('m:v','',ns)
             return shared[int(text)] if cell.get('t')=='s' else ''.join(cell.find('m:is',ns).itertext()) if cell.get('t')=='inlineStr' else text
         headers={c.get('r').rstrip('0123456789'):value(c).strip() for c in rows[0]}
-        result={v:False for k,v in headers.items() if len(k)>1 or k>='F'}
+        result={v:False for k,v in headers.items() if (len(k)>1 or k>='F') and not v.endswith(('_METIN','_TOLUST','_TOLALT','_TOL_UST','_TOL_ALT'))}
         for row in rows[1:]:
             for c in row:
                 name=headers.get(c.get('r').rstrip('0123456789'))
@@ -70,24 +96,34 @@ def inspect(source,folder,excel=None):
                     bars=[r for r in bars[1:] if r[3]>35]
                     if len(bars)<2 or np.mean(roi_mask>0)>.25:continue
                     variants.append((roi,left,top,7))
-            words=[]
+            words=[];transcripts=[]
             for variant,ox,oy,psm in variants:
                 path=folder/'ocr-input.png';variant.save(path)
                 run=subprocess.run(['tesseract',str(path),'stdout','--psm',str(psm),'-l','eng','tsv'],capture_output=True,text=True,check=True,env={**os.environ,'OMP_THREAD_LIMIT':'1'})
+                transcripts.append({'variant':len(transcripts),'offset':[ox,oy],'psm':psm,'tsv':run.stdout})
                 part=[v for v in csv.DictReader(io.StringIO(run.stdout),delimiter='\t',quoting=csv.QUOTE_NONE) if v.get('text','').strip()]
+                for word in part:
+                    if re.match(r'^\+\d',word['text']) and visible_plus_minus(variant,word):word['text']='±'+word['text'][1:]
                 prefix=str(len(words))
                 for v in part:v['left']=str(int(v['left'])+ox);v['top']=str(int(v['top'])+oy);v['block_num']=prefix+':'+v['block_num']
                 words.extend(part)
+            (folder/f'ocr-{view}-{angle}.json').write_text(json.dumps(transcripts))
             rotated=raw
             print(f'{view} angle={angle} local_regions={len(variants)-2}',flush=True)
             groups={}
             for word in words:groups.setdefault(tuple(word[k] for k in ('block_num','par_num','line_num')),[]).append(word)
             for line in groups.values():
                 for start in range(len(line)):
-                    for end in range(start+1,min(len(line),start+4)+1):
+                    for end in range(start+1,min(len(line),start+12)+1):
                         span=line[start:end];text=''.join(w['text'] for w in span);label=parse_token(text)
+                        closing_correction=None
+                        if label is None:
+                            # Tesseract can read the closing bracket as lowercase l.
+                            recovered=recover_closing_bracket(text,columns)
+                            if recovered:
+                                label=recovered;closing_correction='closing bracket OCR l→] with exact Excel label'
                         if label is None:continue
-                        raw_label=label;label,correction=normalize_label(label,columns)
+                        raw_label=label;label,correction=normalize_label(label,columns);correction=correction or closing_correction
                         conf=min(float(w['conf']) for w in span)
                         if conf<20:continue
                         b=[min(int(w['left']) for w in span),min(int(w['top']) for w in span),max(int(w['left'])+int(w['width']) for w in span),max(int(w['top'])+int(w['height']) for w in span)]
@@ -95,11 +131,11 @@ def inspect(source,folder,excel=None):
                         center=np.mean(polygon,axis=0);old=next((v for v in found if v['view']==view and np.linalg.norm(np.array(v['centerPixels'])-center)<max(40,(b[3]-b[1])*.7)),None)
                         item={'label':label,'rawLabel':raw_label,'normalization':correction,'sourceText':text,'view':view,'confidence':conf,'centerPixels':center.tolist(),'polygonPixels':polygon,'centerNormalized':[center[0]/W,center[1]/H],'ocrRotationDeg':angle,'orientationStatus':'OCR search angle, not independently measured text orientation','status':'needs-review'}
                         if old:
-                            if conf>old['confidence']:found.remove(old);found.append(item)
+                            if candidate_rank(label,conf,columns)>candidate_rank(old['label'],old['confidence'],columns):found.remove(old);found.append(item)
                         else:found.append(item)
         path.unlink()
     for item in found:
-        label=item['label'];item['kind']='excel-label' if label in columns else 'literal-radius' if re.fullmatch(r'R[0-9]+(?:[.,][0-9]+)?',label) else 'literal-dimension' if re.fullmatch(r'[0-9]+(?:[.,][0-9]+)?',label) else 'unmatched-label'
+        label=item['label'];item['kind']='excel-label' if label in columns else 'literal-radius' if re.fullmatch(r'R[0-9]+(?:[.,][0-9]+)?',label) else 'literal-dimension' if re.fullmatch(r'[0-9]+(?:[.,][0-9]+)?',label) else 'literal-expression' if any(c in label for c in ('±','°')) else 'unmatched-label'
     rejected=[v for v in found if v['kind']=='unmatched-label']
     found=[v for v in found if v['kind']!='unmatched-label']
     found.sort(key=lambda v:(v['view'],v['centerPixels'][1]))

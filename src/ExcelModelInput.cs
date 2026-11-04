@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 // Parse once locally. The API receives one typed table; annotation retains source tolerance.
 public record ParsedTolerance(string kind, double upperDeviationMm, double lowerDeviationMm);
 public record ParsedExcelCell(string state, double? nominalMm = null, bool? isZero = null,
-    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null);
+    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null, string? displayText = null);
 public record ParsedExcelRow(string outputId, Dictionary<string, ParsedExcelCell> cells);
 public record ExcelApiInput(int schemaVersion, string lengthUnit, ParsedExcelRow[] rows);
 
@@ -24,20 +24,6 @@ public static class ExcelModelInput
         if (value.Length == 0) return new("blank");
         // Preserve product identifiers as text, even when they start with digits.
         if (Regex.IsMatch(value, @"^\d+(?:-\d+){2,}$")) return new("text", text: value);
-        var threaded=Regex.Match(value,@"^(?<base>.+)\((?<thread>[^()]+)\)$");
-        if(threaded.Success)
-        {
-            var callout=threaded.Groups["thread"].Value.Trim();
-            bool isThread=Regex.IsMatch(callout,@"^M\d+(?:[.,]\d+)?(?:[xX×]\d+(?:[.,]\d+)?)?(?:-[0-9A-Za-z]+)?$",RegexOptions.IgnoreCase)
-                ||Regex.IsMatch(callout,@"^(?:G|R|Rc|Rp)\s*\d+(?:/\d+)?$",RegexOptions.IgnoreCase)
-                ||Regex.IsMatch(callout,@"^\d+(?:/\d+)?[""″]?\s*-\s*\d+\s*NPT$",RegexOptions.IgnoreCase);
-            if(isThread)
-            {
-                var geometry=ParseCell(threaded.Groups["base"].Value);
-                if(geometry.state!="number")throw new FormatException("Diş tanımı öncesinde sayısal geometri ölçüsü gerekli.");
-                return geometry with{threadCallout=callout};
-            }
-        }
         var m = Measurement.Match(value);
         if (m.Success)
         {
@@ -52,22 +38,64 @@ public static class ExcelModelInput
                 tolerance = new("asymmetric", Numeric(m.Groups["upper"].Value), -Numeric(m.Groups["lower"].Value));
             return new("number", nominal, nominal == 0, m.Groups["diameter"].Success, tolerance);
         }
+        // Parenthesized suffix is opaque presentation text, never a thread specification.
+        var suffix = Regex.Match(value, @"^(?<base>[^()]+)\((?<display>.*)\)$");
+        if (suffix.Success && Measurement.IsMatch(suffix.Groups["base"].Value))
+            return ParseCell(suffix.Groups["base"].Value) with { displayText = suffix.Groups["display"].Value };
         // Never silently reinterpret an unrecognized tolerance/dimension as an identifier.
         if (Regex.IsMatch(value, @"^[+\-−\d.,Øø⌀]|[±Øø⌀]"))
             throw new FormatException("Desteklenmeyen ölçü/tolerans biçimi: " + value);
         return new("text", text: value);
     }
 
+    static readonly string[] PresentationSuffixes = ["_METIN", "_TOLUST", "_TOLALT", "_TOL_UST", "_TOL_ALT"];
+    public static bool IsPresentationColumn(string name) => PresentationSuffixes.Any(s => name.EndsWith(s, StringComparison.Ordinal));
+    static string BaseColumn(string name) => name[..^PresentationSuffixes.First(s => name.EndsWith(s, StringComparison.Ordinal)).Length];
+    static string? Presentation(Dictionary<string,string> row, string label, params string[] suffixes)
+    {
+        var present = suffixes.Select(s => label+s).Where(row.ContainsKey).ToArray();
+        if (present.Length > 1) throw new FormatException(label+": aynı sunum alanı iki sütunda verilmiş.");
+        return present.Length == 0 || string.IsNullOrWhiteSpace(row[present[0]]) ? null : row[present[0]];
+    }
+    static double Deviation(string? text)
+    {
+        if (text is null) return 0;
+        if (!double.TryParse(text.Trim().Replace(',', '.'), NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out var n) || !double.IsFinite(n))
+            throw new FormatException("Tolerans sayısal olmalı: "+text);
+        return n;
+    }
     public static ExcelApiInput Build(IEnumerable<Dictionary<string, string>> rows) => new(1, "mm",
-        rows.Select(row => { LocalDrawingSettings.Read(row); return new ParsedExcelRow(row["jpeg file name"], row.Where(kv => kv.Key != "jpeg file name" && !LocalDrawingSettings.IsSetting(kv.Key))
-            .ToDictionary(kv => kv.Key, kv => {
+        rows.Select(row => {
+            LocalDrawingSettings.Read(row);
+            var geometry = row.Keys.Where(k => k != "jpeg file name" && !LocalDrawingSettings.IsSetting(k) && !IsPresentationColumn(k)).ToArray();
+            foreach (var key in row.Keys.Where(IsPresentationColumn))
+                if (!geometry.Contains(BaseColumn(key))) throw new FormatException(row["jpeg file name"]+" / "+key+": karşılık gelen geometri sütunu yok.");
+            var cells = new Dictionary<string,ParsedExcelCell>();
+            foreach (var key in geometry)
+            {
                 try {
-                    var cell=ParseCell(kv.Value);
+                    var cell=ParseCell(row[key]);
                     if(cell.state=="text")throw new FormatException("Ölçü sütunu sayısal değer veya boş hücre içermeli.");
-                    return cell;
+                    var text=Presentation(row,key,"_METIN");
+                    var upper=Presentation(row,key,"_TOLUST","_TOL_UST");
+                    var lower=Presentation(row,key,"_TOLALT","_TOL_ALT");
+                    if(cell.state=="blank" && (text is not null || upper is not null || lower is not null))
+                        throw new FormatException("Metin/tolerans için geometri değeri gerekli.");
+                    if(text is not null) {
+                        cell=cell with {displayText=text};
+                    }
+                    if(upper is not null || lower is not null) {
+                        if(cell.tolerance is not null)throw new FormatException("Toleransı hem ölçü hücresinde hem ayrı sütunda vermeyin.");
+                        double u=Deviation(upper), l=-Math.Abs(Deviation(lower));
+                        if(l>u)throw new FormatException("Alt tolerans üst toleranstan büyük olamaz.");
+                        cell=cell with {tolerance=new(Math.Abs(u+l)<1e-12 ? "symmetric" : "asymmetric",u,l)};
+                    }
+                    cells.Add(key,cell);
                 }
-                catch (FormatException ex) { throw new FormatException($"{row["jpeg file name"]} / {kv.Key}: {ex.Message}"); }
-            })); }).ToArray());
+                catch(FormatException ex) {throw new FormatException($"{row["jpeg file name"]} / {key}: {ex.Message}");}
+            }
+            return new ParsedExcelRow(row["jpeg file name"],cells);
+        }).ToArray());
 
     // Only geometric cell data enters the model request; presentation remains local.
     public static object ForModel(IEnumerable<Dictionary<string,string>> rows)

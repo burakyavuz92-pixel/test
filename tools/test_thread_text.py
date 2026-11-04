@@ -6,5 +6,5 @@ class Threads(unittest.TestCase):
    d={'nominal':20.5,'type':'diameter','sourceMeasurement':{'threadCallout':callout,'tolerance':{'upperDeviationMm':.5,'lowerDeviationMm':-.5}}}
    self.assertEqual(text_value(d),callout)
  def test_plain_tolerance_stays(self):
-  self.assertEqual(text_value({'nominal':20.5,'type':'diameter','sourceMeasurement':{'tolerance':{'upperDeviationMm':.5,'lowerDeviationMm':-.5}}}),'Ø20,5 (±0,5)')
+  self.assertEqual(text_value({'nominal':20.5,'type':'diameter','sourceMeasurement':{'diameterSymbol':True,'tolerance':{'upperDeviationMm':.5,'lowerDeviationMm':-.5}}}),'Ø20,5 (±0,5)')
 if __name__=='__main__':unittest.main()

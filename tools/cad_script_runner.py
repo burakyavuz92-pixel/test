@@ -11,7 +11,11 @@ DENIED={'open','eval','exec','compile','getattr','setattr','delattr','globals','
 def load_script(source, entry="build_part"):
  tree=ast.parse(source)
  for statement in tree.body:
-  if not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef)):raise ValueError('Only imports and function definitions are allowed at module level')
+  if isinstance(statement,ast.Assign) and all(isinstance(t,ast.Name) and re.fullmatch(r'[A-Z][A-Z0-9_]*',t.id) for t in statement.targets):
+   try:value=ast.literal_eval(statement.value)
+   except (ValueError,TypeError):raise ValueError('Module constants must be numeric literals')
+   if type(value) not in (int,float) or not math.isfinite(value):raise ValueError('Module constants must be finite numbers')
+  elif not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef)):raise ValueError('Only imports, numeric constants and function definitions are allowed at module level')
  for node in ast.walk(tree):
   if isinstance(node,(ast.Import,ast.ImportFrom)):
    names=[n.name for n in node.names] if isinstance(node,ast.Import) else [node.module]

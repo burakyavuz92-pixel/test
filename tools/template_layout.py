@@ -4,7 +4,7 @@ import cv2,numpy as np
 from PIL import Image
 from inspect_bracket_layout import inspect,read_columns
 
-VERSION='bracket-layout-v1'
+VERSION='bracket-layout-v4'
 
 def source_frames(image,layout):
     W,H=image.size;w=1754;h=round(H*w/W);gray=cv2.resize(np.asarray(image.convert('L')),(w,h));scale=W/w
@@ -60,7 +60,7 @@ def bind_dimensions(dimensions,layout):
                 literal=candidate['label'];expected='R' if dim['type']=='radius' else ''
                 try:hit=literal.startswith(expected) and abs(float(literal[len(expected):].replace(',','.'))-dim['nominal'])<1e-7
                 except ValueError:hit=False
-            if hit:matches.append(candidate)
+            if hit and ('sourceOccurrenceId' not in dim or candidate.get('occurrenceId')==dim['sourceOccurrenceId']):matches.append(candidate)
         if not matches:omitted.append({'id':dim['id'],'reason':'No bracketed template marker'});continue
         if len(matches)!=1:unresolved.append({'id':dim['id'],'reason':'Ambiguous template marker','dimension':dim});continue
         candidate=matches[0];view=candidate['view']
