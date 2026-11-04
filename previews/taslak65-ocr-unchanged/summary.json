@@ -1,0 +1,38 @@
+{
+  "codeChanged": false,
+  "apiCalls": 0,
+  "originalJpegSha256": "513ae5f8bc18de558d6ea386863abbce37d701bd824db68dd250144a3b20d05e",
+  "codeHashes": {
+    "tools/inspect_bracket_layout.py": "2a05691dc2516bed326863f529da28d1eb57d922ddfd78606dddc65c1d3ed451",
+    "tools/inspect_template_dimensions.py": "1c320fc4feef3c8d6aedb006a5b29f88d171336ce7d1cfe6c37d13fd64087313",
+    "tools/bracket_content.py": "e39b95f0d2f4c8f357b448dde1cd2cef70abe324c763aa7af296145b739d621d",
+    "tools/visual_measurements.py": "2f828fac053411a6c2549b024985b39d8611661807adbc8f7629ff2785e67a82"
+  },
+  "correct": [
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J"
+  ],
+  "partial": {
+    "Ø25±0,5": "25±0,5 found; diameter symbol lost"
+  },
+  "incorrect": {
+    "C": "9",
+    "5": "9"
+  },
+  "missing": [
+    "2,8"
+  ],
+  "intentionallyUnmarked": [
+    "K"
+  ],
+  "directWholeImageCorrect": [
+    "C",
+    "D"
+  ],
+  "allCorrect": false
+}
