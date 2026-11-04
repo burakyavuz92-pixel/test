@@ -1,0 +1,61 @@
+{
+  "Status": "sheets-produced",
+  "Issues": [],
+  "Run": {
+    "Stage": "sheets",
+    "ApiCalls": 2,
+    "ReportedCostUsd": 0.0233966,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": false,
+    "Usage": [
+      {
+        "prompt_tokens": 9314,
+        "completion_tokens": 18344,
+        "total_tokens": 27658,
+        "cost": 0.0101034,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0101034,
+          "upstream_inference_prompt_cost": 0.0009314,
+          "upstream_inference_completions_cost": 0.009172
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 17222,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      {
+        "prompt_tokens": 10452,
+        "completion_tokens": 24496,
+        "total_tokens": 34948,
+        "cost": 0.0132932,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0132932,
+          "upstream_inference_prompt_cost": 0.0010452,
+          "upstream_inference_completions_cost": 0.012248
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 20487,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    ]
+  },
+  "HumanApproved": false
+}

@@ -1,0 +1,63 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "773b2c478ad256b0c3e9c1cb63658926e4f3fc0465588d07321af49c2bd3024a",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10829.876544497649,
+      "stepRoundtrip": true,
+      "seconds": 2.717612502994598
+    },
+    {
+      "outputId": "733001-02",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11802.984868947085,
+      "stepRoundtrip": true,
+      "seconds": 2.5114831610117108
+    },
+    {
+      "outputId": "733001-03",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5468.437455883624,
+      "stepRoundtrip": true,
+      "seconds": 2.4500643409992335
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10829.876544497649,
+      "stepRoundtrip": true,
+      "seconds": 2.8356478420027997
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11438.069247278549,
+      "stepRoundtrip": true,
+      "seconds": 2.5289058730122633
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10877.000434301492,
+      "stepRoundtrip": true,
+      "seconds": 2.427958147993195
+    }
+  ]
+}

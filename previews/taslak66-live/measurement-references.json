@@ -1,0 +1,1472 @@
+{
+  "733001": [
+    {
+      "id": "rec-A",
+      "markerId": "m-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-B",
+      "markerId": "m-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -8.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "rec-C",
+      "markerId": "m-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 36.0,
+      "points": [
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -36.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-D",
+      "markerId": "m-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          0.0
+        ],
+        [
+          5.25,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-E",
+      "markerId": "m-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -37.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "rec-F",
+      "markerId": "m-F",
+      "source": "F",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.25,
+          0.0,
+          -1.0
+        ],
+        [
+          6.25,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-G",
+      "markerId": "m-G",
+      "source": "G",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.75,
+          0.0,
+          -43.8
+        ],
+        [
+          4.75,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-J",
+      "markerId": "m-J",
+      "source": "J",
+      "kind": "chamfer",
+      "nominal": 3.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          -3.0
+        ],
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 35.0
+    },
+    {
+      "id": "rec-L",
+      "markerId": "m-L",
+      "source": "L",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -38.8
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "rec-5",
+      "markerId": "m-5",
+      "source": "5",
+      "kind": "thickness",
+      "nominal": 5.0,
+      "points": [
+        [
+          12.5,
+          0.0,
+          -38.8
+        ],
+        [
+          11.0,
+          0.0,
+          -43.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-2,8",
+      "markerId": "m-2_8",
+      "source": "2,8",
+      "kind": "thickness",
+      "nominal": 2.8,
+      "points": [
+        [
+          10.45,
+          0.0,
+          -36.0
+        ],
+        [
+          10.45,
+          0.0,
+          -38.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    }
+  ],
+  "733001-02": [
+    {
+      "id": "rec-A",
+      "markerId": "m-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -21.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-B",
+      "markerId": "m-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -8.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "rec-C",
+      "markerId": "m-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 40.0,
+      "points": [
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -40.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-D",
+      "markerId": "m-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          0.0
+        ],
+        [
+          5.25,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-E",
+      "markerId": "m-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -41.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "rec-F",
+      "markerId": "m-F",
+      "source": "F",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.25,
+          0.0,
+          -1.0
+        ],
+        [
+          6.25,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-G",
+      "markerId": "m-G",
+      "source": "G",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.75,
+          0.0,
+          -47.8
+        ],
+        [
+          4.75,
+          0.0,
+          -46.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-J",
+      "markerId": "m-J",
+      "source": "J",
+      "kind": "chamfer",
+      "nominal": 3.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          -3.0
+        ],
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 35.0
+    },
+    {
+      "id": "rec-L",
+      "markerId": "m-L",
+      "source": "L",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -42.8
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "rec-5",
+      "markerId": "m-5",
+      "source": "5",
+      "kind": "thickness",
+      "nominal": 5.0,
+      "points": [
+        [
+          12.5,
+          0.0,
+          -42.8
+        ],
+        [
+          11.0,
+          0.0,
+          -47.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-2,8",
+      "markerId": "m-2_8",
+      "source": "2,8",
+      "kind": "thickness",
+      "nominal": 2.8,
+      "points": [
+        [
+          10.45,
+          0.0,
+          -40.0
+        ],
+        [
+          10.45,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    }
+  ],
+  "733001-03": [
+    {
+      "id": "rec-A",
+      "markerId": "m-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 19.0,
+      "center": [
+        0.0,
+        0.0,
+        -9.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 9.5
+    },
+    {
+      "id": "rec-B",
+      "markerId": "m-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -8.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "rec-C",
+      "markerId": "m-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 16.0,
+      "points": [
+        [
+          7.399377385370871,
+          0.0,
+          0.0
+        ],
+        [
+          9.5,
+          0.0,
+          -16.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-D",
+      "markerId": "m-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 16.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          0.0
+        ],
+        [
+          5.25,
+          0.0,
+          -16.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-E",
+      "markerId": "m-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -17.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "rec-F",
+      "markerId": "m-F",
+      "source": "F",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.25,
+          0.0,
+          -1.0
+        ],
+        [
+          6.25,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-G",
+      "markerId": "m-G",
+      "source": "G",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.75,
+          0.0,
+          -23.8
+        ],
+        [
+          4.75,
+          0.0,
+          -22.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-J",
+      "markerId": "m-J",
+      "source": "J",
+      "kind": "chamfer",
+      "nominal": 3.0,
+      "points": [
+        [
+          9.5,
+          0.0,
+          -3.0
+        ],
+        [
+          7.399377385370871,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 35.0
+    },
+    {
+      "id": "rec-L",
+      "markerId": "m-L",
+      "source": "L",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -18.8
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "rec-5",
+      "markerId": "m-5",
+      "source": "5",
+      "kind": "thickness",
+      "nominal": 5.0,
+      "points": [
+        [
+          12.5,
+          0.0,
+          -18.8
+        ],
+        [
+          11.0,
+          0.0,
+          -23.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-2,8",
+      "markerId": "m-2_8",
+      "source": "2,8",
+      "kind": "thickness",
+      "nominal": 2.8,
+      "points": [
+        [
+          10.45,
+          0.0,
+          -16.0
+        ],
+        [
+          10.45,
+          0.0,
+          -18.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    }
+  ],
+  "733001-01": [
+    {
+      "id": "rec-A",
+      "markerId": "m-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-B",
+      "markerId": "m-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -8.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "rec-C",
+      "markerId": "m-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 36.0,
+      "points": [
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -36.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-D",
+      "markerId": "m-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          0.0
+        ],
+        [
+          5.25,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-E",
+      "markerId": "m-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -37.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "rec-F",
+      "markerId": "m-F",
+      "source": "F",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.25,
+          0.0,
+          -1.0
+        ],
+        [
+          6.25,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-G",
+      "markerId": "m-G",
+      "source": "G",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.75,
+          0.0,
+          -43.8
+        ],
+        [
+          4.75,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-J",
+      "markerId": "m-J",
+      "source": "J",
+      "kind": "chamfer",
+      "nominal": 3.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          -3.0
+        ],
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 35.0
+    },
+    {
+      "id": "rec-L",
+      "markerId": "m-L",
+      "source": "L",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -38.8
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "rec-5",
+      "markerId": "m-5",
+      "source": "5",
+      "kind": "thickness",
+      "nominal": 5.0,
+      "points": [
+        [
+          12.5,
+          0.0,
+          -38.8
+        ],
+        [
+          11.0,
+          0.0,
+          -43.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-2,8",
+      "markerId": "m-2_8",
+      "source": "2,8",
+      "kind": "thickness",
+      "nominal": 2.8,
+      "points": [
+        [
+          10.45,
+          0.0,
+          -36.0
+        ],
+        [
+          10.45,
+          0.0,
+          -38.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    }
+  ],
+  "733002": [
+    {
+      "id": "rec-A",
+      "markerId": "m-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -20.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-B",
+      "markerId": "m-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -8.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "rec-C",
+      "markerId": "m-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 38.5,
+      "points": [
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -38.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-D",
+      "markerId": "m-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 15.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          0.0
+        ],
+        [
+          5.25,
+          0.0,
+          -15.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-E",
+      "markerId": "m-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -39.9
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "rec-F",
+      "markerId": "m-F",
+      "source": "F",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.25,
+          0.0,
+          -1.0
+        ],
+        [
+          6.25,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-G",
+      "markerId": "m-G",
+      "source": "G",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.75,
+          0.0,
+          -46.3
+        ],
+        [
+          4.75,
+          0.0,
+          -45.3
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-J",
+      "markerId": "m-J",
+      "source": "J",
+      "kind": "chamfer",
+      "nominal": 3.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          -3.0
+        ],
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 35.0
+    },
+    {
+      "id": "rec-L",
+      "markerId": "m-L",
+      "source": "L",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -41.3
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "rec-5",
+      "markerId": "m-5",
+      "source": "5",
+      "kind": "thickness",
+      "nominal": 5.0,
+      "points": [
+        [
+          12.5,
+          0.0,
+          -41.3
+        ],
+        [
+          11.0,
+          0.0,
+          -46.3
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-2,8",
+      "markerId": "m-2_8",
+      "source": "2,8",
+      "kind": "thickness",
+      "nominal": 2.8,
+      "points": [
+        [
+          10.45,
+          0.0,
+          -38.5
+        ],
+        [
+          10.45,
+          0.0,
+          -41.3
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    }
+  ],
+  "733042": [
+    {
+      "id": "rec-A",
+      "markerId": "m-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-B",
+      "markerId": "m-B",
+      "source": "B",
+      "kind": "diameter",
+      "nominal": 10.5,
+      "center": [
+        0.0,
+        0.0,
+        -6.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 5.25
+    },
+    {
+      "id": "rec-C",
+      "markerId": "m-C",
+      "source": "C",
+      "kind": "distance",
+      "nominal": 36.0,
+      "points": [
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ],
+        [
+          10.0,
+          0.0,
+          -36.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-D",
+      "markerId": "m-D",
+      "source": "D",
+      "kind": "distance",
+      "nominal": 12.0,
+      "points": [
+        [
+          6.25,
+          0.0,
+          0.0
+        ],
+        [
+          5.25,
+          0.0,
+          -12.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-E",
+      "markerId": "m-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.9,
+      "center": [
+        0.0,
+        0.0,
+        -37.4
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.45
+    },
+    {
+      "id": "rec-F",
+      "markerId": "m-F",
+      "source": "F",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.25,
+          0.0,
+          -1.0
+        ],
+        [
+          6.25,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-G",
+      "markerId": "m-G",
+      "source": "G",
+      "kind": "chamfer",
+      "nominal": 1.0,
+      "points": [
+        [
+          5.75,
+          0.0,
+          -43.8
+        ],
+        [
+          4.75,
+          0.0,
+          -42.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 45.0
+    },
+    {
+      "id": "rec-J",
+      "markerId": "m-J",
+      "source": "J",
+      "kind": "chamfer",
+      "nominal": 3.0,
+      "points": [
+        [
+          10.0,
+          0.0,
+          -3.0
+        ],
+        [
+          7.899377385370871,
+          0.0,
+          0.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "angleDeg": 35.0
+    },
+    {
+      "id": "rec-L",
+      "markerId": "m-L",
+      "source": "L",
+      "kind": "diameter",
+      "nominal": 25.0,
+      "center": [
+        0.0,
+        0.0,
+        -38.8
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 12.5
+    },
+    {
+      "id": "rec-5",
+      "markerId": "m-5",
+      "source": "5",
+      "kind": "thickness",
+      "nominal": 5.0,
+      "points": [
+        [
+          12.5,
+          0.0,
+          -38.8
+        ],
+        [
+          11.0,
+          0.0,
+          -43.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    },
+    {
+      "id": "rec-2,8",
+      "markerId": "m-2_8",
+      "source": "2,8",
+      "kind": "thickness",
+      "nominal": 2.8,
+      "points": [
+        [
+          10.45,
+          0.0,
+          -36.0
+        ],
+        [
+          10.45,
+          0.0,
+          -38.8
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        -1.0
+      ]
+    }
+  ]
+}

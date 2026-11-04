@@ -1,0 +1,110 @@
+[
+  {
+    "outputId": "733001",
+    "parameters": {
+      "A": 20,
+      "B": 10.5,
+      "C": 36,
+      "D": 15,
+      "E": 20.9,
+      "F": 1,
+      "G": 1,
+      "J": 3,
+      "K": 9.5,
+      "L": 25,
+      "F__angleDeg": 45,
+      "G__angleDeg": 45,
+      "J__angleDeg": 35
+    }
+  },
+  {
+    "outputId": "733001-02",
+    "parameters": {
+      "A": 20,
+      "B": 10.5,
+      "C": 40,
+      "D": 15,
+      "E": 20.9,
+      "F": 1,
+      "G": 1,
+      "J": 3,
+      "K": 9.5,
+      "L": 25,
+      "F__angleDeg": 45,
+      "G__angleDeg": 45,
+      "J__angleDeg": 35
+    }
+  },
+  {
+    "outputId": "733001-03",
+    "parameters": {
+      "A": 19,
+      "B": 10.5,
+      "C": 16,
+      "D": 16,
+      "E": 20.9,
+      "F": 1,
+      "G": 1,
+      "J": 3,
+      "K": 9.5,
+      "L": 25,
+      "F__angleDeg": 45,
+      "G__angleDeg": 45,
+      "J__angleDeg": 35
+    }
+  },
+  {
+    "outputId": "733001-01",
+    "parameters": {
+      "A": 20,
+      "B": 10.5,
+      "C": 36,
+      "D": 15,
+      "E": 20.9,
+      "F": 1,
+      "G": 1,
+      "J": 3,
+      "K": 9.5,
+      "L": 25,
+      "F__angleDeg": 45,
+      "G__angleDeg": 45,
+      "J__angleDeg": 35
+    }
+  },
+  {
+    "outputId": "733002",
+    "parameters": {
+      "A": 20,
+      "B": 10.5,
+      "C": 38.5,
+      "D": 15,
+      "E": 20.9,
+      "F": 1,
+      "G": 1,
+      "J": 3,
+      "K": 9.5,
+      "L": 25,
+      "F__angleDeg": 45,
+      "G__angleDeg": 45,
+      "J__angleDeg": 35
+    }
+  },
+  {
+    "outputId": "733042",
+    "parameters": {
+      "A": 20,
+      "B": 10.5,
+      "C": 36,
+      "D": 12,
+      "E": 20.9,
+      "F": 1,
+      "G": 1,
+      "J": 3,
+      "K": 9.5,
+      "L": 25,
+      "F__angleDeg": 45,
+      "G__angleDeg": 45,
+      "J__angleDeg": 35
+    }
+  }
+]

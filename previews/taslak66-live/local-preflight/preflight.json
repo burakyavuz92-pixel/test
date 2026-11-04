@@ -1,0 +1,37 @@
+{
+  "excelPassed": true,
+  "requiredLabels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "J",
+    "L",
+    "5",
+    "2,8"
+  ],
+  "missingRequiredLabels": [],
+  "rawCandidates": [
+    "5",
+    "L",
+    "C",
+    "9",
+    "9",
+    "G",
+    "E",
+    "A",
+    "B",
+    "A",
+    "D",
+    "F",
+    "4",
+    "J",
+    "2,8"
+  ],
+  "kGeometryOnly": true,
+  "localPassed": true,
+  "apiCallsBeforePreflight": 0
+}
