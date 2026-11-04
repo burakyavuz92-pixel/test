@@ -1,0 +1,145 @@
+{
+  "placed": [
+    "rec-2,8",
+    "rec-5",
+    "column_B",
+    "column_D",
+    "column_A",
+    "column_E",
+    "column_C",
+    "column_L",
+    "column_F",
+    "column_G",
+    "column_J"
+  ],
+  "templatePlacements": [
+    {
+      "id": "rec-2,8",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        665.5571428571448,
+        595.3880952380953
+      ],
+      "bandCoordinate": 582.6380952380953,
+      "narrow": true
+    },
+    {
+      "id": "rec-5",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        698.1314285714304,
+        303.8619047619047
+      ],
+      "bandCoordinate": 315.3619047619047,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        312.44476190475996,
+        449.0
+      ],
+      "bandCoordinate": 323.94476190475996,
+      "narrow": true
+    },
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        403.2923809523828,
+        628.3880952380953
+      ],
+      "bandCoordinate": 612.1380952380953,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        285.44476190475996,
+        449.0
+      ],
+      "bandCoordinate": 296.94476190475996,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        764.7457142857162,
+        448.99999999999994
+      ],
+      "bandCoordinate": 748.2457142857162,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        503.5209523809542,
+        275.1119047619047
+      ],
+      "bandCoordinate": 288.3619047619047,
+      "narrow": false
+    },
+    {
+      "id": "column_L",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -43.7135089519311,
+      "placedLabelPixels": [
+        1108.281789253452,
+        325.2842371761763
+      ]
+    },
+    {
+      "id": "column_F",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        403.2923809523828,
+        591.9047619047619
+      ]
+    },
+    {
+      "id": "column_G",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        764.7457142857162,
+        306.0952380952381
+      ]
+    },
+    {
+      "id": "column_J",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        403.2923809523828,
+        306.0952380952381
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "column_K",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

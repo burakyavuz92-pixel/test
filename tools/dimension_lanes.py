@@ -1,5 +1,8 @@
 """View-local dimension bands; CAD anchors and source visibility are unchanged."""
 import numpy as np
+from drafting_style import PX_PER_MM
+
+FIRST_BAND_MM=3.5
 
 def side_for(horizontal,desired,bounds):
  x0,y0,x1,y1=bounds
@@ -35,14 +38,11 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
  # Short spans consume near lanes; whole-view extents are allocated last/outside.
  lane_offsets={}
  for span,item,view,pix,bounds,points,horizontal,side,desired in sorted(linear,key=lambda x:(x[0],x[1]['id'])):
-  dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text);key=(view,side);offset=lane_offsets.get(key,18*S);placed=False;reason='No free dimension band within sheet'
+  dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text);key=(view,side);offset=lane_offsets.get(key,FIRST_BAND_MM*PX_PER_MM*S);placed=False;reason='No free dimension band within sheet'
   for extra in (0,10,20,32,48):
    coord=band_coordinate(bounds,side,offset+extra*S);a,b=points;p=np.array([a[0],coord]) if horizontal else np.array([coord,a[1]]);q=np.array([b[0],coord]) if horizontal else np.array([coord,b[1]])
    sign=-1 if side in ('top','left') else 1;center=(p+q)/2;clearance=layer.height/2+5*S;center[1 if horizontal else 0]+=sign*clearance
    narrow=span<layer.width+20*S
-   if narrow:
-    # Keep narrow dimension text outside its arrows, in the same external band.
-    center[0 if horizontal else 1]=max(p[0 if horizontal else 1],q[0 if horizontal else 1])+layer.width/2+14*S
    backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
    try:
     painter.label(text,center,vertical=not horizontal)
@@ -55,7 +55,7 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
    except ValueError as ex:
     reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
   if not placed:failed.append({'id':item['id'],'dimension':dim,'reason':reason})
- for item,view,pix,bounds,desired in leaders:
+ for item,view,pix,bounds,desired in sorted(leaders,key=lambda v:(v[0]['kind']!='circle',v[0]['id'])):
   dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text)
   if item['kind']=='circle':
    c=np.asarray(item['center']);cp=np.asarray(pix(c));d=np.array([desired[0]-cp[0],cp[1]-desired[1]]);d/=max(np.linalg.norm(d),1e-9);tips=[np.asarray(pix(c+d*item['radius']))]
@@ -75,19 +75,32 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
     image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
   chamfer=dim.get('sourceMeasurement',{}).get('chamferAngleDeg') is not None or dim.get('scriptReference',{}).get('kind')=='chamfer'
   gap=32*S if chamfer else 16*S
+  aligned=chamfer or dim.get('type')=='radius' or dim.get('scriptReference',{}).get('kind')=='radius'
+  refs=[r for r in records if r['view']==view]
   candidates=[]
-  for tip in tips:
-
-   # Four nearby exterior sides; each hole/radius remains independently labelled.
-   for k in range(-3,4):
-    delta=k*24*S
-    for pos in ([bounds[0]-layer.width/2-gap,tip[1]+delta],[bounds[2]+layer.width/2+gap,tip[1]+delta],[tip[0]+delta,bounds[1]-layer.height/2-gap],[tip[0]+delta,bounds[3]+layer.height/2+gap]):
-     pos=np.asarray(pos);cost=np.linalg.norm(pos-tip)+.35*np.linalg.norm(pos-desired);candidates.append((cost,tip,pos))
-  for tip in ([] if chamfer else tips):
-   for distance in (24,40,64,96):
-    for dx,dy in ((1,1),(1,-1),(-1,1),(-1,-1),(1,0),(-1,0),(0,1),(0,-1)):
-     pos=tip+np.array([dx,dy])*distance*S
-     candidates.append((np.linalg.norm(pos-tip)+.35*np.linalg.norm(pos-desired)+80*S,tip,pos))
+  if aligned and refs:
+   xs=sorted({r['placedLabelPixels'][0]*S for r in refs});ys=sorted({r['placedLabelPixels'][1]*S for r in refs})
+   for tip in tips:
+    positions=[]
+    for y in ys:positions.extend(([bounds[0]-layer.width/2-gap,y],[bounds[2]+layer.width/2+gap,y]))
+    for x in xs:positions.extend(([x,bounds[1]-layer.height/2-gap],[x,bounds[3]+layer.height/2+gap]))
+    # Prefer existing exterior text columns/rows when they leave full glyph clearance.
+    for x in xs:
+     if x+layer.width/2+gap<=bounds[0] or x-layer.width/2-gap>=bounds[2]:
+      for y in ys:positions.append([x,y])
+    for pos in positions:
+     pos=np.asarray(pos);candidates.append((np.linalg.norm(pos-tip)+.35*np.linalg.norm(pos-desired),tip,pos))
+  else:
+   for tip in tips:
+    for k in range(-3,4):
+     delta=k*24*S
+     for pos in ([bounds[0]-layer.width/2-gap,tip[1]+delta],[bounds[2]+layer.width/2+gap,tip[1]+delta],[tip[0]+delta,bounds[1]-layer.height/2-gap],[tip[0]+delta,bounds[3]+layer.height/2+gap]):
+      pos=np.asarray(pos);candidates.append((np.linalg.norm(pos-tip)+.35*np.linalg.norm(pos-desired),tip,pos))
+   if not aligned:
+    for tip in tips:
+     for distance in (24,40,64,96):
+      for dx,dy in ((1,1),(1,-1),(-1,1),(-1,-1),(1,0),(-1,0),(0,1),(0,-1)):
+       pos=tip+np.array([dx,dy])*distance*S;candidates.append((np.linalg.norm(pos-tip)+.35*np.linalg.norm(pos-desired)+80*S,tip,pos))
   candidates=[(cost+sum(100*S for a,b in painter.line_segments if crossing(tip,pos,a,b)),tip,pos) for cost,tip,pos in candidates]
   placed=False;reason='No short clear leader position'
   for _,tip,pos in sorted(candidates,key=lambda v:v[0]):
@@ -95,7 +108,7 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
    backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
    try:
     painter.label(text,pos);edge=pos.copy();edge[0]+=(-1 if tip[0]<pos[0] else 1)*(layer.width/2+3*S);painter.line(tip,edge);painter.arrow(tip,edge)
-    drawn.append(item['id']);records.append({'id':item['id'],'view':view,'mode':'short-leader','placedLabelPixels':(pos/S).tolist()});placed=True;break
+    drawn.append(item['id']);records.append({'id':item['id'],'view':view,'mode':'aligned-leader' if aligned and refs else 'short-leader','placedLabelPixels':(pos/S).tolist()});placed=True;break
    except ValueError as ex:reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
   if not placed:failed.append({'id':item['id'],'dimension':dim,'reason':reason})
  for layer,pos in painter.labels:painter.paste_label(layer,pos)
