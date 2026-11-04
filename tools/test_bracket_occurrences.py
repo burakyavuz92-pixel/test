@@ -20,7 +20,9 @@ class Occurrences(unittest.TestCase):
  def test_one_ocr_occurrence_cannot_be_reused(self):
   c={'label':'3','view':'section','centerNormalized':[.1,.5]}
   ms=[{'id':i,'label':'3','view':'section','centerNormalized':[.1,.5]} for i in ('a','b')]
-  with self.assertRaisesRegex(ValueError,'same OCR occurrence'):merge({'sourcePixels':[100,100],'candidates':[c]},ms)
+  result,_=merge({'sourcePixels':[100,100],'candidates':[c]},ms)
+  self.assertEqual(result['candidates'][0]['occurrenceId'],'a')
+  self.assertEqual(result['unconfirmedModelMarkers'][0]['id'],'b')
 
  def test_closing_bracket_normalization_is_column_bound(self):
   from inspect_bracket_layout import recover_closing_bracket

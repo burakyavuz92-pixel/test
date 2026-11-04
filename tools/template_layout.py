@@ -4,7 +4,7 @@ import cv2,numpy as np
 from PIL import Image
 from inspect_bracket_layout import inspect,read_columns
 
-VERSION='bracket-layout-v4'
+VERSION='bracket-layout-v5-overlap-alternatives'
 
 def source_frames(image,layout):
     W,H=image.size;w=1754;h=round(H*w/W);gray=cv2.resize(np.asarray(image.convert('L')),(w,h));scale=W/w

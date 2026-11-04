@@ -74,9 +74,11 @@ def save_preview(image,found,folder):
 def inspect(source,folder,excel=None):
     folder=pathlib.Path(folder);folder.mkdir(parents=True,exist_ok=True)
     image=Image.open(source).convert('RGB');W,H=image.size;found=[];columns=read_columns(excel) if excel else {}
-    for view,region in REGIONS.items():
+    scan_regions={"drawing":(.015,.045,.98,.78),"left-overlap":(.015,.045,.60,.78),"right-overlap":(.30,.045,.98,.78)}
+    for scan,region in scan_regions.items():
+        view="unassigned"
         rect=tuple(round(v*(W if i%2==0 else H)) for i,v in enumerate(region));crop=image.crop(rect)
-        for angle in range(0,360,15):
+        for angle in (range(0,360,15) if scan=="drawing" else (0,90,180,270)):
             raw=crop.rotate(angle,expand=True,fillcolor='white')
             mask=(np.asarray(raw.convert('L'))<180).astype('uint8')*255
             lines=cv2.bitwise_or(cv2.morphologyEx(mask,cv2.MORPH_OPEN,np.ones((1,65),np.uint8)),cv2.morphologyEx(mask,cv2.MORPH_OPEN,np.ones((120,1),np.uint8)))
@@ -107,9 +109,9 @@ def inspect(source,folder,excel=None):
                 prefix=str(len(words))
                 for v in part:v['left']=str(int(v['left'])+ox);v['top']=str(int(v['top'])+oy);v['block_num']=prefix+':'+v['block_num']
                 words.extend(part)
-            (folder/f'ocr-{view}-{angle}.json').write_text(json.dumps(transcripts))
+            (folder/f'ocr-{scan}-{angle}.json').write_text(json.dumps(transcripts))
             rotated=raw
-            print(f'{view} angle={angle} local_regions={len(variants)-2}',flush=True)
+            print(f'{scan} angle={angle} local_regions={len(variants)-2}',flush=True)
             groups={}
             for word in words:groups.setdefault(tuple(word[k] for k in ('block_num','par_num','line_num')),[]).append(word)
             for line in groups.values():
@@ -128,7 +130,7 @@ def inspect(source,folder,excel=None):
                         if conf<20:continue
                         b=[min(int(w['left']) for w in span),min(int(w['top']) for w in span),max(int(w['left'])+int(w['width']) for w in span),max(int(w['top'])+int(w['height']) for w in span)]
                         polygon=inverse_box(b,crop.size,rotated.size,rect,angle)
-                        center=np.mean(polygon,axis=0);old=next((v for v in found if v['view']==view and np.linalg.norm(np.array(v['centerPixels'])-center)<max(40,(b[3]-b[1])*.7)),None)
+                        center=np.mean(polygon,axis=0);old=next((v for v in found if v['view']==view and v['label']==label and np.linalg.norm(np.array(v['centerPixels'])-center)<max(40,(b[3]-b[1])*.7)),None)
                         item={'label':label,'rawLabel':raw_label,'normalization':correction,'sourceText':text,'view':view,'confidence':conf,'centerPixels':center.tolist(),'polygonPixels':polygon,'centerNormalized':[center[0]/W,center[1]/H],'ocrRotationDeg':angle,'orientationStatus':'OCR search angle, not independently measured text orientation','status':'needs-review'}
                         if old:
                             if candidate_rank(label,conf,columns)>candidate_rank(old['label'],old['confidence'],columns):found.remove(old);found.append(item)
@@ -138,9 +140,14 @@ def inspect(source,folder,excel=None):
         label=item['label'];item['kind']='excel-label' if label in columns else 'literal-radius' if re.fullmatch(r'R[0-9]+(?:[.,][0-9]+)?',label) else 'literal-dimension' if re.fullmatch(r'[0-9]+(?:[.,][0-9]+)?',label) else 'literal-expression' if any(c in label for c in ('±','°')) else 'unmatched-label'
     rejected=[v for v in found if v['kind']=='unmatched-label']
     found=[v for v in found if v['kind']!='unmatched-label']
+    clusters=[]
+    for item in found:
+        cluster=next((c for c in clusters if np.linalg.norm(np.array(c['center'])-item['centerPixels'])<40),None)
+        if cluster is None:cluster={'id':len(clusters)+1,'center':item['centerPixels']};clusters.append(cluster)
+        item['observationGroup']=cluster['id']
     found.sort(key=lambda v:(v['view'],v['centerPixels'][1]))
     save_preview(image,found,folder)
-    report={'apiCalls':0,'sourceSha256':hashlib.sha256(pathlib.Path(source).read_bytes()).hexdigest(),'sourcePixels':[W,H],'excelColumns':list(columns),'missingExcelLabels':sorted(set(columns)-{v['label'] for v in found}),'viewRegionsNormalized':REGIONS,'candidates':found,'rejectedCandidates':rejected,'limits':['Bracket labels only; unmarked text is intentionally excluded','Arrow connectivity not resolved','OCR angle search uses 15 degree steps; not a guaranteed arbitrary-angle detector','View regions are calibrated to this template']}
+    report={'apiCalls':0,'sourceSha256':hashlib.sha256(pathlib.Path(source).read_bytes()).hexdigest(),'sourcePixels':[W,H],'excelColumns':list(columns),'missingExcelLabels':sorted(set(columns)-{v['label'] for v in found}),'viewRegionsNormalized':scan_regions,'candidates':found,'rejectedCandidates':rejected,'limits':['Bracket labels only; unmarked text is intentionally excluded','Arrow connectivity not resolved','OCR angle search uses 15 degree steps; not a guaranteed arbitrary-angle detector','Title block excluded; view assignment deferred to model references']}
     (folder/'detections.json').write_text(json.dumps(report,ensure_ascii=False,indent=2));print(json.dumps([(v['label'],v['view'],v['ocrRotationDeg'],round(v['confidence'])) for v in found],ensure_ascii=False))
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('source');p.add_argument('folder');p.add_argument('--excel');a=p.parse_args();inspect(a.source,a.folder,a.excel)

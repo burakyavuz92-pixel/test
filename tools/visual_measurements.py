@@ -8,7 +8,7 @@ def canonical(label):
     except ValueError:return label
 
 def merge(layout,markers):
-    result=copy.deepcopy(layout);evidence={};w,h=result['sourcePixels']
+    result=copy.deepcopy(layout);evidence={};used_groups=set();unconfirmed=[];w,h=result['sourcePixels']
     for marker in markers:
         label=canonical(marker['label']);view=marker['view'];center=marker.get('centerNormalized')
         key=marker.get('id',label)
@@ -22,9 +22,14 @@ def merge(layout,markers):
         if axis is not None and (len(axis)!=2 or not all(isinstance(v,(int,float)) and math.isfinite(v) for v in axis) or abs(sum(v*v for v in axis)-1)>.01):raise ValueError('Invalid section axis')
         evidence[key]=marker
         matches=[c for c in result['candidates'] if canonical(c['label'])==label]
+        positioned=[c for c in matches if 'centerNormalized' in c]
+        if positioned:matches=[c for c in positioned if math.hypot((c['centerNormalized'][0]-center[0])*w,(c['centerNormalized'][1]-center[1])*h)<=max(w,h)*.025]
         if matches:
             c=min(matches,key=lambda c:sum((c.get('centerNormalized',center)[i]-center[i])**2 for i in (0,1)))
-            if 'occurrenceId' in c:raise ValueError('Multiple markers target the same OCR occurrence: '+label)
+            group=c.get('observationGroup')
+            if 'occurrenceId' in c or group is not None and group in used_groups:
+                unconfirmed.append({'id':key,'label':marker['label'],'reason':'OCR occurrence already assigned'});continue
+            if group is not None:used_groups.add(group)
             c['occurrenceId']=key
             frame=marker.get('viewFrameNormalized')
             if frame is not None:
@@ -35,9 +40,12 @@ def merge(layout,markers):
                 if previous and previous.get('method')=='model geometry frame' and any(abs(a-b)>max(w,h)*.01 for a,b in zip(previous['bboxPixels'],bbox)):raise ValueError('Inconsistent source geometry frames')
                 result['sourceFrames'][view]={'bboxPixels':bbox,'method':'model geometry frame','confidence':None}
                 c['ocrRegionView']=c['view'];c['view']=view;c['viewAssignment']='model arrow and geometry reference'
+            elif c['view']=='unassigned':c['view']=view
             elif c['view']!=view:raise ValueError('OCR and model disagree on view: '+label)
             continue
+        unconfirmed.append({'id':key,'label':marker['label'],'reason':'No matching OCR text near model marker'})
         # Model evidence may help validate an OCR-approved label, but may not
         # authorize an unbracketed annotation or invent an OCR candidate.
         continue
+    result['unconfirmedModelMarkers']=unconfirmed
     return result,evidence

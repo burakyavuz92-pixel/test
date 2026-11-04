@@ -90,6 +90,7 @@ def run(folder,image,excel):
             drawing['templateLayout']=layout;drawing['geometricTolerances']=[]
             recipe={'outputId':row['outputId'],'geometry':{'operations':[],'frames':[]},'drawing':resolve_local_sections(drawing,box(shape))}
             report=sheet(recipe,shape,{},out,image)
+            report['unconfirmedVisualLabels']=layout.get('unconfirmedModelMarkers',[])
             results.append({'outputId':row['outputId'],'status':'sheet-produced','drafting':report})
         except Exception as ex:traceback.print_exc();results.append({'outputId':row['outputId'],'status':'failed','error':str(ex)})
     (root/'script-sheet-results.json').write_text(json.dumps({'apiCalls':0,'results':results},indent=2));print(json.dumps(results,indent=2));return all(r['status']=='sheet-produced' for r in results)

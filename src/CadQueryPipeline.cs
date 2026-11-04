@@ -66,8 +66,9 @@ public static class CadQueryPipeline
             }
             stage="sheets";await CadScriptWorkflow.RenderSheets(excel,image,output);if(Environment.ExitCode!=0)throw new Exception("Pafta üretimi başarısız.");
             using var sheets=JsonDocument.Parse(File.ReadAllText(Path.Combine(output,"script-sheet-results.json")));
+            bool unconfirmed=sheets.RootElement.GetProperty("results").EnumerateArray().Any(r=>r.GetProperty("drafting").TryGetProperty("unconfirmedVisualLabels",out var labels)&&labels.GetArrayLength()>0);
             bool incomplete=sheets.RootElement.GetProperty("results").EnumerateArray().Any(r=>r.GetProperty("drafting").GetProperty("unresolvedDimensions").GetArrayLength()>0);
-            state=incomplete?"sheets-produced-with-unresolved-measurements":"sheets-produced";Environment.ExitCode=incomplete?2:0;
+            state=unconfirmed?"sheets-produced-with-unconfirmed-labels":incomplete?"sheets-produced-with-unresolved-measurements":"sheets-produced";Environment.ExitCode=incomplete||unconfirmed?2:0;
         }
         catch(Exception ex){issues.Add(new("CADQUERY_PIPELINE",stage,"error",ex.Message,[],"Aşama kayıtları incelenmeli; otomatik API tekrarı yok."));Environment.ExitCode=1;}
         finally{WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages});Console.WriteLine(state+"; "+output);}
