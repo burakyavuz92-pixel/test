@@ -35,3 +35,11 @@ dotnet run --project checks/ExcelPresentationChecks.csproj -- samples/taslak61/t
 ## Tolerans görünümü
 
 Üst ve alt sapmalar eşit büyüklükte zıt işaretliyse `±` kullanılır. Farklıysa üst sapma üstte, alt sapma altta, daha küçük yazıyla çizilir. Metin aşamasındaki `(+0/-0,1)` gösterimi renderer tarafından iki satıra dönüştürülür; JPEG üzerinde eğik çizgi basılmaz. Çok küçük farklı sapmalar sıfıra yakın oldukları için simetrik sayılmaz. `_METIN` doluysa nominal gösterim bastırılır; ayrı toleranslar eklenmeye devam eder.
+
+## Ana ölçü hücresinde pah
+
+`1x45°`, `1 X 45°`, `1×45°` ve virgüllü ondalık boy/açı desteklenir. Ana hücrede pah geometri verisidir: nominalMm boyu, chamferAngleDeg açıyı taşır. Açı 0 ile 90 derece arasında olmalıdır. Gösterim metni ana hücreden korunur; `_METIN` doluysa yine gösterimi bastırır.
+
+CadQuery yürütücüsünde `p["F"]` boyu mm olarak, `p["F__angleDeg"]` açıyı derece olarak taşır. Ek anahtar otomatik üretilir; kullanıcı Excel'e bu adla sütun eklememelidir. Geometri ve ölçü kodları aynı parametre tablosuyla çalışır. Satırlar arasında açı değişimi kaybolmaz. K gibi parantezsiz etiketin Excel değeri de modele gönderilir; çizim onayı ayrıca OCR'deki köşeli paranteze bağlıdır.
+
+Verilen taslak6.4.xlsx için `checks/ChamferInputChecks.csproj` tüm altı satırda F/G/J boy+açılarını ve K=9,5 bilgisini sınar. `test_chamfer_input_binding.py` gösterim bilgisinin korunmasını ve parantezsiz K'nin çizimden dışlanmasını sınar. Bu destek etkin CadQuery akışına uygulanmıştır; eski v9 geometri tarifine pah derleme desteği eklendiği iddia edilmez.

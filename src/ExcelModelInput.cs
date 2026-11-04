@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 // Parse once locally. The API receives one typed table; annotation retains source tolerance.
 public record ParsedTolerance(string kind, double upperDeviationMm, double lowerDeviationMm);
 public record ParsedExcelCell(string state, double? nominalMm = null, bool? isZero = null,
-    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null, string? displayText = null);
+    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null, string? displayText = null, double? chamferAngleDeg = null);
 public record ParsedExcelRow(string outputId, Dictionary<string, ParsedExcelCell> cells);
 public record ExcelApiInput(int schemaVersion, string lengthUnit, ParsedExcelRow[] rows);
 
@@ -24,6 +24,12 @@ public static class ExcelModelInput
         if (value.Length == 0) return new("blank");
         // Preserve product identifiers as text, even when they start with digits.
         if (Regex.IsMatch(value, @"^\d+(?:-\d+){2,}$")) return new("text", text: value);
+        var chamfer=Regex.Match(value,@"^(?<leg>"+Number+@")\s*[xX×]\s*(?<angle>"+Number+@")\s*°$");
+        if(chamfer.Success) {
+            double leg=Numeric(chamfer.Groups["leg"].Value),angle=Numeric(chamfer.Groups["angle"].Value);
+            if(!double.IsFinite(leg)||!double.IsFinite(angle)||angle<=0||angle>=90)throw new FormatException("Pah açısı 0 ile 90 derece arasında olmalı.");
+            return new("number",leg,leg==0,false,displayText:value,chamferAngleDeg:angle);
+        }
         var m = Measurement.Match(value);
         if (m.Success)
         {
@@ -97,11 +103,22 @@ public static class ExcelModelInput
             return new ParsedExcelRow(row["jpeg file name"],cells);
         }).ToArray());
 
+    // Generated angle parameters keep p[label] numeric and retain each row's angle.
+    public static Dictionary<string,double?> Parameters(ParsedExcelRow row)
+    {
+        var result=row.cells.ToDictionary(c=>c.Key,c=>c.Value.nominalMm);
+        foreach(var cell in row.cells.Where(c=>c.Value.chamferAngleDeg is not null)) {
+            var key=cell.Key+"__angleDeg";
+            if(result.ContainsKey(key))throw new FormatException("Ayrılmış pah parametresiyle çakışan sütun: "+key);
+            result.Add(key,cell.Value.chamferAngleDeg);
+        }
+        return result;
+    }
     // Only geometric cell data enters the model request; presentation remains local.
     public static object ForModel(IEnumerable<Dictionary<string,string>> rows)
     {
         var parsed=Build(rows);
         return new{parsed.schemaVersion,parsed.lengthUnit,rows=parsed.rows.Select(r=>new{r.outputId,
-            cells=r.cells.ToDictionary(kv=>kv.Key,kv=>new{kv.Value.state,kv.Value.nominalMm,kv.Value.isZero,kv.Value.diameterSymbol})}).ToArray()};
+            parameters=Parameters(r),cells=r.cells.ToDictionary(kv=>kv.Key,kv=>new{kv.Value.state,kv.Value.nominalMm,kv.Value.isZero,kv.Value.diameterSymbol,kv.Value.chamferAngleDeg})}).ToArray()};
     }
 }

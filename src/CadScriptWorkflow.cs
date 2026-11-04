@@ -19,11 +19,11 @@ public static class CadScriptWorkflow
         {
             var rawRows=WorkflowReports.ReadRows(excel);var parsed=ExcelModelInput.Build(rawRows);
             foreach(var row in parsed.rows)if(!System.Text.RegularExpressions.Regex.IsMatch(row.outputId,@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
-            var rows=parsed.rows.Select(r=>new{r.outputId,parameters=r.cells.ToDictionary(c=>c.Key,c=>c.Value.nominalMm)}).ToArray();
+            var rows=parsed.rows.Select(r=>new{r.outputId,parameters=ExcelModelInput.Parameters(r)}).ToArray();
             File.WriteAllText(Path.Combine(output,"rows.json"),JsonSerializer.Serialize(rows,WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(parsed,WorkflowReports.Json));
             var sample=parsed.rows.Length<=8?parsed.rows:parsed.rows.GroupBy(r=>string.Join('|',r.cells.Select(c=>c.Key+":"+c.Value.state+":"+c.Value.isZero))).Select(g=>g.First()).Concat(parsed.rows.TakeLast(1)).Distinct().Take(8).ToArray();
-            var table=sample.Select(r=>r.cells.ToDictionary(c=>c.Key,c=>c.Value.nominalMm));
+            var table=sample.Select(ExcelModelInput.Parameters);
             var prompt=Prompt+"\nRepresentative nominal rows: "+JsonSerializer.Serialize(table);File.WriteAllText(Path.Combine(output,"request-prompt.txt"),prompt);
             var model=Environment.GetEnvironmentVariable("OPENROUTER_MODEL")??throw new Exception("Model yok.");var key=Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok.");
             using var client=new HttpClient{Timeout=TimeSpan.FromMinutes(5)};client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",key);

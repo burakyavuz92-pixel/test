@@ -1,0 +1,167 @@
+{
+  "reviewStatus": "rendered-with-unconfirmed-annotations",
+  "rows": [
+    {
+      "outputId": "733001",
+      "placedCount": 7,
+      "unresolved": [],
+      "omitted": [
+        {
+          "id": "column_C",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_E",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_K",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r7",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r11",
+          "reason": "No bracketed template marker"
+        }
+      ]
+    },
+    {
+      "outputId": "733001-02",
+      "placedCount": 7,
+      "unresolved": [],
+      "omitted": [
+        {
+          "id": "column_C",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_E",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_K",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r7",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r11",
+          "reason": "No bracketed template marker"
+        }
+      ]
+    },
+    {
+      "outputId": "733001-03",
+      "placedCount": 7,
+      "unresolved": [],
+      "omitted": [
+        {
+          "id": "column_C",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_E",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_K",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r7",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r11",
+          "reason": "No bracketed template marker"
+        }
+      ]
+    },
+    {
+      "outputId": "733001-01",
+      "placedCount": 7,
+      "unresolved": [],
+      "omitted": [
+        {
+          "id": "column_C",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_E",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_K",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r7",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r11",
+          "reason": "No bracketed template marker"
+        }
+      ]
+    },
+    {
+      "outputId": "733002",
+      "placedCount": 7,
+      "unresolved": [],
+      "omitted": [
+        {
+          "id": "column_C",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_E",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_K",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r7",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r11",
+          "reason": "No bracketed template marker"
+        }
+      ]
+    },
+    {
+      "outputId": "733042",
+      "placedCount": 7,
+      "unresolved": [],
+      "omitted": [
+        {
+          "id": "column_C",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_E",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "column_K",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r7",
+          "reason": "No bracketed template marker"
+        },
+        {
+          "id": "r11",
+          "reason": "No bracketed template marker"
+        }
+      ]
+    }
+  ]
+}

@@ -9,3 +9,5 @@ For every @name surface label, build_face_tags(p) returns {name,surface}. Preser
 Success is data only. If a consistent part cannot be constructed, return {"error":"short Turkish reason"}.
 
 Identical fixed measurement text may occur at different locations. Each occurrence applies independently to the feature indicated by its own arrow.
+
+Excel chamfer cells provide leg length in p[label] (mm) and angle in p[label+"__angleDeg"] (degrees), e.g. p["F"] and p["F__angleDeg"]. Use both per-row parameters for geometry/references. Unbracketed labels such as K still provide geometry data; only bracketed labels are drawing annotations.

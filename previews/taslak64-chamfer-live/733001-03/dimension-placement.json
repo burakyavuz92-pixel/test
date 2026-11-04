@@ -1,0 +1,111 @@
+{
+  "placed": [
+    "r6",
+    "column_B",
+    "column_D",
+    "column_A",
+    "column_F",
+    "column_G",
+    "column_J"
+  ],
+  "templatePlacements": [
+    {
+      "id": "r6",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        623.2152380952418,
+        210.69047619047612
+      ],
+      "bandCoordinate": 222.19047619047612,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        237.90380952380576,
+        449.0
+      ],
+      "bandCoordinate": 249.40380952380576,
+      "narrow": false
+    },
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        401.0419047619084,
+        689.0595238095239
+      ],
+      "bandCoordinate": 675.8095238095239,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "placedLabelPixels": [
+        208.90380952380576,
+        449.0
+      ],
+      "bandCoordinate": 222.40380952380576,
+      "narrow": false
+    },
+    {
+      "id": "column_F",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        315.75619047619415,
+        505.052380952381
+      ]
+    },
+    {
+      "id": "column_G",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        702.7271428571465,
+        337.3
+      ]
+    },
+    {
+      "id": "column_J",
+      "view": "section",
+      "mode": "short-leader",
+      "placedLabelPixels": [
+        268.4609523809561,
+        307.8499622193309
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "column_C",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "column_E",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "column_K",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "r7",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "r11",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+using System.Text.Json;
+int count=0;
+void Check(bool b){if(!b)throw new Exception("Check failed "+count);count++;}
+foreach(var text in new[]{"1x45°","1 X 45°","1×45°","1,5x35,5°"}) {
+ var c=ExcelModelInput.ParseCell(text);Check(c.state=="number"&&c.chamferAngleDeg>0&&c.displayText==text);
+}
+foreach(var text in new[]{"1x0°","1x90°","1x120°"}){try{ExcelModelInput.ParseCell(text);throw new Exception("Invalid accepted");}catch(FormatException){count++;}}
+var raw=WorkflowReports.ReadRows(args[0]);var parsed=ExcelModelInput.Build(raw);Check(parsed.rows.Length==6);
+foreach(var r in parsed.rows){var p=ExcelModelInput.Parameters(r);Check(p["F"]==1&&p["F__angleDeg"]==45);Check(p["G"]==1&&p["G__angleDeg"]==45);Check(p["J"]==3&&p["J__angleDeg"]==35);Check(p["K"]==9.5);Check(r.cells.Count==9);}
+var changed=new Dictionary<string,string>(raw[0]);changed["F"]="2x30°";var x=ExcelModelInput.Parameters(ExcelModelInput.Build(new[]{changed}).rows[0]);Check(x["F"]==2&&x["F__angleDeg"]==30);
+string model=JsonSerializer.Serialize(ExcelModelInput.ForModel(raw));Check(model.Contains("F__angleDeg")&&model.Contains("chamferAngleDeg"));Check(!model.Contains("M20x")&&!model.Contains("NPT"));
+Console.WriteLine(count+" chamfer/actual workbook checks passed");

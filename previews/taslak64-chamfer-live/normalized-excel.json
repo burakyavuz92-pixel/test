@@ -1,0 +1,706 @@
+{
+  "schemaVersion": 1,
+  "lengthUnit": "mm",
+  "rows": [
+    {
+      "outputId": "733001",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 20,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "M20x1.5-6G",
+          "chamferAngleDeg": null
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 10.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "M12x1.5-6H",
+          "chamferAngleDeg": null
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 36,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 15,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 20.9,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "J": {
+          "state": "number",
+          "nominalMm": 3,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3x35\u00B0",
+          "chamferAngleDeg": 35
+        },
+        "K": {
+          "state": "number",
+          "nominalMm": 9.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        }
+      }
+    },
+    {
+      "outputId": "733001-02",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 20,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "M20x1.5-6G",
+          "chamferAngleDeg": null
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 10.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "M12x1.5-6H",
+          "chamferAngleDeg": null
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 40,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 15,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 20.9,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "J": {
+          "state": "number",
+          "nominalMm": 3,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3x35\u00B0",
+          "chamferAngleDeg": 35
+        },
+        "K": {
+          "state": "number",
+          "nominalMm": 9.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        }
+      }
+    },
+    {
+      "outputId": "733001-03",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 19,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 10.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1/4\u0027\u0027-18 NPT",
+          "chamferAngleDeg": null
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 16,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 16,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 20.9,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "J": {
+          "state": "number",
+          "nominalMm": 3,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3x35\u00B0",
+          "chamferAngleDeg": 35
+        },
+        "K": {
+          "state": "number",
+          "nominalMm": 9.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        }
+      }
+    },
+    {
+      "outputId": "733001-01",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 20,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "M20x1.5-6G",
+          "chamferAngleDeg": null
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 10.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1/4\u0027\u0027-18 NPTF",
+          "chamferAngleDeg": null
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 36,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 15,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 20.9,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "J": {
+          "state": "number",
+          "nominalMm": 3,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3x35\u00B0",
+          "chamferAngleDeg": 35
+        },
+        "K": {
+          "state": "number",
+          "nominalMm": 9.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        }
+      }
+    },
+    {
+      "outputId": "733002",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 20,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3/4\u0027\u0027-16 UNF",
+          "chamferAngleDeg": null
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 10.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1/4\u0027\u0027-18 NPTF",
+          "chamferAngleDeg": null
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 38.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 15,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 20.9,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "J": {
+          "state": "number",
+          "nominalMm": 3,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3x35\u00B0",
+          "chamferAngleDeg": 35
+        },
+        "K": {
+          "state": "number",
+          "nominalMm": 9.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        }
+      }
+    },
+    {
+      "outputId": "733042",
+      "cells": {
+        "A": {
+          "state": "number",
+          "nominalMm": 20,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "M20x1.5-6G",
+          "chamferAngleDeg": null
+        },
+        "B": {
+          "state": "number",
+          "nominalMm": 10.5,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1/4\u0027\u0027-19 PT",
+          "chamferAngleDeg": null
+        },
+        "C": {
+          "state": "number",
+          "nominalMm": 36,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "symmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0.5
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "D": {
+          "state": "number",
+          "nominalMm": 12,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0.5,
+            "lowerDeviationMm": -0
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "E": {
+          "state": "number",
+          "nominalMm": 20.9,
+          "isZero": false,
+          "diameterSymbol": true,
+          "tolerance": {
+            "kind": "asymmetric",
+            "upperDeviationMm": 0,
+            "lowerDeviationMm": -0.1
+          },
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        },
+        "F": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "G": {
+          "state": "number",
+          "nominalMm": 1,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "1x45\u00B0",
+          "chamferAngleDeg": 45
+        },
+        "J": {
+          "state": "number",
+          "nominalMm": 3,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": "3x35\u00B0",
+          "chamferAngleDeg": 35
+        },
+        "K": {
+          "state": "number",
+          "nominalMm": 9.5,
+          "isZero": false,
+          "diameterSymbol": false,
+          "tolerance": null,
+          "text": null,
+          "threadCallout": null,
+          "displayText": null,
+          "chamferAngleDeg": null
+        }
+      }
+    }
+  ]
+}

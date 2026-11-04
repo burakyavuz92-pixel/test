@@ -18,7 +18,7 @@ public static class CadQueryPipeline
             var raw=WorkflowReports.ReadRows(excel);var parsed=ExcelModelInput.Build(raw);
             foreach(var r in raw)if(LocalDrawingSettings.Read(r) is null)throw new Exception("Yerel çizim ayarları gerekli.");
             foreach(var r in parsed.rows)if(!System.Text.RegularExpressions.Regex.IsMatch(r.outputId,@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
-            File.WriteAllText(Path.Combine(output,"rows.json"),JsonSerializer.Serialize(parsed.rows.Select(r=>new{r.outputId,parameters=r.cells.ToDictionary(c=>c.Key,c=>c.Value.nominalMm)}),WorkflowReports.Json));
+            File.WriteAllText(Path.Combine(output,"rows.json"),JsonSerializer.Serialize(parsed.rows.Select(r=>new{r.outputId,parameters=ExcelModelInput.Parameters(r)}),WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(parsed,WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"pipeline-source.json"),JsonSerializer.Serialize(new{excelSha256=Hash(excel),imageSha256=Hash(image)},WorkflowReports.Json));
             var sample=raw.Count<=8?raw:raw.GroupBy(r=>string.Join('|',r.Where(kv=>!LocalDrawingSettings.IsSetting(kv.Key)&&kv.Key!="jpeg file name").Select(kv=>kv.Value.Length==0?"blank":kv.Value=="0"?"zero":"value"))).Select(g=>g.First()).Concat(raw.TakeLast(1)).Distinct().Take(8).ToList();

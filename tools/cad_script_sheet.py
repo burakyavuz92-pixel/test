@@ -38,8 +38,13 @@ def dimensions(shape,cells):
 
 def run(folder,image,excel):
     root=pathlib.Path(folder);job=json.loads((root/'sheet-input.json').read_text());saved={r['outputId']:r['parameters'] for r in json.loads((root/'rows.json').read_text())}
+    def parameters(cells):
+        result={k:v.get('nominalMm') for k,v in cells.items()}
+        for k,v in cells.items():
+            if v.get('chamferAngleDeg') is not None:result[k+'__angleDeg']=v['chamferAngleDeg']
+        return result
     for row in job:
-        if saved.get(row['outputId'])!={k:v.get('nominalMm') for k,v in row['cells'].items()}:raise ValueError('Excel differs from script geometry parameters: '+row['outputId'])
+        if saved.get(row['outputId'])!=parameters(row['cells']):raise ValueError('Excel differs from script geometry parameters: '+row['outputId'])
     reference_file=root/'measurement-references.json'
     references=json.loads(reference_file.read_text()) if reference_file.exists() else {}
     layout=prepare(image,excel,root);evidence={}
