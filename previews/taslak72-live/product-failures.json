@@ -1,0 +1,32 @@
+[
+  {
+    "outputId": "733032",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Koni uç çapı sıfır, geçerli koni oluşmuyor"
+  },
+  {
+    "outputId": "733032-01",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Koni uç çapı sıfır, geçerli koni oluşmuyor"
+  },
+  {
+    "outputId": "733034",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Koni uç çapı sıfır, geçerli koni oluşmuyor"
+  },
+  {
+    "outputId": "733034-01",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Koni uç çapı sıfır, geçerli koni oluşmuyor"
+  },
+  {
+    "outputId": "733099",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Koni uç çapı sıfır, geçerli koni oluşmuyor"
+  }
+]

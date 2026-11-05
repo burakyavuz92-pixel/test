@@ -1,0 +1,29 @@
+{
+  "products": 29,
+  "filesProduced": 24,
+  "failed": 5,
+  "allProducedSheetsNeedReview": true,
+  "unconfirmedMarkers": [
+    {
+      "id": "mk_5",
+      "label": "5",
+      "reason": "No matching OCR text near model marker"
+    }
+  ],
+  "placedCounts": {
+    "11": 20,
+    "9": 1,
+    "10": 3
+  },
+  "unresolvedProducts": [
+    {
+      "outputId": "733001-03",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "D=0 olduğundan karşı delik yok"
+        }
+      ]
+    }
+  ]
+}

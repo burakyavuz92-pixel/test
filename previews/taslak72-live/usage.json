@@ -1,0 +1,41 @@
+{
+  "model": "anthropic/claude-haiku-5.5",
+  "reasoningEffort": "high",
+  "rowsSent": 29,
+  "apiCalls": 2,
+  "usage": [
+    {
+      "call": "geometry",
+      "inputTokens": 26687,
+      "visibleOutputTokens": 3339,
+      "reasoningTokens": 31632,
+      "completionTokens": 34971,
+      "costUsd": 0.0201542,
+      "finishReason": "stop"
+    },
+    {
+      "call": "measurements",
+      "inputTokens": 28821,
+      "visibleOutputTokens": 3954,
+      "reasoningTokens": 35783,
+      "completionTokens": 39737,
+      "costUsd": 0.0227506,
+      "finishReason": "stop"
+    }
+  ],
+  "apiTimings": [
+    {
+      "Name": "geometry",
+      "Seconds": 152.5762709
+    },
+    {
+      "Name": "measurements",
+      "Seconds": 159.1603796
+    }
+  ],
+  "totalSeconds": 410.2677218,
+  "costUsd": 0.0429048,
+  "sourceJpeg": "taslak7.1.jpg",
+  "sourceExcel": "taslak7.2.xlsx",
+  "sameJpegAsPreviousRun": true
+}

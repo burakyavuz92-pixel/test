@@ -1,0 +1,50 @@
+[
+  {
+    "outputId": "733008",
+    "parameter": "J__angleDeg",
+    "before": 55,
+    "after": 35
+  },
+  {
+    "outputId": "733019",
+    "parameter": "J__angleDeg",
+    "before": 55,
+    "after": 35
+  },
+  {
+    "outputId": "733032",
+    "parameter": "N",
+    "before": 20,
+    "after": 0
+  },
+  {
+    "outputId": "733032-01",
+    "parameter": "F",
+    "before": 2,
+    "after": 1.5
+  },
+  {
+    "outputId": "733032-01",
+    "parameter": "N",
+    "before": 20,
+    "after": 0
+  },
+  {
+    "outputId": "733034",
+    "parameter": "N",
+    "before": 20,
+    "after": 0
+  },
+  {
+    "outputId": "733034-01",
+    "parameter": "N",
+    "before": 20,
+    "after": 0
+  },
+  {
+    "outputId": "733099",
+    "parameter": "N",
+    "before": 20,
+    "after": 0
+  }
+]

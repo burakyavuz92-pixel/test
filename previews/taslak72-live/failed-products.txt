@@ -1,0 +1,5 @@
+733032: Koni uç çapı sıfır, geçerli koni oluşmuyor [model / geometry]
+733032-01: Koni uç çapı sıfır, geçerli koni oluşmuyor [model / geometry]
+733034: Koni uç çapı sıfır, geçerli koni oluşmuyor [model / geometry]
+733034-01: Koni uç çapı sıfır, geçerli koni oluşmuyor [model / geometry]
+733099: Koni uç çapı sıfır, geçerli koni oluşmuyor [model / geometry]
