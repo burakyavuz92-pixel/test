@@ -1,0 +1,338 @@
+[
+  {
+    "outputId": "733001",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000052,
+    "zMax": 4.440892098500626e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -39.8,
+        "zMax": -38.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733001-02",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -43.8,
+        "zMax": -42.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733001-03",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -23.800000000000527,
+    "zMax": 4.440892098500626e-16,
+    "expectedLengthMm": 23.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -19.8,
+        "zMax": -18.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733001-01",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -39.8,
+        "zMax": -38.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733002",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -46.30000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 46.3,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -42.3,
+        "zMax": -41.3,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733042",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -39.8,
+        "zMax": -38.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733008",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.000000000000526,
+    "zMax": 0.0,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -44.0,
+        "zMax": -43.0,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733015",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -44.8,
+    "zMax": 2.886579864025407e-14,
+    "expectedLengthMm": 44.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -40.8,
+        "zMax": -39.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733019",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.000000000000526,
+    "zMax": 4.440892098500626e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -44.0,
+        "zMax": -43.0,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733020",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -62.80000000000052,
+    "zMax": 4.440892098500626e-16,
+    "expectedLengthMm": 62.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -58.8,
+        "zMax": -57.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733021",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.80000000000026,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -43.8,
+        "zMax": -42.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733022",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -39.8,
+        "zMax": -38.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733022-01",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -43.8,
+        "zMax": -42.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733023",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.8,
+    "zMax": 2.886579864025407e-14,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -43.8,
+        "zMax": -42.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733025",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.000000000000526,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -44.0,
+        "zMax": -43.0,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733025-01",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -27.800000000000527,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 27.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -23.8,
+        "zMax": -22.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733026",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -71.80000000000052,
+    "zMax": 0.0,
+    "expectedLengthMm": 71.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -67.8,
+        "zMax": -66.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733027",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000052,
+    "zMax": 0.0,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -39.8,
+        "zMax": -38.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733028",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -57.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 57.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -53.8,
+        "zMax": -52.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733044",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -34.80000000000052,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 34.8,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -30.8,
+        "zMax": -29.8,
+        "lengthMm": 1.0
+      }
+    ]
+  },
+  {
+    "outputId": "733045",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.000000000000526,
+    "zMax": 2.220446049250313e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true,
+    "wideEndCylinders": [
+      {
+        "zMin": -44.0,
+        "zMax": -43.0,
+        "lengthMm": 1.0
+      }
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "products": 23,
+  "filesProduced": 21,
+  "failed": 2,
+  "allProducedSheetsNeedReview": true,
+  "unconfirmedMarkers": [
+    {
+      "id": "M1",
+      "label": "5",
+      "reason": "No matching OCR text near model marker"
+    },
+    {
+      "id": "M8",
+      "label": "E",
+      "reason": "No matching OCR text near model marker"
+    },
+    {
+      "id": "M9",
+      "label": "F",
+      "reason": "No matching OCR text near model marker"
+    }
+  ],
+  "additionalMissingSourceLabel": "L",
+  "placedCounts": {
+    "8": 18,
+    "6": 1,
+    "7": 2
+  },
+  "unresolvedProducts": [
+    {
+      "outputId": "733001-03",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "Delik derinliği sıfır, B çapı geometride yok"
+        }
+      ]
+    }
+  ]
+}

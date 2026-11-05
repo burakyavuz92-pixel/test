@@ -1,0 +1,14 @@
+[
+  {
+    "outputId": "733035",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Kafa çapı L=20 mm, 22 mm konik uçtan büyük olmalı"
+  },
+  {
+    "outputId": "733035-1",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Kafa çapı L=20 mm, 22 mm konik uçtan büyük olmalı"
+  }
+]

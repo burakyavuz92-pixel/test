@@ -16,3 +16,15 @@ class ScriptDrawing(unittest.TestCase):
   d=dimensions(BRepPrimAPI_MakeCylinder(10,5).Shape(),{'E':{'nominalMm':5,'diameterSymbol':False}})[0];self.assertNotIn('relation',d)
  def test_blank_skipped_and_zero_retained(self):
   ds=dimensions(BRepPrimAPI_MakeCylinder(10,5).Shape(),{'B':{'nominalMm':0},'C':{'nominalMm':None}});self.assertEqual(len(ds),1);self.assertEqual(ds[0]['nominal'],0)
+
+class RepeatedColumns(unittest.TestCase):
+ def test_repeated_column_preserves_excel_and_independent_references(self):
+  from cad_script_sheet import take_column_dimension
+  source={'id':'column_E','sourceLabel':'E','valueSource':{'kind':'column','column':'E'},'nominal':20.9,'sourceMeasurement':{'diameterSymbol':True,'tolerance':{'upperDeviationMm':0,'lowerDeviationMm':-.1}}}
+  drawing={'dimensions':[source]}
+  first=take_column_dimension(drawing,'E','r1');first['scriptReference']={'id':'r1'};first['sourceOccurrenceId']='m1'
+  second=take_column_dimension(drawing,'E','r2')
+  self.assertEqual(second['id'],'r2');self.assertNotIn('scriptReference',second);self.assertNotIn('sourceOccurrenceId',second)
+  self.assertEqual(second['nominal'],20.9);self.assertEqual(second['sourceMeasurement'],first['sourceMeasurement'])
+  second['sourceMeasurement']['diameterSymbol']=False
+  self.assertTrue(first['sourceMeasurement']['diameterSymbol'])

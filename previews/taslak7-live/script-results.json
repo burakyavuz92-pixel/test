@@ -1,0 +1,208 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "6b42cba959465d21535cf99cf8111c3f48bded60b4cf74a257ba475f43e9b270",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10883.807218384276,
+      "stepRoundtrip": true,
+      "seconds": 2.7994639340031426
+    },
+    {
+      "outputId": "733001-02",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 12015.764695668531,
+      "stepRoundtrip": true,
+      "seconds": 2.789106259995606
+    },
+    {
+      "outputId": "733001-03",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5398.275219953454,
+      "stepRoundtrip": true,
+      "seconds": 2.9678980780008715
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11042.656371219098,
+      "stepRoundtrip": true,
+      "seconds": 2.837814875994809
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11616.081700806328,
+      "stepRoundtrip": true,
+      "seconds": 2.7362180489872117
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10987.741575340531,
+      "stepRoundtrip": true,
+      "seconds": 2.929529782006284
+    },
+    {
+      "outputId": "733008",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14561.04574496721,
+      "stepRoundtrip": true,
+      "seconds": 2.9834878759866115
+    },
+    {
+      "outputId": "733015",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15654.130991313014,
+      "stepRoundtrip": true,
+      "seconds": 2.9875427070073783
+    },
+    {
+      "outputId": "733019",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10010.754034760725,
+      "stepRoundtrip": true,
+      "seconds": 2.9862924029876012
+    },
+    {
+      "outputId": "733020",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15457.64483050236,
+      "stepRoundtrip": true,
+      "seconds": 2.878262205980718
+    },
+    {
+      "outputId": "733021",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10685.859066813186,
+      "stepRoundtrip": true,
+      "seconds": 3.016832836001413
+    },
+    {
+      "outputId": "733022",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8688.643240386713,
+      "stepRoundtrip": true,
+      "seconds": 2.8907995049958117
+    },
+    {
+      "outputId": "733022-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9392.359994790826,
+      "stepRoundtrip": true,
+      "seconds": 2.799112689011963
+    },
+    {
+      "outputId": "733023",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 16918.07225566853,
+      "stepRoundtrip": true,
+      "seconds": 2.935636112000793
+    },
+    {
+      "outputId": "733025",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 12052.756534670614,
+      "stepRoundtrip": true,
+      "seconds": 2.8750887329806574
+    },
+    {
+      "outputId": "733025-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 7115.455700227673,
+      "stepRoundtrip": true,
+      "seconds": 3.0184757350070868
+    },
+    {
+      "outputId": "733026",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17826.664130691486,
+      "stepRoundtrip": true,
+      "seconds": 2.701672322989907
+    },
+    {
+      "outputId": "733027",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9291.20510770223,
+      "stepRoundtrip": true,
+      "seconds": 2.8122014270047657
+    },
+    {
+      "outputId": "733028",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14463.46165533509,
+      "stepRoundtrip": true,
+      "seconds": 2.920773788006045
+    },
+    {
+      "outputId": "733035",
+      "status": "failed",
+      "error": "Kafa \u00e7ap\u0131 L=20 mm, 22 mm konik u\u00e7tan b\u00fcy\u00fck olmal\u0131"
+    },
+    {
+      "outputId": "733035-1",
+      "status": "failed",
+      "error": "Kafa \u00e7ap\u0131 L=20 mm, 22 mm konik u\u00e7tan b\u00fcy\u00fck olmal\u0131"
+    },
+    {
+      "outputId": "733044",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8841.499063987463,
+      "stepRoundtrip": true,
+      "seconds": 2.7301664289843757
+    },
+    {
+      "outputId": "733045",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 12052.756534670614,
+      "stepRoundtrip": true,
+      "seconds": 2.670011613983661
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "model": "anthropic/claude-haiku-5.5",
+  "reasoningEffort": "high",
+  "rowsSent": 23,
+  "apiCalls": 2,
+  "usage": [
+    {
+      "call": "geometry",
+      "inputTokens": 19796,
+      "visibleOutputTokens": 2141,
+      "reasoningTokens": 26710,
+      "completionTokens": 28851,
+      "costUsd": 0.0164051,
+      "finishReason": "stop"
+    },
+    {
+      "call": "measurements",
+      "inputTokens": 21799,
+      "visibleOutputTokens": 5369,
+      "reasoningTokens": 27394,
+      "completionTokens": 32763,
+      "costUsd": 0.0185614,
+      "finishReason": "stop"
+    }
+  ],
+  "apiTimings": [
+    {
+      "Name": "geometry",
+      "Seconds": 130.3846458
+    },
+    {
+      "Name": "measurements",
+      "Seconds": 134.9558458
+    }
+  ],
+  "initialPipelineSeconds": 327.4184712,
+  "replaySeconds": 97.8512295,
+  "costUsd": 0.0349665
+}

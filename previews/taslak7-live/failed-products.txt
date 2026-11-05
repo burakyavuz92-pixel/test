@@ -1,0 +1,2 @@
+733035: Kafa çapı L=20 mm, 22 mm konik uçtan büyük olmalı [model / geometry]
+733035-1: Kafa çapı L=20 mm, 22 mm konik uçtan büyük olmalı [model / geometry]

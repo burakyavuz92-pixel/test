@@ -12,7 +12,7 @@ public static class CadQueryPipeline
         if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
         Directory.CreateDirectory(output);
         var issues=new List<WorkflowIssue>();string state="failed",stage="input";int calls=0;double cost=0;string? globalError=null;string errorOrigin="software";
-        var settings=OpenRouterSettings.Load();var usages=new List<JsonElement>();
+        var settings=OpenRouterSettings.Load();var usages=new List<JsonElement>();var apiTimings=new List<object>();var totalTimer=Stopwatch.StartNew();
         try
         {
             var raw=WorkflowReports.ReadRows(excel);var parsed=ExcelModelInput.Build(raw);
@@ -21,8 +21,7 @@ public static class CadQueryPipeline
             File.WriteAllText(Path.Combine(output,"rows.json"),JsonSerializer.Serialize(parsed.rows.Select(r=>new{r.outputId,parameters=ExcelModelInput.Parameters(r)}),WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(parsed,WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"pipeline-source.json"),JsonSerializer.Serialize(new{excelSha256=Hash(excel),imageSha256=Hash(image)},WorkflowReports.Json));
-            var sample=raw.Count<=8?raw:raw.GroupBy(r=>string.Join('|',r.Where(kv=>!LocalDrawingSettings.IsSetting(kv.Key)&&kv.Key!="jpeg file name").Select(kv=>kv.Value.Length==0?"blank":kv.Value=="0"?"zero":"value"))).Select(g=>g.First()).Concat(raw.TakeLast(1)).Distinct().Take(8).ToList();
-            string table=JsonSerializer.Serialize(ExcelModelInput.ForModel(sample));
+            string table=JsonSerializer.Serialize(ExcelModelInput.ForModel(raw));
             File.WriteAllText(Path.Combine(output,"model-input.json"),table);
             async Task<JsonElement> Request(string name,string prompt)
             {
@@ -31,7 +30,8 @@ public static class CadQueryPipeline
                 using var client=new HttpClient{Timeout=TimeSpan.FromSeconds(settings.TimeoutSeconds)};
                 client.DefaultRequestHeaders.Authorization=new AuthenticationHeaderValue("Bearer",Environment.GetEnvironmentVariable("OPENROUTER_API_KEY")??throw new Exception("API anahtarı yok."));
                 var body=new{model=settings.Model,max_tokens=settings.MaxCompletionTokens,reasoning=new{effort=settings.ReasoningEffort},response_format=new{type="json_object"},messages=new[]{new{role="user",content=new object[]{new{type="text",text=prompt},new{type="image_url",image_url=new{url="data:image/jpeg;base64,"+Convert.ToBase64String(File.ReadAllBytes(image))}}}}}};
-                calls++;using var response=await client.PostAsync("https://openrouter.ai/api/v1/chat/completions",new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json"));string text=await response.Content.ReadAsStringAsync();
+                var requestTimer=Stopwatch.StartNew();calls++;using var response=await client.PostAsync("https://openrouter.ai/api/v1/chat/completions",new StringContent(JsonSerializer.Serialize(body),Encoding.UTF8,"application/json"));string text=await response.Content.ReadAsStringAsync();
+                apiTimings.Add(new{Name=name,Seconds=requestTimer.Elapsed.TotalSeconds});
                 File.WriteAllText(Path.Combine(output,name+"-api-response.json"),text);response.EnsureSuccessStatusCode();using var doc=JsonDocument.Parse(text);
                 if(doc.RootElement.TryGetProperty("usage",out var usage)){usages.Add(usage.Clone());if(usage.TryGetProperty("cost",out var amount))cost+=amount.GetDouble();}
                 var choice=doc.RootElement.GetProperty("choices")[0];if(choice.GetProperty("finish_reason").GetString()!="stop")throw new Exception("Model yanıtı tamamlanmadı.");
@@ -73,6 +73,6 @@ public static class CadQueryPipeline
             state=unconfirmed?"sheets-produced-with-unconfirmed-labels":incomplete?"sheets-produced-with-unresolved-measurements":"sheets-produced";Environment.ExitCode=incomplete||unconfirmed?2:0;
         }
         catch(Exception ex){globalError=ex.Message;issues.Add(new("CADQUERY_PIPELINE",stage,"error",ex.Message,[],"Aşama kayıtları incelenmeli; otomatik API tekrarı yok."));Environment.ExitCode=1;}
-        finally{bool partial=CadQueryProducts.Save(output,stage,globalError,errorOrigin);if(partial&&state.StartsWith("sheets-produced")){state="partially-produced";Environment.ExitCode=2;}WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages});Console.WriteLine(state+"; "+output);}
+        finally{bool partial=CadQueryProducts.Save(output,stage,globalError,errorOrigin);if(partial&&state.StartsWith("sheets-produced")){state="partially-produced";Environment.ExitCode=2;}WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages,ApiTimings=apiTimings,TotalSeconds=totalTimer.Elapsed.TotalSeconds});Console.WriteLine(state+"; "+output);}
     }
 }

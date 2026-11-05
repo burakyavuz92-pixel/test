@@ -1,5 +1,5 @@
 """Render validated CadQuery STEP outputs through the existing drafting pipeline."""
-import json,sys,pathlib,traceback
+import json,sys,pathlib,traceback,copy
 import numpy as np
 from OCP.STEPControl import STEPControl_Reader
 from OCP.IFSelect import IFSelect_RetDone
@@ -37,6 +37,17 @@ def dimensions(shape,cells):
         result.append(d)
     return result
 
+def take_column_dimension(drawing,label,record_id):
+    """Each occurrence keeps its own reference and the same Excel presentation."""
+    available=next((d for d in drawing['dimensions'] if d['sourceLabel']==label and 'scriptReference' not in d),None)
+    if available is not None:return available
+    prototype=next((d for d in drawing['dimensions'] if d['sourceLabel']==label and d.get('valueSource',{}).get('kind')=='column'),None)
+    if prototype is None:return None
+    result=copy.deepcopy(prototype)
+    for key in ('scriptReference','sourceOccurrenceId'):result.pop(key,None)
+    result['id']=record_id;drawing['dimensions'].append(result)
+    return result
+
 def run(folder,image,excel):
     root=pathlib.Path(folder);job=json.loads((root/'sheet-input.json').read_text());saved={r['outputId']:r['parameters'] for r in json.loads((root/'rows.json').read_text())}
     def parameters(cells):
@@ -68,7 +79,7 @@ def run(folder,image,excel):
                 label=m['source']
                 if m['id'] in seen:raise ValueError('Duplicate measurement id: '+m['id'])
                 seen.add(m['id'])
-                existing=next((d for d in drawing['dimensions'] if d['sourceLabel']==label and 'scriptReference' not in d),None)
+                existing=take_column_dimension(drawing,label,m['id'])
                 if existing is None:
                     from bracket_content import literal as parse_literal
                     content=parse_literal(label);literal=content.pop('nominal')
