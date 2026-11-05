@@ -1,0 +1,258 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "ee11de5fa35fcaa7dc576fd98aca0ccd69ecc2172b8c1c0f4a53c171aedaf62a",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10743.48274652393,
+      "stepRoundtrip": true,
+      "seconds": 3.8760514839959797
+    },
+    {
+      "outputId": "733001-02",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11875.440223808186,
+      "stepRoundtrip": true,
+      "seconds": 3.2734370969992597
+    },
+    {
+      "outputId": "733001-03",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5257.95074809311,
+      "stepRoundtrip": true,
+      "seconds": 3.126850459986599
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10902.33189935875,
+      "stepRoundtrip": true,
+      "seconds": 2.8128775079967454
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11475.757228945982,
+      "stepRoundtrip": true,
+      "seconds": 2.7833329429849982
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10847.417103480186,
+      "stepRoundtrip": true,
+      "seconds": 2.900413049996132
+    },
+    {
+      "outputId": "733008",
+      "status": "failed",
+      "error": "Sol y\u00fczde pahlar \u00e7ak\u0131\u015f\u0131yor"
+    },
+    {
+      "outputId": "733015",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15503.334543940702,
+      "stepRoundtrip": true,
+      "seconds": 2.791690206009662
+    },
+    {
+      "outputId": "733019",
+      "status": "failed",
+      "error": "Sol y\u00fczde pahlar \u00e7ak\u0131\u015f\u0131yor"
+    },
+    {
+      "outputId": "733020",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15317.32035864202,
+      "stepRoundtrip": true,
+      "seconds": 3.197847614006605
+    },
+    {
+      "outputId": "733021",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10541.345804748054,
+      "stepRoundtrip": true,
+      "seconds": 2.8254579789936543
+    },
+    {
+      "outputId": "733022",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8548.318768526367,
+      "stepRoundtrip": true,
+      "seconds": 2.996341142017627
+    },
+    {
+      "outputId": "733022-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9252.035522930484,
+      "stepRoundtrip": true,
+      "seconds": 2.863375543995062
+    },
+    {
+      "outputId": "733023",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17159.97488999494,
+      "stepRoundtrip": true,
+      "seconds": 2.8396023119858
+    },
+    {
+      "outputId": "733025",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11912.432062810269,
+      "stepRoundtrip": true,
+      "seconds": 3.064002472005086
+    },
+    {
+      "outputId": "733025-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 6975.131228367331,
+      "stepRoundtrip": true,
+      "seconds": 3.1208172620099504
+    },
+    {
+      "outputId": "733026",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17686.33965883114,
+      "stepRoundtrip": true,
+      "seconds": 3.0918333959998563
+    },
+    {
+      "outputId": "733027",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9150.880635841886,
+      "stepRoundtrip": true,
+      "seconds": 3.1909515599836595
+    },
+    {
+      "outputId": "733028",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14323.137183474742,
+      "stepRoundtrip": true,
+      "seconds": 2.9457869729958475
+    },
+    {
+      "outputId": "733035",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 4629.267674758459,
+      "stepRoundtrip": true,
+      "seconds": 2.8425640409986954
+    },
+    {
+      "outputId": "733035-1",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 7400.217845071607,
+      "stepRoundtrip": true,
+      "seconds": 2.8657146070036106
+    },
+    {
+      "outputId": "733044",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8701.174592127121,
+      "stepRoundtrip": true,
+      "seconds": 2.867500253021717
+    },
+    {
+      "outputId": "733045",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11912.432062810269,
+      "stepRoundtrip": true,
+      "seconds": 2.8653349280066323
+    },
+    {
+      "outputId": "733032",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 3972.7454959928973,
+      "stepRoundtrip": true,
+      "seconds": 2.7387939110049047
+    },
+    {
+      "outputId": "733032-01",
+      "status": "failed",
+      "error": "Sol y\u00fczde pahlar \u00e7ak\u0131\u015f\u0131yor"
+    },
+    {
+      "outputId": "733034",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 6417.6532688328825,
+      "stepRoundtrip": true,
+      "seconds": 2.7658085570146795
+    },
+    {
+      "outputId": "733034-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5254.101597722832,
+      "stepRoundtrip": true,
+      "seconds": 2.714815176994307
+    },
+    {
+      "outputId": "733099",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 4414.757110377471,
+      "stepRoundtrip": true,
+      "seconds": 2.868203744001221
+    },
+    {
+      "outputId": "733043",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11286.056707713393,
+      "stepRoundtrip": true,
+      "seconds": 2.8578044839960057
+    }
+  ]
+}

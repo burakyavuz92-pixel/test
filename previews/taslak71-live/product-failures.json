@@ -1,0 +1,20 @@
+[
+  {
+    "outputId": "733008",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Sol yüzde pahlar çakışıyor"
+  },
+  {
+    "outputId": "733019",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Sol yüzde pahlar çakışıyor"
+  },
+  {
+    "outputId": "733032-01",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Sol yüzde pahlar çakışıyor"
+  }
+]

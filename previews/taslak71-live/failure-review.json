@@ -1,0 +1,29 @@
+[
+  {
+    "outputId": "733008",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Sol yüzde pahlar çakışıyor",
+    "outerEndRadiusMm": 6.715555979773657,
+    "innerEndRadiusMm": 6.92819926235456,
+    "remainingRadialWallMm": -0.2126432825809026
+  },
+  {
+    "outputId": "733019",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Sol yüzde pahlar çakışıyor",
+    "outerEndRadiusMm": 7.857777989886829,
+    "innerEndRadiusMm": 8.25,
+    "remainingRadialWallMm": -0.39222201011317104
+  },
+  {
+    "outputId": "733032-01",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Sol yüzde pahlar çakışıyor",
+    "outerEndRadiusMm": 8.95,
+    "innerEndRadiusMm": 9.25,
+    "remainingRadialWallMm": -0.3000000000000007
+  }
+]

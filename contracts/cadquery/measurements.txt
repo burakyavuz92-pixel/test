@@ -16,3 +16,5 @@ Chamfer: kind:"chamfer", points:[[x1,y1,z1],[x2,y2,z2]] at the boundaries of the
 Excel chamfer cells provide leg length in p[label] (mm) and angle in p[label+"__angleDeg"] (degrees), e.g. p["F"] and p["F__angleDeg"]. Use both per-row parameters for geometry/references. Unbracketed labels such as K still provide geometry data; only bracketed labels are drawing annotations.
 
 Successful rows return data only. If measurement data cannot be produced for an entire row, build_measurements(p) returns {"error":"short Turkish reason specific to that row"}; other rows still return their data. Individual unavailable references retain their unresolved reason.
+
+Geometry helper functions and constants are available in the same validated namespace when build_measurements(p) runs; reuse them without copying the geometry code.

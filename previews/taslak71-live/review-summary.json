@@ -1,0 +1,82 @@
+{
+  "products": 29,
+  "filesProduced": 26,
+  "failed": 3,
+  "allProducedSheetsNeedReview": true,
+  "unconfirmedMarkers": [
+    {
+      "id": "m-5",
+      "label": "5",
+      "reason": "No matching OCR text near model marker"
+    }
+  ],
+  "placedCounts": {
+    "11": 18,
+    "9": 1,
+    "10": 3,
+    "7": 4
+  },
+  "unresolvedProducts": [
+    {
+      "outputId": "733001-03",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "Sayaç derinliği sıfır"
+        }
+      ]
+    },
+    {
+      "outputId": "733032",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "Sayaç derinliği sıfır"
+        },
+        {
+          "id": "column_E",
+          "reason": "Boyun yok (M=0)"
+        }
+      ]
+    },
+    {
+      "outputId": "733034",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "Sayaç derinliği sıfır"
+        },
+        {
+          "id": "column_E",
+          "reason": "Boyun yok (M=0)"
+        }
+      ]
+    },
+    {
+      "outputId": "733034-01",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "Sayaç derinliği sıfır"
+        },
+        {
+          "id": "column_E",
+          "reason": "Boyun yok (M=0)"
+        }
+      ]
+    },
+    {
+      "outputId": "733099",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "Sayaç derinliği sıfır"
+        },
+        {
+          "id": "column_E",
+          "reason": "Boyun yok (M=0)"
+        }
+      ]
+    }
+  ]
+}

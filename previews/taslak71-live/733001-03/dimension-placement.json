@@ -1,0 +1,147 @@
+{
+  "placed": [
+    "column_M",
+    "column_C",
+    "column_A",
+    "column_N",
+    "column_E",
+    "column_L",
+    "column_F",
+    "column_G",
+    "column_J"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_M",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        547.8166666666741,
+        696.7928571428572
+      ],
+      "bandCoordinate": 710.5428571428572,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.744583808437856,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        390.7919047619122,
+        193.1071428571428
+      ],
+      "bandCoordinate": 207.3571428571428,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.864310148232611,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        209.82047619046867,
+        449.0
+      ],
+      "bandCoordinate": 224.32047619046867,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.924173318129989,
+      "narrow": false
+    },
+    {
+      "id": "column_N",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        692.7104761904837,
+        449.0
+      ],
+      "bandCoordinate": 705.4604761904837,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.505131128848347,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        735.5890476190551,
+        449.0
+      ],
+      "bandCoordinate": 753.5890476190551,
+      "innerExtentMm": 8.005131128848348,
+      "outerExtentMm": 12.267388825541618,
+      "narrow": false
+    },
+    {
+      "id": "column_L",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -48.3017032985064,
+      "placedLabelPixels": [
+        1168.5323721784998,
+        257.54295233870994
+      ]
+    },
+    {
+      "id": "column_F",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        209.82047619046867,
+        697.0595238095239
+      ]
+    },
+    {
+      "id": "column_G",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        547.8166666666741,
+        200.94047619047615
+      ]
+    },
+    {
+      "id": "column_J",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        209.82047619046867,
+        200.94047619047615
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_B",
+      "reason": "Saya\u00e7 derinli\u011fi s\u0131f\u0131r"
+    }
+  ],
+  "omitted": [
+    {
+      "id": "column_D",
+      "reason": "zero dimension"
+    },
+    {
+      "id": "column_K",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "r-5",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

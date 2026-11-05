@@ -1,0 +1,128 @@
+{
+  "placed": [
+    "column_N",
+    "column_A",
+    "column_C",
+    "column_L",
+    "column_F",
+    "column_G",
+    "column_J"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_N",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        706.9095238095463,
+        449.0
+      ],
+      "bandCoordinate": 719.6595238095463,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.505131128848347,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        142.00714285712036,
+        449.0
+      ],
+      "bandCoordinate": 160.00714285712036,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 7.762257696693273,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        389.12142857142106,
+        168.04999999999995
+      ],
+      "bandCoordinate": 182.29999999999995,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.864310148232611,
+      "narrow": false
+    },
+    {
+      "id": "column_L",
+      "view": "front",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1326.1428571428798,
+        449.0
+      ],
+      "bandCoordinate": 1338.8928571428798,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.505131128848347,
+      "narrow": false
+    },
+    {
+      "id": "column_F",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        142.00714285712036,
+        722.1166666666667
+      ]
+    },
+    {
+      "id": "column_G",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        706.9095238095463,
+        175.8833333333333
+      ]
+    },
+    {
+      "id": "column_J",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        142.00714285712036,
+        175.8833333333333
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_B",
+      "reason": "Saya\u00e7 derinli\u011fi s\u0131f\u0131r"
+    },
+    {
+      "id": "column_E",
+      "reason": "Boyun yok (M=0)"
+    }
+  ],
+  "omitted": [
+    {
+      "id": "column_D",
+      "reason": "zero dimension"
+    },
+    {
+      "id": "column_M",
+      "reason": "zero dimension"
+    },
+    {
+      "id": "column_K",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "r-5",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

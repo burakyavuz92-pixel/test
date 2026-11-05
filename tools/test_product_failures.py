@@ -33,4 +33,21 @@ class ProductFailures(unittest.TestCase):
    rows=json.loads((root/'script-results.json').read_text())['results']
    self.assertEqual(sum(r['status']=='geometry-validated' for r in rows),4)
    self.assertEqual([r['origin'] for r in failures(root)],['model','software'])
+ def test_measurements_reuse_validated_geometry_helpers(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);(root/'rows.json').write_text(json.dumps([{'outputId':'a','parameters':{'A':20}}]))
+   (root/'part.py').write_text('RATIO=2\ndef _dims(p): return p["A"]/RATIO\ndef build_part(p): raise RuntimeError("Geometry must not be rebuilt")\n')
+   (root/'measurements.py').write_text('def build_measurements(p): return [{"radius":_dims(p)}]\n')
+   result=subprocess.run([sys.executable,str(Path(__file__).with_name('evaluate_script_measurements.py')),d],capture_output=True,text=True)
+   self.assertEqual(result.returncode,0,result.stderr)
+   self.assertEqual(json.loads((root/'measurement-references.json').read_text())['a'],[{'radius':10}])
+ def test_geometry_helpers_keep_the_same_safety_validation(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);(root/'rows.json').write_text('[]')
+   (root/'part.py').write_text('import os\ndef _dims(p): return 1\n')
+   (root/'measurements.py').write_text('def build_measurements(p): return []\n')
+   result=subprocess.run([sys.executable,str(Path(__file__).with_name('evaluate_script_measurements.py')),d],capture_output=True,text=True)
+   self.assertNotEqual(result.returncode,0)
+   self.assertIn('Only cadquery/math imports',result.stderr)
+   self.assertFalse((root/'measurement-references.json').exists())
 if __name__=='__main__':unittest.main()
