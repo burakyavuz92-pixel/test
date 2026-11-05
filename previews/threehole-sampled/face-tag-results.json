@@ -1,0 +1,644 @@
+{
+  "results": [
+    {
+      "outputId": "11-30-13",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 45990.56025406437,
+          "centroidMm": [
+            0.12466485646462999,
+            -8.543094691506453e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-154",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34312.474962507724,
+          "centroidMm": [
+            0.7383984160410044,
+            -1.8024243307466484e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-201-1",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15777.078306327941,
+          "centroidMm": [
+            0.5671047391477444,
+            -1.441164650568008e-15,
+            -3.0000000000000004
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-216",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15958.50528207275,
+          "centroidMm": [
+            0.054751710221959016,
+            -1.4247805256464466e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-216-1",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15777.078306327941,
+          "centroidMm": [
+            0.5671047391477444,
+            -1.441164650568008e-15,
+            -3.0000000000000004
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-212",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 16109.301729445062,
+          "centroidMm": [
+            0.054239188728001146,
+            -8.750949056788205e-16,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-260",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34312.474962507724,
+          "centroidMm": [
+            -7.105427357601002e-15,
+            -1.9084492913788044e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-27",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34312.474962507724,
+          "centroidMm": [
+            0.7383984160410044,
+            -2.544599055171739e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-296",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34661.977145219586,
+          "centroidMm": [
+            0.16540910429836053,
+            -2.3090296730824488e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-299",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15663.980970798708,
+          "centroidMm": [
+            -1.4210854715202004e-14,
+            -1.5676957852315963e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-318",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 11151.303035402723,
+          "centroidMm": [
+            0.05863386269322569,
+            -1.671969753413816e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-35",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34344.676287207025,
+          "centroidMm": [
+            0.6691211781655113,
+            -2.5951760333506765e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-365",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 7384.533443748561,
+          "centroidMm": [
+            0.058496449797283745,
+            -1.3855737092784475e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-368",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 11151.303035402723,
+          "centroidMm": [
+            0.06162718301090031,
+            -1.671969753413816e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-372",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 7215.452927132358,
+          "centroidMm": [
+            -7.105427357601002e-15,
+            -1.9537467737431466e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-379",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 7366.249374504668,
+          "centroidMm": [
+            0.06397270497920182,
+            -1.5742146183293712e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-380",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10968.674400467915,
+          "centroidMm": [
+            0.09075774663014613,
+            -1.9071017496776993e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-381",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10847.919432845558,
+          "centroidMm": [
+            0.0,
+            -2.0121713640736847e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-382",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10982.22251878652,
+          "centroidMm": [
+            3.552713678800501e-15,
+            -1.9047490710549474e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-385",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15944.957163754145,
+          "centroidMm": [
+            0.09260901153840706,
+            -1.4259911337993102e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-394",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 7201.9048088137515,
+          "centroidMm": [
+            0.11058098639548142,
+            -1.9574221336872094e-15,
+            -3.0000000000000004
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-41",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34278.70284148164,
+          "centroidMm": [
+            0.8111948676824277,
+            -1.8572648276253497e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-47",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34580.29573622625,
+          "centroidMm": [
+            0.1657998137591008,
+            -1.7884647428208587e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-506",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10982.22251878652,
+          "centroidMm": [
+            0.046485017521268546,
+            -2.0703794250597255e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-762",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 7215.452927132358,
+          "centroidMm": [
+            0.06258844018721632,
+            -1.9537467737431466e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-8",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 46072.24166305771,
+          "centroidMm": [
+            0.12444383832528416,
+            -8.409504920311568e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-81",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 6176.371156957533,
+          "centroidMm": [
+            1.7763568394002505e-15,
+            -3.754974289244958e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-87",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 16017.001737282593,
+          "centroidMm": [
+            0.05455174889229042,
+            -9.653123714253232e-16,
+            -2.9999999999999996
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-87-1",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15835.574761537784,
+          "centroidMm": [
+            0.5650098598981863,
+            -9.763718818525745e-16,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-885",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10982.22251878652,
+          "centroidMm": [
+            0.0625759851247949,
+            -1.9047490710549474e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-894",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34481.55547912391,
+          "centroidMm": [
+            0.7332709537874944,
+            -2.347487731717816e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-895",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 6176.371156957533,
+          "centroidMm": [
+            0.06358087487283903,
+            -3.754974289244958e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-9",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 34328.79553634312,
+          "centroidMm": [
+            0.8835067004844266,
+            -2.490402026373057e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-905",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10271.240831370982,
+          "centroidMm": [
+            7.105427357601002e-15,
+            -2.3022400734556436e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-908",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10847.919432845558,
+          "centroidMm": [
+            0.49666956269910045,
+            -1.9283308905706144e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-912",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10687.698207512478,
+          "centroidMm": [
+            -3.552713678800501e-15,
+            -2.1274335317908686e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-913",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10847.919432845558,
+          "centroidMm": [
+            0.4682884448305824,
+            -1.9283308905706144e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-989",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 15173.892516838701,
+          "centroidMm": [
+            2.3585921325051777,
+            -1.6183294379223061e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-525",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 10929.600841838894,
+          "centroidMm": [
+            0.46478873239436785,
+            -1.9139196795459417e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "11-30-44",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 7215.452927132358,
+          "centroidMm": [
+            0.07075214977685462,
+            -1.7646745053163903e-15,
+            -3.0
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    }
+  ]
+}

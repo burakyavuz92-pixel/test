@@ -11,3 +11,5 @@ Success is data only. For a row that cannot form a consistent part, build_part(p
 Identical fixed measurement text may occur at different locations. Each occurrence applies independently to the feature indicated by its own arrow.
 
 Excel chamfer cells provide leg length in p[label] (mm) and angle in p[label+"__angleDeg"] (degrees), e.g. p["F"] and p["F__angleDeg"]. Use both per-row parameters for geometry/references. Unbracketed labels such as K still provide geometry data; only bracketed labels are drawing annotations.
+
+The table contains representative rows selected from the full input group. Generate reusable parametric functions for the same sketch and parameter schema, including rows not shown. Use p for row-dependent values; do not dispatch by product id or hard-code example dimensions. All original rows will be executed locally.

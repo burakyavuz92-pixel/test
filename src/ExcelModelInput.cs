@@ -117,8 +117,11 @@ public static class ExcelModelInput
     // Only geometric cell data enters the model request; presentation remains local.
     public static object ForModel(IEnumerable<Dictionary<string,string>> rows)
     {
-        var parsed=Build(rows);
-        return new{parsed.schemaVersion,parsed.lengthUnit,rows=parsed.rows.Select(r=>new{r.outputId,
+        return ForModel(Build(rows).rows);
+    }
+    public static object ForModel(ParsedExcelRow[] rows)
+    {
+        return new{schemaVersion=1,lengthUnit="mm",rows=rows.Select(r=>new{r.outputId,
             parameters=Parameters(r),cells=r.cells.ToDictionary(kv=>kv.Key,kv=>new{kv.Value.state,kv.Value.nominalMm,kv.Value.isZero,kv.Value.diameterSymbol,kv.Value.radiusSymbol,kv.Value.chamferAngleDeg})}).ToArray()};
     }
 }

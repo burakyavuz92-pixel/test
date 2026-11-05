@@ -1,0 +1,2946 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "11-30-13",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3705.833886983954
+            }
+          ],
+          "packages": [
+            [
+              600.1538095238095,
+              178.72341252836344,
+              565.1533333333334,
+              572.5531749432731
+            ],
+            [
+              284.69285714285706,
+              185.6733333333333,
+              195.4609523809524,
+              558.6533333333334
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-154",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3512.080581707688
+            }
+          ],
+          "packages": [
+            [
+              617.9063524565099,
+              205.41341473306846,
+              529.6482474679325,
+              519.1731705338631
+            ],
+            [
+              302.4454000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-201-1",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2681.9030401972163
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2681.903040197217
+            }
+          ],
+          "packages": [
+            [
+              675.4496933434898,
+              261.37437106272216,
+              407.2263275987346,
+              407.25125787455573
+            ],
+            [
+              367.32397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-216",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2689.9675230463777
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2689.967523046378
+            }
+          ],
+          "packages": [
+            [
+              675.4496933434898,
+              262.37437106272216,
+              407.2263275987346,
+              405.25125787455573
+            ],
+            [
+              367.32397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-216-1",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2681.9030401972163
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2681.903040197217
+            }
+          ],
+          "packages": [
+            [
+              675.4496933434898,
+              261.37437106272216,
+              407.2263275987346,
+              407.25125787455573
+            ],
+            [
+              367.32397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-212",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2694.79565452711
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2694.7956545271104
+            }
+          ],
+          "packages": [
+            [
+              675.4496933434898,
+              262.37437106272216,
+              407.2263275987346,
+              405.25125787455573
+            ],
+            [
+              367.32397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-260",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2874.813684409579
+            }
+          ],
+          "packages": [
+            [
+              618.6563524565099,
+              205.41341473306846,
+              528.1482474679325,
+              519.1731705338631
+            ],
+            [
+              303.1954000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-27",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3487.7837386084816
+            }
+          ],
+          "packages": [
+            [
+              617.9063524565099,
+              205.41341473306846,
+              529.6482474679325,
+              519.1731705338631
+            ],
+            [
+              302.4454000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_F",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-296",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3375.7002377468457
+            }
+          ],
+          "packages": [
+            [
+              618.6563524565099,
+              205.41341473306846,
+              528.1482474679325,
+              519.1731705338631
+            ],
+            [
+              303.1954000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-299",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2250.892823094035
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2250.892823094036
+            }
+          ],
+          "packages": [
+            [
+              680.9496933434898,
+              261.37437106272216,
+              396.2263275987346,
+              407.25125787455573
+            ],
+            [
+              372.82397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-318",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4546.281078404251
+            }
+          ],
+          "packages": [
+            [
+              566.6761904761904,
+              112.14376168553116,
+              707.4619047619047,
+              705.7124766289377
+            ],
+            [
+              175.86190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-35",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3488.4846902611516
+            }
+          ],
+          "packages": [
+            [
+              617.9063524565099,
+              205.41341473306846,
+              529.6482474679325,
+              519.1731705338631
+            ],
+            [
+              302.4454000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_F",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-365",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3994.3592758000977
+            }
+          ],
+          "packages": [
+            [
+              611.6767042356756,
+              157.98835416399385,
+              615.9608772429344,
+              614.0232916720123
+            ],
+            [
+              222.36241852138994,
+              163.95714285714286,
+              269.3142857142857,
+              602.0857142857143
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_G",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-368",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4553.380602213775
+            }
+          ],
+          "packages": [
+            [
+              569.1761904761904,
+              112.14376168553116,
+              702.4619047619047,
+              705.7124766289377
+            ],
+            [
+              178.36190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-372",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3253.625458400008
+            }
+          ],
+          "packages": [
+            [
+              611.6767042356756,
+              157.98835416399385,
+              615.9608772429344,
+              614.0232916720123
+            ],
+            [
+              222.36241852138994,
+              163.95714285714286,
+              269.3142857142857,
+              602.0857142857143
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_G",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-379",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3823.0633834951686
+            }
+          ],
+          "packages": [
+            [
+              611.6767042356756,
+              157.98835416399385,
+              615.9608772429344,
+              614.0232916720123
+            ],
+            [
+              222.36241852138994,
+              163.95714285714286,
+              269.3142857142857,
+              602.0857142857143
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_G",
+          "column_F",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-380",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4527.058670995844
+            }
+          ],
+          "packages": [
+            [
+              564.4261904761904,
+              112.14376168553116,
+              711.9619047619047,
+              705.7124766289377
+            ],
+            [
+              173.61190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-381",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3669.210440609539
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              111.14376168553116,
+              696.9619047619047,
+              707.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-382",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3632.6247263238247
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              112.14376168553116,
+              696.9619047619047,
+              705.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-385",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2688.860247188848
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2688.860247188849
+            }
+          ],
+          "packages": [
+            [
+              673.4496933434898,
+              262.37437106272216,
+              411.2263275987346,
+              405.25125787455573
+            ],
+            [
+              365.32397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-394",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3824.8437886174615
+            }
+          ],
+          "packages": [
+            [
+              609.6767042356756,
+              157.98835416399385,
+              619.9608772429344,
+              614.0232916720123
+            ],
+            [
+              220.36241852138994,
+              163.95714285714286,
+              269.3142857142857,
+              602.0857142857143
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_G",
+          "column_F",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-41",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3511.380610080239
+            }
+          ],
+          "packages": [
+            [
+              617.9063524565099,
+              205.41341473306846,
+              529.6482474679325,
+              519.1731705338631
+            ],
+            [
+              302.4454000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-47",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3373.6289618702417
+            }
+          ],
+          "packages": [
+            [
+              618.6563524565099,
+              205.41341473306846,
+              528.1482474679325,
+              519.1731705338631
+            ],
+            [
+              303.1954000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-506",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4546.845809962271
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              112.14376168553116,
+              696.9619047619047,
+              705.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_G",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-762",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4011.4201786434487
+            }
+          ],
+          "packages": [
+            [
+              611.6767042356756,
+              157.98835416399385,
+              615.9608772429344,
+              614.0232916720123
+            ],
+            [
+              222.36241852138994,
+              163.95714285714286,
+              269.3142857142857,
+              602.0857142857143
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_G",
+          "column_F",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-8",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3726.6938665895345
+            }
+          ],
+          "packages": [
+            [
+              591.9038095238095,
+              178.72341252836344,
+              581.6533333333334,
+              572.5531749432731
+            ],
+            [
+              276.44285714285706,
+              185.6733333333333,
+              195.4609523809524,
+              558.6533333333334
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-81",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3019.6671729904056
+            }
+          ],
+          "packages": [
+            [
+              626.9809523809523,
+              172.6985788121824,
+              586.852380952381,
+              584.6028423756352
+            ],
+            [
+              236.16666666666663,
+              178.57380952380947,
+              270.8142857142857,
+              572.852380952381
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_G",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-87",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2691.9155919337054
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2691.9155919337063
+            }
+          ],
+          "packages": [
+            [
+              672.6996933434898,
+              262.37437106272216,
+              412.7263275987346,
+              405.25125787455573
+            ],
+            [
+              364.57397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-87-1",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2683.8511090845445
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2683.851109084545
+            }
+          ],
+          "packages": [
+            [
+              672.6996933434898,
+              261.37437106272216,
+              412.7263275987346,
+              407.25125787455573
+            ],
+            [
+              364.57397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-885",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4524.67533766251
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              112.14376168553116,
+              696.9619047619047,
+              705.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-894",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3371.3293696154565
+            }
+          ],
+          "packages": [
+            [
+              618.6563524565099,
+              205.41341473306846,
+              528.1482474679325,
+              519.1731705338631
+            ],
+            [
+              303.1954000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-895",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3738.048969172624
+            }
+          ],
+          "packages": [
+            [
+              626.9809523809523,
+              172.6985788121824,
+              586.852380952381,
+              584.6028423756352
+            ],
+            [
+              236.16666666666663,
+              178.57380952380947,
+              270.8142857142857,
+              572.852380952381
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_G",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-9",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 3349.9718630904435
+            }
+          ],
+          "packages": [
+            [
+              621.1563524565099,
+              205.41341473306846,
+              523.1482474679325,
+              519.1731705338631
+            ],
+            [
+              305.6954000755576,
+              212.40095238095233,
+              195.4609523809524,
+              505.19809523809533
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-905",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3754.617583466682
+            }
+          ],
+          "packages": [
+            [
+              565.1761904761904,
+              111.14376168553116,
+              710.4619047619047,
+              707.7124766289377
+            ],
+            [
+              174.36190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-908",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4455.2586602708325
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              111.14376168553116,
+              696.9619047619047,
+              707.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-912",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3694.267583466682
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              111.14376168553116,
+              696.9619047619047,
+              707.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 3,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-913",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4446.906279318451
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              111.14376168553116,
+              696.9619047619047,
+              707.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-989",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.2,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2670.4831057901615
+            },
+            {
+              "scale": 0.2,
+              "accepted": true,
+              "reasons": [],
+              "score": 2670.4831057901624
+            }
+          ],
+          "packages": [
+            [
+              675.4496933434898,
+              261.37437106272216,
+              407.2263275987346,
+              407.25125787455573
+            ],
+            [
+              367.32397905777555,
+              268.3619047619047,
+              188.1257142857143,
+              393.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "1:5",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_J",
+          "column_F",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-525",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 4449.975041931978
+            }
+          ],
+          "packages": [
+            [
+              571.9261904761904,
+              111.14376168553116,
+              696.9619047619047,
+              707.7124766289377
+            ],
+            [
+              181.11190476190473,
+              118.01904761904763,
+              270.8142857142857,
+              693.9619047619047
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_J",
+          "column_G",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "11-30-44",
+      "status": "sheet-produced",
+      "drafting": {
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 0.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 0.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3864.3323795813694
+            }
+          ],
+          "packages": [
+            [
+              617.1767042356756,
+              157.98835416399385,
+              604.9608772429344,
+              614.0232916720123
+            ],
+            [
+              227.86241852138994,
+              163.95714285714286,
+              269.3142857142857,
+              602.0857142857143
+            ]
+          ]
+        },
+        "scaleLabel": "1:2",
+        "centerlineCenters": 4,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_F",
+          "column_G",
+          "column_J",
+          "column_B",
+          "column_A",
+          "column_C",
+          "column_D",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_F",
+          "column_G",
+          "column_J"
+        ],
+        "unconfirmedVisualLabels": []
+      }
+    }
+  ]
+}

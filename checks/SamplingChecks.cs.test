@@ -1,0 +1,25 @@
+using System.Text.Json;
+int checks=0;
+void Check(bool ok,string message){if(!ok)throw new Exception(message);checks++;}
+ParsedExcelRow Row(string id,double? a,double b,double angle=45)=>new(id,new(){["A"]=new(a is null?"blank":"number",a,a==0),["B"]=new("number",b,b==0),["C"]=new("number",1,false,chamferAngleDeg:angle)});
+var data=Enumerable.Range(1,40).Select(i=>Row("P"+i,i,i+2)).ToArray();
+data[15]=Row("blank",null,12);data[16]=Row("zero",0,12);data[17]=Row("reverse",20,10);data[18]=Row("equal",10,10);data[19]=Row("angle",10,12,30);
+var s=ModelRowSampling.Select(data);
+foreach(var id in new[]{"blank","zero","reverse","equal","angle","P40"})Check(s.Rows.Any(r=>r.outputId==id),id);
+Check(s.Rows.Length<data.Length,"must reduce regular data");
+Check(JsonSerializer.Serialize(s)==JsonSerializer.Serialize(ModelRowSampling.Select(data)),"deterministic");
+Check(data.Length==40,"all rows retained");
+Check(ModelRowSampling.Select([data[0],data[1]]).Rows.Length==2,"small group");
+Check(ModelRowSampling.Select([data[0],data[0] with{outputId="duplicate"}]).Rows.Length==1,"nominal dedup");
+var rare=Enumerable.Range(1,20).Select(i=>Row("R"+i,10,20,i+10)).ToArray();
+Check(ModelRowSampling.Select(rare).Rows.Length==20,"soft cap preserves rare angles");
+var real=ExcelModelInput.Build(JsonSerializer.Deserialize<Dictionary<string,string>[]>(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"threehole-nominal.json")))!).rows;
+var actual=ModelRowSampling.Select(real);
+Check(actual.TotalRows==40&&actual.UniqueRows==39,"real group count");
+foreach(var k in new[]{"A","B","C","D","E","F","G","J"}){
+ var all=real.Select(r=>r.cells[k].nominalMm!.Value).ToArray();var chosen=actual.Rows.Select(r=>r.cells[k].nominalMm!.Value).ToArray();
+ Check(chosen.Contains(all.Min())&&chosen.Contains(all.Max()),"extrema "+k);
+}
+foreach(var relation in new[]{-1,0,1})Check(actual.Rows.Any(r=>r.cells["F"].nominalMm>0&&Math.Sign(r.cells["F"].nominalMm!.Value-r.cells["G"].nominalMm!.Value)==relation),"F/G relation");
+Check(actual.Rows.Any(r=>r.cells["F"].isZero==true),"zero F");
+Console.WriteLine($"{checks} checks passed; real group {actual.Rows.Length}/40: "+string.Join(",",actual.Rows.Select(r=>r.outputId)));

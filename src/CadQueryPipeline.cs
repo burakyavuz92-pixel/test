@@ -21,7 +21,9 @@ public static class CadQueryPipeline
             File.WriteAllText(Path.Combine(output,"rows.json"),JsonSerializer.Serialize(parsed.rows.Select(r=>new{r.outputId,parameters=ExcelModelInput.Parameters(r)}),WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"normalized-excel.json"),JsonSerializer.Serialize(parsed,WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"pipeline-source.json"),JsonSerializer.Serialize(new{excelSha256=Hash(excel),imageSha256=Hash(image)},WorkflowReports.Json));
-            string table=JsonSerializer.Serialize(ExcelModelInput.ForModel(raw));
+            var selection=ModelRowSampling.Select(parsed.rows);
+            string table=JsonSerializer.Serialize(ExcelModelInput.ForModel(selection.Rows));
+            File.WriteAllText(Path.Combine(output,"sampling-report.json"),JsonSerializer.Serialize(new{selection.Policy,selection.TotalRows,selection.UniqueRows,SelectedRows=selection.Rows.Length,selection.Coverage,FullTableBytes=Encoding.UTF8.GetByteCount(JsonSerializer.Serialize(ExcelModelInput.ForModel(parsed.rows))),SelectedTableBytes=Encoding.UTF8.GetByteCount(table)},WorkflowReports.Json));
             File.WriteAllText(Path.Combine(output,"model-input.json"),table);
             async Task<JsonElement> Request(string name,string prompt)
             {
