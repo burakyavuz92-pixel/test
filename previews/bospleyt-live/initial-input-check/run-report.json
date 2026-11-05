@@ -1,0 +1,26 @@
+{
+  "Status": "failed",
+  "Issues": [
+    {
+      "Code": "CADQUERY_PIPELINE",
+      "Category": "input",
+      "Severity": "error",
+      "Message": "11-20-107 / D: \u00D6l\u00E7\u00FC s\u00FCtunu say\u0131sal de\u011Fer veya bo\u015F h\u00FCcre i\u00E7ermeli.",
+      "AffectedFields": [],
+      "RecommendedAction": "A\u015Fama kay\u0131tlar\u0131 incelenmeli; otomatik API tekrar\u0131 yok.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Stage": "input",
+    "ApiCalls": 0,
+    "ReportedCostUsd": 0,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": false,
+    "Usage": [],
+    "ApiTimings": [],
+    "TotalSeconds": 1.934965
+  },
+  "HumanApproved": false
+}

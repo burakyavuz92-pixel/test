@@ -1,0 +1,436 @@
+[
+  {
+    "outputId": "11-20-107",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -53.5,
+      -53.5,
+      -34.0,
+      53.5,
+      53.5,
+      8.881784197001e-16
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 45.5,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 45.5,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 53.5,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 50.5,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  },
+  {
+    "outputId": "11-20-114",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -57.0,
+      -57.0,
+      -34.0,
+      57.0,
+      57.0,
+      8.881784197001e-16
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 49.0,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 49.0,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 57.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 54.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  },
+  {
+    "outputId": "11-20-136",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -68.0000001,
+      -68.0,
+      -34.0,
+      68.0,
+      68.0000001,
+      1.7763568394e-15
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 60.0,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 60.0,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 68.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 65.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  },
+  {
+    "outputId": "11-20-160",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -80.0,
+      -80.0,
+      -34.0,
+      80.0,
+      80.0,
+      8.881784197001e-16
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 72.0,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 72.0,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 80.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 77.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  },
+  {
+    "outputId": "11-20-227",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -113.5,
+      -113.5,
+      -35.0,
+      113.5,
+      113.5,
+      8.881784197001e-16
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 105.5,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 105.5,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 113.5,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 110.5,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  },
+  {
+    "outputId": "11-20-259",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -129.5,
+      -129.5000001,
+      -35.0,
+      129.5,
+      129.5,
+      8.881784197001e-16
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 121.5,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 121.5,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 129.5,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 126.5,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  },
+  {
+    "outputId": "11-20-286",
+    "validSingleSolid": true,
+    "boundsMm": [
+      -143.0000001,
+      -143.0,
+      -35.0,
+      143.0,
+      143.0,
+      1.7763568394e-15
+    ],
+    "diameterAndDepthMatchExcel": true,
+    "torusSurfaces": [
+      {
+        "majorRadiusMm": 135.0,
+        "minorRadiusMm": 8.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      },
+      {
+        "majorRadiusMm": 135.0,
+        "minorRadiusMm": 5.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "originMm": [
+          0.0,
+          0.0,
+          -8.0
+        ]
+      }
+    ],
+    "cylinders": [
+      {
+        "radiusMm": 143.0,
+        "axis": [
+          -0.0,
+          -0.0,
+          -1.0
+        ]
+      },
+      {
+        "radiusMm": 140.0,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "matchesCheckedGeometry": true
+  }
+]

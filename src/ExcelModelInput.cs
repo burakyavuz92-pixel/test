@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 // Parse once locally. The API receives one typed table; annotation retains source tolerance.
 public record ParsedTolerance(string kind, double upperDeviationMm, double lowerDeviationMm);
 public record ParsedExcelCell(string state, double? nominalMm = null, bool? isZero = null,
-    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null, string? displayText = null, double? chamferAngleDeg = null);
+    bool? diameterSymbol = null, ParsedTolerance? tolerance = null, string? text = null, string? threadCallout = null, string? displayText = null, double? chamferAngleDeg = null, bool? radiusSymbol = null);
 public record ParsedExcelRow(string outputId, Dictionary<string, ParsedExcelCell> cells);
 public record ExcelApiInput(int schemaVersion, string lengthUnit, ParsedExcelRow[] rows);
 
@@ -12,7 +12,7 @@ public static class ExcelModelInput
 {
     const string Number = @"\d+(?:[.,]\d+)?";
     static readonly Regex Measurement = new(
-        @"^\s*(?<diameter>[Øø⌀])?\s*(?<nominal>" + Number + @")\s*(?:" +
+        @"^\s*(?:(?<diameter>[Øø⌀])|(?<radius>[Rr]))?\s*(?<nominal>" + Number + @")\s*(?:" +
         @"±\s*(?<symmetric>" + Number + @")|\(\s*±\s*(?<symmetric>" + Number + @")\s*\)|" +
         @"\(\s*\+\s*(?<upper>" + Number + @")\s*\|\s*[-−]\s*(?<lower>" + Number + @")\s*\))?\s*$",
         RegexOptions.CultureInvariant);
@@ -42,14 +42,14 @@ public static class ExcelModelInput
             }
             else if (m.Groups["upper"].Success)
                 tolerance = new("asymmetric", Numeric(m.Groups["upper"].Value), -Numeric(m.Groups["lower"].Value));
-            return new("number", nominal, nominal == 0, m.Groups["diameter"].Success, tolerance);
+            return new("number", nominal, nominal == 0, m.Groups["diameter"].Success, tolerance, radiusSymbol:m.Groups["radius"].Success);
         }
         // Parenthesized suffix is opaque presentation text, never a thread specification.
         var suffix = Regex.Match(value, @"^(?<base>[^()]+)\((?<display>.*)\)$");
         if (suffix.Success && Measurement.IsMatch(suffix.Groups["base"].Value))
             return ParseCell(suffix.Groups["base"].Value) with { displayText = suffix.Groups["display"].Value };
         // Never silently reinterpret an unrecognized tolerance/dimension as an identifier.
-        if (Regex.IsMatch(value, @"^[+\-−\d.,Øø⌀]|[±Øø⌀]"))
+        if (Regex.IsMatch(value, @"^[+\-−\d.,Øø⌀]|[±Øø⌀]|^[Rr]\s*[+\-−\d.,]"))
             throw new FormatException("Desteklenmeyen ölçü/tolerans biçimi: " + value);
         return new("text", text: value);
     }
@@ -119,6 +119,6 @@ public static class ExcelModelInput
     {
         var parsed=Build(rows);
         return new{parsed.schemaVersion,parsed.lengthUnit,rows=parsed.rows.Select(r=>new{r.outputId,
-            parameters=Parameters(r),cells=r.cells.ToDictionary(kv=>kv.Key,kv=>new{kv.Value.state,kv.Value.nominalMm,kv.Value.isZero,kv.Value.diameterSymbol,kv.Value.chamferAngleDeg})}).ToArray()};
+            parameters=Parameters(r),cells=r.cells.ToDictionary(kv=>kv.Key,kv=>new{kv.Value.state,kv.Value.nominalMm,kv.Value.isZero,kv.Value.diameterSymbol,kv.Value.radiusSymbol,kv.Value.chamferAngleDeg})}).ToArray()};
     }
 }

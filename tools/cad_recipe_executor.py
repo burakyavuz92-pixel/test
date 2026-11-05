@@ -237,7 +237,7 @@ def section_lines(shape,spec,view):
 def text_value(d):
  callout=d.get('sourceMeasurement',{}).get('threadCallout')
  if callout:return (f"{d.get('quantity',1):g}×" if d.get('quantity',1)>1 else '')+callout
- m=d.get('sourceMeasurement',{});custom=m.get('displayText');v=custom if custom is not None else f"{d['nominal']:g}".replace('.',',');tol=m.get('tolerance');prefix='Ø' if m.get('diameterSymbol') else 'R' if d['type']=='radius' else ''
+ m=d.get('sourceMeasurement',{});custom=m.get('displayText');v=custom if custom is not None else f"{d['nominal']:g}".replace('.',',');tol=m.get('tolerance');prefix='Ø' if m.get('diameterSymbol') else 'R' if m.get('radiusSymbol') or d['type']=='radius' else ''
  if custom is not None:prefix=''
  if d.get('quantity',1)>1:prefix=f"{d['quantity']:g}×"+prefix
  if tol:

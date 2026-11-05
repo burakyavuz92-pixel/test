@@ -1,0 +1,27 @@
+{
+  "placed": [],
+  "templatePlacements": [],
+  "unresolved": [
+    {
+      "id": "column_A",
+      "reason": "No matching cylinder or full circular edge at the specified reference"
+    },
+    {
+      "id": "column_D",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "column_E",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "column_J",
+      "reason": "Measurement endpoint is not on final body"
+    },
+    {
+      "id": "R-3",
+      "reason": "Measurement endpoint is not on final body"
+    }
+  ],
+  "omitted": []
+}

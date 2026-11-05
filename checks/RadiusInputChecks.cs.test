@@ -1,0 +1,26 @@
+using System.Text.Json;
+int count=0;
+void Check(bool valid,string message){if(!valid)throw new Exception(message);count++;}
+var raw=WorkflowReports.ReadRows(args[0]);var parsed=ExcelModelInput.Build(raw);
+Check(parsed.rows.Length==7,"Seven uploaded products");
+foreach(var row in parsed.rows){
+ Check(row.cells["D"].nominalMm==8 && row.cells["D"].radiusSymbol==true,"R8 geometry and symbol preserved");
+ Check(row.cells["E"].nominalMm==5 && row.cells["E"].radiusSymbol==true,"R5 geometry and symbol preserved");
+ Check(row.cells["D"].displayText is null && row.cells["E"].displayText is null,"Radius is geometry, not replacement text");
+ Check(row.cells["A"].diameterSymbol==true && row.cells["A"].radiusSymbol!=true,"Diameter remains diameter");
+ Check(ExcelModelInput.Parameters(row)["D"]==8 && ExcelModelInput.Parameters(row)["E"]==5,"Numeric function parameters");
+ Check(row.cells["J"].tolerance==new ParsedTolerance("symmetric",.5,-.5),"Existing tolerances unchanged");
+}
+var cell=ExcelModelInput.ParseCell("R 5,5 (±0,1)");
+Check(cell.nominalMm==5.5 && cell.radiusSymbol==true,"Decimal comma and spacing");
+Check(cell.tolerance==new ParsedTolerance("symmetric",.1,-.1),"Radius tolerance");
+Check(ExcelModelInput.ParseCell("r0").isZero==true,"Zero radius preserved");
+foreach(var malformed in new[]{"R-5","R5±abc","ØR5"}){
+ try{ExcelModelInput.ParseCell(malformed);throw new Exception("Malformed radius accepted");}catch(FormatException){count++;}
+}
+using var model=JsonDocument.Parse(JsonSerializer.Serialize(ExcelModelInput.ForModel(raw)));
+Check(model.RootElement.GetProperty("rows").GetArrayLength()==7,"All model rows present");
+var input=model.RootElement.GetProperty("rows")[0];
+Check(input.GetProperty("cells").GetProperty("D").GetProperty("radiusSymbol").GetBoolean(),"Radius signal reaches API");
+Check(input.GetProperty("parameters").GetProperty("D").GetDouble()==8,"API nominal numeric");
+Console.WriteLine($"Radius input checks passed: {count}");

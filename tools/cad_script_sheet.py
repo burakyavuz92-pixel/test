@@ -30,7 +30,7 @@ def dimensions(shape,cells):
     for label,cell in cells.items():
         value=cell.get('nominalMm')
         if value is None:continue
-        d={'id':'column_'+label,'type':'diameter' if cell.get('diameterSymbol') else 'distance','nominal':value,'valueSource':{'kind':'column','column':label},'sourceLabel':label,'sourceMeasurement':cell,'effectiveVisible':True,'axis':'Z','targets':[{'operation':'unresolved','role':'No explicit geometric reference'}]}
+        d={'id':'column_'+label,'type':'diameter' if cell.get('diameterSymbol') else 'radius' if cell.get('radiusSymbol') else 'distance','nominal':value,'valueSource':{'kind':'column','column':label},'sourceLabel':label,'sourceMeasurement':cell,'effectiveVisible':True,'axis':'Z','targets':[{'operation':'unresolved','role':'No explicit geometric reference'}]}
         candidates=[v for v in cylinders if abs(v[0]*2-value)<1e-5]
         if cell.get('diameterSymbol') and len(candidates)==1:
             r,x,y=candidates[0];d['relation']={'kind':'diameter','surfaces':[{'kind':'cylinder','radius':r,'axisOrigin':[x,y,0],'axisDirection':[0,0,1]}]}

@@ -1,0 +1,17 @@
+{
+  "products": 7,
+  "stepJpegPairs": 7,
+  "pdfCount": 0,
+  "annotationSuccess": false,
+  "fullyResolvedSheets": 0,
+  "placedDimensionsTotal": 0,
+  "unresolvedDimensionsTotal": 35,
+  "unconfirmedOcrMarkers": [],
+  "problem": "Geometry is on global Z; measurement references were returned on Y. Model outputs were preserved without manual rotation.",
+  "inputSupportAdded": "R/r prefix parsed as numeric radius with radiusSymbol metadata",
+  "tests": {
+    "newRadiusChecks": 52,
+    "existingExcelChecks": 77,
+    "pythonTests": 9
+  }
+}
