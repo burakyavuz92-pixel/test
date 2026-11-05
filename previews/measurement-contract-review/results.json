@@ -1,0 +1,52 @@
+[
+  {
+    "run": "pleyt-contract-review",
+    "status": "failed",
+    "apiCalls": 2,
+    "costUsd": 0.0196282,
+    "seconds": 192.2120274,
+    "sheets": 0,
+    "placed": 0,
+    "unresolved": []
+  },
+  {
+    "run": "rekor-contract-review",
+    "status": "failed",
+    "apiCalls": 2,
+    "costUsd": 0.035820199999999996,
+    "seconds": 347.2249626,
+    "sheets": 0,
+    "placed": 0,
+    "unresolved": []
+  },
+  {
+    "run": "pleyt-contract-final",
+    "status": "sheets-produced",
+    "apiCalls": 2,
+    "costUsd": 0.019714299999999997,
+    "seconds": 200.7497202,
+    "sheets": 7,
+    "placed": 35,
+    "unresolved": []
+  },
+  {
+    "run": "rekor-contract-final",
+    "status": "sheets-produced-with-unresolved-measurements",
+    "apiCalls": 2,
+    "costUsd": 0.0382645,
+    "seconds": 385.0373414,
+    "sheets": 24,
+    "placed": 283,
+    "unresolved": [
+      {
+        "outputId": "733001-03",
+        "items": [
+          {
+            "id": "column_B",
+            "reason": "Derinlik sıfır; B için ayrı cep yok"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "run": "pleyt-contract-review",
+    "call": "geometry",
+    "input": 7768,
+    "visibleOutput": 896,
+    "reasoning": 16801,
+    "costUsd": 0.0096253
+  },
+  {
+    "run": "pleyt-contract-review",
+    "call": "measurements",
+    "input": 9114,
+    "visibleOutput": 1524,
+    "reasoning": 16659,
+    "costUsd": 0.0100029
+  },
+  {
+    "run": "rekor-contract-review",
+    "call": "geometry",
+    "input": 26272,
+    "visibleOutput": 1692,
+    "reasoning": 28743,
+    "costUsd": 0.0178447
+  },
+  {
+    "run": "rekor-contract-review",
+    "call": "measurements",
+    "input": 28180,
+    "visibleOutput": 3362,
+    "reasoning": 26953,
+    "costUsd": 0.0179755
+  },
+  {
+    "run": "pleyt-contract-final",
+    "call": "geometry",
+    "input": 7768,
+    "visibleOutput": 1003,
+    "reasoning": 17050,
+    "costUsd": 0.0098033
+  },
+  {
+    "run": "pleyt-contract-final",
+    "call": "measurements",
+    "input": 9250,
+    "visibleOutput": 1637,
+    "reasoning": 16335,
+    "costUsd": 0.009911
+  },
+  {
+    "run": "rekor-contract-final",
+    "call": "geometry",
+    "input": 26272,
+    "visibleOutput": 1722,
+    "reasoning": 26129,
+    "costUsd": 0.0165527
+  },
+  {
+    "run": "rekor-contract-final",
+    "call": "measurements",
+    "input": 28303,
+    "visibleOutput": 4430,
+    "reasoning": 33333,
+    "costUsd": 0.0217118
+  }
+]
