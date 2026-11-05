@@ -1,0 +1,142 @@
+[
+  {
+    "probe": "context",
+    "psm": 6,
+    "text": "[9]\nyoy)"
+  },
+  {
+    "probe": "context",
+    "psm": 7,
+    "text": "[9]"
+  },
+  {
+    "probe": "context",
+    "psm": 8,
+    "text": "os"
+  },
+  {
+    "probe": "context",
+    "psm": 11,
+    "text": "[9]"
+  },
+  {
+    "probe": "context",
+    "psm": 13,
+    "text": "os"
+  },
+  {
+    "probe": "pipeline-roi",
+    "psm": 6,
+    "text": "[9]"
+  },
+  {
+    "probe": "pipeline-roi",
+    "psm": 7,
+    "text": "[9]"
+  },
+  {
+    "probe": "pipeline-roi",
+    "psm": 8,
+    "text": "\u2014 fl."
+  },
+  {
+    "probe": "pipeline-roi",
+    "psm": 11,
+    "text": "[9]"
+  },
+  {
+    "probe": "pipeline-roi",
+    "psm": 13,
+    "text": "\u2014 fl."
+  },
+  {
+    "probe": "tight-text",
+    "psm": 6,
+    "text": "[5]"
+  },
+  {
+    "probe": "tight-text",
+    "psm": 7,
+    "text": "[5]"
+  },
+  {
+    "probe": "tight-text",
+    "psm": 8,
+    "text": "[5]"
+  },
+  {
+    "probe": "tight-text",
+    "psm": 11,
+    "text": "[5]"
+  },
+  {
+    "probe": "tight-text",
+    "psm": 13,
+    "text": "[5]"
+  },
+  {
+    "probe": "digit-only",
+    "psm": 7,
+    "text": "<)"
+  },
+  {
+    "probe": "digit-only",
+    "psm": 10,
+    "text": "<)"
+  },
+  {
+    "probe": "digit-only",
+    "psm": 13,
+    "text": "5"
+  },
+  {
+    "probe": "tight-2x",
+    "psm": 6,
+    "text": "[9]"
+  },
+  {
+    "probe": "tight-2x",
+    "psm": 7,
+    "text": "[9]"
+  },
+  {
+    "probe": "tight-2x",
+    "psm": 8,
+    "text": "[5]"
+  },
+  {
+    "probe": "tight-2x",
+    "psm": 11,
+    "text": "[9]"
+  },
+  {
+    "probe": "tight-2x",
+    "psm": 13,
+    "text": "[5]"
+  },
+  {
+    "probe": "tight-padded",
+    "psm": 6,
+    "text": "[9]"
+  },
+  {
+    "probe": "tight-padded",
+    "psm": 7,
+    "text": "[9]"
+  },
+  {
+    "probe": "tight-padded",
+    "psm": 8,
+    "text": "\u2018)"
+  },
+  {
+    "probe": "tight-padded",
+    "psm": 11,
+    "text": "[9]"
+  },
+  {
+    "probe": "tight-padded",
+    "psm": 13,
+    "text": "\u2018)"
+  }
+]

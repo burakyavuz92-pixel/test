@@ -1,0 +1,340 @@
+[
+  {
+    "scan": "right-overlap",
+    "angle": 0,
+    "psm": 11,
+    "variant": 1,
+    "text": "7",
+    "conf": 31.144562,
+    "distance": 54.6,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "right-overlap",
+    "angle": 0,
+    "psm": 7,
+    "variant": 6,
+    "text": "[9]",
+    "conf": 87.377357,
+    "distance": 0.7,
+    "offset": [
+      773,
+      886
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 345,
+    "psm": 7,
+    "variant": 8,
+    "text": "by",
+    "conf": 24.040619,
+    "distance": 57.7,
+    "offset": [
+      3373,
+      1606
+    ]
+  },
+  {
+    "scan": "left-overlap",
+    "angle": 180,
+    "psm": 11,
+    "variant": 0,
+    "text": "[s]",
+    "conf": 55.320831,
+    "distance": 0.7,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "left-overlap",
+    "angle": 0,
+    "psm": 11,
+    "variant": 0,
+    "text": "[9]",
+    "conf": 87.377357,
+    "distance": 0.7,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "left-overlap",
+    "angle": 0,
+    "psm": 11,
+    "variant": 1,
+    "text": ",",
+    "conf": 23.059723,
+    "distance": 0.7,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "left-overlap",
+    "angle": 0,
+    "psm": 7,
+    "variant": 5,
+    "text": "[9]",
+    "conf": 87.377357,
+    "distance": 0.7,
+    "offset": [
+      2773,
+      886
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 300,
+    "psm": 11,
+    "variant": 0,
+    "text": "SS",
+    "conf": 20.60112,
+    "distance": 16.8,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 300,
+    "psm": 11,
+    "variant": 1,
+    "text": "SS",
+    "conf": 24.597252,
+    "distance": 16.8,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 135,
+    "psm": 11,
+    "variant": 0,
+    "text": "&",
+    "conf": 20.675713,
+    "distance": 15.9,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 135,
+    "psm": 11,
+    "variant": 1,
+    "text": "&",
+    "conf": 29.302689,
+    "distance": 15.9,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 330,
+    "psm": 11,
+    "variant": 1,
+    "text": "&",
+    "conf": 54.711906,
+    "distance": 0.9,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "right-overlap",
+    "angle": 180,
+    "psm": 11,
+    "variant": 1,
+    "text": "7",
+    "conf": 66.044327,
+    "distance": 87.6,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 315,
+    "psm": 11,
+    "variant": 0,
+    "text": "~)",
+    "conf": 0.0,
+    "distance": 17.6,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 315,
+    "psm": 11,
+    "variant": 0,
+    "text": "S",
+    "conf": 18.756744,
+    "distance": 28.2,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 315,
+    "psm": 11,
+    "variant": 1,
+    "text": "~)",
+    "conf": 0.0,
+    "distance": 17.6,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 0,
+    "psm": 11,
+    "variant": 1,
+    "text": "[9]",
+    "conf": 92.081978,
+    "distance": 0.7,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 0,
+    "psm": 7,
+    "variant": 6,
+    "text": "[9]",
+    "conf": 87.377357,
+    "distance": 0.7,
+    "offset": [
+      2773,
+      886
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 45,
+    "psm": 11,
+    "variant": 0,
+    "text": "©»",
+    "conf": 48.199291,
+    "distance": 15.9,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 45,
+    "psm": 11,
+    "variant": 1,
+    "text": "©",
+    "conf": 54.522224,
+    "distance": 15.9,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 15,
+    "psm": 7,
+    "variant": 2,
+    "text": "(0.",
+    "conf": 1.231552,
+    "distance": 6.3,
+    "offset": [
+      2977,
+      1841
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 180,
+    "psm": 11,
+    "variant": 1,
+    "text": "[s]",
+    "conf": 78.853081,
+    "distance": 0.7,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 120,
+    "psm": 11,
+    "variant": 0,
+    "text": "Q",
+    "conf": 0.0,
+    "distance": 16.1,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 120,
+    "psm": 11,
+    "variant": 1,
+    "text": "©",
+    "conf": 70.304153,
+    "distance": 16.1,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 225,
+    "psm": 11,
+    "variant": 1,
+    "text": ">",
+    "conf": 46.590157,
+    "distance": 17.6,
+    "offset": [
+      0,
+      0
+    ]
+  },
+  {
+    "scan": "drawing",
+    "angle": 150,
+    "psm": 11,
+    "variant": 1,
+    "text": "ly",
+    "conf": 73.604187,
+    "distance": 0.9,
+    "offset": [
+      0,
+      0
+    ]
+  }
+]
