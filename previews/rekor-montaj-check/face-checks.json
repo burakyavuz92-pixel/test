@@ -1,0 +1,650 @@
+[
+  {
+    "outputId": "733001",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -38.8,
+    "actualCenterMm": [
+      0.0,
+      -8.187162976193762e-15,
+      -38.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733001-02",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -42.8,
+    "actualCenterMm": [
+      0.0,
+      -8.631252186043762e-15,
+      -42.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733001-03",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -18.8,
+    "actualCenterMm": [
+      0.0,
+      -5.966716926942763e-15,
+      -18.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733001-01",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -38.8,
+    "actualCenterMm": [
+      0.0,
+      -8.187162976193762e-15,
+      -38.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733002",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -41.3,
+    "actualCenterMm": [
+      0.0,
+      -8.464718732349763e-15,
+      -41.3
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733042",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -38.8,
+    "actualCenterMm": [
+      0.0,
+      -8.187162976193762e-15,
+      -38.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733008",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -43.0,
+    "actualCenterMm": [
+      2.486899575160351e-14,
+      -1.1396225779673593e-14,
+      -43.0
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      22.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      22.9,
+      25
+    ],
+    "actualAreaMm2": 79.00320125614945,
+    "expectedAreaMm2": 79.00320125614935,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733015",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -39.8,
+    "actualCenterMm": [
+      1.7763568394002505e-15,
+      -8.583991433635807e-15,
+      -39.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      24.75,
+      30.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      24.75,
+      30
+    ],
+    "actualAreaMm2": 225.75288459155422,
+    "expectedAreaMm2": 225.75288459155405,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733019",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -43.0,
+    "actualCenterMm": [
+      0.0,
+      -8.653456646535762e-15,
+      -43.0
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733020",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -57.8,
+    "actualCenterMm": [
+      0.0,
+      -1.0296586722980762e-14,
+      -57.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733021",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -42.8,
+    "actualCenterMm": [
+      -1.2434497875801753e-14,
+      -6.425525427505659e-15,
+      -42.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.0,
+      27.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20,
+      27
+    ],
+    "actualAreaMm2": 258.3959957577604,
+    "expectedAreaMm2": 258.3959957577605,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733022",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -38.8,
+    "actualCenterMm": [
+      0.0,
+      -8.187162976193762e-15,
+      -38.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733022-01",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -42.8,
+    "actualCenterMm": [
+      0.0,
+      -8.631252186043762e-15,
+      -42.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733023",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -42.8,
+    "actualCenterMm": [
+      1.7763568394002505e-15,
+      -8.917058341023807e-15,
+      -42.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      24.75,
+      30.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      24.75,
+      30
+    ],
+    "actualAreaMm2": 225.75288459155422,
+    "expectedAreaMm2": 225.75288459155405,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733025",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -43.0,
+    "actualCenterMm": [
+      0.0,
+      -8.653456646535762e-15,
+      -43.0
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733025-01",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -22.8,
+    "actualCenterMm": [
+      0.0,
+      -6.4108061367927626e-15,
+      -22.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733026",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -66.8,
+    "actualCenterMm": [
+      0.0,
+      -1.1295787445143762e-14,
+      -66.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733027",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -38.8,
+    "actualCenterMm": [
+      0.0,
+      -8.187162976193762e-15,
+      -38.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733028",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -52.8,
+    "actualCenterMm": [
+      0.0,
+      -9.741475210668762e-15,
+      -52.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733035",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -25.8,
+    "actualCenterMm": [
+      7.105427357601002e-15,
+      -5.9234635026958576e-15,
+      -25.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      16.5,
+      20.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      16.5,
+      20
+    ],
+    "actualAreaMm2": 100.33461537402403,
+    "expectedAreaMm2": 100.33461537402401,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733035-1",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -44.8,
+    "actualCenterMm": [
+      7.105427357601002e-15,
+      -8.032887249483859e-15,
+      -44.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      16.5,
+      20.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      16.5,
+      20
+    ],
+    "actualAreaMm2": 100.33461537402403,
+    "expectedAreaMm2": 100.33461537402401,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733044",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -29.8,
+    "actualCenterMm": [
+      0.0,
+      -7.187962254030762e-15,
+      -29.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733045",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -43.0,
+    "actualCenterMm": [
+      0.0,
+      -8.653456646535762e-15,
+      -43.0
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      20.9,
+      25.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      20.9,
+      25
+    ],
+    "actualAreaMm2": 147.80408036976587,
+    "expectedAreaMm2": 147.80408036976584,
+    "matchesIndicatedShoulder": true
+  },
+  {
+    "outputId": "733043",
+    "name": "montaj",
+    "surface": "plane",
+    "expectedZmm": -27.8,
+    "actualCenterMm": [
+      1.7763568394002505e-15,
+      -7.251723804085807e-15,
+      -27.8
+    ],
+    "outwardNormal": [
+      0.0,
+      1.110223024625e-16,
+      1.0
+    ],
+    "boundaryDiametersMm": [
+      24.75,
+      30.0
+    ],
+    "expectedBoundaryDiametersMm": [
+      24.75,
+      30
+    ],
+    "actualAreaMm2": 225.75288459155422,
+    "expectedAreaMm2": 225.75288459155405,
+    "matchesIndicatedShoulder": true
+  }
+]
