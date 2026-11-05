@@ -41,19 +41,32 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
   dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text);key=(view,side);offset=lane_offsets.get(key,FIRST_BAND_MM*PX_PER_MM*S);placed=False;reason='No free dimension band within sheet'
   for extra in (0,10,20,32,48):
    coord=band_coordinate(bounds,side,offset+extra*S);a,b=points;p=np.array([a[0],coord]) if horizontal else np.array([coord,a[1]]);q=np.array([b[0],coord]) if horizontal else np.array([coord,b[1]])
-   sign=-1 if side in ('top','left') else 1;center=(p+q)/2;clearance=layer.height/2+5*S;center[1 if horizontal else 0]+=sign*clearance
+   center=(p+q)/2;clearance=layer.height/2+5*S;center[1 if horizontal else 0]-=clearance
    narrow=span<layer.width+20*S
-   backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
-   try:
-    painter.label(text,center,vertical=not horizontal)
-    # Place dimension lines outside the complete view; extension lines start at geometry.
-    painter.line(a,p);painter.line(b,q);painter.line(p,q)
-    if narrow:
-     v=(q-p)/max(np.linalg.norm(q-p),1e-9);painter.line(p-v*12*S,q+v*12*S);painter.arrow(p,p-v*12*S);painter.arrow(q,q+v*12*S)
-    else:painter.arrow(p,q);painter.arrow(q,p)
-    drawn.append(item['id']);lane_offsets[key]=offset+extra*S+layer.height+14*S;records.append({'id':item['id'],'view':view,'side':side,'mode':'external-band','placedLabelPixels':(center/S).tolist(),'bandCoordinate':coord/S,'narrow':bool(narrow)});placed=True;break
-   except ValueError as ex:
-    reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
+   # The 5 mm limit is a physical dimension, independent of page scale.
+   physical_span=abs(float(dim.get('nominal',np.linalg.norm(np.asarray(item['points'][1])-item['points'][0]) if item['kind']=='linear' else item['radius']*2)))
+   candidates=[('centered',center)]
+   if horizontal and physical_span<5 and narrow:
+    left=center.copy();left[0]=min(p[0],q[0])-layer.width/2-16*S
+    right=center.copy();right[0]=max(p[0],q[0])+layer.width/2+16*S
+    candidates=[('outside-left',left),('outside-right',right)]+candidates
+   for text_position,center in candidates:
+    backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
+    try:
+     painter.label(text,center,vertical=not horizontal)
+     # Place dimension lines outside the complete view; extension lines start at geometry.
+     painter.line(a,p);painter.line(b,q);painter.line(p,q)
+     if narrow:
+      v=(q-p)/max(np.linalg.norm(q-p),1e-9);painter.line(p-v*12*S,q+v*12*S);painter.arrow(p,p-v*12*S);painter.arrow(q,q+v*12*S)
+     else:painter.arrow(p,q);painter.arrow(q,p)
+     if text_position!='centered':
+      edge=center[0]+(layer.width/2 if text_position=='outside-left' else -layer.width/2)
+      end=p if abs(p[0]-edge)<abs(q[0]-edge) else q
+      painter.line(end,np.array([edge,coord]))
+     drawn.append(item['id']);lane_offsets[key]=offset+extra*S+layer.height+14*S;records.append({'id':item['id'],'view':view,'side':side,'mode':'external-band','textPosition':text_position,'placedLabelPixels':(center/S).tolist(),'bandCoordinate':coord/S,'narrow':bool(narrow)});placed=True;break
+    except ValueError as ex:
+     reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
+   if placed:break
   if not placed:failed.append({'id':item['id'],'dimension':dim,'reason':reason})
  for item,view,pix,bounds,desired in sorted(leaders,key=lambda v:(v[0]['kind']!='circle',v[0]['id'])):
   dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text)

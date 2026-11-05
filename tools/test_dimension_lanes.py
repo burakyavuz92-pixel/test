@@ -16,6 +16,14 @@ class Bands(unittest.TestCase):
    r=self.draw([400,250,400+width,600],[(width,[450,650]),(15,[450,640])]);self.assertFalse(r['failed']);records={v['id']:v for v in r['templatePlacements']};self.assertGreater(records['0']['bandCoordinate'],records['1']['bandCoordinate']);self.assertGreater(records['1']['bandCoordinate'],600)
  def test_narrow_dimension_stays_centered(self):
   r=self.draw([400,250,700,600],[(5,[450,650])]);self.assertFalse(r['failed']);self.assertTrue(r['templatePlacements'][0]['narrow']);self.assertAlmostEqual(r['templatePlacements'][0]['placedLabelPixels'][0],402.5)
+ def test_sub_5mm_can_move_outside_but_5mm_stays_centered(self):
+  for span in (2.8,5):
+   r=self.draw([400,250,700,600],[(span,[450,650])],'2,8' if span<5 else '5')
+   self.assertFalse(r['failed']);record=r['templatePlacements'][0]
+   self.assertEqual(record['textPosition'],'outside-left' if span<5 else 'centered')
+ def test_bottom_text_is_above_dimension_line(self):
+  r=self.draw([400,250,700,600],[(300,[450,650])],'30')
+  record=r['templatePlacements'][0];self.assertLess(record['placedLabelPixels'][1],record['bandCoordinate'])
  def test_first_band_is_3_5_mm_from_geometry(self):
   from drafting_style import PX_PER_MM
   r=self.draw([400,250,700,600],[(300,[450,650])],'30')

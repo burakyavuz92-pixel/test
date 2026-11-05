@@ -1,0 +1,1 @@
+İki oklu ölçülerde yazılar çizginin üstünde veya solunda yer alır. Yatay açıklığı 5 mm’den küçük dar ölçülerde yazı sağa/sola taşınabilir; 5 mm bu kurala dahil değildir. Altı pafta API çağrısı olmadan yeniden üretildi; her birinde 11 ölçü yerleşti. STEP değiştirilmedi; bilinen 1 mm yorum hatası korunur.
