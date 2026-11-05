@@ -30,3 +30,14 @@ Kontrol: `dotnet run --project checks/SamplingChecks.csproj`.
 Gerçek çalışma kitabından alınan nominal değerler `checks/fixtures/threehole-nominal.json`
 içinde taşınabilir test girdisi olarak saklanır. Yapay kontroller sıfır/boş ayrımı, ilişki değişimi, pah açısı,
 tekrarlanabilirlik, nominal tekrarlar ve yumuşak kota davranışını sınar.
+
+## Çıktı klasörü
+
+Yeni canlı/tekrar koşularında bütün nihai `ürün.step` ve `ürün.jpeg` dosyaları
+seçilen çıktı klasöründe birlikte bulunur. Kayıtlar, model betikleri, OCR ve diğer
+ara dosyalar tek `raporlar/` alt klasöründedir. Bu klasör teknik çalışma kayıtlarını
+ve yeniden inceleme için ürün başına ara kopyaları da tutar.
+Geometri önizlemesi, ölçülendirilmiş JPEG yerine ana klasöre çıkarılmaz. Pafta
+üretilemese de oluşmuş STEP dosyaları korunur; hata ayrıntıları `raporlar/` içindedir.
+`replay-cadquery-group` eski kayıt klasörlerini ve yeni ana çıktı klasörünü kabul eder;
+yeni düzende betikleri otomatik olarak `raporlar/` içinden okur.

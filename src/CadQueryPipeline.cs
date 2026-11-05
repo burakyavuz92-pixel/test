@@ -11,6 +11,10 @@ public static class CadQueryPipeline
     {
         if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
         Directory.CreateDirectory(output);
+        string destination=output;
+        output=Path.Combine(destination,CadQueryOutputLayout.ReportsFolder);
+        Directory.CreateDirectory(output);
+        if(replay is not null)replay=CadQueryOutputLayout.Records(replay);
         var issues=new List<WorkflowIssue>();string state="failed",stage="input";int calls=0;double cost=0;string? globalError=null;string errorOrigin="software";
         var settings=OpenRouterSettings.Load();var usages=new List<JsonElement>();var apiTimings=new List<object>();var totalTimer=Stopwatch.StartNew();
         try
@@ -75,6 +79,6 @@ public static class CadQueryPipeline
             state=unconfirmed?"sheets-produced-with-unconfirmed-labels":incomplete?"sheets-produced-with-unresolved-measurements":"sheets-produced";Environment.ExitCode=incomplete||unconfirmed?2:0;
         }
         catch(Exception ex){globalError=ex.Message;issues.Add(new("CADQUERY_PIPELINE",stage,"error",ex.Message,[],"Aşama kayıtları incelenmeli; otomatik API tekrarı yok."));Environment.ExitCode=1;}
-        finally{bool partial=CadQueryProducts.Save(output,stage,globalError,errorOrigin);if(partial&&state.StartsWith("sheets-produced")){state="partially-produced";Environment.ExitCode=2;}WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages,ApiTimings=apiTimings,TotalSeconds=totalTimer.Elapsed.TotalSeconds});Console.WriteLine(state+"; "+output);}
+        finally{bool partial=CadQueryProducts.Save(output,stage,globalError,errorOrigin);if(partial&&state.StartsWith("sheets-produced")){state="partially-produced";Environment.ExitCode=2;}WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages,ApiTimings=apiTimings,TotalSeconds=totalTimer.Elapsed.TotalSeconds});CadQueryOutputLayout.Publish(output,destination);Console.WriteLine(state+"; "+destination);}
     }
 }

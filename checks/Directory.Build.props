@@ -1,5 +1,5 @@
 <Project>
-  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'SamplingChecks' Or '$(MSBuildProjectName)' == 'ChamferInputChecks' Or '$(MSBuildProjectName)' == 'ExcelPresentationChecks' Or '$(MSBuildProjectName)' == 'ThreadParsingChecks'">
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'OutputLayoutChecks' Or '$(MSBuildProjectName)' == 'SamplingChecks' Or '$(MSBuildProjectName)' == 'ChamferInputChecks' Or '$(MSBuildProjectName)' == 'ExcelPresentationChecks' Or '$(MSBuildProjectName)' == 'ThreadParsingChecks'">
     <BaseIntermediateOutputPath>obj/$(MSBuildProjectName)/</BaseIntermediateOutputPath>
     <BaseOutputPath>bin/$(MSBuildProjectName)/</BaseOutputPath>
   </PropertyGroup>

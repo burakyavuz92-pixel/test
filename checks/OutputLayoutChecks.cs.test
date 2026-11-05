@@ -1,0 +1,21 @@
+using System.Text.Json;
+string root=Path.Combine(Path.GetTempPath(),"output-layout-"+Guid.NewGuid());int count=0;
+void Check(bool value,string message){if(!value)throw new Exception(message);count++;}
+try {
+ string records=Path.Combine(root,CadQueryOutputLayout.ReportsFolder);Directory.CreateDirectory(records);
+ var ids=new[]{"OK","NO-SHEET","BAD-GEOMETRY"};
+ foreach(var id in ids){Directory.CreateDirectory(Path.Combine(records,id));foreach(var ext in new[]{".step",".jpeg"})File.WriteAllText(Path.Combine(records,id,id+ext),"synthetic file layout check");}
+ File.WriteAllText(Path.Combine(records,"rows.json"),JsonSerializer.Serialize(ids.Select(id=>new{outputId=id})));
+ File.WriteAllText(Path.Combine(records,"script-results.json"),JsonSerializer.Serialize(new{results=ids.Select(id=>new{outputId=id,status=id=="BAD-GEOMETRY"?"failed":"geometry-preview-produced"})}));
+ File.WriteAllText(Path.Combine(records,"script-sheet-results.json"),"{\"results\":[{\"outputId\":\"OK\",\"status\":\"sheet-produced\"}]}");
+ File.WriteAllText(Path.Combine(records,"part.py"),"# saved script");
+ CadQueryOutputLayout.Publish(records,root);
+ Check(File.Exists(Path.Combine(root,"OK.step"))&&File.Exists(Path.Combine(root,"OK.jpeg")),"completed outputs at root");
+ Check(File.Exists(Path.Combine(root,"NO-SHEET.step"))&&!File.Exists(Path.Combine(root,"NO-SHEET.jpeg")),"do not publish geometry preview as final sheet");
+ Check(!File.Exists(Path.Combine(root,"BAD-GEOMETRY.step")),"do not publish failed geometry");
+ Check(Directory.GetDirectories(root).SequenceEqual(new[]{records}),"single technical folder");
+ Check(File.Exists(Path.Combine(records,"OK","OK.step")),"retain technical working data");
+ Check(CadQueryOutputLayout.Records(root)==records,"new replay source");
+ Check(CadQueryOutputLayout.Records(records)==records,"historical flat replay source");
+ Console.WriteLine($"{count} file-layout checks passed; no CAD workflow or API executed.");
+}finally{if(Directory.Exists(root))Directory.Delete(root,true);}
