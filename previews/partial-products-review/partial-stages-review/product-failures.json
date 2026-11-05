@@ -1,0 +1,20 @@
+[
+  {
+    "outputId": "733001-02",
+    "stage": "geometry",
+    "origin": "software",
+    "reason": "Test: geometri yürütme hatası"
+  },
+  {
+    "outputId": "733002",
+    "stage": "face-tags",
+    "origin": "model",
+    "reason": "Test: montaj yüzeyi tanımlanamıyor"
+  },
+  {
+    "outputId": "733001-03",
+    "stage": "measurements",
+    "origin": "model",
+    "reason": "Test: ölçü referansları üretilemiyor"
+  }
+]

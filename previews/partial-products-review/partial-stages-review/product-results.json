@@ -1,0 +1,35 @@
+[
+  {
+    "outputId": "733001",
+    "status": "completed"
+  },
+  {
+    "outputId": "733001-02",
+    "stage": "geometry",
+    "origin": "software",
+    "reason": "Test: geometri y\u00FCr\u00FCtme hatas\u0131",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-03",
+    "stage": "measurements",
+    "origin": "model",
+    "reason": "Test: \u00F6l\u00E7\u00FC referanslar\u0131 \u00FCretilemiyor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-01",
+    "status": "completed"
+  },
+  {
+    "outputId": "733002",
+    "stage": "face-tags",
+    "origin": "model",
+    "reason": "Test: montaj y\u00FCzeyi tan\u0131mlanam\u0131yor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733042",
+    "status": "completed"
+  }
+]

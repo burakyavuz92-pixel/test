@@ -1,0 +1,39 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "9190ccf587bf9308c656d5cb6049c519a80b4d285497cd4e03ea93fc473a8ae7",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "failed",
+      "error": "Test: verilen bilgilerle par\u00e7a olu\u015fturulam\u0131yor"
+    },
+    {
+      "outputId": "733001-02",
+      "status": "failed",
+      "error": "Test: verilen bilgilerle par\u00e7a olu\u015fturulam\u0131yor"
+    },
+    {
+      "outputId": "733001-03",
+      "status": "failed",
+      "error": "Test: verilen bilgilerle par\u00e7a olu\u015fturulam\u0131yor"
+    },
+    {
+      "outputId": "733001-01",
+      "status": "failed",
+      "error": "Test: verilen bilgilerle par\u00e7a olu\u015fturulam\u0131yor"
+    },
+    {
+      "outputId": "733002",
+      "status": "failed",
+      "error": "Test: verilen bilgilerle par\u00e7a olu\u015fturulam\u0131yor"
+    },
+    {
+      "outputId": "733042",
+      "status": "failed",
+      "error": "Test: verilen bilgilerle par\u00e7a olu\u015fturulam\u0131yor"
+    }
+  ]
+}

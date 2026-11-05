@@ -1,0 +1,24 @@
+{
+  "Status": "failed",
+  "Issues": [
+    {
+      "Code": "CADQUERY_PIPELINE",
+      "Category": "geometry-execution",
+      "Severity": "error",
+      "Message": "Hi\u00E7bir \u00FCr\u00FCn sonraki a\u015Famaya ge\u00E7emedi; product-results.json incelenmeli.",
+      "AffectedFields": [],
+      "RecommendedAction": "A\u015Fama kay\u0131tlar\u0131 incelenmeli; otomatik API tekrar\u0131 yok.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Stage": "geometry-execution",
+    "ApiCalls": 0,
+    "ReportedCostUsd": 0,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": true,
+    "Usage": []
+  },
+  "HumanApproved": false
+}

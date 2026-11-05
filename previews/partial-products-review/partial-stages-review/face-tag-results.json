@@ -1,0 +1,73 @@
+{
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            0.0,
+            -8.187162976193762e-15,
+            -38.8
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733001-03",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            0.0,
+            -5.966716926942763e-15,
+            -18.8
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733001-01",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            0.0,
+            -8.187162976193762e-15,
+            -38.8
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    },
+    {
+      "outputId": "733002",
+      "status": "failed",
+      "error": "Test: montaj y\u00fczeyi tan\u0131mlanam\u0131yor"
+    },
+    {
+      "outputId": "733042",
+      "status": "tagged",
+      "tags": [
+        {
+          "name": "montaj",
+          "areaMm2": 147.80408036976587,
+          "centroidMm": [
+            0.0,
+            -8.187162976193762e-15,
+            -38.8
+          ],
+          "roundtripVerified": true
+        }
+      ]
+    }
+  ]
+}

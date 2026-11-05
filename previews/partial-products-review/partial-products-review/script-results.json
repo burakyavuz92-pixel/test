@@ -1,0 +1,55 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "328cba89654c92b9d7c213056c8e92b540f7a28edfad8315df1b2cd9cb4c2afc",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10829.876544497649,
+      "stepRoundtrip": true,
+      "seconds": 3.480339979985729
+    },
+    {
+      "outputId": "733001-02",
+      "status": "failed",
+      "error": "Test: bu \u00fcr\u00fcn\u00fcn verilen \u00f6l\u00e7\u00fcleriyle par\u00e7a olu\u015fturulam\u0131yor."
+    },
+    {
+      "outputId": "733001-03",
+      "status": "failed",
+      "error": "Test: bu \u00fcr\u00fcn\u00fcn verilen \u00f6l\u00e7\u00fcleriyle par\u00e7a olu\u015fturulam\u0131yor."
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10829.876544497649,
+      "stepRoundtrip": true,
+      "seconds": 3.1513351930188946
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11438.069247278549,
+      "stepRoundtrip": true,
+      "seconds": 3.0911730350053404
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10877.000434301492,
+      "stepRoundtrip": true,
+      "seconds": 2.983021417981945
+    }
+  ]
+}

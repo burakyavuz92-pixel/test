@@ -1,0 +1,44 @@
+[
+  {
+    "outputId": "733001",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: verilen bilgilerle par\u00E7a olu\u015Fturulam\u0131yor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-02",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: verilen bilgilerle par\u00E7a olu\u015Fturulam\u0131yor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-03",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: verilen bilgilerle par\u00E7a olu\u015Fturulam\u0131yor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-01",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: verilen bilgilerle par\u00E7a olu\u015Fturulam\u0131yor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733002",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: verilen bilgilerle par\u00E7a olu\u015Fturulam\u0131yor",
+    "status": "failed"
+  },
+  {
+    "outputId": "733042",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: verilen bilgilerle par\u00E7a olu\u015Fturulam\u0131yor",
+    "status": "failed"
+  }
+]

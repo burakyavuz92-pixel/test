@@ -1,0 +1,59 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "24e765e9d28bc73af2980b56022b14115daa3a0e6a57edeb7e0d267dad4a061d",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10829.876544497649,
+      "stepRoundtrip": true,
+      "seconds": 2.975709950987948
+    },
+    {
+      "outputId": "733001-02",
+      "status": "failed",
+      "error": "Test: geometri y\u00fcr\u00fctme hatas\u0131"
+    },
+    {
+      "outputId": "733001-03",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5468.437455883624,
+      "stepRoundtrip": true,
+      "seconds": 2.9643339189933613
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10829.876544497649,
+      "stepRoundtrip": true,
+      "seconds": 3.0004323679895606
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11438.069247278549,
+      "stepRoundtrip": true,
+      "seconds": 2.870544000004884
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10877.000434301492,
+      "stepRoundtrip": true,
+      "seconds": 2.9279206420178525
+    }
+  ]
+}

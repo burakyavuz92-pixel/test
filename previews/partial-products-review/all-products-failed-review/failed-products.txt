@@ -1,0 +1,6 @@
+733001: Test: verilen bilgilerle parça oluşturulamıyor [model / geometry]
+733001-02: Test: verilen bilgilerle parça oluşturulamıyor [model / geometry]
+733001-03: Test: verilen bilgilerle parça oluşturulamıyor [model / geometry]
+733001-01: Test: verilen bilgilerle parça oluşturulamıyor [model / geometry]
+733002: Test: verilen bilgilerle parça oluşturulamıyor [model / geometry]
+733042: Test: verilen bilgilerle parça oluşturulamıyor [model / geometry]

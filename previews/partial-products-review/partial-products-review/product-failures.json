@@ -1,0 +1,14 @@
+[
+  {
+    "outputId": "733001-02",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: bu ürünün verilen ölçüleriyle parça oluşturulamıyor."
+  },
+  {
+    "outputId": "733001-03",
+    "stage": "geometry",
+    "origin": "model",
+    "reason": "Test: bu ürünün verilen ölçüleriyle parça oluşturulamıyor."
+  }
+]

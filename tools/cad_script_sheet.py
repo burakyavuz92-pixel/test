@@ -12,6 +12,7 @@ from OCP.BRepCheck import BRepCheck_Analyzer
 from cad_recipe_executor import sheet,box
 from local_drawing import resolve_local_sections
 from template_layout import prepare
+from product_failures import active_rows,record_failure
 
 def dimensions(shape,cells):
     """Conservative matching: only unique axial diameter supports; never infer distances by value."""
@@ -52,7 +53,9 @@ def run(folder,image,excel):
         from visual_measurements import merge
         layout,evidence=merge(layout,json.loads((root/'visual-markers.json').read_text()))
     results=[]
+    eligible={r['outputId'] for r in active_rows(root)}
     for row in job:
+        if row['outputId'] not in eligible:continue
         out=root/row['outputId']
         try:
             reader=STEPControl_Reader()
@@ -92,6 +95,6 @@ def run(folder,image,excel):
             report=sheet(recipe,shape,{},out,image)
             report['unconfirmedVisualLabels']=layout.get('unconfirmedModelMarkers',[])
             results.append({'outputId':row['outputId'],'status':'sheet-produced','drafting':report})
-        except Exception as ex:traceback.print_exc();results.append({'outputId':row['outputId'],'status':'failed','error':str(ex)})
+        except Exception as ex:record_failure(root,row['outputId'],'sheets',ex);traceback.print_exc();results.append({'outputId':row['outputId'],'status':'failed','error':str(ex)})
     (root/'script-sheet-results.json').write_text(json.dumps({'apiCalls':0,'results':results},indent=2));print(json.dumps(results,indent=2));return all(r['status']=='sheet-produced' for r in results)
 if __name__=='__main__':sys.exit(0 if run(*sys.argv[1:]) else 1)

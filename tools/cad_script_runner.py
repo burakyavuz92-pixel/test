@@ -1,5 +1,6 @@
 """Bounded geometry-only CadQuery script runner; no network/API use."""
 import ast,json,pathlib,sys,math,os,subprocess,traceback,hashlib,time,resource,builtins,re
+from product_failures import model_value,record_failure
 import cadquery as cq
 from OCP.BRepCheck import BRepCheck_Analyzer
 from OCP.STEPControl import STEPControl_Reader
@@ -50,7 +51,7 @@ def run(folder,validate_only=False):
   out=root/id;out.mkdir(exist_ok=True);start=time.monotonic()
   try:
    ACTIVE=True
-   try:part=build(dict(row['parameters']))
+   try:part=model_value(build(dict(row['parameters'])))
    finally:ACTIVE=False
    if isinstance(part,cq.Workplane):part=part.val()
    if not isinstance(part,cq.Shape):raise ValueError('build_part must return a CadQuery Shape/Workplane')
@@ -68,7 +69,8 @@ def run(folder,validate_only=False):
    (out/'preview.log').write_text(preview.stdout+preview.stderr)
    if preview.returncode:raise ValueError('Geometry preview failed; see preview.log')
    result.append({'outputId':id,'status':'geometry-preview-produced','validBrep':True,'solidCount':1,'volumeMm3':part.Volume(),'stepRoundtrip':True,'seconds':time.monotonic()-start})
-  except Exception as e:ACTIVE=False;traceback.print_exc();result.append({'outputId':id,'status':'failed','error':str(e)})
+  except Exception as e:
+   ACTIVE=False;traceback.print_exc();record_failure(root,id,'geometry',e);result.append({'outputId':id,'status':'failed','error':str(e)})
  report={'apiCalls':0,'validationOnly':validate_only,'cadqueryVersion':cq.__version__,'scriptSha256':hashlib.sha256(source.encode()).hexdigest(),'scriptAccepted':True,'results':result}
  (root/'script-results.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2));return len(result)>0 and all(r['status']==('geometry-validated' if validate_only else 'geometry-preview-produced') for r in result)
 if __name__=='__main__':sys.exit(0 if run(sys.argv[1],'--validate-only' in sys.argv[2:]) else 1)

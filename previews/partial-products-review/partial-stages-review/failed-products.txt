@@ -1,0 +1,3 @@
+733001-02: Test: geometri yürütme hatası [software / geometry]
+733001-03: Test: ölçü referansları üretilemiyor [model / measurements]
+733002: Test: montaj yüzeyi tanımlanamıyor [model / face-tags]

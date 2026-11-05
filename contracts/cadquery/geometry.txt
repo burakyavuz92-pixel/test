@@ -6,7 +6,7 @@ Choose normal CadQuery operations freely, including arc profiles. Each source co
 
 For every @name surface label, build_face_tags(p) returns {name,surface}. Preserve the name without @. Plane surface: {kind:"plane",normal:[unit x,y,z],offset:number}, where dot(normal,point)=offset. Cylinder surface: {kind:"cylinder",axisOrigin:[x,y,z],axisDirection:[unit x,y,z],radius:number}. Describe the indicated geometric surface, not a fixed point taken from the drawing. No @ labels means return an empty list. These names belong only in STEP, not drawing annotations.
 
-Success is data only. If a consistent part cannot be constructed, return {"error":"short Turkish reason"}.
+Success is data only. For a row that cannot form a consistent part, build_part(p) returns {"error":"short Turkish reason specific to that row"} instead of a shape; keep building other rows normally. build_face_tags(p) may use the same error form if its surface cannot be identified. Only if the entire family cannot be interpreted return top-level {"error":"short Turkish reason"}.
 
 Identical fixed measurement text may occur at different locations. Each occurrence applies independently to the feature indicated by its own arrow.
 
