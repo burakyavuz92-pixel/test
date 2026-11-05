@@ -3,6 +3,7 @@ import numpy as np
 from drafting_style import PX_PER_MM
 
 FIRST_BAND_MM=3.5
+BETWEEN_BANDS_MM=1.5
 
 def side_for(horizontal,desired,bounds):
  x0,y0,x1,y1=bounds
@@ -38,7 +39,14 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
  # Short spans consume near lanes; whole-view extents are allocated last/outside.
  lane_offsets={}
  for span,item,view,pix,bounds,points,horizontal,side,desired in sorted(linear,key=lambda x:(x[0],x[1]['id'])):
-  dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text);key=(view,side);offset=lane_offsets.get(key,FIRST_BAND_MM*PX_PER_MM*S);placed=False;reason='No free dimension band within sheet'
+  dim=item['dimension'];text=value_text(dim);layer=painter.text_layer(text);key=(view,side)
+  # Reserve the whole band: rotated text height, padding and arrowhead width.
+  text_depth=layer.height+6*S;arrow_depth=3.6*S
+  inner_depth=text_depth if side in ('bottom','right') else arrow_depth
+  outer_depth=arrow_depth if side in ('bottom','right') else text_depth
+  previous=lane_offsets.get(key)
+  offset=(FIRST_BAND_MM*PX_PER_MM*S if previous is None else previous+BETWEEN_BANDS_MM*PX_PER_MM*S)+inner_depth
+  placed=False;reason='No free dimension band within sheet'
   for extra in (0,10,20,32,48):
    coord=band_coordinate(bounds,side,offset+extra*S);a,b=points;p=np.array([a[0],coord]) if horizontal else np.array([coord,a[1]]);q=np.array([b[0],coord]) if horizontal else np.array([coord,b[1]])
    center=(p+q)/2;clearance=layer.height/2+5*S;center[1 if horizontal else 0]-=clearance
@@ -63,7 +71,7 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
       edge=center[0]+(layer.width/2 if text_position=='outside-left' else -layer.width/2)
       end=p if abs(p[0]-edge)<abs(q[0]-edge) else q
       painter.line(end,np.array([edge,coord]))
-     drawn.append(item['id']);lane_offsets[key]=offset+extra*S+layer.height+14*S;records.append({'id':item['id'],'view':view,'side':side,'mode':'external-band','textPosition':text_position,'placedLabelPixels':(center/S).tolist(),'bandCoordinate':coord/S,'narrow':bool(narrow)});placed=True;break
+     drawn.append(item['id']);lane_offsets[key]=offset+extra*S+outer_depth;records.append({'id':item['id'],'view':view,'side':side,'mode':'external-band','textPosition':text_position,'placedLabelPixels':(center/S).tolist(),'bandCoordinate':coord/S,'innerExtentMm':(offset+extra*S-inner_depth)/(PX_PER_MM*S),'outerExtentMm':(offset+extra*S+outer_depth)/(PX_PER_MM*S),'narrow':bool(narrow)});placed=True;break
     except ValueError as ex:
      reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
    if placed:break

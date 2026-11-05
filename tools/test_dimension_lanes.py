@@ -27,7 +27,22 @@ class Bands(unittest.TestCase):
  def test_first_band_is_3_5_mm_from_geometry(self):
   from drafting_style import PX_PER_MM
   r=self.draw([400,250,700,600],[(300,[450,650])],'30')
-  self.assertFalse(r['failed']);self.assertAlmostEqual(r['templatePlacements'][0]['bandCoordinate']-600,3.5*PX_PER_MM)
+  self.assertFalse(r['failed']);self.assertAlmostEqual(r['templatePlacements'][0]['innerExtentMm'],3.5)
+ def test_adjacent_bands_have_1_5mm_clearance(self):
+  r=self.draw([400,250,700,600],[(150,[450,650]),(300,[450,650])],'20,9 (+0/-0,1)')
+  self.assertFalse(r['failed']);a,b=r['templatePlacements']
+  self.assertGreaterEqual(a['innerExtentMm'],3.5-1e-9)
+  self.assertGreaterEqual(b['innerExtentMm']-a['outerExtentMm'],1.5-1e-9)
+ def test_vertical_bands_reserve_text_and_tolerances_on_both_sides(self):
+  for marker_x in (300,800):
+   image=Image.new('RGB',(1754,1236),'white');bounds=[400,250,700,600]
+   ImageDraw.Draw(image).rectangle(bounds,outline='black');items=[]
+   for i,span in enumerate((150,300)):
+    items.append({'id':str(i),'kind':'linear','points':[[400,280],[400,280+span]],'axis':'Y','dimension':{},'templateBinding':{'view':'front','marker':{'centerPixels':[marker_x,400]},'sourceFrame':{'bboxPixels':bounds}}})
+   r=render(image,lambda n:ImageFont.truetype('/workspace/fonts/arial/arial.ttf',n),1,items,lambda p:p,lambda p:p,{'sourcePixels':[1754,1236]},{'front':bounds},lambda d:'20,9 (+0/-0,1)')
+   self.assertFalse(r['failed']);a,b=r['templatePlacements']
+   self.assertGreaterEqual(a['innerExtentMm'],3.5-1e-9)
+   self.assertGreaterEqual(b['innerExtentMm']-a['outerExtentMm'],1.5-1e-9)
  def test_long_tolerance_consumes_space(self):
   r=self.draw([400,250,700,600],[(10,[450,650]),(300,[450,650])],'10,5 (+1,25/-0,75)');self.assertFalse(r['failed'])
  def test_full_page_fails_instead_of_entering_geometry(self):
