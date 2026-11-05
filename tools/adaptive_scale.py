@@ -11,11 +11,13 @@ def layouts(extents,scale,padding,regions):
     # extents and result order: main, section. Section remains left.
     sizes=[(e[0]*scale*PX_PER_MM+2*p[0],e[1]*scale*PX_PER_MM+2*p[1]+32) for e,p in zip(extents,padding)]
     for x,y,w,h in regions:
-        total=sum(s[0] for s in sizes)+40
-        if total>w or max(s[1] for s in sizes)>h:continue
+        remaining=w-sum(s[0] for s in sizes)
+        if remaining<40 or max(s[1] for s in sizes)>h:continue
+        gap=min(120,remaining)
+        total=sum(s[0] for s in sizes)+gap
         left=x+(w-total)/2
         section=(left,y+(h-sizes[1][1])/2,*sizes[1])
-        main=(left+sizes[1][0]+40,y+(h-sizes[0][1])/2,*sizes[0])
+        main=(left+sizes[1][0]+gap,y+(h-sizes[0][1])/2,*sizes[0])
         yield [main,section]
 
 def select(extents,padding,regions,trial):

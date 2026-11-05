@@ -1,0 +1,49 @@
+{
+  "geometryPlane": {
+    "origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "xDir": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "yDir": [
+      -0.0,
+      0.0,
+      1.0
+    ],
+    "normal": [
+      0.0,
+      -1.0,
+      0.0
+    ]
+  },
+  "revolveAxisLocal": [
+    0,
+    1,
+    0
+  ],
+  "revolveAxisWorld": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "modelDiameterAxis": [
+    0,
+    1,
+    0
+  ],
+  "modelDiameterCenter": [
+    0,
+    -21,
+    0
+  ],
+  "exampleLocalCenterMappedToWorld": [
+    0.0,
+    0.0,
+    -21.0
+  ]
+}
