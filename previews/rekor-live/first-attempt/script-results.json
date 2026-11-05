@@ -1,0 +1,6 @@
+{
+  "apiCalls": 0,
+  "scriptAccepted": false,
+  "error": "Only imports, numeric constants and function definitions are allowed at module level",
+  "results": []
+}

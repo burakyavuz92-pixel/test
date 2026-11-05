@@ -9,7 +9,7 @@ DOTNET_CLI_HOME=/workspace/.dotnet-home NUGET_PACKAGES=/workspace/.nuget/package
   render-script-sheets input.xlsx template.jpg output/saved-script
 ```
 
-API çağrısı yapmaz. Excel parametrelerinin kayıtlı script parametreleriyle eşit olması gerekir. Yerel kamera/kesit ayarlarını C# ayrıştırır; nominal ve toleranslar mevcut Excel ayrıştırıcısından gelir. STEP, mevcut OCCT pafta motoruna verilir. Antet, OCR etiketi, kesit, sayısal ölçek, JPEG ve PDF aynı hattı kullanır. Bu komut ilgili ürün JPEG'ini paftayla değiştirir; STEP'i değiştirmez. Önceki geometri önizlemesi gerekiyorsa klasörü kopyalayın.
+API çağrısı yapmaz. Excel parametrelerinin kayıtlı script parametreleriyle eşit olması gerekir. Yerel kamera/kesit ayarlarını C# ayrıştırır; nominal ve toleranslar mevcut Excel ayrıştırıcısından gelir. STEP, mevcut OCCT pafta motoruna verilir. Antet, OCR etiketi, kesit, sayısal ölçek, JPEG aynı hattı kullanır. PDF üretimi kaldırılmıştır; ürün çıktıları STEP ve JPEG’dir. Ana görünüş alt yazısı çizilmez, kesit adı korunur. Bu komut ilgili ürün JPEG'ini paftayla değiştirir; STEP'i değiştirmez. Önceki geometri önizlemesi gerekiyorsa klasörü kopyalayın.
 
 Ölçüler için başlangıç desteği: Excel'de çap işaretli hücreler, son gövdede o çapı taşıyan tek silindir ekseni bulunursa bağlanır. Parçalanmış aynı destek silindirleri tek aday sayılır. Aynı çap birden fazla eksendeyse seçim yapılmaz. Mesafeler yalnız değere göre geometriye bağlanmaz; açık referansı olmayan ölçüler kontrol tablosuna alınır. Sabit JPEG ölçülerinin ve E/F gibi mesafelerin tam otomatik bağlanması bu bağlantının tamamlanmış bir özelliği değildir. Bu nedenle çıktılar üretim onayı verilmiş çizimler olarak sunulmaz.
 

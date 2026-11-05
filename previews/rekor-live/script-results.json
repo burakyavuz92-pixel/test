@@ -1,0 +1,225 @@
+{
+  "apiCalls": 0,
+  "validationOnly": false,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "7af7f9da9059b2bd860cb7f0ba250f63573fb106b3cf2d29da52a88373626a73",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10743.48274652393,
+      "stepRoundtrip": true,
+      "seconds": 3.4433952039980795
+    },
+    {
+      "outputId": "733001-02",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11875.440223808188,
+      "stepRoundtrip": true,
+      "seconds": 3.1069256920018233
+    },
+    {
+      "outputId": "733001-03",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5257.95074809311,
+      "stepRoundtrip": true,
+      "seconds": 2.76272090600105
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10902.33189935875,
+      "stepRoundtrip": true,
+      "seconds": 2.7322750900057144
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11475.75722894598,
+      "stepRoundtrip": true,
+      "seconds": 2.884168338001473
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10847.417103480186,
+      "stepRoundtrip": true,
+      "seconds": 3.529081237007631
+    },
+    {
+      "outputId": "733008",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14603.31774187563,
+      "stepRoundtrip": true,
+      "seconds": 3.4328042230044957
+    },
+    {
+      "outputId": "733015",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15503.334543940702,
+      "stepRoundtrip": true,
+      "seconds": 3.1291887479892466
+    },
+    {
+      "outputId": "733019",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9916.408907331921,
+      "stepRoundtrip": true,
+      "seconds": 2.8912144269852433
+    },
+    {
+      "outputId": "733020",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15317.32035864202,
+      "stepRoundtrip": true,
+      "seconds": 2.717410020006355
+    },
+    {
+      "outputId": "733021",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10541.345804748054,
+      "stepRoundtrip": true,
+      "seconds": 2.890774750005221
+    },
+    {
+      "outputId": "733022",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8548.31876852637,
+      "stepRoundtrip": true,
+      "seconds": 3.6514154259930365
+    },
+    {
+      "outputId": "733022-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9252.035522930484,
+      "stepRoundtrip": true,
+      "seconds": 2.9873659999866504
+    },
+    {
+      "outputId": "733023",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17159.97488999494,
+      "stepRoundtrip": true,
+      "seconds": 2.861508030007826
+    },
+    {
+      "outputId": "733025",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11912.432062810269,
+      "stepRoundtrip": true,
+      "seconds": 2.8010522330005188
+    },
+    {
+      "outputId": "733025-01",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 6975.1312283673315,
+      "stepRoundtrip": true,
+      "seconds": 3.086089943011757
+    },
+    {
+      "outputId": "733026",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17686.33965883114,
+      "stepRoundtrip": true,
+      "seconds": 2.6841235350002535
+    },
+    {
+      "outputId": "733027",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9150.880635841886,
+      "stepRoundtrip": true,
+      "seconds": 2.7415146470011678
+    },
+    {
+      "outputId": "733028",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14323.137183474742,
+      "stepRoundtrip": true,
+      "seconds": 3.15817933701328
+    },
+    {
+      "outputId": "733035",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 4629.267674758459,
+      "stepRoundtrip": true,
+      "seconds": 3.089744172000792
+    },
+    {
+      "outputId": "733035-1",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 7400.217845071607,
+      "stepRoundtrip": true,
+      "seconds": 2.971696912019979
+    },
+    {
+      "outputId": "733044",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8701.174592127121,
+      "stepRoundtrip": true,
+      "seconds": 2.7556408760137856
+    },
+    {
+      "outputId": "733045",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11912.432062810269,
+      "stepRoundtrip": true,
+      "seconds": 2.733592342992779
+    },
+    {
+      "outputId": "733043",
+      "status": "geometry-preview-produced",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11286.056707713396,
+      "stepRoundtrip": true,
+      "seconds": 2.7543343380093575
+    }
+  ]
+}

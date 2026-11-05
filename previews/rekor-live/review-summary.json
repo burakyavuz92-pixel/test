@@ -1,0 +1,27 @@
+{
+  "products": 24,
+  "stepJpegPairs": 24,
+  "pdfCount": 0,
+  "mainViewCaptionRemoved": true,
+  "firstAttemptPassed": false,
+  "finalRunCompletedWithoutManualModelEdits": true,
+  "fullyResolvedSheets": 23,
+  "unconfirmedOcrMarkers": [],
+  "placementCounts": {
+    "12": 20,
+    "10": 1,
+    "11": 3
+  },
+  "unresolvedProducts": [
+    {
+      "outputId": "733001-03",
+      "unresolved": [
+        {
+          "id": "column_B",
+          "reason": "D=0 olduğundan B deliği yok"
+        }
+      ]
+    }
+  ],
+  "limits": "Successful execution and reference checks do not guarantee complete source interpretation for every future sketch."
+}

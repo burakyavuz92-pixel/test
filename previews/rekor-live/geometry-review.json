@@ -1,0 +1,218 @@
+[
+  {
+    "outputId": "733001",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000026,
+    "zMax": 8.770070653440916e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733001-02",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.80000000000026,
+    "zMax": 8.882442326729604e-16,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733001-03",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -23.800000000000267,
+    "zMax": 8.214959141128416e-16,
+    "expectedLengthMm": 23.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733001-01",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000026,
+    "zMax": 8.882442326729604e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733002",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -46.30000000000026,
+    "zMax": 8.723886046764099e-16,
+    "expectedLengthMm": 46.3,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733042",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000026,
+    "zMax": 8.770070653440916e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733008",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.00000000000026,
+    "zMax": 9.880293678065917e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733015",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -44.8,
+    "zMax": 2.886579864025407e-14,
+    "expectedLengthMm": 44.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733019",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.00000000000026,
+    "zMax": 9.936150449844903e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733020",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -62.80000000000026,
+    "zMax": 9.992007221625e-16,
+    "expectedLengthMm": 62.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733021",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.8,
+    "zMax": 9.4368957093125e-16,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733022",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000026,
+    "zMax": 8.825927425219903e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733022-01",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.80000000000026,
+    "zMax": 8.825927425219903e-16,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733023",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -47.80000000000026,
+    "zMax": 2.886579864025407e-14,
+    "expectedLengthMm": 47.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733025",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.00000000000026,
+    "zMax": 8.723886046764099e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733025-01",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -27.800000000000267,
+    "zMax": 8.723886046764099e-16,
+    "expectedLengthMm": 27.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733026",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -71.80000000000027,
+    "zMax": 8.723886046764099e-16,
+    "expectedLengthMm": 71.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733027",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -43.80000000000026,
+    "zMax": 9.82025512199475e-16,
+    "expectedLengthMm": 43.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733028",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -57.80000000000026,
+    "zMax": 9.4368957093125e-16,
+    "expectedLengthMm": 57.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733035",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -30.8,
+    "zMax": 7.2164496600625e-16,
+    "expectedLengthMm": 30.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733035-1",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -49.8,
+    "zMax": 7.771561172375e-16,
+    "expectedLengthMm": 49.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733044",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -34.80000000000027,
+    "zMax": 8.723886046764099e-16,
+    "expectedLengthMm": 34.8,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733045",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -48.00000000000026,
+    "zMax": 8.723886046764099e-16,
+    "expectedLengthMm": 48.0,
+    "lengthMatches": true
+  },
+  {
+    "outputId": "733043",
+    "validBrep": true,
+    "solidCount": 1,
+    "zMin": -32.80000000000027,
+    "zMax": 2.886579864025407e-14,
+    "expectedLengthMm": 32.8,
+    "lengthMatches": true
+  }
+]

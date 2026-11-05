@@ -1,0 +1,170 @@
+[
+  {
+    "outputId": "733001",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-02",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-03",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733001-01",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733002",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733042",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733008",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733015",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733019",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733020",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733021",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733022",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733022-01",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733023",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733025",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733025-01",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733026",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733027",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733028",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733035",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733035-1",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733044",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733045",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  },
+  {
+    "outputId": "733043",
+    "stage": "geometry-execution",
+    "origin": "software",
+    "reason": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+    "status": "failed"
+  }
+]

@@ -1,0 +1,201 @@
+{
+  "apiCalls": 0,
+  "validationOnly": true,
+  "cadqueryVersion": "2.6.1",
+  "scriptSha256": "668db3758f6cfa85f2bd804fe476405ce5ce1e5269222cf9d6c9cc746303bbc5",
+  "scriptAccepted": true,
+  "results": [
+    {
+      "outputId": "733001",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10743.48274652393,
+      "seconds": 0.015514402999542654
+    },
+    {
+      "outputId": "733001-02",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11875.440223808186,
+      "seconds": 0.01198367599863559
+    },
+    {
+      "outputId": "733001-03",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 5257.95074809311,
+      "seconds": 0.010267736011883244
+    },
+    {
+      "outputId": "733001-01",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10902.33189935875,
+      "seconds": 0.011105475976364687
+    },
+    {
+      "outputId": "733002",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11475.757228945982,
+      "seconds": 0.011210522992769256
+    },
+    {
+      "outputId": "733042",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10847.417103480186,
+      "seconds": 0.011714914988260716
+    },
+    {
+      "outputId": "733008",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14603.31774187563,
+      "seconds": 0.012507537991041318
+    },
+    {
+      "outputId": "733015",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15503.334543940702,
+      "seconds": 0.011971638014074415
+    },
+    {
+      "outputId": "733019",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9916.408907331921,
+      "seconds": 0.01192150401766412
+    },
+    {
+      "outputId": "733020",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 15317.32035864202,
+      "seconds": 0.011384342011297122
+    },
+    {
+      "outputId": "733021",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 10541.345804748054,
+      "seconds": 0.010148178989766166
+    },
+    {
+      "outputId": "733022",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8548.318768526367,
+      "seconds": 0.011339814984239638
+    },
+    {
+      "outputId": "733022-01",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9252.035522930484,
+      "seconds": 0.01151446599396877
+    },
+    {
+      "outputId": "733023",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17159.97488999494,
+      "seconds": 0.011192967009264976
+    },
+    {
+      "outputId": "733025",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11912.432062810269,
+      "seconds": 0.011224693997064605
+    },
+    {
+      "outputId": "733025-01",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 6975.131228367331,
+      "seconds": 0.011018106015399098
+    },
+    {
+      "outputId": "733026",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 17686.33965883114,
+      "seconds": 0.011480785993626341
+    },
+    {
+      "outputId": "733027",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 9150.880635841886,
+      "seconds": 0.011040709010558203
+    },
+    {
+      "outputId": "733028",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 14323.137183474742,
+      "seconds": 0.011466374999145046
+    },
+    {
+      "outputId": "733035",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 4629.267674758459,
+      "seconds": 0.01168820500606671
+    },
+    {
+      "outputId": "733035-1",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 7400.217845071607,
+      "seconds": 0.011998788977507502
+    },
+    {
+      "outputId": "733044",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 8701.174592127121,
+      "seconds": 0.012921925983391702
+    },
+    {
+      "outputId": "733045",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11912.432062810269,
+      "seconds": 0.013582640996901318
+    },
+    {
+      "outputId": "733043",
+      "status": "geometry-validated",
+      "validBrep": true,
+      "solidCount": 1,
+      "volumeMm3": 11286.056707713393,
+      "seconds": 0.011084413999924436
+    }
+  ]
+}

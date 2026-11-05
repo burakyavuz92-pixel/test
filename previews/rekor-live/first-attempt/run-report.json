@@ -1,0 +1,55 @@
+{
+  "Status": "failed",
+  "Issues": [
+    {
+      "Code": "CADQUERY_PIPELINE",
+      "Category": "geometry-execution",
+      "Severity": "error",
+      "Message": "Ortak geometri kodu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131: Only imports, numeric constants and function definitions are allowed at module level",
+      "AffectedFields": [],
+      "RecommendedAction": "A\u015Fama kay\u0131tlar\u0131 incelenmeli; otomatik API tekrar\u0131 yok.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Stage": "geometry-execution",
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.0189335,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": false,
+    "Usage": [
+      {
+        "prompt_tokens": 23080,
+        "completion_tokens": 33251,
+        "total_tokens": 56331,
+        "cost": 0.0189335,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0189335,
+          "upstream_inference_prompt_cost": 0.002308,
+          "upstream_inference_completions_cost": 0.0166255
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 31279,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    ],
+    "ApiTimings": [
+      {
+        "Name": "geometry",
+        "Seconds": 149.4988
+      }
+    ],
+    "TotalSeconds": 152.4530647
+  },
+  "HumanApproved": false
+}

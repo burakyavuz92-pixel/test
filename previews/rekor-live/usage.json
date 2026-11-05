@@ -1,0 +1,42 @@
+{
+  "model": "anthropic/claude-haiku-5.5",
+  "reasoningEffort": "high",
+  "rowsSentPerRun": 24,
+  "totalApiCalls": 3,
+  "usage": [
+    {
+      "stage": "İlk deneme: geometri",
+      "inputTokens": 23080,
+      "visibleOutputTokens": 1972,
+      "reasoningTokens": 31279,
+      "completionTokens": 33251,
+      "costUsd": 0.0189335,
+      "seconds": 149.4988,
+      "finishReason": "stop"
+    },
+    {
+      "stage": "Son koşu: geometri",
+      "inputTokens": 23104,
+      "visibleOutputTokens": 1786,
+      "reasoningTokens": 27655,
+      "completionTokens": 29441,
+      "costUsd": 0.0170309,
+      "seconds": 130.5164774,
+      "finishReason": "stop"
+    },
+    {
+      "stage": "Son koşu: ölçüler",
+      "inputTokens": 24914,
+      "visibleOutputTokens": 3245,
+      "reasoningTokens": 31458,
+      "completionTokens": 34703,
+      "costUsd": 0.0198429,
+      "seconds": 145.5947635,
+      "finishReason": "stop"
+    }
+  ],
+  "costUsd": 0.0558073,
+  "finalRunCostUsd": 0.0368738,
+  "firstRunSeconds": 152.4530647,
+  "finalRunSeconds": 394.3830785
+}

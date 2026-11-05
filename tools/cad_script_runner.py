@@ -6,7 +6,7 @@ from OCP.BRepCheck import BRepCheck_Analyzer
 from OCP.STEPControl import STEPControl_Reader
 from OCP.IFSelect import IFSelect_RetDone
 ALLOWED_MODULES={'cadquery':cq,'math':math}
-SAFE_BUILTINS={n:getattr(builtins,n) for n in ['abs','min','max','sum','range','len','float','int','bool','dict','list','tuple','set','enumerate','zip','round','format','sorted','isinstance','ValueError','RuntimeError','Exception']}
+SAFE_BUILTINS={n:getattr(builtins,n) for n in ['abs','min','max','sum','range','len','float','int','str','bool','dict','list','tuple','set','enumerate','zip','round','format','sorted','isinstance','ValueError','RuntimeError','Exception']}
 DENIED={'open','eval','exec','compile','getattr','setattr','delattr','globals','locals','vars','dir','help','input','breakpoint','type','object','super','os','sys','subprocess','socket','pathlib','requests','builtins','importlib','inspect','ctypes','exporters','importers'}
 
 def load_script(source, entry="build_part"):
@@ -16,19 +16,23 @@ def load_script(source, entry="build_part"):
    try:value=ast.literal_eval(statement.value)
    except (ValueError,TypeError):raise ValueError('Module constants must be numeric literals')
    if type(value) not in (int,float) or not math.isfinite(value):raise ValueError('Module constants must be finite numbers')
-  elif not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef)):raise ValueError('Only imports, numeric constants and function definitions are allowed at module level')
+  elif not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef,ast.ClassDef)):raise ValueError('Only imports, numeric constants, functions and empty exception subclasses are allowed at module level')
  for node in ast.walk(tree):
+  if isinstance(node,ast.ClassDef):
+   inert=lambda n:isinstance(n,ast.Pass) or (isinstance(n,ast.Expr) and isinstance(n.value,ast.Constant) and isinstance(n.value.value,str))
+   if node.decorator_list or node.keywords or len(node.bases)!=1 or not isinstance(node.bases[0],ast.Name) or node.bases[0].id not in ('Exception','ValueError','RuntimeError') or not all(inert(n) for n in node.body) or node.name.startswith('__') or node.name in DENIED:
+    raise ValueError('Only empty Exception/ValueError/RuntimeError subclasses are supported')
   if isinstance(node,(ast.Import,ast.ImportFrom)):
    names=[n.name for n in node.names] if isinstance(node,ast.Import) else [node.module]
    if any(n not in ALLOWED_MODULES for n in names):raise ValueError('Only cadquery/math imports are supported')
   if isinstance(node,ast.Name) and (node.id in DENIED or node.id.startswith('__')):raise ValueError('Forbidden script name: '+node.id)
   if isinstance(node,ast.Attribute) and (node.attr in DENIED or node.attr.startswith('_') or node.attr.lower().startswith(('export','import','write','read','save','dump'))):raise ValueError('Forbidden script attribute: '+node.attr)
   if isinstance(node,ast.FunctionDef) and node.decorator_list:raise ValueError('Decorators not supported')
-  if isinstance(node,(ast.ClassDef,ast.With,ast.AsyncWith,ast.Global,ast.Nonlocal)):raise ValueError('Unsupported Python construct')
+  if isinstance(node,(ast.With,ast.AsyncWith,ast.Global,ast.Nonlocal)):raise ValueError('Unsupported Python construct')
  def importer(name,globals=None,locals=None,fromlist=(),level=0):
   if name not in ALLOWED_MODULES or level:raise ImportError('Only cadquery/math imports')
   return ALLOWED_MODULES[name]
- env={'__builtins__':dict(SAFE_BUILTINS,__import__=importer),'cq':cq,'math':math};exec(compile(tree,'generated_geometry.py','exec'),env)
+ env={'__builtins__':dict(SAFE_BUILTINS,__import__=importer,__build_class__=builtins.__build_class__),'__name__':'generated_cad','cq':cq,'math':math};exec(compile(tree,'generated_geometry.py','exec'),env)
  if not callable(env.get(entry)):raise ValueError(entry+'(p) missing')
  return env[entry]
 

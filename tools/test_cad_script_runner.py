@@ -8,6 +8,14 @@ class ScriptTests(unittest.TestCase):
  def test_model_can_format_a_short_product_error(self):
   f=r.load_script('def build_part(p): return {"error":"Çap " + format(p["A"], "g") + " uygun değil"}')
   self.assertEqual(f({'A':20})['error'],'Çap 20 uygun değil')
+ def test_empty_custom_exception_preserves_product_reason(self):
+  f=r.load_script('class _RowError(Exception):\n pass\ndef build_part(p):\n try: raise _RowError("Ölçü geçersiz")\n except _RowError as e: return {"error":str(e)}\n')
+  self.assertEqual(f({}),{'error':'Ölçü geçersiz'})
+ def test_exception_class_cannot_execute_code_or_use_custom_bases(self):
+  for definition in ('class X(Exception):\n x=1', 'class X(Exception):\n def method(self): return 1', 'class X(object):\n pass', 'class X(Exception, ValueError):\n pass', 'class X(Exception, metaclass=Exception):\n pass', '@Exception\nclass X(Exception):\n pass'):
+   with self.subTest(definition=definition),self.assertRaises(ValueError):r.load_script(definition+'\ndef build_part(p):return None')
+ def test_class_builder_is_not_directly_accessible(self):
+  with self.assertRaises(ValueError):r.load_script('def build_part(p):return __build_class__')
  def test_forbidden_import(self):
   with self.assertRaises(ValueError):r.load_script('import os\ndef build_part(p): return None')
  def test_file_io_name_rejected(self):

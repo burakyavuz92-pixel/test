@@ -333,7 +333,7 @@ def sheet(recipe,shape,shapes,out,source):
   im=base.copy();draw=ImageDraw.Draw(im);k=candidate*PX_PER_MM
   pix=panel(front_lines,rects[0],trace=trace,fixed_k=k,centers=list(centers.items()))
   section_pix=panel(sl,rects[1],loops,fixed_k=k)
-  for name,(x,y,w,h) in zip(('Ana görünüş','KESİT '+sec['id']),packages):txt(x,y+h-24,name,14)
+  x,y,w,h=packages[1];txt(x,y+h-24,'KESİT '+sec['id'],14)
   if layout:
    placement=render_lanes(im,font,S,anchors,pix,section_pix,layout,{'front':bounds2(front_lines),'section':bounds2(sl)},text_value)
   else:placement=render_dimensions(im,font,S,anchors,pix,section_pix,text_value)
@@ -369,8 +369,6 @@ def sheet(recipe,shape,shapes,out,source):
  for i,tol in enumerate(recipe['drawing'].get('geometricTolerances',[])):txt(45+i*300,1065,tol['kind']+': '+f"{tol['value']:g}".replace('.',','),16)
  txt(45,1080,'İnceleme çıktısı • Geometri ve ölçüler kontrol edilmelidir',11)
  im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.jpeg'),quality=95,dpi=(DPI,DPI))
- # A5 PDF provides an exact physical page independently of JPEG viewer DPI rounding.
- im.resize(PIXELS,Image.Resampling.LANCZOS).save(out/(recipe['outputId']+'.pdf'),resolution=DPI)
  return {'templateTitleBlock':template is not None,'paperMm':list(PAPER_MM),'imagePixels':list(PIXELS),'dpi':DPI,'drawingScale':scale,'scaleSelection':{'attempts':scale_attempts,'packages':packages},'scaleLabel':scale_label(scale),'centerlineCenters':len(centers),'annotationMode':'geometry-linked-dimensions','placedDimensions':placement['placed'],'unresolvedDimensions':[{'id':u['id'],'reason':u['reason']} for u in unresolved],'limits':['Unresolved dimensions remain in a separate table','Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges','Geometric tolerance leader placement pending'],'visibleDimensions':[d['id'] for d in recipe['drawing']['dimensions'] if d['effectiveVisible'] and d['nominal']!=0]}
 
 def run(folder,source,excel=None):
