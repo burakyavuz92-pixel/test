@@ -1,0 +1,193 @@
+[
+  {
+    "probe": "F-surrounding",
+    "angle": 0,
+    "psm": 7,
+    "text": ""
+  },
+  {
+    "probe": "F-surrounding",
+    "angle": 0,
+    "psm": 11,
+    "text": ""
+  },
+  {
+    "probe": "F-text",
+    "angle": 0,
+    "psm": 7,
+    "text": "[F]"
+  },
+  {
+    "probe": "F-text",
+    "angle": 0,
+    "psm": 11,
+    "text": "[F]"
+  },
+  {
+    "probe": "5-surrounding",
+    "angle": 0,
+    "psm": 7,
+    "text": ""
+  },
+  {
+    "probe": "5-surrounding",
+    "angle": 0,
+    "psm": 11,
+    "text": ""
+  },
+  {
+    "probe": "5-text",
+    "angle": 0,
+    "psm": 7,
+    "text": "[5]"
+  },
+  {
+    "probe": "5-text",
+    "angle": 0,
+    "psm": 11,
+    "text": "[5]"
+  },
+  {
+    "probe": "L-surrounding45",
+    "angle": 45,
+    "psm": 7,
+    "text": ":"
+  },
+  {
+    "probe": "L-surrounding45",
+    "angle": 45,
+    "psm": 11,
+    "text": ""
+  },
+  {
+    "probe": "L-surrounding315",
+    "angle": 315,
+    "psm": 7,
+    "text": "fu"
+  },
+  {
+    "probe": "L-surrounding315",
+    "angle": 315,
+    "psm": 11,
+    "text": "__[u"
+  },
+  {
+    "probe": "L-text45",
+    "angle": 45,
+    "psm": 7,
+    "text": "=)"
+  },
+  {
+    "probe": "L-text45",
+    "angle": 45,
+    "psm": 11,
+    "text": "=)"
+  },
+  {
+    "probe": "L-text315",
+    "angle": 315,
+    "psm": 7,
+    "text": "tu"
+  },
+  {
+    "probe": "L-text315",
+    "angle": 315,
+    "psm": 11,
+    "text": "{L]"
+  },
+  {
+    "probe": "L-raw-padded",
+    "psm": 6,
+    "text": "tu"
+  },
+  {
+    "probe": "L-raw-padded",
+    "psm": 7,
+    "text": "tu"
+  },
+  {
+    "probe": "L-raw-padded",
+    "psm": 8,
+    "text": "oo"
+  },
+  {
+    "probe": "L-raw-padded",
+    "psm": 11,
+    "text": "{L]"
+  },
+  {
+    "probe": "L-raw-padded",
+    "psm": 13,
+    "text": "oo"
+  },
+  {
+    "probe": "L-line-cleaned",
+    "psm": 6,
+    "text": "tu"
+  },
+  {
+    "probe": "L-line-cleaned",
+    "psm": 7,
+    "text": "tu"
+  },
+  {
+    "probe": "L-line-cleaned",
+    "psm": 8,
+    "text": "oO"
+  },
+  {
+    "probe": "L-line-cleaned",
+    "psm": 11,
+    "text": "{L]"
+  },
+  {
+    "probe": "L-line-cleaned",
+    "psm": 13,
+    "text": "oO"
+  },
+  {
+    "probe": "L-cleaned-2x",
+    "psm": 6,
+    "text": "tu"
+  },
+  {
+    "probe": "L-cleaned-2x",
+    "psm": 7,
+    "text": "tu"
+  },
+  {
+    "probe": "L-cleaned-2x",
+    "psm": 8,
+    "text": "oO"
+  },
+  {
+    "probe": "L-cleaned-2x",
+    "psm": 11,
+    "text": "{ll"
+  },
+  {
+    "probe": "L-cleaned-2x",
+    "psm": 13,
+    "text": "oO"
+  },
+  {
+    "probe": "L-bilinear",
+    "psm": 7,
+    "text": "{u]"
+  },
+  {
+    "probe": "L-bilinear",
+    "psm": 11,
+    "text": "{u]"
+  },
+  {
+    "probe": "L-bicubic",
+    "psm": 7,
+    "text": "{u]"
+  },
+  {
+    "probe": "L-bicubic",
+    "psm": 11,
+    "text": "{u"
+  }
+]

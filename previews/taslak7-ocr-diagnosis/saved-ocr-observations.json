@@ -1,0 +1,814 @@
+{
+  "F": [
+    {
+      "scan": "left-overlap",
+      "angle": 270,
+      "psm": 11,
+      "variant": 0,
+      "text": "ge",
+      "confidence": 81.13195,
+      "distance": 118.6,
+      "center": [
+        654.0,
+        2972.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 270,
+      "psm": 7,
+      "variant": 6,
+      "text": "al",
+      "confidence": 43.540726,
+      "distance": 6.8,
+      "center": [
+        606.0,
+        2858.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 345,
+      "psm": 7,
+      "variant": 11,
+      "text": "CFP",
+      "confidence": 54.672035,
+      "distance": 9.7,
+      "center": [
+        598.3,
+        2857.2
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 345,
+      "psm": 7,
+      "variant": 12,
+      "text": "LF]",
+      "confidence": 36.715637,
+      "distance": 32.3,
+      "center": [
+        636.2,
+        2863.6
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 345,
+      "psm": 7,
+      "variant": 12,
+      "text": ")/",
+      "confidence": 41.630398,
+      "distance": 118.2,
+      "center": [
+        719.8,
+        2841.2
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 270,
+      "psm": 11,
+      "variant": 0,
+      "text": "ge",
+      "confidence": 81.13195,
+      "distance": 118.6,
+      "center": [
+        654.0,
+        2972.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 270,
+      "psm": 7,
+      "variant": 6,
+      "text": "al",
+      "confidence": 43.540726,
+      "distance": 6.8,
+      "center": [
+        606.0,
+        2858.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 75,
+      "psm": 11,
+      "variant": 0,
+      "text": "@",
+      "confidence": 54.081726,
+      "distance": 7.3,
+      "center": [
+        604.1,
+        2857.7
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 75,
+      "psm": 11,
+      "variant": 1,
+      "text": "@",
+      "confidence": 22.94191,
+      "distance": 7.3,
+      "center": [
+        604.1,
+        2857.7
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 180,
+      "psm": 11,
+      "variant": 1,
+      "text": "(",
+      "confidence": 86.859329,
+      "distance": 83.3,
+      "center": [
+        687.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 180,
+      "psm": 11,
+      "variant": 1,
+      "text": "[4]",
+      "confidence": 51.424622,
+      "distance": 8.9,
+      "center": [
+        609.5,
+        2858.0
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 180,
+      "psm": 11,
+      "variant": 1,
+      "text": ")",
+      "confidence": 92.184761,
+      "distance": 81.8,
+      "center": [
+        522.5,
+        2858.0
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 0,
+      "psm": 11,
+      "variant": 1,
+      "text": "CIFL)",
+      "confidence": 65.244171,
+      "distance": 8.5,
+      "center": [
+        604.5,
+        2856.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 26,
+      "text": "CIF]",
+      "confidence": 94.355064,
+      "distance": 22.9,
+      "center": [
+        582.0,
+        2858.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 27,
+      "text": "IF]",
+      "confidence": 41.720448,
+      "distance": 8.6,
+      "center": [
+        599.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 27,
+      "text": ")/",
+      "confidence": 41.720448,
+      "distance": 108.7,
+      "center": [
+        712.5,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 285,
+      "psm": 11,
+      "variant": 1,
+      "text": "ei",
+      "confidence": 25.228989,
+      "distance": 115.4,
+      "center": [
+        652.9,
+        2969.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 90,
+      "psm": 11,
+      "variant": 0,
+      "text": "qe",
+      "confidence": 71.819458,
+      "distance": 118.6,
+      "center": [
+        654.0,
+        2972.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 90,
+      "psm": 11,
+      "variant": 0,
+      "text": "qe",
+      "confidence": 71.819458,
+      "distance": 118.6,
+      "center": [
+        654.0,
+        2972.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 60,
+      "psm": 11,
+      "variant": 0,
+      "text": "©",
+      "confidence": 40.594452,
+      "distance": 7.0,
+      "center": [
+        604.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 60,
+      "psm": 11,
+      "variant": 1,
+      "text": "©",
+      "confidence": 52.519501,
+      "distance": 7.0,
+      "center": [
+        604.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 11,
+      "variant": 0,
+      "text": "FL",
+      "confidence": 64.624344,
+      "distance": 7.0,
+      "center": [
+        604.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 11,
+      "variant": 1,
+      "text": "CIFL)",
+      "confidence": 65.244171,
+      "distance": 8.5,
+      "center": [
+        604.5,
+        2856.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 7,
+      "variant": 28,
+      "text": "CIF]",
+      "confidence": 94.355064,
+      "distance": 22.9,
+      "center": [
+        582.0,
+        2858.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 7,
+      "variant": 29,
+      "text": "IF]",
+      "confidence": 41.720448,
+      "distance": 8.6,
+      "center": [
+        599.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 7,
+      "variant": 29,
+      "text": ")/",
+      "confidence": 41.720448,
+      "distance": 108.7,
+      "center": [
+        712.5,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 45,
+      "psm": 11,
+      "variant": 0,
+      "text": "©",
+      "confidence": 63.636372,
+      "distance": 9.1,
+      "center": [
+        602.0,
+        2856.1
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 45,
+      "psm": 11,
+      "variant": 1,
+      "text": "©",
+      "confidence": 59.85928,
+      "distance": 20.3,
+      "center": [
+        593.5,
+        2847.7
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 15,
+      "psm": 7,
+      "variant": 22,
+      "text": "Gav)",
+      "confidence": 31.848244,
+      "distance": 13.5,
+      "center": [
+        615.1,
+        2857.4
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 15,
+      "psm": 7,
+      "variant": 23,
+      "text": "CFL",
+      "confidence": 58.657822,
+      "distance": 5.8,
+      "center": [
+        602.3,
+        2870.6
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 180,
+      "psm": 11,
+      "variant": 0,
+      "text": "aD",
+      "confidence": 67.656586,
+      "distance": 7.0,
+      "center": [
+        604.0,
+        2858.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 180,
+      "psm": 11,
+      "variant": 1,
+      "text": "Cla]",
+      "confidence": 41.704536,
+      "distance": 8.5,
+      "center": [
+        604.5,
+        2856.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 225,
+      "psm": 11,
+      "variant": 0,
+      "text": "§",
+      "confidence": 74.376999,
+      "distance": 17.4,
+      "center": [
+        595.6,
+        2849.8
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 225,
+      "psm": 11,
+      "variant": 1,
+      "text": "§",
+      "confidence": 70.630005,
+      "distance": 17.4,
+      "center": [
+        595.6,
+        2849.8
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 255,
+      "psm": 11,
+      "variant": 0,
+      "text": "&",
+      "confidence": 75.611397,
+      "distance": 5.9,
+      "center": [
+        604.5,
+        2859.1
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 255,
+      "psm": 11,
+      "variant": 1,
+      "text": "8",
+      "confidence": 22.779373,
+      "distance": 5.9,
+      "center": [
+        604.5,
+        2859.1
+      ]
+    }
+  ],
+  "5": [
+    {
+      "scan": "right-overlap",
+      "angle": 0,
+      "psm": 11,
+      "variant": 1,
+      "text": "C151)",
+      "confidence": 40.421379,
+      "distance": 3.2,
+      "center": [
+        3018.0,
+        1222.5
+      ]
+    },
+    {
+      "scan": "right-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 6,
+      "text": "(5)",
+      "confidence": 38.199226,
+      "distance": 21.1,
+      "center": [
+        2999.0,
+        1222.5
+      ]
+    },
+    {
+      "scan": "right-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 7,
+      "text": "(1)",
+      "confidence": 37.939148,
+      "distance": 54.0,
+      "center": [
+        3074.0,
+        1227.0
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 270,
+      "psm": 7,
+      "variant": 78,
+      "text": "{al",
+      "confidence": 40.471912,
+      "distance": 8.7,
+      "center": [
+        3018.0,
+        1233.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 345,
+      "psm": 11,
+      "variant": 1,
+      "text": "1)",
+      "confidence": 49.482555,
+      "distance": 3.2,
+      "center": [
+        3017.7,
+        1222.8
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 345,
+      "psm": 7,
+      "variant": 8,
+      "text": "aeop",
+      "confidence": 2.120735,
+      "distance": 34.0,
+      "center": [
+        2986.3,
+        1229.2
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 270,
+      "psm": 7,
+      "variant": 78,
+      "text": "{al",
+      "confidence": 40.471912,
+      "distance": 8.7,
+      "center": [
+        3018.0,
+        1233.5
+      ]
+    },
+    {
+      "scan": "right-overlap",
+      "angle": 270,
+      "psm": 7,
+      "variant": 29,
+      "text": "{al",
+      "confidence": 40.471912,
+      "distance": 8.7,
+      "center": [
+        3018.0,
+        1233.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 180,
+      "psm": 11,
+      "variant": 1,
+      "text": "Csl)",
+      "confidence": 33.684906,
+      "distance": 3.2,
+      "center": [
+        3018.0,
+        1222.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 5,
+      "text": "(5)",
+      "confidence": 38.199226,
+      "distance": 21.1,
+      "center": [
+        2999.0,
+        1222.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 0,
+      "psm": 7,
+      "variant": 6,
+      "text": "(1)",
+      "confidence": 37.939148,
+      "distance": 54.0,
+      "center": [
+        3074.0,
+        1227.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 90,
+      "psm": 11,
+      "variant": 1,
+      "text": "6",
+      "confidence": 20.995399,
+      "distance": 4.0,
+      "center": [
+        3018.0,
+        1228.5
+      ]
+    },
+    {
+      "scan": "left-overlap",
+      "angle": 90,
+      "psm": 11,
+      "variant": 1,
+      "text": "6",
+      "confidence": 20.995399,
+      "distance": 4.0,
+      "center": [
+        3018.0,
+        1228.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 7,
+      "variant": 6,
+      "text": "(5)",
+      "confidence": 38.199226,
+      "distance": 21.1,
+      "center": [
+        2999.0,
+        1222.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 0,
+      "psm": 7,
+      "variant": 7,
+      "text": "(1)",
+      "confidence": 37.939148,
+      "distance": 54.0,
+      "center": [
+        3074.0,
+        1227.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 15,
+      "psm": 7,
+      "variant": 2,
+      "text": "coun",
+      "confidence": 25.863029,
+      "distance": 29.8,
+      "center": [
+        3049.4,
+        1229.5
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 180,
+      "psm": 11,
+      "variant": 1,
+      "text": "wo",
+      "confidence": 36.398731,
+      "distance": 3.2,
+      "center": [
+        3018.0,
+        1222.5
+      ]
+    }
+  ],
+  "L": [
+    {
+      "scan": "drawing",
+      "angle": 135,
+      "psm": 11,
+      "variant": 0,
+      "text": "il",
+      "confidence": 23.554398,
+      "distance": 23.9,
+      "center": [
+        5427.6,
+        1176.4
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 135,
+      "psm": 11,
+      "variant": 1,
+      "text": "fl",
+      "confidence": 50.287331,
+      "distance": 19.4,
+      "center": [
+        5430.4,
+        1172.2
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 315,
+      "psm": 11,
+      "variant": 0,
+      "text": "{u]",
+      "confidence": 46.60392,
+      "distance": 23.9,
+      "center": [
+        5427.6,
+        1176.4
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 315,
+      "psm": 11,
+      "variant": 1,
+      "text": "{ul",
+      "confidence": 36.322021,
+      "distance": 23.9,
+      "center": [
+        5427.6,
+        1176.4
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 315,
+      "psm": 7,
+      "variant": 3,
+      "text": "Wu",
+      "confidence": 18.727112,
+      "distance": 59.9,
+      "center": [
+        5402.5,
+        1202.9
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 225,
+      "psm": 11,
+      "variant": 0,
+      "text": "—",
+      "confidence": 73.726601,
+      "distance": 52.9,
+      "center": [
+        5407.5,
+        1198.0
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 225,
+      "psm": 11,
+      "variant": 0,
+      "text": "Hamers",
+      "confidence": 3.116776,
+      "distance": 14.1,
+      "center": [
+        5451.0,
+        1150.2
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 225,
+      "psm": 11,
+      "variant": 0,
+      "text": "—",
+      "confidence": 52.556946,
+      "distance": 21.5,
+      "center": [
+        5426.6,
+        1166.2
+      ]
+    },
+    {
+      "scan": "drawing",
+      "angle": 225,
+      "psm": 11,
+      "variant": 1,
+      "text": "i—",
+      "confidence": 0.0,
+      "distance": 23.8,
+      "center": [
+        5469.7,
+        1154.1
+      ]
+    }
+  ]
+}
