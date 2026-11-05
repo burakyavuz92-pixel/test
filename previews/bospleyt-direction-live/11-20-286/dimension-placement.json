@@ -1,0 +1,65 @@
+{
+  "placed": [
+    "rec-3",
+    "column_A",
+    "column_D",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "rec-3",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        462.8385714285714,
+        212.62761904761902
+      ],
+      "bandCoordinate": 475.0885714285714,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": true
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        319.55523809523805,
+        449.0
+      ],
+      "bandCoordinate": 334.05523809523805,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.924173318129989,
+      "narrow": false
+    },
+    {
+      "id": "column_D",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        319.55523809523805,
+        186.87190476190474
+      ]
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        319.55523809523805,
+        711.1280952380953
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_J",
+      "reason": "Measurement endpoint is not on final body"
+    }
+  ],
+  "omitted": []
+}

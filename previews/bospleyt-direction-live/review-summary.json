@@ -1,0 +1,10 @@
+{
+  "products": 7,
+  "stepJpegPairs": 7,
+  "placedDimensionsTotal": 28,
+  "unresolvedDimensionsTotal": 7,
+  "unresolvedSource": "J",
+  "unconfirmedOcrMarkers": [],
+  "manualModelEdits": false,
+  "change": "Same coordinate-reference paragraph now sent in both API calls"
+}

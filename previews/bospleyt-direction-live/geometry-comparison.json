@@ -1,0 +1,44 @@
+[
+  {
+    "outputId": "11-20-107",
+    "previousVolumeMm3": 54563.5835886959,
+    "currentVolumeMm3": 54563.583588695874,
+    "volumeMatches": true
+  },
+  {
+    "outputId": "11-20-114",
+    "previousVolumeMm3": 60069.73898845485,
+    "currentVolumeMm3": 60069.73898845479,
+    "volumeMatches": true
+  },
+  {
+    "outputId": "11-20-136",
+    "previousVolumeMm3": 78878.05090101104,
+    "currentVolumeMm3": 78878.05090101104,
+    "volumeMatches": true
+  },
+  {
+    "outputId": "11-20-160",
+    "previousVolumeMm3": 101997.44806824462,
+    "currentVolumeMm3": 101997.44806824464,
+    "volumeMatches": true
+  },
+  {
+    "outputId": "11-20-227",
+    "previousVolumeMm3": 183015.96656335425,
+    "currentVolumeMm3": 183015.96656335407,
+    "volumeMatches": true
+  },
+  {
+    "outputId": "11-20-259",
+    "previousVolumeMm3": 228469.08484811275,
+    "currentVolumeMm3": 228469.08484811254,
+    "volumeMatches": true
+  },
+  {
+    "outputId": "11-20-286",
+    "previousVolumeMm3": 270573.57122375595,
+    "currentVolumeMm3": 270573.571223755,
+    "volumeMatches": true
+  }
+]
