@@ -5,7 +5,11 @@ from drafting_style import PX_PER_MM
 def candidates(extents,regions):
     bound=max(min(w/max(e[0],1e-9),h/max(e[1],1e-9))/PX_PER_MM for _,_,w,h in regions for e in extents)
     top=math.ceil(math.log10(max(bound,1e-12)))
-    return sorted({m*10.**k for k in range(top-10,top+1) for m in (1,2,5) if m*10.**k<=bound+1e-10},reverse=True)
+    # Keep the existing 1/2/5 scales and add intermediate reduction ratios.
+    # Only the search grid changes; package fitting and real annotation trials remain intact.
+    denominators=(1,1.25,1.5,2,2.5,3,4,5,6,8)
+    return sorted({10.**k/d for k in range(top-10,top+2) for d in denominators
+                   if 10.**k/d<=bound+1e-10},reverse=True)
 
 def layouts(extents,scale,padding,regions):
     # extents and result order: main, section. Section remains left.
