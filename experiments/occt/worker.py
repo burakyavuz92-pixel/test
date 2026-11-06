@@ -69,12 +69,14 @@ def build(data):
 
 def render(stl,out,data):
     shading=data.get('rendering',{}).get('shading','phong')
-    if shading not in ('phong','flat','matte-phong'):raise ValueError('Supported shading: phong, flat, matte-phong')
+    if shading not in ('phong','flat','matte-phong','surface-edges'):raise ValueError('Supported shading: phong, flat, matte-phong, surface-edges')
     reader=vtk.vtkSTLReader();reader.SetFileName(str(stl));reader.MergingOn();reader.Update()
     normals=vtk.vtkPolyDataNormals();normals.SetInputConnection(reader.GetOutputPort());normals.SetFeatureAngle(50);normals.ConsistencyOn();normals.AutoOrientNormalsOn();normals.Update()
     mapper=vtk.vtkPolyDataMapper();mapper.SetInputConnection(normals.GetOutputPort());mapper.ScalarVisibilityOff()
     actor=vtk.vtkActor();actor.SetMapper(mapper)
     prop=actor.GetProperty();prop.SetColor(.78,.77,.74);(prop.SetInterpolationToFlat if shading=='flat' else prop.SetInterpolationToPhong)();prop.SetAmbient(.40);prop.SetDiffuse(.58);prop.SetSpecular(0.0 if shading=='matte-phong' else .15);prop.SetSpecularPower(35)
+    if shading=='surface-edges':
+        prop.EdgeVisibilityOn();prop.SetEdgeColor(.12,.12,.12);prop.SetLineWidth(1.0)
     renderer=vtk.vtkRenderer();renderer.SetBackground(1,1,1);renderer.AddActor(actor)
     window=vtk.vtkRenderWindow();window.SetOffScreenRendering(1);window.SetSize(1400,1100);window.SetMultiSamples(4);window.AddRenderer(renderer)
     camera=renderer.GetActiveCamera();bounds=reader.GetOutput().GetBounds();center=[(bounds[i]+bounds[i+1])/2 for i in (0,2,4)]
