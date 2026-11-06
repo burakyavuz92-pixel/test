@@ -1,0 +1,73 @@
+{
+  "Status": "sheets-produced-with-unresolved-measurements",
+  "Issues": [],
+  "Run": {
+    "Stage": "sheets",
+    "ApiCalls": 2,
+    "ReportedCostUsd": 0.029256,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": false,
+    "GeometryReused": false,
+    "Usage": [
+      {
+        "prompt_tokens": 8922,
+        "completion_tokens": 31078,
+        "total_tokens": 40000,
+        "cost": 0.0164312,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0164312,
+          "upstream_inference_prompt_cost": 0.0008922,
+          "upstream_inference_completions_cost": 0.015539
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 28884,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      {
+        "prompt_tokens": 11223,
+        "completion_tokens": 23405,
+        "total_tokens": 34628,
+        "cost": 0.0128248,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0128248,
+          "upstream_inference_prompt_cost": 0.0011223,
+          "upstream_inference_completions_cost": 0.0117025
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 20893,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    ],
+    "ApiTimings": [
+      {
+        "Name": "geometry",
+        "Seconds": 140.5242545
+      },
+      {
+        "Name": "measurements",
+        "Seconds": 98.5942296
+      }
+    ],
+    "TotalSeconds": 273.6694407
+  },
+  "HumanApproved": false
+}

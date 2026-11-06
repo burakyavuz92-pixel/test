@@ -1,0 +1,166 @@
+{
+  "scope": "Nominal envelope A/B/C/D/L, literal 5 neck, end chamfer circle radii, head R5 circular generating profile, head-end radius L/2 minus 1 mm, mounting plane. Unspecified taper length remains model completion.",
+  "results": [
+    {
+      "outputId": "730001",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 89.84169591103404
+    },
+    {
+      "outputId": "730003",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 89.84169591103404
+    },
+    {
+      "outputId": "730006",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 124.08505583516278
+    },
+    {
+      "outputId": "730013",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 124.08505583516278
+    },
+    {
+      "outputId": "730014",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 76.37211740876776
+    },
+    {
+      "outputId": "730016",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 89.84169591103404
+    },
+    {
+      "outputId": "730017",
+      "passed": false,
+      "issues": [
+        [
+          "L-X",
+          16.564726177129998,
+          16
+        ],
+        [
+          "L-Y",
+          16.56472627713,
+          16
+        ]
+      ],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 76.37211740876776
+    }
+  ]
+}
