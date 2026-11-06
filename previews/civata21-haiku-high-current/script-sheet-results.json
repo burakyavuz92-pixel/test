@@ -1,0 +1,735 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "730001",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2863.3893081506512
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2863.389308150651
+            }
+          ],
+          "packages": [
+            [
+              1210.357383051292,
+              401.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              192.34785924176788,
+              391.3619047619047,
+              898.0095238095239,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "730003",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2779.8654986268416
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2779.8654986268416
+            }
+          ],
+          "packages": [
+            [
+              1018.5954782893871,
+              271.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              84.1097640036727,
+              261.3619047619047,
+              814.4857142857144,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "730006",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2746.084340680765
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2746.084340680765
+            }
+          ],
+          "packages": [
+            [
+              1026.9478592417681,
+              271.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              75.75738305129175,
+              261.3619047619047,
+              831.1904761904763,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "730013",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3105.7816880395185
+            }
+          ],
+          "packages": [
+            [
+              967.217562147448,
+              238.60289650257033,
+              413.99344713367543,
+              452.79420699485934
+            ],
+            [
+              68.78899071887656,
+              227.95238095238093,
+              778.4285714285714,
+              474.09523809523813
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "730014",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2759.981427269768
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2759.981427269768
+            }
+          ],
+          "packages": [
+            [
+              991.3026211465299,
+              271.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              111.40262114652978,
+              261.3619047619047,
+              759.9000000000001,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "730016",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3273.286716410865
+            }
+          ],
+          "packages": [
+            [
+              991.0065528663246,
+              238.60289650257033,
+              413.99344713367543,
+              452.79420699485934
+            ],
+            [
+              45.0,
+              227.95238095238093,
+              893.8333333333334,
+              474.09523809523813
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    },
+    {
+      "outputId": "730017",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2956.262379650721
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 2956.2623796507205
+            }
+          ],
+          "packages": [
+            [
+              1239.443097337006,
+              401.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              163.2621449560536,
+              391.3619047619047,
+              956.1809523809525,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_A",
+          "column_C",
+          "column_B",
+          "column_L",
+          "column_E"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [],
+        "unconfirmedVisualLabels": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "scale": 2.5,
+  "attempts": [
+    {
+      "scale": 5.0,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 4.0,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 3.3333333333333335,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 2.5,
+      "accepted": true,
+      "reasons": [],
+      "score": 3105.7816880395185
+    }
+  ],
+  "panels": [
+    [
+      1007.467562147448,
+      282.10289650257033,
+      333.49344713367543,
+      333.79420699485934
+    ],
+    [
+      144.78899071887656,
+      281.95238095238096,
+      626.4285714285714,
+      334.09523809523813
+    ]
+  ],
+  "packages": [
+    [
+      967.217562147448,
+      238.60289650257033,
+      413.99344713367543,
+      452.79420699485934
+    ],
+    [
+      68.78899071887656,
+      227.95238095238093,
+      778.4285714285714,
+      474.09523809523813
+    ]
+  ],
+  "unresolvedReferenceCount": 0
+}
