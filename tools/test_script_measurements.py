@@ -40,3 +40,18 @@ class References(unittest.TestCase):
  def test_virtual_points_hidden_in_view_are_rejected(self):
   m={'kind':'distance','nominal':5,'points':[[50,0,0],[50,0,5]],'direction':[0,0,1]}
   with self.assertRaisesRegex(ValueError,'hidden'):anchor(self.shape,m,5,self.front,self.section,'front')
+
+ def test_diameter_on_curved_sphere_or_torus(self):
+  from OCP.BRepPrimAPI import BRepPrimAPI_MakeSphere,BRepPrimAPI_MakeTorus
+  for shape,radius in [(BRepPrimAPI_MakeSphere(10).Shape(),10),(BRepPrimAPI_MakeTorus(12,3).Shape(),15)]:
+   m={'kind':'diameter','nominal':2*radius,'center':[0,0,0],'axis':[0,0,1],'radius':radius}
+   self.assertEqual(anchor(shape,m,2*radius,self.front,self.section,'front')['kind'],'circle')
+ def test_curved_diameter_requires_full_circle_and_correct_plane(self):
+  import math
+  from OCP.BRepPrimAPI import BRepPrimAPI_MakeSphere
+  for shape,center in [(BRepPrimAPI_MakeSphere(10,math.pi).Shape(),[0,0,0]),(BRepPrimAPI_MakeSphere(10).Shape(),[0,0,2])]:
+   m={'kind':'diameter','nominal':20,'center':center,'axis':[0,0,1],'radius':10}
+   with self.assertRaises(ValueError):anchor(shape,m,20,self.front,self.section,'front')
+ def test_arbitrary_circle_inside_planar_face_is_not_a_diameter_support(self):
+  m={'kind':'diameter','nominal':16,'center':[0,0,0],'axis':[0,0,1],'radius':8}
+  with self.assertRaises(ValueError):anchor(self.shape,m,16,self.front,self.section,'front')

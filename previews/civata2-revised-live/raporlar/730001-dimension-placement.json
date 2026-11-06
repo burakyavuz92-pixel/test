@@ -1,0 +1,106 @@
+{
+  "placed": [
+    "column_D",
+    "column_A",
+    "column_C",
+    "column_B",
+    "column_L",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        973.8277355337774,
+        400.2785715781319
+      ],
+      "bandCoordinate": 412.5285715781319,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        235.49678315282492,
+        579.0
+      ],
+      "bandCoordinate": 247.74678315282492,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1058.8229736290261,
+        579.0
+      ],
+      "bandCoordinate": 1076.8229736290261,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 7.762257696693271,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        606.3229736290155,
+        361.65000014956047
+      ],
+      "bandCoordinate": 375.90000014956047,
+      "innerExtentMm": 7.885404789053592,
+      "outerExtentMm": 11.249714937286202,
+      "narrow": false
+    },
+    {
+      "id": "column_L",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -52.469245193812064,
+      "placedLabelPixels": [
+        1482.2608237110746,
+        430.1628969451746
+      ],
+      "contactPixels": [
+        1465.4153778398704,
+        473.0214544734014
+      ],
+      "circleCenterPixels": [
+        1384.0047619047673,
+        578.9999999999999
+      ],
+      "radialDirectionPixels": [
+        0.6091871916466531,
+        -0.7930264595419652
+      ],
+      "outwardOffsetPixels": 26.0
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        235.49678315282492,
+        404.6119049114652
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": []
+}

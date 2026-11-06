@@ -1,0 +1,996 @@
+[
+  {
+    "outputId": "730001",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 11,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "M12x1.75-6G",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 39,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 11.9,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  },
+  {
+    "outputId": "730003",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 11,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "M12x1.75-6G",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 34,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 11.9,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  },
+  {
+    "outputId": "730006",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 9,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "M10x1.75-6G",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 35,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 9.9,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  },
+  {
+    "outputId": "730013",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 9,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "M10x1.5-6G",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 25,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 9.9,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  },
+  {
+    "outputId": "730014",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 11.7,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1/2 13 UNC",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 31.75,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 12.6,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  },
+  {
+    "outputId": "730016",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 11,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "M12x1.75-6G",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 30,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 11.9,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  },
+  {
+    "outputId": "730017",
+    "cells": {
+      "A": {
+        "state": "number",
+        "nominalMm": 11.7,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1/2 13 UNC",
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "B": {
+        "state": "number",
+        "nominalMm": 43.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "symmetric",
+          "upperDeviationMm": 1,
+          "lowerDeviationMm": -1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "C": {
+        "state": "number",
+        "nominalMm": 12.6,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": {
+          "kind": "asymmetric",
+          "upperDeviationMm": 0,
+          "lowerDeviationMm": -0.1
+        },
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "D": {
+        "state": "number",
+        "nominalMm": 5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      },
+      "E": {
+        "state": "number",
+        "nominalMm": 1.5,
+        "isZero": false,
+        "diameterSymbol": false,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": "1,5x45\u00B0",
+        "chamferAngleDeg": 45,
+        "radiusSymbol": null
+      },
+      "L": {
+        "state": "number",
+        "nominalMm": 16,
+        "isZero": false,
+        "diameterSymbol": true,
+        "tolerance": null,
+        "text": null,
+        "threadCallout": null,
+        "displayText": null,
+        "chamferAngleDeg": null,
+        "radiusSymbol": false
+      }
+    },
+    "drawing": {
+      "views": [
+        {
+          "id": "front",
+          "direction": [
+            0,
+            0,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "section",
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        },
+        {
+          "id": "iso",
+          "direction": [
+            1,
+            1,
+            1
+          ],
+          "up": [
+            0,
+            1,
+            0
+          ],
+          "projection": "orthographic"
+        }
+      ],
+      "sections": [
+        {
+          "id": "A-A",
+          "view": "section",
+          "sourceView": "front",
+          "kind": "localCentered",
+          "direction": "V",
+          "offsetMm": 0,
+          "spanMm": 0
+        }
+      ]
+    }
+  }
+]

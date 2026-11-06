@@ -1,14 +1,18 @@
 """Validate generic model measurement references against the final BRep."""
 import math
 import numpy as np
-from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
+from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex,BRepBuilderAPI_MakeEdge
+from OCP.BRepAlgoAPI import BRepAlgoAPI_Common
+from OCP.BRepGProp import BRepGProp
+from OCP.GProp import GProp_GProps
+from OCP.Geom import Geom_Circle
 from OCP.BRepExtrema import BRepExtrema_DistShapeShape
-from OCP.gp import gp_Pnt
+from OCP.gp import gp_Pnt,gp_Ax2,gp_Dir
 from OCP.TopExp import TopExp_Explorer
 from OCP.TopAbs import TopAbs_FACE,TopAbs_EDGE
 from OCP.TopoDS import TopoDS
 from OCP.BRepAdaptor import BRepAdaptor_Surface,BRepAdaptor_Curve
-from OCP.GeomAbs import GeomAbs_Cylinder,GeomAbs_Torus,GeomAbs_Circle,GeomAbs_Cone,GeomAbs_Plane
+from OCP.GeomAbs import GeomAbs_Cylinder,GeomAbs_Torus,GeomAbs_Circle,GeomAbs_Cone,GeomAbs_Plane,GeomAbs_Sphere,GeomAbs_SurfaceOfRevolution
 
 def vector(x):
  a=np.asarray(x,dtype=float)
@@ -23,6 +27,27 @@ def unit(x):
 def on_body(shape,p):
  d=BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(gp_Pnt(*vector(p))).Vertex(),shape);d.Perform()
  if not d.IsDone() or d.Value()>1e-4:raise ValueError('Measurement endpoint is not on final body')
+
+def rotational_circle_support(shape,center,axis,radius):
+ # Verify the entire circle on one coaxial curved face, not just a few sample points.
+ circle=BRepBuilderAPI_MakeEdge(Geom_Circle(gp_Ax2(gp_Pnt(*center),gp_Dir(*axis)),radius)).Edge()
+ ex=TopExp_Explorer(shape,TopAbs_FACE)
+ while ex.More():
+  face=TopoDS.Face_s(ex.Current());surface=BRepAdaptor_Surface(face);kind=surface.GetType()
+  if kind==GeomAbs_Cone:rotation=surface.Cone().Axis()
+  elif kind==GeomAbs_Torus:rotation=surface.Torus().Axis()
+  elif kind==GeomAbs_Sphere:rotation=surface.Sphere().Position().Axis()
+  elif kind==GeomAbs_SurfaceOfRevolution:rotation=surface.AxeOfRevolution()
+  else:ex.Next();continue
+  origin=rotation.Location();direction=rotation.Direction()
+  actual=np.array([direction.X(),direction.Y(),direction.Z()]);offset=center-np.array([origin.X(),origin.Y(),origin.Z()])
+  if abs(abs(np.dot(axis,actual))-1)<1e-6 and np.linalg.norm(np.cross(offset,actual))<1e-5:
+   common=BRepAlgoAPI_Common(circle,face);common.Build()
+   if common.IsDone():
+    props=GProp_GProps();BRepGProp.LinearProperties_s(common.Shape(),props)
+    if math.isclose(props.Mass(),2*math.pi*radius,rel_tol=1e-7,abs_tol=1e-5):return True
+  ex.Next()
+ return False
 
 def section_meridian(shape,m,section):
  # Select an equivalent meridian only on a verified analytic torus/cylinder.
@@ -71,7 +96,7 @@ def anchor(shape,m,nominal,front,section,view=None):
   support=False;cone=None;ex=TopExp_Explorer(shape,TopAbs_FACE)
   while ex.More():
    face=TopoDS.Face_s(ex.Current());surface=BRepAdaptor_Surface(face)
-   if surface.GetType() in (GeomAbs_Cone,GeomAbs_Plane):
+   if surface.GetType() in (GeomAbs_Cone,GeomAbs_Plane,GeomAbs_Sphere,GeomAbs_SurfaceOfRevolution):
     try:
      for t in (0,.25,.5,.75,1):on_body(face,a+t*delta)
      # Both ends must terminate on boundaries of this same chamfer face.
@@ -168,7 +193,8 @@ def anchor(shape,m,nominal,front,section,view=None):
     c=curve.Circle();o=c.Location();d=c.Axis().Direction()
     if abs(c.Radius()-radius)<1e-5 and np.linalg.norm(center-[o.X(),o.Y(),o.Z()])<1e-5 and abs(abs(np.dot(axis,[d.X(),d.Y(),d.Z()]))-1)<1e-6 and abs(curve.LastParameter()-curve.FirstParameter()-2*math.pi)<1e-5:found=True;break
    ex.Next()
- if not found:raise ValueError('No matching cylinder or full circular edge at the specified reference')
+ if not found:found=rotational_circle_support(shape,center,axis,radius)
+ if not found:raise ValueError('No matching cylinder, full circular edge or circle on a rotational surface at the specified reference')
  if abs(abs(np.dot(axis,dest[2]))-1)<1e-6:return dict(view='section' if dest is section else 'front',kind='circle',center=project(center).tolist(),radius=radius)
  radial=project(axis);perp=np.array([-radial[1],radial[0]])
  if np.linalg.norm(perp)<1e-7:raise ValueError('Unsupported projected diameter')

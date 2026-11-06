@@ -1,0 +1,16 @@
+{
+  "Status": "sheets-produced",
+  "Issues": [],
+  "Run": {
+    "Stage": "sheets",
+    "ApiCalls": 0,
+    "ReportedCostUsd": 0,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": true,
+    "Usage": [],
+    "ApiTimings": [],
+    "TotalSeconds": 46.172235
+  },
+  "HumanApproved": false
+}
