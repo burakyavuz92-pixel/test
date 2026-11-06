@@ -86,14 +86,24 @@ def render(image,font,S,items,pix_front,pix_section,layout,view_boxes,value_text
    cp=np.asarray(pix(item['center']));tip=tips[0];v=(tip-cp)/max(np.linalg.norm(tip-cp),1e-9)
    angle=math.degrees(math.atan2(v[1],v[0]));angle=(angle+90)%180-90
    normal=np.array([-v[1],v[0]])
-   backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
-   try:
-    pos=tip+v*(layer.width/2+18*S)-normal*(layer.height/2+5*S)
-    painter.label(text,pos,angle=angle)
-    painter.line(2*cp-tip,tip+v*(layer.width+25*S));painter.arrow(tip,tip+v*18*S)
-    drawn.append(item['id']);records.append({'id':item['id'],'view':view,'mode':'inclined-diameter','labelAngleDeg':angle,'placedLabelPixels':(pos/S).tolist()});continue
-   except ValueError:
-    image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
+   # Keep the same circle contact and radial direction. Search only outward;
+   # never fall back to a bent/non-radial short leader for a diameter.
+   placed=False;reason='No clear radial diameter label position within sheet'
+   hw=(abs(math.cos(math.radians(angle)))*layer.width+abs(math.sin(math.radians(angle)))*layer.height)/2
+   hh=(abs(math.sin(math.radians(angle)))*layer.width+abs(math.cos(math.radians(angle)))*layer.height)/2
+   for distance in np.arange(18*S,math.hypot(image.width,image.height)+8*S,8*S):
+    pos=tip+v*(layer.width/2+distance)-normal*(layer.height/2+5*S)
+    # Place the whole label outside the view, including its rotated tolerance text.
+    if not (pos[0]+hw<bounds[0] or pos[0]-hw>bounds[2] or pos[1]+hh<bounds[1] or pos[1]-hh>bounds[3]):continue
+    backup=image.copy();old_boxes=list(painter.boxes);old_labels=list(painter.labels);old_segments=list(painter.line_segments)
+    try:
+     painter.label(text,pos,angle=angle)
+     painter.line(2*cp-tip,tip+v*(layer.width+distance+7*S));painter.arrow(tip,tip+v*18*S)
+     drawn.append(item['id']);records.append({'id':item['id'],'view':view,'mode':'inclined-diameter','labelAngleDeg':angle,'placedLabelPixels':(pos/S).tolist(),'contactPixels':(tip/S).tolist(),'circleCenterPixels':(cp/S).tolist(),'radialDirectionPixels':v.tolist(),'outwardOffsetPixels':float(distance/S)});placed=True;break
+    except ValueError as ex:
+     reason=str(ex);image.paste(backup,(0,0));painter.boxes=old_boxes;painter.labels=old_labels;painter.line_segments=old_segments
+   if not placed:failed.append({'id':item['id'],'dimension':dim,'reason':reason})
+   continue
   chamfer=dim.get('sourceMeasurement',{}).get('chamferAngleDeg') is not None or dim.get('scriptReference',{}).get('kind')=='chamfer'
   gap=32*S if chamfer else 16*S
   aligned=chamfer or dim.get('type')=='radius' or dim.get('scriptReference',{}).get('kind')=='radius'

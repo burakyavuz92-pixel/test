@@ -86,3 +86,29 @@ class LeaderAlignment(unittest.TestCase):
    r=render(image,lambda n:ImageFont.truetype('/workspace/fonts/arial/arial.ttf',n),1,items,lambda p:(p[0],850-p[1]),lambda p:p,{'sourcePixels':[1754,1236]},{'front':bounds},lambda d:'R2' if d else '30')
    self.assertFalse(r['failed']);base,leader=r['templatePlacements'];self.assertEqual(leader['mode'],'aligned-leader')
    self.assertTrue(abs(base['placedLabelPixels'][0]-leader['placedLabelPixels'][0])<1e-6 or abs(base['placedLabelPixels'][1]-leader['placedLabelPixels'][1])<1e-6)
+
+class RadialDiameters(unittest.TestCase):
+ def draw_circle(self,blocked=False):
+  from unittest.mock import patch
+  image=Image.new('RGB',(600,600),'white');bounds=[150,150,450,450]
+  ImageDraw.Draw(image).ellipse(bounds,outline='black')
+  item={'id':'hole','kind':'circle','center':[300,300],'radius':8,'dimension':{},'templateBinding':{'view':'front','marker':{'centerPixels':[450,100]},'sourceFrame':{'bboxPixels':bounds}}}
+  args=(image,lambda n:ImageFont.truetype('/workspace/fonts/arial/arial.ttf',n),1,[item],lambda p:(p[0],600-p[1]),lambda p:p,{'sourcePixels':[600,600]},{'front':bounds},lambda d:'Ø16')
+  if blocked:
+   before=image.tobytes()
+   with patch('dimension_annotations.Annotations.label',side_effect=ValueError('blocked')):result=render(*args)
+   self.assertEqual(before,image.tobytes())
+   return result
+  return render(*args)
+ def test_outward_extension_keeps_contact_and_straight_radial_line(self):
+  import numpy as np
+  result=self.draw_circle();self.assertFalse(result['failed']);r=result['templatePlacements'][0]
+  self.assertEqual(r['mode'],'inclined-diameter');self.assertGreater(r['outwardOffsetPixels'],18)
+  center=np.array(r['circleCenterPixels']);tip=np.array(r['contactPixels']);direction=np.array(r['radialDirectionPixels'])
+  self.assertAlmostEqual(np.linalg.norm(tip-center),8)
+  a,b=map(np.array,result['lineSegments'][0]);delta=b-a
+  self.assertAlmostEqual(delta[0]*direction[1]-delta[1]*direction[0],0)
+  self.assertAlmostEqual((tip-center)[0]*direction[1]-(tip-center)[1]*direction[0],0)
+ def test_blocked_ray_is_reported_without_short_leader_or_stray_lines(self):
+  result=self.draw_circle(blocked=True)
+  self.assertEqual(len(result['failed']),1);self.assertFalse(result['placed']);self.assertFalse(result['lineSegments'])
