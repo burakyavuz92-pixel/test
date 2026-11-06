@@ -1,0 +1,19 @@
+{
+  "product": "730001",
+  "meshSha256": "0d25fabb74ecc221809d36dc4d12b413e5d9a24266efe855d5ab3ceae7fa6efe",
+  "camera": {
+    "direction": [
+      1,
+      1,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic"
+  },
+  "onlyChanged": "VTK interpolation mode; lighting, material, silhouette, mesh and camera identical; default remains phong.",
+  "apiCalls": 0
+}
