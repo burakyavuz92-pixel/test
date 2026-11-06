@@ -1,0 +1,138 @@
+{
+  "placed": [
+    "column_G",
+    "column_B",
+    "column_A",
+    "column_C",
+    "column_D",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_G",
+      "view": "front",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1182.8166666666666,
+        495.46011904761906
+      ],
+      "bandCoordinate": 1196.5666666666666,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.744583808437856,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "front",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1222.945238095238,
+        449.0
+      ],
+      "bandCoordinate": 1237.195238095238,
+      "innerExtentMm": 8.244583808437856,
+      "outerExtentMm": 11.608893956670467,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        255.33333333333331,
+        449.0
+      ],
+      "bandCoordinate": 269.8333333333333,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.924173318129989,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -53.15189073576574,
+      "placedLabelPixels": [
+        1027.3817702297476,
+        184.152402603602
+      ],
+      "contactPixels": [
+        937.9382481309477,
+        332.68642683563274
+      ],
+      "circleCenterPixels": [
+        920.4071428571428,
+        356.0797619047619
+      ],
+      "radialDirectionPixels": [
+        0.599695733425481,
+        -0.8002281095483177
+      ],
+      "outwardOffsetPixels": 130.0
+    },
+    {
+      "id": "column_D",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -44.77487336676873,
+      "placedLabelPixels": [
+        772.4892882438893,
+        713.3323032026575
+      ],
+      "contactPixels": [
+        899.6549935355462,
+        562.5099461143416
+      ],
+      "circleCenterPixels": [
+        920.4071428571428,
+        541.9202380952381
+      ],
+      "radialDirectionPixels": [
+        -0.7098796803282782,
+        0.7043229653057052
+      ],
+      "outwardOffsetPixels": 154.0
+    },
+    {
+      "id": "column_E",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -16.73796692353423,
+      "placedLabelPixels": [
+        650.7573609083879,
+        545.2351340157282
+      ],
+      "contactPixels": [
+        910.4090101635852,
+        452.0068065660952
+      ],
+      "circleCenterPixels": [
+        920.4071428571428,
+        449.0
+      ],
+      "radialDirectionPixels": [
+        -0.9576318657455479,
+        0.2879951557035305
+      ],
+      "outwardOffsetPixels": 234.0
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "column_J",
+      "reason": "Measurement endpoint is not on final body"
+    }
+  ],
+  "omitted": [
+    {
+      "id": "column_F",
+      "reason": "zero dimension"
+    }
+  ]
+}

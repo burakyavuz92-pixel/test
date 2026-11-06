@@ -1,0 +1,160 @@
+{
+  "placed": [
+    "column_J",
+    "column_G",
+    "column_F",
+    "column_B",
+    "column_A",
+    "column_C",
+    "column_D",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_J",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        352.78234533254226,
+        725.4821428571429
+      ],
+      "bandCoordinate": 739.7321428571429,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.864310148232611,
+      "narrow": true
+    },
+    {
+      "id": "column_G",
+      "view": "front",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1165.6765832388865,
+        518.6901785714285
+      ],
+      "bandCoordinate": 1179.4265832388865,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.744583808437856,
+      "narrow": false
+    },
+    {
+      "id": "column_F",
+      "view": "front",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        813.3223570484101,
+        164.93343508300228
+      ],
+      "bandCoordinate": 179.18343508300228,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.864310148232611,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "front",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1205.8051546674578,
+        449.0
+      ],
+      "bandCoordinate": 1220.0551546674578,
+      "innerExtentMm": 8.244583808437856,
+      "outerExtentMm": 11.608893956670467,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        270.4734167611137,
+        449.0
+      ],
+      "bandCoordinate": 284.9734167611137,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.924173318129989,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -46.31743573782997,
+      "placedLabelPixels": [
+        1000.7479785619315,
+        167.99993400474014
+      ],
+      "contactPixels": [
+        899.7896220555734,
+        299.0492005098798
+      ],
+      "circleCenterPixels": [
+        889.6944403817434,
+        309.6196428571428
+      ],
+      "radialDirectionPixels": [
+        0.6906623722118589,
+        -0.723177355571016
+      ],
+      "outwardOffsetPixels": 122.0
+    },
+    {
+      "id": "column_D",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -37.11955598211654,
+      "placedLabelPixels": [
+        738.2945825894514,
+        724.9113548622452
+      ],
+      "contactPixels": [
+        878.0394319825112,
+        597.2012257881931
+      ],
+      "circleCenterPixels": [
+        889.6944403817434,
+        588.3803571428572
+      ],
+      "radialDirectionPixels": [
+        -0.7973779976669697,
+        0.6034801809807959
+      ],
+      "outwardOffsetPixels": 146.0
+    },
+    {
+      "id": "column_E",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -29.560642797008228,
+      "placedLabelPixels": [
+        606.7605829850605,
+        543.5333981292488
+      ],
+      "contactPixels": [
+        718.7873109782741,
+        459.30150265529835
+      ],
+      "circleCenterPixels": [
+        736.9502737150768,
+        449.0
+      ],
+      "radialDirectionPixels": [
+        -0.8698340193223626,
+        0.49334448292192734
+      ],
+      "outwardOffsetPixels": 98.0
+    }
+  ],
+  "unresolved": [],
+  "omitted": []
+}

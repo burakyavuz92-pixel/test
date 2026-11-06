@@ -1,0 +1,178 @@
+[
+  {
+    "outputId": "11-30-260",
+    "F": 0,
+    "E": 21,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        110.5,
+        0.0,
+        -33.5
+      ]
+    ],
+    "distanceToBodyMm": [
+      10.5,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-299",
+    "F": 0,
+    "E": 20,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        77.0,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      10.0,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-372",
+    "F": 0,
+    "E": 5,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        54.0,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      2.5,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-381",
+    "F": 0,
+    "E": 14,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        65.0,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      7.0,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-382",
+    "F": 0,
+    "E": 5,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        65.0,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      2.5,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-81",
+    "F": 0,
+    "E": 5,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        50.5,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      2.5,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-905",
+    "F": 0,
+    "E": 30.5,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        65.0,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      15.25,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  },
+  {
+    "outputId": "11-30-912",
+    "F": 0,
+    "E": 20,
+    "JPoints": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        65.0,
+        0.0,
+        -33.0
+      ]
+    ],
+    "distanceToBodyMm": [
+      10.0,
+      0.0
+    ],
+    "explanation": "First J point is at the central through-hole, outside material."
+  }
+]
