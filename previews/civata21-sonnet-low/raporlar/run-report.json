@@ -1,0 +1,72 @@
+{
+  "Status": "sheets-produced-with-unconfirmed-labels",
+  "Issues": [],
+  "Run": {
+    "Stage": "sheets",
+    "ApiCalls": 2,
+    "ReportedCostUsd": 0.063534,
+    "Model": "anthropic/claude-sonnet-5.5",
+    "Reasoning": "low",
+    "Replay": false,
+    "Usage": [
+      {
+        "prompt_tokens": 8922,
+        "completion_tokens": 1311,
+        "total_tokens": 10233,
+        "cost": 0.030954,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.030954,
+          "upstream_inference_prompt_cost": 0.017844,
+          "upstream_inference_completions_cost": 0.01311
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      {
+        "prompt_tokens": 9960,
+        "completion_tokens": 1266,
+        "total_tokens": 11226,
+        "cost": 0.03258,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.03258,
+          "upstream_inference_prompt_cost": 0.01992,
+          "upstream_inference_completions_cost": 0.01266
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    ],
+    "ApiTimings": [
+      {
+        "Name": "geometry",
+        "Seconds": 14.3465904
+      },
+      {
+        "Name": "measurements",
+        "Seconds": 9.9969383
+      }
+    ],
+    "TotalSeconds": 59.1358979
+  },
+  "HumanApproved": false
+}

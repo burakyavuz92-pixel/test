@@ -1,0 +1,778 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "730001",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3435.1533333333336
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3435.1533333333336
+            }
+          ],
+          "packages": [
+            [
+              1040.857383051292,
+              271.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              61.84785924176788,
+              261.3619047619047,
+              859.0095238095239,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730003",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3184.581904761905
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3184.581904761905
+            }
+          ],
+          "packages": [
+            [
+              999.0954782893871,
+              271.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              103.6097640036727,
+              261.3619047619047,
+              775.4857142857144,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730006",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3201.2866666666673
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3201.286666666667
+            }
+          ],
+          "packages": [
+            [
+              1153.4478592417681,
+              401.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              249.25738305129175,
+              391.3619047619047,
+              784.1904761904763,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730013",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3284.040476190476
+            }
+          ],
+          "packages": [
+            [
+              949.217562147448,
+              238.60289650257033,
+              413.99344713367543,
+              452.79420699485934
+            ],
+            [
+              86.78899071887656,
+              227.95238095238093,
+              742.4285714285714,
+              474.09523809523813
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730014",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3763.258333333333
+            }
+          ],
+          "packages": [
+            [
+              991.0065528663245,
+              238.60289650257033,
+              413.99344713367543,
+              452.79420699485934
+            ],
+            [
+              45.0,
+              227.95238095238093,
+              901.375,
+              474.09523809523813
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730016",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 3639.016666666667
+            }
+          ],
+          "packages": [
+            [
+              991.0065528663246,
+              238.60289650257033,
+              413.99344713367543,
+              452.79420699485934
+            ],
+            [
+              45.0,
+              227.95238095238093,
+              854.8333333333334,
+              474.09523809523813
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730017",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.0,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3672.3609523809528
+            },
+            {
+              "scale": 2.0,
+              "accepted": true,
+              "reasons": [],
+              "score": 3672.3609523809523
+            }
+          ],
+          "packages": [
+            [
+              1229.193097337006,
+              401.98231720205627,
+              347.2947577069403,
+              386.0353655958874
+            ],
+            [
+              173.5121449560536,
+              391.3619047619047,
+              935.6809523809525,
+              407.2761904761905
+            ]
+          ]
+        },
+        "scaleLabel": "2:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_C",
+          "column_B",
+          "column_L"
+        ],
+        "unresolvedDimensions": [
+          {
+            "id": "column_E",
+            "reason": "Measurement endpoint is not on final body"
+          }
+        ],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    }
+  ]
+}
