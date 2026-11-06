@@ -1,0 +1,20 @@
+{
+  "product": "730001",
+  "meshSha256": "0d25fabb74ecc221809d36dc4d12b413e5d9a24266efe855d5ab3ceae7fa6efe",
+  "camera": {
+    "direction": [
+      1,
+      1,
+      1
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "projection": "orthographic"
+  },
+  "onlyChanged": "specular: 0.15 -> 0.0; Phong interpolation, ambient 0.40, diffuse 0.58, color, silhouette and mesh identical",
+  "apiCalls": 0,
+  "defaultUnchanged": true
+}
