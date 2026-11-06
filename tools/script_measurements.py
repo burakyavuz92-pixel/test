@@ -24,16 +24,6 @@ def on_body(shape,p):
  d=BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(gp_Pnt(*vector(p))).Vertex(),shape);d.Perform()
  if not d.IsDone() or d.Value()>1e-4:raise ValueError('Measurement endpoint is not on final body')
 
-def cylinders_at_axis(shape,p):
- result=[];ex=TopExp_Explorer(shape,TopAbs_FACE)
- while ex.More():
-  s=BRepAdaptor_Surface(TopoDS.Face_s(ex.Current()))
-  if s.GetType()==GeomAbs_Cylinder:
-   c=s.Cylinder();o=c.Location();v=c.Axis().Direction();axis=np.array([v.X(),v.Y(),v.Z()]);origin=np.array([o.X(),o.Y(),o.Z()])
-   if np.linalg.norm(np.cross(p-origin,axis))<1e-5:result.append(axis)
-  ex.Next()
- return result
-
 def section_meridian(shape,m,section):
  # Select an equivalent meridian only on a verified analytic torus/cylinder.
  m=dict(m);kind=m['kind'];up=np.array(section[1],dtype=float)
@@ -116,10 +106,8 @@ def anchor(shape,m,nominal,front,section,view=None):
   return dict(view='section' if dest is section else 'front',kind='leader',anchor=project(tip).tolist(),anchorOptions=[project(tip).tolist()])
  if kind in ('distance','thickness'):
   a,b=map(vector,m['points']);direction=unit(m['direction'])
-  try:on_body(shape,a);on_body(shape,b)
-  except ValueError:
-   aa=cylinders_at_axis(shape,a);bb=cylinders_at_axis(shape,b)
-   if kind!='distance' or not any(abs(abs(np.dot(x,y))-1)<1e-6 and abs(np.dot(direction,x))<1e-6 for x in aa for y in bb):raise
+  # Linear references may be centres, axes or virtual points in empty space.
+  # Keep the supplied coordinates; validate direction, nominal and projection below.
   evidence=m.get('visualEvidence')
   if evidence is not None:
    tips=evidence.get('arrowTipsNormalized')

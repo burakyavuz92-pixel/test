@@ -1,0 +1,1362 @@
+{
+  "11-30-372": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 114.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 57.0
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          54.0,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        22.25,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -22.25,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 5.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.5
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 44.5,
+      "points": [
+        [
+          0.0,
+          22.25,
+          -1.5
+        ],
+        [
+          0.0,
+          -22.25,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 22.25,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -22.25,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-905": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 136.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 68.0
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          65.0,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 30.5,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 15.25
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 70.0,
+      "points": [
+        [
+          0.0,
+          35.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 35.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-81": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 107.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 53.5
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          50.5,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        22.25,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -22.25,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 5.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.5
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 44.5,
+      "points": [
+        [
+          0.0,
+          22.25,
+          -1.5
+        ],
+        [
+          0.0,
+          -22.25,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 22.25,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -22.25,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-260": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 227.0,
+      "center": [
+        0.0,
+        0.0,
+        -20.0
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 113.5
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.5,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          110.5,
+          0.0,
+          -33.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        78.75,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -78.75,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 21.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.5
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 157.5,
+      "points": [
+        [
+          0.0,
+          78.75,
+          -1.5
+        ],
+        [
+          0.0,
+          -78.75,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 78.75,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -78.75,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-299": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 160.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 80.0
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          77.0,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        44.5,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -44.5,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 89.0,
+      "points": [
+        [
+          0.0,
+          44.5,
+          -1.5
+        ],
+        [
+          0.0,
+          -44.5,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 44.5,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -44.5,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-381": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 136.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 68.0
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          65.0,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 70.0,
+      "points": [
+        [
+          0.0,
+          35.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 35.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-912": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 136.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 68.0
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          65.0,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 20.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 10.0
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 70.0,
+      "points": [
+        [
+          0.0,
+          35.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 35.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ],
+  "11-30-382": [
+    {
+      "id": "rec-sec-A",
+      "markerId": "sec-A",
+      "source": "A",
+      "kind": "diameter",
+      "nominal": 136.0,
+      "center": [
+        0.0,
+        0.0,
+        -19.75
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 68.0
+    },
+    {
+      "id": "rec-sec-J",
+      "markerId": "sec-J",
+      "source": "J",
+      "kind": "distance",
+      "nominal": 33.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          65.0,
+          0.0,
+          -33.0
+        ]
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "rec-front-F",
+      "markerId": "front-F",
+      "source": "F",
+      "kind": "distance",
+      "nominal": 0.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          -0.0,
+          0.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-C",
+      "markerId": "front-C",
+      "source": "C",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-D",
+      "markerId": "front-D",
+      "source": "D",
+      "kind": "diameter",
+      "nominal": 14.0,
+      "center": [
+        0.0,
+        -35.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 7.0
+    },
+    {
+      "id": "rec-front-E",
+      "markerId": "front-E",
+      "source": "E",
+      "kind": "diameter",
+      "nominal": 5.0,
+      "center": [
+        -0.0,
+        0.0,
+        -1.5
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.5
+    },
+    {
+      "id": "rec-front-B",
+      "markerId": "front-B",
+      "source": "B",
+      "kind": "distance",
+      "nominal": 70.0,
+      "points": [
+        [
+          0.0,
+          35.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "id": "rec-front-G",
+      "markerId": "front-G",
+      "source": "G",
+      "kind": "distance",
+      "nominal": 35.0,
+      "points": [
+        [
+          0.0,
+          0.0,
+          -1.5
+        ],
+        [
+          0.0,
+          -35.0,
+          -1.5
+        ]
+      ],
+      "direction": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  ]
+}
