@@ -1,0 +1,104 @@
+Read the JPEG, nominal Excel table and supplied CadQuery geometry. Produce measurement references for that geometry without changing it. Use the same build_measurements(p) function for every row. p contains nominal millimetres; local software supplies visible values, replacement text, symbols, tolerances, arrows and layout, and does not draw zero-valued dimensions.
+
+Coordinate reference: in the section view on the left of the source JPEG, the direction toward page-left is +Z. The centre of the end face on that side is the origin; the body extends towards -Z. In the main view, +X is page-right and +Y is page-up. This page-left rule refers to the source section, not the isometric view. All geometric points, centres and directions below use the generated solid's world XYZ coordinates, after any CadQuery workplane transformations.
+
+Return only JSON with this structure:
+{"script":"Python defining build_measurements(p)","markers":[{"id":"unique occurrence id","label":"bracket content without brackets","view":"section","centerNormalized":[0.2,0.3],"arrowTipsNormalized":[[0.2,0.4],[0.3,0.4]],"viewFrameNormalized":[0.1,0.1,0.4,0.7],"sectionAxisNormalized":[-1,0],"meaning":"short geometric relation"}]}
+The coordinates in this example illustrate fields, not locations to reuse.
+
+Visual markers:
+- Report bracketed measurement occurrences only. Identical text at different locations has independent unique ids. @ surface labels belong to STEP, not measurements. OCR determines which bracketed occurrences may be drawn.
+- Image coordinates are 0..1 in the full JPEG, with origin top-left and y downward. view is front or section, selected from arrow targets and geometry.
+- Each marker contains the fields shown above; omit sectionAxisNormalized for front. For section, the stated page-left +Z direction is [-1,0]. viewFrameNormalized is [left,top,right,bottom], the minimum x/y and maximum x/y of the geometry. Repeat this same box for every marker in a view; exclude labels and dimension lines.
+- A leader has one arrow tip; a linear measurement has two. Marker centre, frame and arrow positions must be known. If an occurrence cannot be located, omit its marker and return its measurement as unresolved rather than putting null in coordinate fields.
+
+build_measurements(p) returns a list of records. Each resolved record has id, markerId matching its marker, source preserving the bracket content (including literal tolerances/chamfer text), kind and nominal. ids are unique per occurrence; source is the Excel column or literal content, not the occurrence id. Follow the indicated feature even when another feature has the same value. Written nominal dimensions take priority over schematic pixel proportions.
+
+Resolved reference fields by kind (directions/axes are unit vectors):
+- diameter: center on the axis, axis, radius. Support may be a cylinder or full circular edge, including a cone end circle.
+- radius: center of the indicated circular arc, axis normal to its plane, radius, and point on that actual arc.
+- distance or thickness: points:[[x1,y1,z1],[x2,y2,z2]], direction. Choose points at the two intended measured positions. They may lie on surfaces, centres, axes or virtual extensions; material contact is not required, including at a hole centre. Their radial positions may differ: nominal is the absolute separation projected onto direction, not necessarily their diagonal distance. For distances between parallel axes, direction is perpendicular to those axes.
+- chamfer: points at the boundaries of the same indicated chamfer face, direction along the dimensioned leg, nominal equal to that leg, angleDeg. Use kind chamfer, including for a single-arrow leader. Excel provides p[label] for the leg and p[label+"__angleDeg"] for its angle.
+
+If one reference cannot be determined, return its id, source, kind, nominal and unresolved:"short Turkish reason"; include markerId when a known marker exists. Omit unavailable geometric fields. If the entire row cannot yield measurement data, return {"error":"short Turkish reason for this row"}. Successful rows return data only.
+
+The script may import cadquery/math and define functions, uppercase finite numeric literal constants, and empty Exception/ValueError/RuntimeError subclasses; no IO or exports. Geometry helpers and constants are already available in the same validated namespace. Reuse them without copying or redefining the supplied geometry or its helpers. Unbracketed Excel columns remain available as geometry data but are not drawing annotations.
+
+The table contains representative rows selected from the full input group. Generate reusable parametric functions for the same sketch and parameter schema, including rows not shown. Use p for row-dependent values; do not dispatch by product id or hard-code example dimensions. All original rows will be executed locally.
+
+GEOMETRY:
+import math
+import cadquery as cq
+
+NECK_LEN = 5.0
+TAPER_HALF_ANGLE_DEG = 10.0
+HEAD_EDGE_FILLET = 2.0
+
+def _val(p, key):
+    v = p.get(key)
+    if v is None:
+        return None
+    return float(v)
+
+def _layout(p):
+    A = _val(p, 'A')
+    B = _val(p, 'B')
+    C = _val(p, 'C')
+    D = _val(p, 'D')
+    L = _val(p, 'L')
+    if A is None or B is None or C is None or D is None or L is None:
+        raise ValueError('Eksik olcu verisi var')
+    for name, v in (('A', A), ('B', B), ('C', C), ('D', D), ('L', L)):
+        if v <= 0:
+            raise ValueError(name + ' olcusu pozitif olmali')
+    if L <= C or L <= A:
+        raise ValueError('Kafa capi govde capindan buyuk olmali')
+    E = _val(p, 'E')
+    if E is None or E == 0:
+        ch_ax = 0.0
+        ch_rad = 0.0
+    else:
+        ang = p.get('E__angleDeg')
+        ang = 45.0 if ang is None else float(ang)
+        if E < 0 or ang <= 0 or ang >= 90:
+            raise ValueError('Pah olcusu gecersiz')
+        ch_ax = E
+        ch_rad = E * math.tan(math.radians(ang))
+        if ch_rad >= A / 2.0:
+            raise ValueError('Pah govde yaricapindan buyuk')
+    taper = abs(C - A) / 2.0 / math.tan(math.radians(TAPER_HALF_ANGLE_DEG))
+    s1 = B - NECK_LEN - taper
+    if s1 <= ch_ax:
+        raise ValueError('B boyu govde ve boyun icin yetersiz')
+    return {'A': A, 'B': B, 'C': C, 'D': D, 'L': L, 'ch_ax': ch_ax, 'ch_rad': ch_rad, 'taper': taper, 's1': s1}
+
+def build_part(p):
+    try:
+        g = _layout(p)
+    except ValueError as exc:
+        return {'error': str(exc)}
+    A = g['A']
+    B = g['B']
+    C = g['C']
+    D = g['D']
+    L = g['L']
+    ax = cq.Vector(0, 0, -1)
+    origin = cq.Vector(0, 0, 0)
+    parts = []
+    if g['ch_ax'] > 0:
+        parts.append(cq.Solid.makeCone(A / 2.0 - g['ch_rad'], A / 2.0, g['ch_ax'], origin, ax))
+    parts.append(cq.Solid.makeCylinder(A / 2.0, g['s1'] - g['ch_ax'], cq.Vector(0, 0, -g['ch_ax']), ax))
+    if g['taper'] > 1e-9:
+        parts.append(cq.Solid.makeCone(A / 2.0, C / 2.0, g['taper'], cq.Vector(0, 0, -g['s1']), ax))
+    parts.append(cq.Solid.makeCylinder(C / 2.0, NECK_LEN, cq.Vector(0, 0, -(g['s1'] + g['taper'])), ax))
+    head = cq.Workplane('XY').workplane(offset=-(B + D)).circle(L / 2.0).extrude(D)
+    head = head.faces('<Z').edges().fillet(min(HEAD_EDGE_FILLET, 0.4 * D))
+    parts.append(head.val())
+    shape = parts[0]
+    for part in parts[1:]:
+        shape = shape.fuse(part)
+    shape = shape.clean()
+    return cq.Workplane('XY').newObject([shape])
+
+TABLE:
+{"schemaVersion":1,"lengthUnit":"mm","rows":[{"outputId":"730001","parameters":{"A":11,"B":39,"C":11.9,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":11,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":39,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":11.9,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}},{"outputId":"730003","parameters":{"A":11,"B":34,"C":11.9,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":11,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":34,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":11.9,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}},{"outputId":"730006","parameters":{"A":9,"B":35,"C":9.9,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":9,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":35,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":9.9,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}},{"outputId":"730013","parameters":{"A":9,"B":25,"C":9.9,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":9,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":25,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":9.9,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}},{"outputId":"730014","parameters":{"A":11.7,"B":31.75,"C":12.6,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":11.7,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":31.75,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":12.6,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}},{"outputId":"730016","parameters":{"A":11,"B":30,"C":11.9,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":11,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":30,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":11.9,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}},{"outputId":"730017","parameters":{"A":11.7,"B":43.5,"C":12.6,"D":5,"E":1.5,"L":16,"E__angleDeg":45},"cells":{"A":{"state":"number","nominalMm":11.7,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null},"B":{"state":"number","nominalMm":43.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"C":{"state":"number","nominalMm":12.6,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"D":{"state":"number","nominalMm":5,"isZero":false,"diameterSymbol":false,"radiusSymbol":false,"chamferAngleDeg":null},"E":{"state":"number","nominalMm":1.5,"isZero":false,"diameterSymbol":false,"radiusSymbol":null,"chamferAngleDeg":45},"L":{"state":"number","nominalMm":16,"isZero":false,"diameterSymbol":true,"radiusSymbol":false,"chamferAngleDeg":null}}}]}

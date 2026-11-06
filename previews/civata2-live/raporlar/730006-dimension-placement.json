@@ -1,0 +1,103 @@
+{
+  "placed": [
+    "column_D",
+    "rec-neck-5",
+    "column_A",
+    "column_C",
+    "column_B",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        943.9359544798631,
+        400.2785714285714
+      ],
+      "bandCoordinate": 412.5285714285714,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "rec-neck-5",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        860.4121449560537,
+        750.1214285714286
+      ],
+      "bandCoordinate": 762.3714285714286,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        272.4240497179584,
+        579.0
+      ],
+      "bandCoordinate": 284.6740497179584,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        1028.9311925751012,
+        579.0
+      ],
+      "bandCoordinate": 1046.9311925751012,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 7.762257696693271,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        609.840716384625,
+        361.65
+      ],
+      "bandCoordinate": 375.9,
+      "innerExtentMm": 7.885404789053592,
+      "outerExtentMm": 11.249714937286202,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        272.4240497179584,
+        404.6119047619047
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "column_L",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

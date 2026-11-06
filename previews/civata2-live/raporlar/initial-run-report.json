@@ -1,0 +1,82 @@
+{
+  "Status": "failed",
+  "Issues": [
+    {
+      "Code": "CADQUERY_PIPELINE",
+      "Category": "measurement-execution",
+      "Severity": "error",
+      "Message": "Ortak \u00F6l\u00E7\u00FC fonksiyonu \u00E7al\u0131\u015Ft\u0131r\u0131lamad\u0131.",
+      "AffectedFields": [],
+      "RecommendedAction": "A\u015Fama kay\u0131tlar\u0131 incelenmeli; otomatik API tekrar\u0131 yok.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Stage": "measurement-execution",
+    "ApiCalls": 2,
+    "ReportedCostUsd": 0.0182727,
+    "Model": "anthropic/claude-haiku-5.5",
+    "Reasoning": "high",
+    "Replay": false,
+    "Usage": [
+      {
+        "prompt_tokens": 8896,
+        "completion_tokens": 17666,
+        "total_tokens": 26562,
+        "cost": 0.0097226,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0097226,
+          "upstream_inference_prompt_cost": 0.0008896,
+          "upstream_inference_completions_cost": 0.008833
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 15364,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      {
+        "prompt_tokens": 10791,
+        "completion_tokens": 14942,
+        "total_tokens": 25733,
+        "cost": 0.0085501,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0085501,
+          "upstream_inference_prompt_cost": 0.0010791,
+          "upstream_inference_completions_cost": 0.007471
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 12750,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    ],
+    "ApiTimings": [
+      {
+        "Name": "geometry",
+        "Seconds": 78.6375936
+      },
+      {
+        "Name": "measurements",
+        "Seconds": 62.3211057
+      }
+    ],
+    "TotalSeconds": 164.0610884
+  },
+  "HumanApproved": false
+}

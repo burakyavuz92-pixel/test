@@ -9,14 +9,19 @@ ALLOWED_MODULES={'cadquery':cq,'math':math}
 SAFE_BUILTINS={n:getattr(builtins,n) for n in ['abs','min','max','sum','range','len','float','int','str','bool','dict','list','tuple','set','enumerate','zip','round','format','sorted','isinstance','ValueError','RuntimeError','Exception']}
 DENIED={'open','eval','exec','compile','getattr','setattr','delattr','globals','locals','vars','dir','help','input','breakpoint','type','object','super','os','sys','subprocess','socket','pathlib','requests','builtins','importlib','inspect','ctypes','exporters','importers'}
 
+def numeric_constant(value,depth=0):
+ # Literal vectors/matrices are ordinary CAD data, not executable module code.
+ if type(value) in (int,float):return math.isfinite(value)
+ return type(value) in (list,tuple) and depth<4 and len(value)<=256 and all(numeric_constant(v,depth+1) for v in value)
+
 def load_script(source, entry="build_part"):
  tree=ast.parse(source)
  for statement in tree.body:
   if isinstance(statement,ast.Assign) and all(isinstance(t,ast.Name) and re.fullmatch(r'[A-Z][A-Z0-9_]*',t.id) for t in statement.targets):
    try:value=ast.literal_eval(statement.value)
-   except (ValueError,TypeError):raise ValueError('Module constants must be numeric literals')
-   if type(value) not in (int,float) or not math.isfinite(value):raise ValueError('Module constants must be finite numbers')
-  elif not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef,ast.ClassDef)):raise ValueError('Only imports, numeric constants, functions and empty exception subclasses are allowed at module level')
+   except (ValueError,TypeError):raise ValueError('Module constants must be numeric literals or literal numeric lists/tuples')
+   if not numeric_constant(value):raise ValueError('Module constants must contain only finite numbers')
+  elif not isinstance(statement,(ast.Import,ast.ImportFrom,ast.FunctionDef,ast.ClassDef)):raise ValueError('Only imports, numeric literal constants/containers, functions and empty exception subclasses are allowed at module level')
  for node in ast.walk(tree):
   if isinstance(node,ast.ClassDef):
    inert=lambda n:isinstance(n,ast.Pass) or (isinstance(n,ast.Expr) and isinstance(n.value,ast.Constant) and isinstance(n.value.value,str))

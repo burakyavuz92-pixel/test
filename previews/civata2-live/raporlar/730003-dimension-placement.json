@@ -1,0 +1,103 @@
+{
+  "placed": [
+    "column_D",
+    "rec-neck-5",
+    "column_A",
+    "column_C",
+    "column_B",
+    "column_E"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        785.5835735274823,
+        270.2785714285714
+      ],
+      "bandCoordinate": 282.5285714285714,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "rec-neck-5",
+      "view": "section",
+      "side": "bottom",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        702.0597640036729,
+        620.1214285714286
+      ],
+      "bandCoordinate": 632.3714285714286,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_A",
+      "view": "section",
+      "side": "left",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        130.77643067033935,
+        449.0
+      ],
+      "bandCoordinate": 143.02643067033935,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_C",
+      "view": "section",
+      "side": "right",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        870.5788116227204,
+        449.0
+      ],
+      "bandCoordinate": 888.5788116227204,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 7.762257696693271,
+      "narrow": false
+    },
+    {
+      "id": "column_B",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        459.8407163846251,
+        231.64999999999998
+      ],
+      "bandCoordinate": 245.89999999999998,
+      "innerExtentMm": 7.885404789053592,
+      "outerExtentMm": 11.249714937286202,
+      "narrow": false
+    },
+    {
+      "id": "column_E",
+      "view": "section",
+      "mode": "aligned-leader",
+      "placedLabelPixels": [
+        130.77643067033935,
+        274.6119047619047
+      ]
+    }
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "column_L",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

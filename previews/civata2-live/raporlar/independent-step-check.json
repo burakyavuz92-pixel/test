@@ -1,0 +1,40 @@
+{
+  "scope": "Nominal envelope, A shank, C neck and literal 5 length, 1.5x45 end chamfer circles, mount shoulder plane/area. Unspecified head curvature/taper shape are not independently confirmed.",
+  "results": [
+    {
+      "outputId": "730001",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "outputId": "730003",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "outputId": "730006",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "outputId": "730013",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "outputId": "730014",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "outputId": "730016",
+      "passed": true,
+      "issues": []
+    },
+    {
+      "outputId": "730017",
+      "passed": true,
+      "issues": []
+    }
+  ]
+}

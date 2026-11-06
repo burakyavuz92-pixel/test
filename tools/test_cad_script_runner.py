@@ -28,7 +28,15 @@ class ScriptTests(unittest.TestCase):
  def test_numeric_module_constants(self):
   f=r.load_script('R=5.0\ndef build_part(p): return R')
   self.assertEqual(f({}),5)
-  for expr in ('float(5)','[1,2]','True'):
+  for expr in ('float(5)','True'):
    with self.assertRaises(ValueError):r.load_script('R='+expr+'\ndef build_part(p): return R')
+
+class NumericContainers(unittest.TestCase):
+ def test_vector_and_matrix_literals(self):
+  source='AXIS=[0.,0.,1.]\nMATRIX=((1,0),(0,1))\ndef build_measurements(p): return list(AXIS), MATRIX'
+  self.assertEqual(r.load_script(source,'build_measurements')({}),([0.,0.,1.],((1,0),(0,1))))
+ def test_non_numeric_or_executable_containers_are_rejected(self):
+  for expr in ('[True,0,1]','[0,"axis",1]','[0,None,1]','{"x":1}','[float(1)]','[1e999]','[[[[[1]]]]]'):
+   with self.subTest(expr=expr),self.assertRaises(ValueError):r.load_script('AXIS='+expr+'\ndef build_part(p): return AXIS')
 
 if __name__=='__main__':unittest.main()

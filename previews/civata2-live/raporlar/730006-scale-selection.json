@@ -1,0 +1,74 @@
+{
+  "scale": 2.0,
+  "attempts": [
+    {
+      "scale": 5.0,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 4.0,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 3.3333333333333335,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 2.5,
+      "accepted": false,
+      "reasons": [
+        "Dimensioned packages exceed available page region"
+      ]
+    },
+    {
+      "scale": 2.0,
+      "accepted": true,
+      "reasons": [],
+      "score": 3209.504886011963
+    },
+    {
+      "scale": 2.0,
+      "accepted": true,
+      "reasons": [],
+      "score": 3209.5048860119628
+    }
+  ],
+  "panels": [
+    [
+      1217.1978592417681,
+      445.48231720205627,
+      266.7947577069403,
+      267.0353655958874
+    ],
+    [
+      317.50738305129175,
+      445.3619047619047,
+      668.1904761904763,
+      267.2761904761905
+    ]
+  ],
+  "packages": [
+    [
+      1187.1978592417681,
+      410.48231720205627,
+      326.7947577069403,
+      369.0353655958874
+    ],
+    [
+      236.00738305129175,
+      391.3619047619047,
+      831.1904761904763,
+      407.2761904761905
+    ]
+  ],
+  "unresolvedReferenceCount": 0
+}

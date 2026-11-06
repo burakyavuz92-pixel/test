@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/test/tools/evaluate_script_measurements.py", line 12, in <module>
+    build=runner.load_script(source,'build_measurements');refs={}
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/test/tools/cad_script_runner.py", line 18, in load_script
+    if type(value) not in (int,float) or not math.isfinite(value):raise ValueError('Module constants must be finite numbers')
+                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Module constants must be finite numbers
