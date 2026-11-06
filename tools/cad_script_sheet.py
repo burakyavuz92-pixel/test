@@ -48,6 +48,12 @@ def take_column_dimension(drawing,label,record_id):
     result['id']=record_id;drawing['dimensions'].append(result)
     return result
 
+def unbound_nonmeasurement(record,cells):
+    if record['source'] in cells or record.get('markerId') or record.get('nominal') is not None or not record.get('unresolved'):return False
+    from bracket_content import literal
+    try:literal(record['source']);return False
+    except ValueError:return True
+
 def run(folder,image,excel):
     root=pathlib.Path(folder);job=json.loads((root/'sheet-input.json').read_text());saved={r['outputId']:r['parameters'] for r in json.loads((root/'rows.json').read_text())}
     def parameters(cells):
@@ -74,9 +80,11 @@ def run(folder,image,excel):
             reader.TransferRoots();shape=reader.OneShape()
             if shape.IsNull() or not BRepCheck_Analyzer(shape).IsValid():raise ValueError('Invalid script STEP')
             drawing=row['drawing'];drawing['dimensions']=dimensions(shape,row['cells'])
-            records=references.get(row['outputId'],[]);seen=set()
+            records=references.get(row['outputId'],[]);seen=set();ignored=[]
             for m in records:
                 label=m['source']
+                if unbound_nonmeasurement(m,row['cells']):
+                    ignored.append({'id':m['id'],'source':label,'reason':m['unresolved']});continue
                 if m['id'] in seen:raise ValueError('Duplicate measurement id: '+m['id'])
                 seen.add(m['id'])
                 existing=take_column_dimension(drawing,label,m['id'])
@@ -104,6 +112,7 @@ def run(folder,image,excel):
             drawing['templateLayout']=layout;drawing['geometricTolerances']=[]
             recipe={'outputId':row['outputId'],'geometry':{'operations':[],'frames':[]},'drawing':resolve_local_sections(drawing,box(shape))}
             report=sheet(recipe,shape,{},out,image)
+            report['ignoredNonmeasurementReferences']=ignored
             report['unconfirmedVisualLabels']=layout.get('unconfirmedModelMarkers',[])
             results.append({'outputId':row['outputId'],'status':'sheet-produced','drafting':report})
         except Exception as ex:record_failure(root,row['outputId'],'sheets',ex);traceback.print_exc();results.append({'outputId':row['outputId'],'status':'failed','error':str(ex)})

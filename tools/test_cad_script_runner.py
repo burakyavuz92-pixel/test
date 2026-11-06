@@ -39,4 +39,9 @@ class NumericContainers(unittest.TestCase):
   for expr in ('[True,0,1]','[0,"axis",1]','[0,None,1]','{"x":1}','[float(1)]','[1e999]','[[[[[1]]]]]'):
    with self.subTest(expr=expr),self.assertRaises(ValueError):r.load_script('AXIS='+expr+'\ndef build_part(p): return AXIS')
 
+class StandardBuiltins(unittest.TestCase):
+ def test_predicates_and_data_exceptions(self):
+  f=r.load_script('def build_part(p):\n try:\n  if any(v is None for v in p.values()): return False\n  return all(v>0 for v in p.values()) and p["required"]\n except (TypeError,KeyError): return "invalid"')
+  self.assertFalse(f({'required':None}));self.assertTrue(f({'required':1}));self.assertEqual(f({'other':1}),'invalid');self.assertEqual(f({'required':'x'}),'invalid')
+
 if __name__=='__main__':unittest.main()

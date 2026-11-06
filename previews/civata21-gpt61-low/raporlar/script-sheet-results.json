@@ -1,0 +1,861 @@
+{
+  "apiCalls": 0,
+  "results": [
+    {
+      "outputId": "730001",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              1225.7995503696159,
+              377.16859798865687,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              127.03764560769787,
+              369.45238113933146,
+              978.761904761918,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730003",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.7619043880039
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              1007.8371959773137,
+              247.16859798865684,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              45.0,
+              239.4523811393315,
+              874.3571428571561,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730006",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.7619043880039
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              1007.8371959773136,
+              247.16859798865684,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              45.0,
+              239.4523811393315,
+              895.2380952381085,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730013",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.7619043880039
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              929.6328837029492,
+              247.16859798865684,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              123.2043122743645,
+              239.4523811393315,
+              686.4285714285847,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730014",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.7619043880039
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              1000.1060979886635,
+              247.16859798865684,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              52.731097988650276,
+              239.4523811393315,
+              827.3750000000132,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730016",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.7619043880039
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              981.8352646553301,
+              247.16859798865684,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              71.00193132198353,
+              239.4523811393315,
+              790.8333333333466,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    },
+    {
+      "outputId": "730017",
+      "status": "sheet-produced",
+      "drafting": {
+        "cosmeticThread": {
+          "tag": "dis",
+          "sectionRegions": 1,
+          "parallelLines": 2,
+          "dashedEnds": 2
+        },
+        "templateTitleBlock": true,
+        "paperMm": [
+          210.0,
+          148.0
+        ],
+        "imagePixels": [
+          1754,
+          1236
+        ],
+        "dpi": 212.15047619047618,
+        "drawingScale": 2.5,
+        "scaleSelection": {
+          "attempts": [
+            {
+              "scale": 5.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 4.0,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 3.3333333333333335,
+              "accepted": false,
+              "reasons": [
+                "Dimensioned packages exceed available page region"
+              ]
+            },
+            {
+              "scale": 2.5,
+              "accepted": true,
+              "reasons": [],
+              "score": 923.761904388004
+            }
+          ],
+          "packages": [
+            [
+              1272.7816932267588,
+              377.16859798865687,
+              397.1628040226863,
+              435.6628040226863
+            ],
+            [
+              80.05550275055509,
+              369.45238113933146,
+              1072.7261904762036,
+              451.095237721337
+            ]
+          ]
+        },
+        "scaleLabel": "2.5:1",
+        "centerlineCenters": 1,
+        "annotationMode": "geometry-linked-dimensions",
+        "placedDimensions": [
+          "column_D",
+          "column_L"
+        ],
+        "unresolvedDimensions": [],
+        "limits": [
+          "Unresolved dimensions remain in a separate table",
+          "Section jog connectors omitted; retained-material edges projected; band outlines may retain seam edges",
+          "Geometric tolerance leader placement pending"
+        ],
+        "visibleDimensions": [
+          "column_A",
+          "column_B",
+          "column_C",
+          "column_D",
+          "column_E",
+          "column_L"
+        ],
+        "ignoredNonmeasurementReferences": [
+          {
+            "id": "H_1",
+            "source": "H",
+            "reason": "H ba\u015fl\u0131k alan\u0131nda; geometrik \u00f6l\u00e7\u00fc ili\u015fkisi belirtilmemi\u015f."
+          }
+        ],
+        "unconfirmedVisualLabels": [
+          {
+            "id": "A_1",
+            "label": "A",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "B_1",
+            "label": "B",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "C_1",
+            "label": "C",
+            "reason": "No matching OCR text near model marker"
+          },
+          {
+            "id": "E_1",
+            "label": "E",
+            "reason": "No matching OCR text near model marker"
+          }
+        ]
+      }
+    }
+  ]
+}

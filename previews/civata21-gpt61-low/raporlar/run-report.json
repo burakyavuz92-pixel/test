@@ -1,0 +1,17 @@
+{
+  "Status": "sheets-produced-with-unconfirmed-labels",
+  "Issues": [],
+  "Run": {
+    "Stage": "sheets",
+    "ApiCalls": 0,
+    "ReportedCostUsd": 0,
+    "Model": "openai/gpt-6.1-sol",
+    "Reasoning": "low",
+    "Replay": true,
+    "GeometryReused": false,
+    "Usage": [],
+    "ApiTimings": [],
+    "TotalSeconds": 39.0567262
+  },
+  "HumanApproved": false
+}

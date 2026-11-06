@@ -7,7 +7,7 @@ using System.Text.Json;
 public static class CadQueryPipeline
 {
     static string Hash(string path)=>Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(path)));
-    public static async Task Run(string excel,string image,string output,string? replay=null)
+    public static async Task Run(string excel,string image,string output,string? replay=null,string? geometryReplay=null)
     {
         if(Directory.Exists(output)&&Directory.EnumerateFileSystemEntries(output).Any())throw new Exception("Çıktı klasörü boş olmalı.");
         Directory.CreateDirectory(output);
@@ -15,10 +15,15 @@ public static class CadQueryPipeline
         output=Path.Combine(destination,CadQueryOutputLayout.ReportsFolder);
         Directory.CreateDirectory(output);
         if(replay is not null)replay=CadQueryOutputLayout.Records(replay);
+        if(geometryReplay is not null)geometryReplay=CadQueryOutputLayout.Records(geometryReplay);
         var issues=new List<WorkflowIssue>();string state="failed",stage="input";int calls=0;double cost=0;string? globalError=null;string errorOrigin="software";
         var settings=OpenRouterSettings.Load();var usages=new List<JsonElement>();var apiTimings=new List<object>();var totalTimer=Stopwatch.StartNew();
         try
         {
+            if(geometryReplay is not null) {
+                using var source=JsonDocument.Parse(File.ReadAllText(Path.Combine(geometryReplay,"pipeline-source.json")));
+                if(source.RootElement.GetProperty("excelSha256").GetString()!=Hash(excel)||source.RootElement.GetProperty("imageSha256").GetString()!=Hash(image))throw new Exception("Devam girdileri kayıtlı geometri isteğiyle uyuşmuyor.");
+            }
             var raw=WorkflowReports.ReadRows(excel);var parsed=ExcelModelInput.Build(raw);
             foreach(var r in raw)if(LocalDrawingSettings.Read(r) is null)throw new Exception("Yerel çizim ayarları gerekli.");
             foreach(var r in parsed.rows)if(!System.Text.RegularExpressions.Regex.IsMatch(r.outputId,@"^[A-Za-z0-9_-]+$"))throw new Exception("Geçersiz çıktı kimliği.");
@@ -46,8 +51,8 @@ public static class CadQueryPipeline
             }
             void SaveCode(string filename,string source){if(source.Length>120000)throw new Exception("Betik boyut sınırı.");File.WriteAllText(Path.Combine(output,filename),source);}
             stage="geometry-model";
-            if(replay is null){var r=await Request("geometry",File.ReadAllText("contracts/cadquery/geometry.txt")+"\nTABLE:\n"+table);SaveCode("part.py",r.GetProperty("script").GetString()!);SaveCode("face-tags.py",r.GetProperty("face_tags_script").GetString()!);}
-            else {File.Copy(Path.Combine(replay,"part.py"),Path.Combine(output,"part.py"));if(File.Exists(Path.Combine(replay,"face-tags.py")))File.Copy(Path.Combine(replay,"face-tags.py"),Path.Combine(output,"face-tags.py"));}
+            if(replay is null && geometryReplay is null){var r=await Request("geometry",File.ReadAllText("contracts/cadquery/geometry.txt")+"\nTABLE:\n"+table);SaveCode("part.py",r.GetProperty("script").GetString()!);SaveCode("face-tags.py",r.GetProperty("face_tags_script").GetString()!);}
+            else {var saved=replay??geometryReplay!;File.Copy(Path.Combine(saved,"part.py"),Path.Combine(output,"part.py"));if(File.Exists(Path.Combine(saved,"face-tags.py")))File.Copy(Path.Combine(saved,"face-tags.py"),Path.Combine(output,"face-tags.py"));}
             stage="geometry-execution";CadQueryProducts.CheckStage(output,"script-results.json",await CadScriptWorkflow.Execute(output));
             stage="face-tags";
             if(File.Exists(Path.Combine(output,"face-tags.py")))
@@ -79,6 +84,6 @@ public static class CadQueryPipeline
             state=unconfirmed?"sheets-produced-with-unconfirmed-labels":incomplete?"sheets-produced-with-unresolved-measurements":"sheets-produced";Environment.ExitCode=incomplete||unconfirmed?2:0;
         }
         catch(Exception ex){globalError=ex.Message;issues.Add(new("CADQUERY_PIPELINE",stage,"error",ex.Message,[],"Aşama kayıtları incelenmeli; otomatik API tekrarı yok."));Environment.ExitCode=1;}
-        finally{bool partial=CadQueryProducts.Save(output,stage,globalError,errorOrigin);if(partial&&state.StartsWith("sheets-produced")){state="partially-produced";Environment.ExitCode=2;}WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,Usage=usages,ApiTimings=apiTimings,TotalSeconds=totalTimer.Elapsed.TotalSeconds});CadQueryOutputLayout.Publish(output,destination);Console.WriteLine(state+"; "+destination);}
+        finally{bool partial=CadQueryProducts.Save(output,stage,globalError,errorOrigin);if(partial&&state.StartsWith("sheets-produced")){state="partially-produced";Environment.ExitCode=2;}WorkflowReports.Save(output,state,issues,new{Stage=stage,ApiCalls=calls,ReportedCostUsd=cost,Model=settings.Model,Reasoning=settings.ReasoningEffort,Replay=replay is not null,GeometryReused=geometryReplay is not null,Usage=usages,ApiTimings=apiTimings,TotalSeconds=totalTimer.Elapsed.TotalSeconds});CadQueryOutputLayout.Publish(output,destination);Console.WriteLine(state+"; "+destination);}
     }
 }

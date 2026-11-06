@@ -1,0 +1,89 @@
+{
+  "scope": "Nominal envelope A/B/C/D/L, literal 5 neck, end chamfer circle radii, head R5 circular generating profile, head-end radius L/2 minus 1 mm, mounting plane. Unspecified taper length remains model completion.",
+  "results": [
+    {
+      "outputId": "730001",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 69.40706251574323
+    },
+    {
+      "outputId": "730003",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 69.40706251574323
+    },
+    {
+      "outputId": "730006",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 103.65042243987196
+    },
+    {
+      "outputId": "730013",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 103.65042243987196
+    },
+    {
+      "outputId": "730014",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 55.93748401347699
+    },
+    {
+      "outputId": "730016",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 69.40706251574323
+    },
+    {
+      "outputId": "730017",
+      "passed": true,
+      "issues": [],
+      "headCircularProfiles": [
+        {
+          "minorRadius": 5.0,
+          "kind": "circular-revolution"
+        }
+      ],
+      "mountAreaMm2": 55.93748401347699
+    }
+  ]
+}

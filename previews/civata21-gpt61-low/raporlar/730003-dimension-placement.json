@@ -1,0 +1,65 @@
+{
+  "placed": [
+    "column_D",
+    "column_L"
+  ],
+  "templatePlacements": [
+    {
+      "id": "column_D",
+      "view": "section",
+      "side": "top",
+      "mode": "external-band",
+      "textPosition": "centered",
+      "placedLabelPixels": [
+        837.1547619047619,
+        236.86904780599812
+      ],
+      "bandCoordinate": 249.11904780599812,
+      "innerExtentMm": 3.5,
+      "outerExtentMm": 6.385404789053592,
+      "narrow": false
+    },
+    {
+      "id": "column_L",
+      "view": "front",
+      "mode": "inclined-diameter",
+      "labelAngleDeg": -49.4298245797041,
+      "placedLabelPixels": [
+        1344.5631465414945,
+        268.0501344851306
+      ],
+      "contactPixels": [
+        1315.0628447495872,
+        322.10896534731626
+      ],
+      "circleCenterPixels": [
+        1206.418597988657,
+        449.0
+      ],
+      "radialDirectionPixels": [
+        0.6503789002222158,
+        -0.7596099565867611
+      ],
+      "outwardOffsetPixels": 42.0
+    }
+  ],
+  "unresolved": [],
+  "omitted": [
+    {
+      "id": "column_A",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "column_B",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "column_C",
+      "reason": "No bracketed template marker"
+    },
+    {
+      "id": "column_E",
+      "reason": "No bracketed template marker"
+    }
+  ]
+}

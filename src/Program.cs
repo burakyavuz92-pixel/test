@@ -1,6 +1,7 @@
 try
 {
     if(args.Length==4&&args[0]=="run-cadquery-group"){await CadQueryPipeline.Run(args[1],args[2],args[3]);return;}
+    if(args.Length==5&&args[0]=="continue-cadquery-group"){await CadQueryPipeline.Run(args[1],args[2],args[4],geometryReplay:args[3]);return;}
     if(args.Length==5&&args[0]=="replay-cadquery-group"){await CadQueryPipeline.Run(args[1],args[2],args[4],args[3]);return;}
     if(args.Length==4&&args[0]=="render-script-sheets"){await CadScriptWorkflow.RenderSheets(args[1],args[2],args[3]);return;}
     if(args.Length==4&&args[0]=="analyze-script-group"){await CadScriptWorkflow.Analyze(args[1],args[2],args[3]);return;}

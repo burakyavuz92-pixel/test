@@ -1,0 +1,13 @@
+{
+  "httpStatus": 400,
+  "message": "Image requires 34320 patches; provider limit 30000",
+  "originalImagePixels": [
+    7016,
+    4961
+  ],
+  "submittedImagePixels": [
+    6400,
+    4525
+  ],
+  "submittedPatches": 28400
+}

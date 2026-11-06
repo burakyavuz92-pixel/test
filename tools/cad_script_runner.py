@@ -6,7 +6,7 @@ from OCP.BRepCheck import BRepCheck_Analyzer
 from OCP.STEPControl import STEPControl_Reader
 from OCP.IFSelect import IFSelect_RetDone
 ALLOWED_MODULES={'cadquery':cq,'math':math}
-SAFE_BUILTINS={n:getattr(builtins,n) for n in ['abs','min','max','sum','range','len','float','int','str','bool','dict','list','tuple','set','enumerate','zip','round','format','sorted','isinstance','ValueError','RuntimeError','Exception']}
+SAFE_BUILTINS={n:getattr(builtins,n) for n in ['all','any','TypeError','KeyError','abs','min','max','sum','range','len','float','int','str','bool','dict','list','tuple','set','enumerate','zip','round','format','sorted','isinstance','ValueError','RuntimeError','Exception']}
 DENIED={'open','eval','exec','compile','getattr','setattr','delattr','globals','locals','vars','dir','help','input','breakpoint','type','object','super','os','sys','subprocess','socket','pathlib','requests','builtins','importlib','inspect','ctypes','exporters','importers'}
 
 def numeric_constant(value,depth=0):

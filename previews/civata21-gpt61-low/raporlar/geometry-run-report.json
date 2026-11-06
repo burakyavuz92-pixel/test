@@ -1,0 +1,55 @@
+{
+  "Status": "failed",
+  "Issues": [
+    {
+      "Code": "CADQUERY_PIPELINE",
+      "Category": "geometry-execution",
+      "Severity": "error",
+      "Message": "Hi\u00E7bir \u00FCr\u00FCn sonraki a\u015Famaya ge\u00E7emedi; product-results.json incelenmeli.",
+      "AffectedFields": [],
+      "RecommendedAction": "A\u015Fama kay\u0131tlar\u0131 incelenmeli; otomatik API tekrar\u0131 yok.",
+      "Origin": "validator"
+    }
+  ],
+  "Run": {
+    "Stage": "geometry-execution",
+    "ApiCalls": 1,
+    "ReportedCostUsd": 0.100926,
+    "Model": "openai/gpt-6.1-sol",
+    "Reasoning": "low",
+    "Replay": false,
+    "Usage": [
+      {
+        "prompt_tokens": 36651,
+        "completion_tokens": 930,
+        "total_tokens": 37581,
+        "cost": 0.100926,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 36648,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.100926,
+          "upstream_inference_prompt_cost": 0.091626,
+          "upstream_inference_completions_cost": 0.0093
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 219,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    ],
+    "ApiTimings": [
+      {
+        "Name": "geometry",
+        "Seconds": 21.5268162
+      }
+    ],
+    "TotalSeconds": 24.0278982
+  },
+  "HumanApproved": false
+}
