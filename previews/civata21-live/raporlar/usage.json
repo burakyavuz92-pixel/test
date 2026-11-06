@@ -1,0 +1,16 @@
+[
+  {
+    "stage": "geometry",
+    "inputTokens": 8922,
+    "visibleOutputTokens": 2228,
+    "reasoningTokens": 23463,
+    "reportedCostUsd": 0.0137377
+  },
+  {
+    "stage": "measurements",
+    "inputTokens": 10991,
+    "visibleOutputTokens": 1897,
+    "reasoningTokens": 13572,
+    "reportedCostUsd": 0.0088336
+  }
+]
